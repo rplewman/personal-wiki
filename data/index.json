@@ -4,20 +4,20 @@
   "raw/Draft Copilot.md": "8173c4622e95a545be0749e116e33f51fd5dcbd66dcae23eb4b7eb2c784ce607",
   "raw/PLAN.md": "8c56999515ddf126b44bd0dd39b70f77a9158e7f52f38c22f5cd1d0cd3c9c6f2",
   "wiki/Breakaway PRD Review Notes.md": "d98b1f02b6b192ff939ad83bc5ceee3770c9822ec6d3895e9488d1ffdc2e4937",
-  "wiki/Concepts/API Pre-Check.md": "0eb6d7ba875f54468914de5e3c88f0af7968521d4b493e1bf984310daf92fc1f",
+  "wiki/Concepts/API Pre-Check.md": "aed286843141590672d866669fbd39b17bfc771245d85683f669b83ce68bba70",
   "wiki/Concepts/Athlete Data Layer.md": "2768aeef1d770c2d08ec632d057cfdf139279d538a0f33ae333ab33e99e2dce6",
-  "wiki/Concepts/Caching.md": "9f06f13eddffce56d1ced76a5cd47aae020cc4bab951482625b2e0feb4dd3808",
+  "wiki/Concepts/Caching.md": "b9d864dc7918d29e63af8160feaf1764f16d832e2d0167c4bf0fc6d5cbbf0736",
   "wiki/Concepts/Convex Sync.md": "ced7bf49747fc7f973ee4303ee8be1fa964c6aaa9824052bcd6f0d70d217dd06",
   "wiki/Concepts/Daily Context Summary.md": "909b9a9de2b1f427c03c8630ce97d5389849818e063a75ad39d447b901f49372",
-  "wiki/Concepts/Dynamic Viewport Layout.md": "03ad0b5556d42cf5d7e0372f395e2e3ddaa735a7f42641c2dbaaa095d3f75e25",
+  "wiki/Concepts/Dynamic Viewport Layout.md": "303b0596e3c774e8ac6bcad03f43e68f5abdf93c528d06334428922960224f17",
   "wiki/Concepts/Expert Consensus Rankings.md": "2b4169740774c88bc14d7b52ddeb0b23abacfc051552332746a7d124bdd030a4",
   "wiki/Concepts/Recipe Generation Integration.md": "daf0b3eaa4b344e45c6bf646ce2320633fb43ac9bdc60865198f852d1e611792",
   "wiki/Concepts/Shopping List Scaling.md": "0bb664b3f84719bb93a1023c51f4b7967ffd36c233e0ca223ec4cf1a999b147a",
   "wiki/Concepts/Structured Onboarding Questionnaire.md": "7f32ddbbfb3d6c241de6f66274b4623906470c17d6de7b08523856eaf11fd3e1",
   "wiki/Concepts/Value Model.md": "0fd3353b5f0f5bbdd165e78d16525bb794dde8e582a1c86ffe00e063d7b2d673",
   "wiki/Projects/Breakaway Project.md": "77772d43fc9a5aa16f7cf65c9dfe17eae144c1d24036c6e243afe27a1a661bbb",
-  "wiki/Projects/Draft Copilot.md": "e53c429844cae5b7014a528f288df0bbe26ec65f6ff1cb4be77e08f00a042bb1",
-  "wiki/Projects/The GRKN.md": "0f6cbba4fecaeabdb304c6974b30133b5af010c0cfbeeedffb6a98e8d5587ae3",
+  "wiki/Projects/Draft Copilot.md": "4ebc100205430dbbddeed2ee53374385e04c7f56d5dbc01e4c80f910d34d58c9",
+  "wiki/Projects/The GRKN.md": "069a7815cf372ff5889b64e781d9453de27219f7cf3a28dc90bdc79609df2992",
   "wiki/Shared Themes.md": "1457139e82dd74c723b5eb98ec65021ddb8e8dcbc8f86bc081b64c5e48a66cf1"
  },
  "chunks": [
@@ -1108,6 +1108,12 @@
    "text": "Sleeper's CDN caches the picks endpoint for up to 30 seconds, which the application leverages.\n\n- Sleeper's CDN caches the picks endpoint for up to 30 seconds. ([[raw/Draft Copilot#Features|\u00a7 Features]])\n\n<!-- Human notes: anything below this line is kept when the page is re-ingested. -->"
   },
   {
+   "id": "wiki/Concepts/Caching.md#2",
+   "path": "wiki/Concepts/Caching.md",
+   "section": "Review (2026-09-29)",
+   "text": "- Correction: the app does not \"leverage\" the cache. The 30-second CDN cache is a delay the app lives with, since it polls every 3 seconds."
+  },
+  {
    "id": "wiki/Concepts/Convex Sync.md#0",
    "path": "wiki/Concepts/Convex Sync.md",
    "section": "Convex Sync",
@@ -1556,6 +1562,12 @@
    "path": "wiki/Projects/Draft Copilot.md",
    "section": "Source",
    "text": "- `vault/raw/Draft Copilot.md`: [[raw/Draft Copilot|Draft Copilot.md]]\n\n<!-- Human notes: anything below this line is kept when the page is re-ingested. -->"
+  },
+  {
+   "id": "wiki/Projects/Draft Copilot.md#12",
+   "path": "wiki/Projects/Draft Copilot.md",
+   "section": "Review (2026-09-29, after the offline re-ingest)",
+   "text": "- All 20 points checked against [[raw/Draft Copilot|Draft Copilot.md]]: no invented facts.\n- Correction: the Caching line says the app \"leverages\" the CDN cache. It doesn't. The 30-second cache is a delay the app has to live with, since it polls every 3 seconds.\n- Gap: the page leaves out that Vercel hosting was considered and dropped in favour of running locally (see [[Shared Themes]])."
   },
   {
    "id": "wiki/Projects/The GRKN.md#0",
