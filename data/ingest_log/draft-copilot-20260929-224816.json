@@ -1,0 +1,204 @@
+{
+ "source": "raw/Draft Copilot.md",
+ "sha256": "8173c4622e95a545be0749e116e33f51fd5dcbd66dcae23eb4b7eb2c784ce607",
+ "model": "gemma4:e2b-it-qat",
+ "started": "2026-09-29T22:46:23",
+ "calls": [
+  {
+   "step": "extract",
+   "sections": [
+    "Draft Copilot",
+    "Objective",
+    "Choosing the architecture",
+    "Rankings dataset",
+    "Features",
+    "The Value Model"
+   ],
+   "output": "{\n  \"Draft Copilot\": [\n    \"A small local web app ran alongside a live Sleeper fantasy football draft.\",\n    \"The app tracked every pick in real time and recommended who to take next.\"\n  ],\n  \"Objective\": [\n    \"The goal was a tool to use during a 12-team, full-PPR snake draft on Sleeper.\",\n    \"Recommendations should come from expert consensus rankings, not Sleeper's ADP, which reflects what the crowd picks rather than how good players are.\"\n    ],\n  \"Choosing the architecture\": [\n    \"A screenshot app was rejected because reading text from images is unreliable and breaks whenever Sleeper changes its layout.\",\n    \"The live companion was the easier option because Sleeper has a public, no-login JSON API for drafts.\"\n    ],\n  \"Rankings dataset\": [\n    \"The default rankings deliberately avoid Sleeper ADP.\",\n    \"FantasyPros consensus has a weight of 0.6 and covers the Top 100 players.\"\n    ],\n  \"Features\": [\n    \"The app fetches picks every 3 seconds.\",\n    \"Sleeper's CDN caches the picks endpoint for up to 30 seconds.\",\n    \"Best Available shows consensus rankings with anyone already drafted by any team removed.\",\n    \"My Team and Needs tracker automatically detects your own picks and slots them into starting slots.\"\n    ],\n  \"The Value Model\": [\n    \"Raw consensus rank answers who is the better player, but not who is the better pick right now.\",\n    \"The value model adds position scarcity as a secondary nudge to the raw consensus rank.\"\n    ]\n  }",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 54.19,
+    "load_s": 8.99,
+    "prompt_tokens": 1699,
+    "output_tokens": 363,
+    "tok_per_s": 18.8,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.9
+   }
+  },
+  {
+   "step": "extract",
+   "sections": [
+    "How the model evolved",
+    "Bugs Found and Fixed",
+    "Lessons"
+   ],
+   "output": "{\n  \"How the model evolved\": [\n    \"The first version used `replacement_rank − position_rank` alone.\",\n    \"This first version answered the 2.10 question by favoring the RB11 over the TE1, but it let scarcity override real differences in talent.\"\n  ],\n  \"Bugs Found and Fixed\": [\n    \"The 'My Team' empty issue occurred because Sleeper leaves `roster_id` null on mock-draft picks.\",\n    \"The fix for the 'My Team' empty issue is to identify picks by `draft_slot`, which is set in both mock and real drafts.\"\n    ],\n  \"Lessons\": [\n    \"Check for an API before building scraping or screenshot reading.\",\n    \"Test on a mock draft before relying on the app live.\"\n    ]\n}",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 21.5,
+    "load_s": 0.01,
+    "prompt_tokens": 1034,
+    "output_tokens": 182,
+    "tok_per_s": 20.4,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.8
+   }
+  },
+  {
+   "step": "plan",
+   "output": "{\n  \"title\": \"Draft Copilot Source Note\",\n  \"summary\": \"This source describes a small local web application designed to assist users during a 12-team, full-PPR snake fantasy football draft on Sleeper. The main goal of the tool is to provide real-time pick tracking and recommendations based on expert consensus rankings rather than Sleeper's standard ADP.\",\n  \"key_facts\": [\n    \"F1\",\n    \"F2\",\n    \"F3\",\n    \"F4\",\n    \"F8\",\n    \"F14\",\n    \"F18\",\n    \"F19\",\n    \"F20\"\n  ],\n  \"concepts\": [\n    {\n      \"name\": \"Expert Consensus Rankings\",\n      \"how\": \"Recommendations are derived from expert consensus rankings, which have a weight of 0.6 and cover the Top 100 players.\",\n      \"facts\": [\n        \"F4\",\n        \"F8\"\n      ]\n    },\n    {\n      \"name\": \"Value Model\",\n      \"how\": \"The value model adds position scarcity as a secondary nudge to the raw consensus rank.\",\n      \"facts\": [\n        \"F14\",\n        \"F15\"\n      ]\n    },\n    {\n      \"name\": \"API Pre-Check\",\n      \"how\": \"A check for an API is required before building scraping or screenshot reading solutions.\",\n      \"facts\": [\n        \"F19\"\n      ]\n    },\n    {\n      \"name\": \"Caching\",\n      \"how\": \"Sleeper's CDN caches the picks endpoint for up to 30 seconds, which the live companion leverages.\",\n      \"facts\": [\n        \"F10\",\n        \"F6\"\n      ]\n    }\n  ]\n}",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 30.95,
+    "load_s": 0.01,
+    "prompt_tokens": 805,
+    "output_tokens": 412,
+    "tok_per_s": 21.3,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.6
+   }
+  }
+ ],
+ "rejected": [],
+ "problems": [],
+ "seconds": 112.9,
+ "result": {
+  "raw": "raw/Draft Copilot.md",
+  "sha256": "8173c4622e95a545be0749e116e33f51fd5dcbd66dcae23eb4b7eb2c784ce607",
+  "page": "Draft Copilot",
+  "summary": "This source describes a small local web application designed to assist users during a 12-team, full-PPR snake fantasy football draft on Sleeper. The main goal of the tool is to provide real-time pick tracking and recommendations based on expert consensus rankings rather than Sleeper's standard ADP.",
+  "key_points": [
+   {
+    "section": "Draft Copilot",
+    "fact": "A small local web app ran alongside a live Sleeper fantasy football draft."
+   },
+   {
+    "section": "Draft Copilot",
+    "fact": "The app tracked every pick in real time and recommended who to take next."
+   },
+   {
+    "section": "Objective",
+    "fact": "The goal was a tool to use during a 12-team, full-PPR snake draft on Sleeper."
+   },
+   {
+    "section": "Objective",
+    "fact": "Recommendations should come from expert consensus rankings, not Sleeper's ADP, which reflects what the crowd picks rather than how good players are."
+   },
+   {
+    "section": "Approach > Rankings dataset",
+    "fact": "FantasyPros consensus has a weight of 0.6 and covers the Top 100 players."
+   },
+   {
+    "section": "The Value Model",
+    "fact": "The value model adds position scarcity as a secondary nudge to the raw consensus rank."
+   },
+   {
+    "section": "Bugs Found and Fixed",
+    "fact": "The fix for the 'My Team' empty issue is to identify picks by `draft_slot`, which is set in both mock and real drafts."
+   },
+   {
+    "section": "Lessons",
+    "fact": "Check for an API before building scraping or screenshot reading."
+   },
+   {
+    "section": "Lessons",
+    "fact": "Test on a mock draft before relying on the app live."
+   }
+  ],
+  "facts": [
+   {
+    "section": "Draft Copilot",
+    "fact": "A small local web app ran alongside a live Sleeper fantasy football draft."
+   },
+   {
+    "section": "Draft Copilot",
+    "fact": "The app tracked every pick in real time and recommended who to take next."
+   },
+   {
+    "section": "Objective",
+    "fact": "The goal was a tool to use during a 12-team, full-PPR snake draft on Sleeper."
+   },
+   {
+    "section": "Objective",
+    "fact": "Recommendations should come from expert consensus rankings, not Sleeper's ADP, which reflects what the crowd picks rather than how good players are."
+   },
+   {
+    "section": "Approach > Choosing the architecture",
+    "fact": "A screenshot app was rejected because reading text from images is unreliable and breaks whenever Sleeper changes its layout."
+   },
+   {
+    "section": "Approach > Choosing the architecture",
+    "fact": "The live companion was the easier option because Sleeper has a public, no-login JSON API for drafts."
+   },
+   {
+    "section": "Approach > Rankings dataset",
+    "fact": "The default rankings deliberately avoid Sleeper ADP."
+   },
+   {
+    "section": "Approach > Rankings dataset",
+    "fact": "FantasyPros consensus has a weight of 0.6 and covers the Top 100 players."
+   },
+   {
+    "section": "Features",
+    "fact": "The app fetches picks every 3 seconds."
+   },
+   {
+    "section": "Features",
+    "fact": "Sleeper's CDN caches the picks endpoint for up to 30 seconds."
+   },
+   {
+    "section": "Features",
+    "fact": "Best Available shows consensus rankings with anyone already drafted by any team removed."
+   },
+   {
+    "section": "Features",
+    "fact": "My Team and Needs tracker automatically detects your own picks and slots them into starting slots."
+   },
+   {
+    "section": "The Value Model",
+    "fact": "Raw consensus rank answers who is the better player, but not who is the better pick right now."
+   },
+   {
+    "section": "The Value Model",
+    "fact": "The value model adds position scarcity as a secondary nudge to the raw consensus rank."
+   },
+   {
+    "section": "The Value Model > How the model evolved",
+    "fact": "The first version used `replacement_rank − position_rank` alone."
+   },
+   {
+    "section": "The Value Model > How the model evolved",
+    "fact": "This first version answered the 2.10 question by favoring the RB11 over the TE1, but it let scarcity override real differences in talent."
+   },
+   {
+    "section": "Bugs Found and Fixed",
+    "fact": "The 'My Team' empty issue occurred because Sleeper leaves `roster_id` null on mock-draft picks."
+   },
+   {
+    "section": "Bugs Found and Fixed",
+    "fact": "The fix for the 'My Team' empty issue is to identify picks by `draft_slot`, which is set in both mock and real drafts."
+   },
+   {
+    "section": "Lessons",
+    "fact": "Check for an API before building scraping or screenshot reading."
+   },
+   {
+    "section": "Lessons",
+    "fact": "Test on a mock draft before relying on the app live."
+   }
+  ],
+  "concepts": [
+   "Expert Consensus Rankings",
+   "Value Model",
+   "API Pre-Check",
+   "Caching"
+  ],
+  "proposed_title": "Draft Copilot Source Note",
+  "model": "gemma4:e2b-it-qat",
+  "ingested": "2026-09-29T22:48:16"
+ }
+}

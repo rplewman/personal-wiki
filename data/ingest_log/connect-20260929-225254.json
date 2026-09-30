@@ -1,0 +1,803 @@
+{
+ "started": "2026-09-29T22:48:16",
+ "model": "gemma4:e2b-it-qat",
+ "calls": [
+  {
+   "step": "themes",
+   "output": "{\n  \"themes\": [\n    {\n      \"name\": \"Data Aggregation\",\n      \"query\": \"Data aggregation technique\"\n    },\n    {\n      \"name\": \"Real-Time Tracking\",\n      \"query\": \"Real-time tracking implementation\"\n    },\n    {\n      \"name\": \"Contextual Summarization\",\n      \"query\": \"Daily context summary feature\"\n    },\n    {\n      \"name\": \"Structured Input\",\n      \"query\": \"Structured onboarding questionnaire\"\n    }\n  ]\n}",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 9.95,
+    "load_s": 0.01,
+    "prompt_tokens": 371,
+    "output_tokens": 121,
+    "tok_per_s": 27.1,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.5
+   }
+  },
+  {
+   "step": "verify",
+   "theme": "Data Aggregation",
+   "query": "Data aggregation technique",
+   "output": "{\"Draft Copilot\": {\"facts\": [\"F2\", \"F5\"], \"how\": \"Draft Copilot tracks every pick in real time and fetches picks every 3 seconds to provide recommendations.\"}, \"The GRKN\": {\"facts\": [\"F7\", \"F10\"], \"how\": \"The GRKN uses a data model that maps days of the week to member IDs and updates queries live on both phones.\"}, \"Breakaway Project\": {\"facts\": [\"F11\", \"F12\", \"F13\"], \"how\": \"Breakaway is an intelligent data aggregator across wearable platforms, with Strava acting as a universal aggregator for training data.\"}}",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 10.79,
+    "load_s": 0.01,
+    "prompt_tokens": 409,
+    "output_tokens": 137,
+    "tok_per_s": 27.5,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.5
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Data Aggregation",
+   "project": "Draft Copilot",
+   "fact": "The app tracked every pick in real time and recommended who to take next.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 3.81,
+    "load_s": 0.02,
+    "prompt_tokens": 154,
+    "output_tokens": 11,
+    "tok_per_s": 33.5,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.5
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Data Aggregation",
+   "project": "Draft Copilot",
+   "fact": "The app fetches picks every 3 seconds.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 3.68,
+    "load_s": 0.02,
+    "prompt_tokens": 148,
+    "output_tokens": 11,
+    "tok_per_s": 35.0,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.5
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Data Aggregation",
+   "project": "The GRKN",
+   "fact": "The `households` data model gets `defaultCooks` which maps days of the week to a `memberId?`.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 3.9,
+    "load_s": 0.01,
+    "prompt_tokens": 165,
+    "output_tokens": 11,
+    "tok_per_s": 34.6,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.4
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Data Aggregation",
+   "project": "The GRKN",
+   "fact": "Every query updates live on both phones with Convex.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 3.86,
+    "load_s": 0.01,
+    "prompt_tokens": 149,
+    "output_tokens": 11,
+    "tok_per_s": 31.8,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.3
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Data Aggregation",
+   "project": "Breakaway Project",
+   "fact": "Breakaway is an intelligent data aggregator and plan adjuster.",
+   "output": "{\"answer\": \"yes\", \"quote\": \"Breakaway is an intelligent data aggregator and plan adjuster.\"}",
+   "kept": true,
+   "reason": null,
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 4.07,
+    "load_s": 0.02,
+    "prompt_tokens": 150,
+    "output_tokens": 23,
+    "tok_per_s": 32.4,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.4
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Data Aggregation",
+   "project": "Breakaway Project",
+   "fact": "Breakaway IS a data aggregator across wearable platforms.",
+   "output": "{\"answer\": \"yes\", \"quote\": \"Breakaway IS a data aggregator across wearable platforms.\"}",
+   "kept": true,
+   "reason": null,
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 4.01,
+    "load_s": 0.01,
+    "prompt_tokens": 149,
+    "output_tokens": 22,
+    "tok_per_s": 33.0,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.4
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Data Aggregation",
+   "project": "Breakaway Project",
+   "fact": "Strava acts as a universal aggregator for training data.",
+   "output": "{\"answer\": \"yes\", \"quote\": \"Strava acts as a universal aggregator for training data.\"}",
+   "kept": true,
+   "reason": null,
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 4.08,
+    "load_s": 0.01,
+    "prompt_tokens": 150,
+    "output_tokens": 23,
+    "tok_per_s": 31.8,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.4
+   }
+  },
+  {
+   "step": "verify",
+   "theme": "Real-Time Tracking",
+   "query": "Real-time tracking implementation",
+   "output": "{\"Draft Copilot\": {\"facts\": [\"F1\", \"F5\"], \"how\": \"The app tracks every pick in real time and fetches picks every 3 seconds.\"}, \"The GRKN\": {\"facts\": [\"F8\", \"F9\"], \"how\": \"Every query updates live on both phones with Convex, and the native iOS wrapper will add a small Swift plugin for AlarmKit to start real system timers.\"}, \"Breakaway Project\": {\"facts\": [\"F11\", \"F12\"], \"how\": \"Lingo CGM offers real-time glucose monitoring and personalized fuelling timing, and Breakaway aggregates wearable data to tell you exactly what to change today.\"}}",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 11.02,
+    "load_s": 0.02,
+    "prompt_tokens": 476,
+    "output_tokens": 140,
+    "tok_per_s": 28.6,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.4
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Real-Time Tracking",
+   "project": "Draft Copilot",
+   "fact": "The app tracked every pick in real time and recommended who to take next.",
+   "output": "{\"answer\": \"yes\", \"quote\": \"The app tracked every pick in real time and recommended who to take next.\"}",
+   "kept": true,
+   "reason": null,
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 4.26,
+    "load_s": 0.01,
+    "prompt_tokens": 157,
+    "output_tokens": 27,
+    "tok_per_s": 32.7,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.4
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Real-Time Tracking",
+   "project": "Draft Copilot",
+   "fact": "The app fetches picks every 3 seconds.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 3.71,
+    "load_s": 0.01,
+    "prompt_tokens": 151,
+    "output_tokens": 11,
+    "tok_per_s": 35.2,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.4
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Real-Time Tracking",
+   "project": "The GRKN",
+   "fact": "Every query updates live on both phones with Convex.",
+   "output": "{\"answer\": \"yes\", \"quote\": \"Every query updates live on both phones with Convex.\"}",
+   "kept": true,
+   "reason": null,
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 4.07,
+    "load_s": 0.02,
+    "prompt_tokens": 152,
+    "output_tokens": 22,
+    "tok_per_s": 33.1,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.4
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Real-Time Tracking",
+   "project": "The GRKN",
+   "fact": "The native iOS wrapper will add a small Swift plugin for AlarmKit (iOS 26+) to start real system timers for Cook-mode and prep timer chips.",
+   "output": "{\"answer\": \"yes\", \"quote\": \"start real system timers for Cook-mode and prep timer chips\"}",
+   "kept": true,
+   "reason": null,
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 4.42,
+    "load_s": 0.02,
+    "prompt_tokens": 175,
+    "output_tokens": 24,
+    "tok_per_s": 30.2,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.3
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Real-Time Tracking",
+   "project": "Breakaway Project",
+   "fact": "Lingo CGM offers real-time glucose monitoring and personalized fuelling timing, pending API access approval.",
+   "output": "{\"answer\": \"yes\", \"quote\": \"real-time glucose monitoring and personalized fuelling timing\"}",
+   "kept": true,
+   "reason": null,
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 4.18,
+    "load_s": 0.01,
+    "prompt_tokens": 162,
+    "output_tokens": 22,
+    "tok_per_s": 33.0,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.3
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Real-Time Tracking",
+   "project": "Breakaway Project",
+   "fact": "Breakaway aggregates wearable data, maps it to a race-specific coaching template, and tells you exactly what to change — today.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 3.82,
+    "load_s": 0.01,
+    "prompt_tokens": 168,
+    "output_tokens": 11,
+    "tok_per_s": 35.6,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.4
+   }
+  },
+  {
+   "step": "verify",
+   "theme": "Contextual Summarization",
+   "query": "Daily context summary feature",
+   "output": "{\"Draft Copilot\": {\"facts\": [\"F1\", \"F4\"], \"how\": \"Draft Copilot recommends picks based on expert consensus rankings rather than crowd picks, which is a form of contextual summarization of player preferences.\"}, \"The GRKN\": {\"facts\": [\"F6\", \"F7\"], \"how\": \"The GRKN uses a household taste profile summary and a meal prep card summary line to provide contextual information.\"}, \"Breakaway Project\": {\"facts\": [\"F11\", \"F12\", \"F13\", \"F14\", \"F15\"], \"how\": \"Breakaway Project involves passing daily and weekly context summaries to Claude for coaching notes and plan reviews, with context summaries being recomputed and cached nightly.\"}}",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 11.79,
+    "load_s": 0.02,
+    "prompt_tokens": 500,
+    "output_tokens": 156,
+    "tok_per_s": 28.7,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.3
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Contextual Summarization",
+   "project": "Draft Copilot",
+   "fact": "The app tracked every pick in real time and recommended who to take next.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 3.93,
+    "load_s": 0.01,
+    "prompt_tokens": 157,
+    "output_tokens": 11,
+    "tok_per_s": 35.1,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.4
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Contextual Summarization",
+   "project": "Draft Copilot",
+   "fact": "Recommendations should come from expert consensus rankings, not Sleeper's ADP, which reflects what the crowd picks rather than how good players are.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 3.87,
+    "load_s": 0.01,
+    "prompt_tokens": 170,
+    "output_tokens": 11,
+    "tok_per_s": 34.9,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.4
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Contextual Summarization",
+   "project": "The GRKN",
+   "fact": "The system prompt also includes the household taste profile summary and dislikes.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 3.76,
+    "load_s": 0.01,
+    "prompt_tokens": 155,
+    "output_tokens": 11,
+    "tok_per_s": 35.6,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.4
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Contextual Summarization",
+   "project": "The GRKN",
+   "fact": "The meal prep card summary line reads like 'Sunday prep · ~75 min · covers 9 meals'.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 3.76,
+    "load_s": 0.02,
+    "prompt_tokens": 164,
+    "output_tokens": 11,
+    "tok_per_s": 35.4,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.4
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Contextual Summarization",
+   "project": "Breakaway Project",
+   "fact": "The daily_context summary object is passed to Claude every morning for coaching note generation.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 3.78,
+    "load_s": 0.01,
+    "prompt_tokens": 159,
+    "output_tokens": 11,
+    "tok_per_s": 35.0,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.4
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Contextual Summarization",
+   "project": "Breakaway Project",
+   "fact": "Background jobs recompute context_summaries nightly, including daily_context, weekly_context, race_context, memory_digest, and nutrition_context.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 3.86,
+    "load_s": 0.01,
+    "prompt_tokens": 174,
+    "output_tokens": 11,
+    "tok_per_s": 34.9,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.2
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Contextual Summarization",
+   "project": "Breakaway Project",
+   "fact": "The weekly_context summary object is passed to Claude for weekly plan review or adaptive replanning queries.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 3.78,
+    "load_s": 0.01,
+    "prompt_tokens": 162,
+    "output_tokens": 11,
+    "tok_per_s": 35.0,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.3
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Contextual Summarization",
+   "project": "Breakaway Project",
+   "fact": "The daily context prompt is approximately 350–450 tokens regardless of underlying data.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 3.74,
+    "load_s": 0.01,
+    "prompt_tokens": 162,
+    "output_tokens": 11,
+    "tok_per_s": 35.6,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.2
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Contextual Summarization",
+   "project": "Breakaway Project",
+   "fact": "The daily context object is estimated to use about 120 tokens and is recomputed nightly and is cached.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 3.79,
+    "load_s": 0.02,
+    "prompt_tokens": 165,
+    "output_tokens": 11,
+    "tok_per_s": 35.8,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.2
+   }
+  },
+  {
+   "step": "verify",
+   "theme": "Structured Input",
+   "query": "Structured onboarding questionnaire",
+   "output": "{\"Draft Copilot\": {\"facts\": [\"F1\", \"F2\", \"F3\", \"F4\", \"F5\"], \"how\": \"The Draft Copilot deals with structured input by tracking picks in real time and using expert consensus rankings to provide recommendations.\"},\"The GRKN\": {\"facts\": [\"F7\", \"F9\"], \"how\": \"The GRKN uses structured output for valid, typed recipes via its Claude integration and employs checklists as structured prep sessions.\"},\"Breakaway Project\": {\"facts\": [\"F11\", \"F12\", \"F13\", \"F14\", \"F15\"], \"how\": \"The Breakaway Project uses a structured onboarding questionnaire to populate the Athlete Profile, select coaching templates, and assign race-specific templates.\"}}",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 12.07,
+    "load_s": 0.01,
+    "prompt_tokens": 469,
+    "output_tokens": 165,
+    "tok_per_s": 27.6,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.4
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Structured Input",
+   "project": "Draft Copilot",
+   "fact": "The app tracked every pick in real time and recommended who to take next.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 3.76,
+    "load_s": 0.02,
+    "prompt_tokens": 151,
+    "output_tokens": 11,
+    "tok_per_s": 34.9,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.4
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Structured Input",
+   "project": "Draft Copilot",
+   "fact": "The goal was a tool to use during a 12-team, full-PPR snake draft on Sleeper.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 3.83,
+    "load_s": 0.01,
+    "prompt_tokens": 161,
+    "output_tokens": 11,
+    "tok_per_s": 35.2,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.4
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Structured Input",
+   "project": "Draft Copilot",
+   "fact": "A small local web app ran alongside a live Sleeper fantasy football draft.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 3.75,
+    "load_s": 0.01,
+    "prompt_tokens": 151,
+    "output_tokens": 11,
+    "tok_per_s": 34.9,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.5
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Structured Input",
+   "project": "Draft Copilot",
+   "fact": "Recommendations should come from expert consensus rankings, not Sleeper's ADP, which reflects what the crowd picks rather than how good players are.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 3.88,
+    "load_s": 0.01,
+    "prompt_tokens": 164,
+    "output_tokens": 11,
+    "tok_per_s": 35.0,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.2
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Structured Input",
+   "project": "Draft Copilot",
+   "fact": "Raw consensus rank answers who is the better player, but not who is the better pick right now.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 3.73,
+    "load_s": 0.01,
+    "prompt_tokens": 156,
+    "output_tokens": 11,
+    "tok_per_s": 35.3,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.2
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Structured Input",
+   "project": "The GRKN",
+   "fact": "The Claude integration uses the `@anthropic-ai/sdk` with structured output for valid, typed recipes.",
+   "output": "{\"answer\": \"yes\", \"quote\": \"@anthropic-ai/sdk with structured output for valid, typed recipes\"}",
+   "kept": false,
+   "reason": "quote not found in fact",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 4.29,
+    "load_s": 0.02,
+    "prompt_tokens": 158,
+    "output_tokens": 26,
+    "tok_per_s": 31.8,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.3
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Structured Input",
+   "project": "The GRKN",
+   "fact": "Prep sessions are checklists that either of you can tick off live.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 3.67,
+    "load_s": 0.02,
+    "prompt_tokens": 149,
+    "output_tokens": 11,
+    "tok_per_s": 35.3,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.3
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Structured Input",
+   "project": "Breakaway Project",
+   "fact": "The onboarding process requires a structured questionnaire with 4 blocks and 14 questions.",
+   "output": "{\"answer\": \"yes\", \"quote\": \"The onboarding process requires a structured questionnaire with 4 blocks and 14 questions.\"}",
+   "kept": true,
+   "reason": null,
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 4.26,
+    "load_s": 0.01,
+    "prompt_tokens": 153,
+    "output_tokens": 29,
+    "tok_per_s": 33.4,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.3
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Structured Input",
+   "project": "Breakaway Project",
+   "fact": "The onboarding questionnaire is the foundation of everything Breakaway does.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 3.66,
+    "load_s": 0.01,
+    "prompt_tokens": 148,
+    "output_tokens": 11,
+    "tok_per_s": 35.6,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.3
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Structured Input",
+   "project": "Breakaway Project",
+   "fact": "The onboarding questionnaire is a structured intake that populates the Athlete Profile, selects the correct coaching template, and gives Max the context needed to make every subsequent recommendation meaningful.",
+   "output": "{\"answer\": \"yes\", \"quote\": \"The onboarding questionnaire is a structured intake that populates the Athlete Profile\"}",
+   "kept": true,
+   "reason": null,
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 4.32,
+    "load_s": 0.01,
+    "prompt_tokens": 169,
+    "output_tokens": 25,
+    "tok_per_s": 33.2,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.3
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Structured Input",
+   "project": "Breakaway Project",
+   "fact": "Breakaway assigns a proven, race-specific coaching template to the athlete after they select their target race through a structured onboarding questionnaire.",
+   "output": "{\"answer\": \"yes\", \"quote\": \"assigns a proven, race-specific coaching template to the athlete through a structured onboarding questionnaire\"}",
+   "kept": false,
+   "reason": "quote not found in fact",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 4.4,
+    "load_s": 0.01,
+    "prompt_tokens": 162,
+    "output_tokens": 30,
+    "tok_per_s": 32.9,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.4
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Structured Input",
+   "project": "Breakaway Project",
+   "fact": "The Athlete Profile object is populated by the questionnaire completion.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 3.65,
+    "load_s": 0.01,
+    "prompt_tokens": 147,
+    "output_tokens": 11,
+    "tok_per_s": 35.6,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.4
+   }
+  }
+ ],
+ "themes": [
+  {
+   "name": "Data Aggregation",
+   "query": "Data aggregation technique",
+   "supported_by": [
+    "Breakaway Project"
+   ],
+   "kept": false
+  },
+  {
+   "name": "Real-Time Tracking",
+   "query": "Real-time tracking implementation",
+   "supported_by": [
+    "Draft Copilot",
+    "The GRKN",
+    "Breakaway Project"
+   ],
+   "kept": true
+  },
+  {
+   "name": "Contextual Summarization",
+   "query": "Daily context summary feature",
+   "supported_by": [],
+   "kept": false
+  },
+  {
+   "name": "Structured Input",
+   "query": "Structured onboarding questionnaire",
+   "supported_by": [
+    "Breakaway Project"
+   ],
+   "kept": false
+  }
+ ]
+}

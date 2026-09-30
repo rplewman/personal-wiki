@@ -67,24 +67,28 @@ The default `gemma4:e2b` tag is 7.2 GB, too heavy for this machine. The QAT Q4_0
 
 ## Test results
 
-Test questions and expected passages: [tests/questions.yaml](tests/questions.yaml). Full summaries: [online](evidence/eval-online-20260929-224037.md) (current) and [offline](evidence/eval-offline-20260929-203048.md) (before the T3/T4 routes; offline rerun pending). The previous online run is [eval-online-20260929-182625.md](evidence/eval-online-20260929-182625.md).
+Test questions and expected passages: [tests/questions.yaml](tests/questions.yaml). Full summaries: [online](evidence/eval-online-20260929-224037.md) and [offline](evidence/eval-offline-20260929-225639.md). Runs before the T3/T4 routes: [online](evidence/eval-online-20260929-182625.md) and [offline](evidence/eval-offline-20260929-203048.md).
 
-| Test | Online | Offline (previous code) |
+| Test | Online | Offline |
 |---|---|---|
-| T1 direct: readiness weights 45/35/20% | ✅ (answerability: yes) | ✅ |
-| T2 paraphrased: "how quickly does it notice a pick" → 3 s polling, up to about 30 s CDN cache | ✅ (answerability: yes) | ✅ |
-| T3 cross-source: Vercel across projects | ✅ Per project: GRKN hosted on Vercel, Breakaway Vercel frontend + Railway backend, Draft Copilot considered Vercel and dropped it to run locally; each cites its raw source. Previously 🟡 (Draft Copilot left out) | 🟡 GRKN correct; Railway is attributed as if it were GRKN's backend; Draft Copilot left out |
-| T4 unsupported: chosen price | ✅ Starts with "Insufficient evidence.", lists the options as open (answerability: no). Minor: this run names "§ 12.3" instead of an `[S1]` citation; the mode-check run of the same question cites `[S1]`. Previously 🟡 (no "Insufficient evidence" lead) | 🟡 Says it's open but doesn't lead with "Insufficient evidence" |
-| Mode: "what can you help me with?" | ✅ Accurate list of commands | ✅ |
+| T1 direct: readiness weights 45/35/20% | ✅ (answerability: yes) | ✅ (answerability: yes) |
+| T2 paraphrased: "how quickly does it notice a pick" → 3 s polling, up to about 30 s CDN cache | ✅ (answerability: yes) | ✅ (answerability: yes) |
+| T3 cross-source: Vercel across projects | ✅ Per project: GRKN hosted on Vercel, Breakaway Vercel frontend + Railway backend, Draft Copilot considered Vercel and dropped it to run locally; each cites its raw source. Previously 🟡 (Draft Copilot left out) | ✅ Same three answers, each citing its raw source (Draft Copilot also cites its wiki page). Previously 🟡 (Railway attributed to GRKN, Draft Copilot left out) |
+| T4 unsupported: chosen price | ✅ Starts with "Insufficient evidence.", lists the options as open (answerability: no). Minor: this run names "§ 12.3" instead of an `[S1]` citation; the mode-check run of the same question cites `[S1]`. Previously 🟡 (no "Insufficient evidence" lead) | ✅ Starts with "Insufficient evidence.", options listed as open, cites `[S1]`. That's the Breakaway wiki page, not the raw PRD. The mode-check run names "§ 12.3" instead of a citation. Previously 🟡 |
+| Mode: "what can you help me with?" | ✅ Accurate list of commands | 🟡 Lists the commands, but says it "can run" the `wiki` CLI commands, which chat can't |
 | Mode: draft, then "make that shorter" | 🟡 Shorter with the same facts, but the draft doesn't add `[S]` citations for facts taken from notes | 🟡 Same |
 | Mode: search gives passages only | ✅ | ✅ |
 | Mode: "$9/month" claimed in chat, then ask | ✅ Ask says insufficient evidence; $9 never appears | ✅ |
 
 The first online run failed more (citation formats not parsed, T4 listing the options only). One fix pass followed (citation parsing, link stripping, a prompt rule for "what was chosen" questions), and both runs are kept in `evidence/`. T3 and T4 stayed 🟡, so the two routes above were added and the whole evaluation rerun (all 4 tests, so a false "no" on T1 or T2 would have shown up). An earlier "offline" run turned out to have the network up, so it's kept separately in `evidence/offline-invalid-network-was-up/` and not counted.
 
-**Offline:** `offline_run.cmd` confirmed google.com was unreachable, then ran help, search, ingest of `Draft Copilot.md` and the full evaluation. Log: [evidence/offline/offline-run-log.txt](evidence/offline/offline-run-log.txt). Screenshot: [evidence/offline/offline-run-airplane-mode.png](evidence/offline/offline-run-airplane-mode.png).
+**Offline:** `offline_run.cmd` confirmed google.com was unreachable, then ran help, search, ingest of `Draft Copilot.md` and the full evaluation. Log of the current run (22:46–22:56): [evidence/offline/offline-run-log.txt](evidence/offline/offline-run-log.txt). It opens with "google.com NOT reachable" and `ipconfig` showing Wi-Fi "Media disconnected". The screenshot of this run shows the finished window only, cropped without the taskbar, so the network state is proven by the log.
 
-![Offline run finished with airplane mode on (taskbar icon, bottom right)](evidence/offline/offline-run-airplane-mode.png)
+![Current offline run finished: ingest, evaluation summary eval-offline-20260929-225639.md, DONE](evidence/offline/offline-run-20260929-225639.png)
+
+The earlier offline run (before the T3/T4 routes) has a screenshot with the airplane-mode icon: [evidence/offline/offline-run-airplane-mode.png](evidence/offline/offline-run-airplane-mode.png).
+
+**The offline ingest's wiki changes were reverted.** In this run, re-ingesting Draft Copilot re-ran the automatic "connect" step. This time it proposed a shared theme, `Real-Time Tracking`. The evidence was Draft Copilot's live pick tracking, a GRKN AlarmKit timer from a wrapper marked "tentative, not committed", and a Breakaway Phase 3 CGM feature still "pending API access". That's the loose kind of link described under Limitation, so the vault pages, index and catalog were restored to the reviewed versions. The run's logs are kept: `data/ingest_log/draft-copilot-20260929-224816.json` and `data/ingest_log/connect-20260929-225254.json`. The evaluation above ran while those changes were present. No answer cited the `Real-Time Tracking` page or the added links.
 
 ## Obsidian
 
