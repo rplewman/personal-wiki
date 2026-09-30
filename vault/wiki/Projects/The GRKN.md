@@ -1,7 +1,7 @@
 ---
 type: project
 source: raw/PLAN.md
-source_sha256: 8c56999515ddf126b44bd0dd39b70f77a9158e7f52f38c22f5cd1d0cd3c9c6f2
+source_sha256: 2247673f77011c77c6be266aacc50ffaa73dc494cb45df6d3fb1e997a13cbe54
 generated_by: wiki ingest (gemma4:e2b-it-qat)
 ingested: '2026-09-29T17:45:44'
 reviewed: true
@@ -20,13 +20,13 @@ concepts:
 The GRKN is an application designed to help partners decide what to cook each week and find new, nutritious recipes. It manages household details, meal planning, and shopping list creation through a connected backend.
 
 ## Key points
-- App name is The GRKN. ([[raw/PLAN#Plan: The GRKN – shared meal-planning app for two|§ Plan: The GRKN – shared meal-planning app for two]])
+- App name is The GRKN. ([[raw/PLAN|PLAN.md, § Plan: The GRKN – shared meal-planning app for two]])
 - The app addresses the problem of partners deciding what to cook each week. ([[raw/PLAN#Context|§ Context]])
 - Backend and sync is Convex. ([[raw/PLAN#Decisions (confirmed)|§ Decisions (confirmed)]])
 - Every query updates live on both phones with Convex. ([[raw/PLAN#Decisions (confirmed)|§ Decisions (confirmed)]])
 - Each shopping item is its own document. ([[raw/PLAN#Getting sync right (why this won't repeat the Firebase problem)|§ Getting sync right (why this won't repeat the Firebase problem)]])
-- The Claude integration uses the `@anthropic-ai/sdk` with structured output for valid, typed recipes. ([[raw/PLAN#Claude integration (`convex/ai.ts`, a Node server function)|§ Claude integration (`convex/ai.ts`, a Node server function)]])
-- The scale factor is planned servings divided by recipe servings to combine ingredients by `canonical`. ([[raw/PLAN#Shopping list build (`convex/shopping.ts`)|§ Shopping list build (`convex/shopping.ts`)]])
+- The Claude integration uses the `@anthropic-ai/sdk` with structured output for valid, typed recipes. ([[raw/PLAN|PLAN.md, § Claude integration (convex/ai.ts, a Node server function)]])
+- The scale factor is planned servings divided by recipe servings to combine ingredients by `canonical`. ([[raw/PLAN|PLAN.md, § Shopping list build (convex/shopping.ts)]])
 - The fourth step is to build the week calendar, which includes breakfast (optional, repeatable), lunch and dinner, plus the 'Build shopping list' feature which combines and tests the list. ([[raw/PLAN#Build order|§ Build order]])
 - The build process should use official generators like `create-next-app`, `npx convex dev`, `shadcn add`, and `@convex-dev/auth` init instead of writing boilerplate by hand. ([[raw/PLAN#Keeping the build efficient (Claude Code token use)|§ Keeping the build efficient (Claude Code token use)]])
 - A fixed set of 10 prompts and imports must return correct glutenRisk flags for gluten checks. ([[raw/PLAN#Verification|§ Verification]])
@@ -34,7 +34,7 @@ The GRKN is an application designed to help partners decide what to cook each we
 ## Details
 
 ### Plan  The GRKN – shared meal-planning app for two
-- The GRKN is used in the manifest, page titles, home-screen icon label ("GRKN"), invite emails, and push notifications. ([[raw/PLAN#Plan: The GRKN – shared meal-planning app for two|§ Plan: The GRKN – shared meal-planning app for two]])
+- The GRKN is used in the manifest, page titles, home-screen icon label ("GRKN"), invite emails, and push notifications. ([[raw/PLAN|PLAN.md, § Plan: The GRKN – shared meal-planning app for two]])
 
 ### Context
 - The app addresses the problem of struggling to find new recipes that are good and nutritious for cooking each week. ([[raw/PLAN#Context|§ Context]])
@@ -46,8 +46,8 @@ The GRKN is an application designed to help partners decide what to cook each we
 - Background bounce is locked so pull-to-refresh cannot fight with scrolling. ([[raw/PLAN#iPhone-first UI rules (built in from day one, never added later)|§ iPhone-first UI rules (built in from day one, never added later)]])
 
 ### Data model ( convex schema.ts )
-- The `households` document has fields: `name`, `glutenFreeDefault`, `region/country` (for what's in season), `units` (metric), and `defaultServings`. *(corrected in review)* ([[raw/PLAN#Data model (`convex/schema.ts`)|§ Data model (`convex/schema.ts`)]])
-- The `members` document has fields: `householdId`, `userId`, `displayName`, and `glutenFree` (boolean). ([[raw/PLAN#Data model (`convex/schema.ts`)|§ Data model (`convex/schema.ts`)]])
+- The `households` document has fields: `name`, `glutenFreeDefault`, `region/country` (for what's in season), `units` (metric), and `defaultServings`. *(corrected in review)* ([[raw/PLAN|PLAN.md, § Data model (convex/schema.ts)]])
+- The `members` document has fields: `householdId`, `userId`, `displayName`, and `glutenFree` (boolean). ([[raw/PLAN|PLAN.md, § Data model (convex/schema.ts)]])
 
 ### Screens (4 tabs at the bottom, big tap targets)
 - Meal prep card appears after 'Accept week' or on request with 'Make prep plan' once some meals are kept. ([[raw/PLAN#Screens (4 tabs at the bottom, big tap targets)|§ Screens (4 tabs at the bottom, big tap targets)]])
@@ -61,14 +61,14 @@ The GRKN is an application designed to help partners decide what to cook each we
 - A new dinner takes the default cook for its day, and each dinner's cook can be changed; separately, `households` gets a `dinnerTime` that defaults to 19:00. *(corrected in review)* ([[raw/PLAN#Cooking nights + calendar feed (build step 8.5, after the meal prep guide)|§ Cooking nights + calendar feed (build step 8.5, after the meal prep guide)]])
 
 ### Push notifications ( convex push.ts , with a  web-push  action and VAPID keys)
-- Push notifications work on iPhone (iOS 16.4+) only once the app is installed to the home screen. ([[raw/PLAN#Push notifications (`convex/push.ts`, with a `web-push` action and VAPID keys)|§ Push notifications (`convex/push.ts`, with a `web-push` action and VAPID keys)]])
+- Push notifications work on iPhone (iOS 16.4+) only once the app is installed to the home screen. ([[raw/PLAN|PLAN.md, § Push notifications (convex/push.ts, with a web-push action and VAPID keys)]])
 
 ### Claude integration ( convex ai.ts , a Node server function)
-- The system prompt always includes the gluten rule requiring Claude to set `glutenRisk` for every ingredient. ([[raw/PLAN#Claude integration (`convex/ai.ts`, a Node server function)|§ Claude integration (`convex/ai.ts`, a Node server function)]])
-- The system prompt also includes the household taste profile summary and dislikes. ([[raw/PLAN#Claude integration (`convex/ai.ts`, a Node server function)|§ Claude integration (`convex/ai.ts`, a Node server function)]])
+- The system prompt always includes the gluten rule requiring Claude to set `glutenRisk` for every ingredient. ([[raw/PLAN|PLAN.md, § Claude integration (convex/ai.ts, a Node server function)]])
+- The system prompt also includes the household taste profile summary and dislikes. ([[raw/PLAN|PLAN.md, § Claude integration (convex/ai.ts, a Node server function)]])
 
 ### Shopping list build ( convex shopping.ts )
-- The shopping list build uses the week's plan entries multiplied by a scale factor. ([[raw/PLAN#Shopping list build (`convex/shopping.ts`)|§ Shopping list build (`convex/shopping.ts`)]])
+- The shopping list build uses the week's plan entries multiplied by a scale factor. ([[raw/PLAN|PLAN.md, § Shopping list build (convex/shopping.ts)]])
 
 ### Project layout
 - The project layout includes directories for `app/(tabs)/week`, `recipes`, `recipes/[id]`, `recipes/[id]/cook`, `shop`, `create/{generate,import,plan}`, `app/join/[code]`, `app/settings`, and `app/manifest.ts`. ([[raw/PLAN#Project layout|§ Project layout]])

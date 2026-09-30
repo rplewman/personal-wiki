@@ -98,4 +98,6 @@ def chunk_file(path: Path, limit=CHUNK_CHARS):
 
 
 def file_hash(path: Path):
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    """SHA-256 of the file with line endings normalised to LF. Obsidian rewrites CRLF files as LF when
+    it opens them; that is not an edit, so it must not make ingest treat the source as changed."""
+    return hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()

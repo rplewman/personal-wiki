@@ -141,7 +141,7 @@
   },
   "plan": {
    "raw": "raw/PLAN.md",
-   "sha256": "8c56999515ddf126b44bd0dd39b70f77a9158e7f52f38c22f5cd1d0cd3c9c6f2",
+   "sha256": "2247673f77011c77c6be266aacc50ffaa73dc494cb45df6d3fb1e997a13cbe54",
    "page": "The GRKN",
    "summary": "The GRKN is an application designed to help partners decide what to cook each week and find new, nutritious recipes. It manages household details, meal planning, and shopping list creation through a connected backend.",
    "key_points": [
@@ -372,7 +372,7 @@
   },
   "breakaway-prd-v3-0": {
    "raw": "raw/Breakaway_PRD_v3.0.md",
-   "sha256": "65f793acfa8172dde75ae11ec06e55c024cf4275767e966f68225a1a584ad7b2",
+   "sha256": "f82acc41f55e9898887cfb87dbeddea7b5a6d9fcf68ded65a6856a77b068c4f8",
    "page": "Breakaway Project",
    "summary": "Breakaway is an intelligent data aggregator and plan adjuster designed to be the intelligent layer between an athlete's wearable data and their coaching plan. Its main goal is to make every serious amateur's training as adaptive and race-specific as if they had a professional coach reviewing their data every morning.",
    "key_points": [

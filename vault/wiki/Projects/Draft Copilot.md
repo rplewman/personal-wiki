@@ -66,7 +66,6 @@ This source describes a small local web application designed to assist users dur
 - `vault/raw/Draft Copilot.md`: [[raw/Draft Copilot|Draft Copilot.md]]
 
 <!-- Human notes: anything below this line is kept when the page is re-ingested. -->
-
 ## Review (2026-09-29, after the offline re-ingest)
 - All 20 points checked against [[raw/Draft Copilot|Draft Copilot.md]]: no invented facts.
 - Correction: the Caching line says the app "leverages" the CDN cache. It doesn't. The 30-second cache is a delay the app has to live with, since it polls every 3 seconds.

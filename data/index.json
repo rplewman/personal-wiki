@@ -1,23 +1,23 @@
 {
  "files": {
-  "raw/Breakaway_PRD_v3.0.md": "65f793acfa8172dde75ae11ec06e55c024cf4275767e966f68225a1a584ad7b2",
+  "raw/Breakaway_PRD_v3.0.md": "f82acc41f55e9898887cfb87dbeddea7b5a6d9fcf68ded65a6856a77b068c4f8",
   "raw/Draft Copilot.md": "8173c4622e95a545be0749e116e33f51fd5dcbd66dcae23eb4b7eb2c784ce607",
-  "raw/PLAN.md": "8c56999515ddf126b44bd0dd39b70f77a9158e7f52f38c22f5cd1d0cd3c9c6f2",
+  "raw/PLAN.md": "2247673f77011c77c6be266aacc50ffaa73dc494cb45df6d3fb1e997a13cbe54",
   "wiki/Breakaway PRD Review Notes.md": "d98b1f02b6b192ff939ad83bc5ceee3770c9822ec6d3895e9488d1ffdc2e4937",
   "wiki/Concepts/API Pre-Check.md": "aed286843141590672d866669fbd39b17bfc771245d85683f669b83ce68bba70",
-  "wiki/Concepts/Athlete Data Layer.md": "2768aeef1d770c2d08ec632d057cfdf139279d538a0f33ae333ab33e99e2dce6",
-  "wiki/Concepts/Caching.md": "b9d864dc7918d29e63af8160feaf1764f16d832e2d0167c4bf0fc6d5cbbf0736",
-  "wiki/Concepts/Convex Sync.md": "ced7bf49747fc7f973ee4303ee8be1fa964c6aaa9824052bcd6f0d70d217dd06",
-  "wiki/Concepts/Daily Context Summary.md": "909b9a9de2b1f427c03c8630ce97d5389849818e063a75ad39d447b901f49372",
+  "wiki/Concepts/Athlete Data Layer.md": "fbd3b7ac3ecfc5ac072082c951d2f94e4eeeded2c8ab6b6d65c029bb2a6fb8e7",
+  "wiki/Concepts/Caching.md": "b650a5fb223e3b2272462f7d35666c974e5d9886662efe3d19e86a0b10d85d78",
+  "wiki/Concepts/Convex Sync.md": "0d73dd5e42bdbcf366f253bec56b81c8637ca6a76a96eaaa0f3b073cee2cc856",
+  "wiki/Concepts/Daily Context Summary.md": "6ae572253d7b7a568916c6108043f3506590d790a613b47516f6f418ebb9b5c3",
   "wiki/Concepts/Dynamic Viewport Layout.md": "303b0596e3c774e8ac6bcad03f43e68f5abdf93c528d06334428922960224f17",
-  "wiki/Concepts/Expert Consensus Rankings.md": "2b4169740774c88bc14d7b52ddeb0b23abacfc051552332746a7d124bdd030a4",
-  "wiki/Concepts/Recipe Generation Integration.md": "daf0b3eaa4b344e45c6bf646ce2320633fb43ac9bdc60865198f852d1e611792",
-  "wiki/Concepts/Shopping List Scaling.md": "0bb664b3f84719bb93a1023c51f4b7967ffd36c233e0ca223ec4cf1a999b147a",
-  "wiki/Concepts/Structured Onboarding Questionnaire.md": "7f32ddbbfb3d6c241de6f66274b4623906470c17d6de7b08523856eaf11fd3e1",
-  "wiki/Concepts/Value Model.md": "0fd3353b5f0f5bbdd165e78d16525bb794dde8e582a1c86ffe00e063d7b2d673",
-  "wiki/Projects/Breakaway Project.md": "77772d43fc9a5aa16f7cf65c9dfe17eae144c1d24036c6e243afe27a1a661bbb",
-  "wiki/Projects/Draft Copilot.md": "4ebc100205430dbbddeed2ee53374385e04c7f56d5dbc01e4c80f910d34d58c9",
-  "wiki/Projects/The GRKN.md": "069a7815cf372ff5889b64e781d9453de27219f7cf3a28dc90bdc79609df2992",
+  "wiki/Concepts/Expert Consensus Rankings.md": "af0c8192cb3824cbea8316b85b5b074a0e0a5658cb84619fdee571c74bbe0cba",
+  "wiki/Concepts/Recipe Generation Integration.md": "67e995132f60bf9923ae4c4e9d50459d104dd61d51e57e9293f965795bfb3d85",
+  "wiki/Concepts/Shopping List Scaling.md": "f07276aacbb1013200e22c483e2ee7350d5460760c48dc3a660d4027c74cd3a8",
+  "wiki/Concepts/Structured Onboarding Questionnaire.md": "1bfc396b18b611e1be015bf83a6f9d2a6b4f7ae30e9d7a81f6faaa927b0b648d",
+  "wiki/Concepts/Value Model.md": "9dd7e8bcb9cbd01928e07f00d5ee1d9ffedc06f49136124f8211663b07c41c6b",
+  "wiki/Projects/Breakaway Project.md": "118054ea678b67d25ae279266bb0663dbc833b19b6f3e835916f50785d155ac9",
+  "wiki/Projects/Draft Copilot.md": "f2070d197c9ae5446487b1ccb1dd0162914c1a492098acf904ef8b0bf4a0dfeb",
+  "wiki/Projects/The GRKN.md": "1bfb324ae32dc8af37821f6176794cde520671b94b3483cdbd61a4b13d88acbe",
   "wiki/Shared Themes.md": "1457139e82dd74c723b5eb98ec65021ddb8e8dcbc8f86bc081b64c5e48a66cf1"
  },
  "chunks": [
@@ -1135,7 +1135,7 @@
    "id": "wiki/Concepts/Daily Context Summary.md#1",
    "path": "wiki/Concepts/Daily Context Summary.md",
    "section": "In [[Breakaway Project]]",
-   "text": "The daily context summary object is passed to Claude every morning to generate the coaching note.\n\n- The daily_context summary object is passed to Claude every morning for coaching note generation. ([[raw/Breakaway_PRD_v3.0#context_summaries|\u00a7 context_summaries]])\n- Claude never receives a raw data dump. ([[raw/Breakaway_PRD_v3.0#7.3 Claude Prompting Architecture|\u00a7 7.3 Claude Prompting Architecture]])\n- The operational format is a complete daily coaching prompt sent to Claude. ([[raw/Breakaway_PRD_v3.0#Appendix C: Sample Prompt \u2014 Daily Coaching Query|\u00a7 Appendix C: Sample Prompt \u2014 Daily Coaching Query]])\n\n<!-- Human notes: anything below this line is kept when the page is re-ingested. -->"
+   "text": "The daily context summary object is passed to Claude every morning to generate the coaching note.\n\n- The daily_context summary object is passed to Claude every morning for coaching note generation. ([[raw/Breakaway_PRD_v3.0#context_summaries|\u00a7 context_summaries]])\n- Claude never receives a raw data dump. ([[raw/Breakaway_PRD_v3.0#7.3 Claude Prompting Architecture|\u00a7 7.3 Claude Prompting Architecture]])\n- The operational format is a complete daily coaching prompt sent to Claude. ([[raw/Breakaway_PRD_v3.0|Breakaway_PRD_v3.0.md, \u00a7 Appendix C: Sample Prompt \u2014 Daily Coaching Query]])\n\n<!-- Human notes: anything below this line is kept when the page is re-ingested. -->"
   },
   {
    "id": "wiki/Concepts/Dynamic Viewport Layout.md#0",
@@ -1171,13 +1171,13 @@
    "id": "wiki/Concepts/Recipe Generation Integration.md#1",
    "path": "wiki/Concepts/Recipe Generation Integration.md",
    "section": "In [[The GRKN]]",
-   "text": "The system uses the Claude integration with structured output to generate valid, typed recipes, incorporating rules about gluten risk and household taste profiles.\n\n- The Claude integration uses the `@anthropic-ai/sdk` with structured output for valid, typed recipes. ([[raw/PLAN#Claude integration (`convex/ai.ts`, a Node server function)|\u00a7 Claude integration (`convex/ai.ts`, a Node server function)]])\n- The system prompt always includes the gluten rule requiring Claude to set `glutenRisk` for every ingredient. ([[raw/PLAN#Claude integration (`convex/ai.ts`, a Node server function)|\u00a7 Claude integration (`convex/ai.ts`, a Node server function)]])"
+   "text": "The system uses the Claude integration with structured output to generate valid, typed recipes, incorporating rules about gluten risk and household taste profiles.\n\n- The Claude integration uses the `@anthropic-ai/sdk` with structured output for valid, typed recipes. ([[raw/PLAN|PLAN.md, \u00a7 Claude integration (convex/ai.ts, a Node server function)]])\n- The system prompt always includes the gluten rule requiring Claude to set `glutenRisk` for every ingredient. ([[raw/PLAN|PLAN.md, \u00a7 Claude integration (convex/ai.ts, a Node server function)]])\n- The system prompt also includes the household taste profile summary and dislikes. ([[raw/PLAN|PLAN.md, \u00a7 Claude integration (convex/ai.ts, a Node server function)]])"
   },
   {
    "id": "wiki/Concepts/Recipe Generation Integration.md#2",
    "path": "wiki/Concepts/Recipe Generation Integration.md",
    "section": "In [[The GRKN]]",
-   "text": "- The system prompt also includes the household taste profile summary and dislikes. ([[raw/PLAN#Claude integration (`convex/ai.ts`, a Node server function)|\u00a7 Claude integration (`convex/ai.ts`, a Node server function)]])\n\n<!-- Human notes: anything below this line is kept when the page is re-ingested. -->"
+   "text": "<!-- Human notes: anything below this line is kept when the page is re-ingested. -->"
   },
   {
    "id": "wiki/Concepts/Shopping List Scaling.md#0",
@@ -1189,7 +1189,7 @@
    "id": "wiki/Concepts/Shopping List Scaling.md#1",
    "path": "wiki/Concepts/Shopping List Scaling.md",
    "section": "In [[The GRKN]]",
-   "text": "The shopping list is built by multiplying the week's plan entries by a scale factor, which is calculated by dividing planned servings by recipe servings to combine ingredients by canonical units.\n\n- The shopping list build uses the week's plan entries multiplied by a scale factor. ([[raw/PLAN#Shopping list build (`convex/shopping.ts`)|\u00a7 Shopping list build (`convex/shopping.ts`)]])\n- The scale factor is planned servings divided by recipe servings to combine ingredients by `canonical`. ([[raw/PLAN#Shopping list build (`convex/shopping.ts`)|\u00a7 Shopping list build (`convex/shopping.ts`)]])\n\n<!-- Human notes: anything below this line is kept when the page is re-ingested. -->"
+   "text": "The shopping list is built by multiplying the week's plan entries by a scale factor, which is calculated by dividing planned servings by recipe servings to combine ingredients by canonical units.\n\n- The shopping list build uses the week's plan entries multiplied by a scale factor. ([[raw/PLAN|PLAN.md, \u00a7 Shopping list build (convex/shopping.ts)]])\n- The scale factor is planned servings divided by recipe servings to combine ingredients by `canonical`. ([[raw/PLAN|PLAN.md, \u00a7 Shopping list build (convex/shopping.ts)]])\n\n<!-- Human notes: anything below this line is kept when the page is re-ingested. -->"
   },
   {
    "id": "wiki/Concepts/Structured Onboarding Questionnaire.md#0",
@@ -1291,19 +1291,19 @@
    "id": "wiki/Projects/Breakaway Project.md#11",
    "path": "wiki/Projects/Breakaway Project.md",
    "section": "Details > 4. Race-Specific Onboarding Questionnaire",
-   "text": "- The onboarding questionnaire is the foundation of everything Breakaway does. ([[raw/Breakaway_PRD_v3.0#4. Race-Specific Onboarding Questionnaire|\u00a7 4. Race-Specific Onboarding Questionnaire]])\n- The onboarding questionnaire is a structured intake that populates the Athlete Profile, selects the correct coaching template, and gives Max the context needed to make every subsequent recommendation meaningful. ([[raw/Breakaway_PRD_v3.0#4. Race-Specific Onboarding Questionnaire|\u00a7 4. Race-Specific Onboarding Questionnaire]])\n- What is your target race is a dropdown from a supported race library or manual entry. ([[raw/Breakaway_PRD_v3.0#Block 1: Race Target|\u00a7 Block 1: Race Target]])"
+   "text": "- The onboarding questionnaire is the foundation of everything Breakaway does. ([[raw/Breakaway_PRD_v3.0#4. Race-Specific Onboarding Questionnaire|\u00a7 4. Race-Specific Onboarding Questionnaire]])\n- The onboarding questionnaire is a structured intake that populates the Athlete Profile, selects the correct coaching template, and gives Max the context needed to make every subsequent recommendation meaningful. ([[raw/Breakaway_PRD_v3.0#4. Race-Specific Onboarding Questionnaire|\u00a7 4. Race-Specific Onboarding Questionnaire]])\n- What is your target race is a dropdown from a supported race library or manual entry. ([[raw/Breakaway_PRD_v3.0|Breakaway_PRD_v3.0.md, \u00a7 Block 1: Race Target]])"
   },
   {
    "id": "wiki/Projects/Breakaway Project.md#12",
    "path": "wiki/Projects/Breakaway Project.md",
    "section": "Details > 4. Race-Specific Onboarding Questionnaire",
-   "text": "- Selecting a supported race selects the coaching template, as each supported race has a documented energy system profile. ([[raw/Breakaway_PRD_v3.0#Block 1: Race Target|\u00a7 Block 1: Race Target]])\n- Do you know your current FTP (Functional Threshold Power) is a question. ([[raw/Breakaway_PRD_v3.0#Block 2: Current Fitness|\u00a7 Block 2: Current Fitness]])\n- If FTP is unknown, it is estimated from RPE data in the first 2 weeks. ([[raw/Breakaway_PRD_v3.0#Block 2: Current Fitness|\u00a7 Block 2: Current Fitness]])\n- Which platforms do you use is a visual checkbox menu with device logos. ([[raw/Breakaway_PRD_v3.0#Block 3: Connected Platforms|\u00a7 Block 3: Connected Platforms]])"
+   "text": "- Selecting a supported race selects the coaching template, as each supported race has a documented energy system profile. ([[raw/Breakaway_PRD_v3.0|Breakaway_PRD_v3.0.md, \u00a7 Block 1: Race Target]])\n- Do you know your current FTP (Functional Threshold Power) is a question. ([[raw/Breakaway_PRD_v3.0|Breakaway_PRD_v3.0.md, \u00a7 Block 2: Current Fitness]])\n- If FTP is unknown, it is estimated from RPE data in the first 2 weeks. ([[raw/Breakaway_PRD_v3.0|Breakaway_PRD_v3.0.md, \u00a7 Block 2: Current Fitness]])\n- Which platforms do you use is a visual checkbox menu with device logos. ([[raw/Breakaway_PRD_v3.0|Breakaway_PRD_v3.0.md, \u00a7 Block 3: Connected Platforms]])"
   },
   {
    "id": "wiki/Projects/Breakaway Project.md#13",
    "path": "wiki/Projects/Breakaway Project.md",
    "section": "Details > 4. Race-Specific Onboarding Questionnaire",
-   "text": "- Selecting a platform triggers an OAuth connection flow for each selected platform. ([[raw/Breakaway_PRD_v3.0#Block 3: Connected Platforms|\u00a7 Block 3: Connected Platforms]])\n- The question 'What is your goal for this race?' sets the ambition level. ([[raw/Breakaway_PRD_v3.0#Block 4: Race-Specific Context|\u00a7 Block 4: Race-Specific Context]])\n- Setting the goal affects pacing targets, taper management, and race strategy framing. ([[raw/Breakaway_PRD_v3.0#Block 4: Race-Specific Context|\u00a7 Block 4: Race-Specific Context]])\n- The Athlete Profile object is populated by the questionnaire completion. ([[raw/Breakaway_PRD_v3.0#4.2 Athlete Profile Output|\u00a7 4.2 Athlete Profile Output]])"
+   "text": "- Selecting a platform triggers an OAuth connection flow for each selected platform. ([[raw/Breakaway_PRD_v3.0|Breakaway_PRD_v3.0.md, \u00a7 Block 3: Connected Platforms]])\n- The question 'What is your goal for this race?' sets the ambition level. ([[raw/Breakaway_PRD_v3.0|Breakaway_PRD_v3.0.md, \u00a7 Block 4: Race-Specific Context]])\n- Setting the goal affects pacing targets, taper management, and race strategy framing. ([[raw/Breakaway_PRD_v3.0|Breakaway_PRD_v3.0.md, \u00a7 Block 4: Race-Specific Context]])\n- The Athlete Profile object is populated by the questionnaire completion. ([[raw/Breakaway_PRD_v3.0#4.2 Athlete Profile Output|\u00a7 4.2 Athlete Profile Output]])"
   },
   {
    "id": "wiki/Projects/Breakaway Project.md#14",
@@ -1321,13 +1321,13 @@
    "id": "wiki/Projects/Breakaway Project.md#16",
    "path": "wiki/Projects/Breakaway Project.md",
    "section": "Details > 5. Coaching Plan Template Library",
-   "text": "- Every template follows the same periodization architecture. ([[raw/Breakaway_PRD_v3.0#5.2 Template Structure|\u00a7 5.2 Template Structure]])\n- The Base phase focuses on aerobic foundation and fatigue resistance. ([[raw/Breakaway_PRD_v3.0#5.2 Template Structure|\u00a7 5.2 Template Structure]])\n- The Berkeley Hills Road Race template is the first fully specified template. ([[raw/Breakaway_PRD_v3.0#5.3 Phase 1 Template: Berkeley Hills Road Race|\u00a7 5.3 Phase 1 Template: Berkeley Hills Road Race]])\n- The Berkeley Hills Road Race template is the primary product validation vehicle. ([[raw/Breakaway_PRD_v3.0#5.3 Phase 1 Template: Berkeley Hills Road Race|\u00a7 5.3 Phase 1 Template: Berkeley Hills Road Race]])"
+   "text": "- Every template follows the same periodization architecture. ([[raw/Breakaway_PRD_v3.0#5.2 Template Structure|\u00a7 5.2 Template Structure]])\n- The Base phase focuses on aerobic foundation and fatigue resistance. ([[raw/Breakaway_PRD_v3.0#5.2 Template Structure|\u00a7 5.2 Template Structure]])\n- The Berkeley Hills Road Race template is the first fully specified template. ([[raw/Breakaway_PRD_v3.0|Breakaway_PRD_v3.0.md, \u00a7 5.3 Phase 1 Template: Berkeley Hills Road Race]])\n- The Berkeley Hills Road Race template is the primary product validation vehicle. ([[raw/Breakaway_PRD_v3.0|Breakaway_PRD_v3.0.md, \u00a7 5.3 Phase 1 Template: Berkeley Hills Road Race]])"
   },
   {
    "id": "wiki/Projects/Breakaway Project.md#17",
    "path": "wiki/Projects/Breakaway Project.md",
    "section": "Details > 5. Coaching Plan Template Library",
-   "text": "- The Berkeley Hills Road Race has a distance of ~60 miles. ([[raw/Breakaway_PRD_v3.0#Race Profile: Berkeley Hills Road Race|\u00a7 Race Profile: Berkeley Hills Road Race]])\n- The Berkeley Hills Road Race has an elevation of ~5,800ft total climbing. ([[raw/Breakaway_PRD_v3.0#Race Profile: Berkeley Hills Road Race|\u00a7 Race Profile: Berkeley Hills Road Race]])\n- The Base phase targets 380\u2013420 TSS with 2x Zone 2 endurance, 1x sweet spot, and 1x long ride. ([[raw/Breakaway_PRD_v3.0#Template Workout Emphasis (Mid-Volume Tier, 10 hrs/week)|\u00a7 Template Workout Emphasis (Mid-Volume Tier, 10 hrs/week)]])"
+   "text": "- The Berkeley Hills Road Race has a distance of ~60 miles. ([[raw/Breakaway_PRD_v3.0|Breakaway_PRD_v3.0.md, \u00a7 Race Profile: Berkeley Hills Road Race]])\n- The Berkeley Hills Road Race has an elevation of ~5,800ft total climbing. ([[raw/Breakaway_PRD_v3.0|Breakaway_PRD_v3.0.md, \u00a7 Race Profile: Berkeley Hills Road Race]])\n- The Base phase targets 380\u2013420 TSS with 2x Zone 2 endurance, 1x sweet spot, and 1x long ride. ([[raw/Breakaway_PRD_v3.0#Template Workout Emphasis (Mid-Volume Tier, 10 hrs/week)|\u00a7 Template Workout Emphasis (Mid-Volume Tier, 10 hrs/week)]])"
   },
   {
    "id": "wiki/Projects/Breakaway Project.md#18",
@@ -1459,19 +1459,19 @@
    "id": "wiki/Projects/Breakaway Project.md#39",
    "path": "wiki/Projects/Breakaway Project.md",
    "section": "Details > Appendix A  Glossary",
-   "text": "- TSS is a measure of workout load combining intensity and duration. ([[raw/Breakaway_PRD_v3.0#Appendix A: Glossary|\u00a7 Appendix A: Glossary]])\n- FTP is the Functional Threshold Power, which is the max power a cyclist can sustain for approximately 60 minutes. ([[raw/Breakaway_PRD_v3.0#Appendix A: Glossary|\u00a7 Appendix A: Glossary]])"
+   "text": "- TSS is a measure of workout load combining intensity and duration. ([[raw/Breakaway_PRD_v3.0|Breakaway_PRD_v3.0.md, \u00a7 Appendix A: Glossary]])\n- FTP is the Functional Threshold Power, which is the max power a cyclist can sustain for approximately 60 minutes. ([[raw/Breakaway_PRD_v3.0|Breakaway_PRD_v3.0.md, \u00a7 Appendix A: Glossary]])"
   },
   {
    "id": "wiki/Projects/Breakaway Project.md#40",
    "path": "wiki/Projects/Breakaway Project.md",
    "section": "Details > Appendix B  Workout Database (Starter Set)",
-   "text": "- The Taku workout is in Zone 1 and lasts 30 min for active recovery. ([[raw/Breakaway_PRD_v3.0#Appendix B: Workout Database (Starter Set)|\u00a7 Appendix B: Workout Database (Starter Set)]])\n- The Pettit workout is in Zone 2 and lasts 60 min for aerobic endurance. ([[raw/Breakaway_PRD_v3.0#Appendix B: Workout Database (Starter Set)|\u00a7 Appendix B: Workout Database (Starter Set)]])"
+   "text": "- The Taku workout is in Zone 1 and lasts 30 min for active recovery. ([[raw/Breakaway_PRD_v3.0|Breakaway_PRD_v3.0.md, \u00a7 Appendix B: Workout Database (Starter Set)]])\n- The Pettit workout is in Zone 2 and lasts 60 min for aerobic endurance. ([[raw/Breakaway_PRD_v3.0|Breakaway_PRD_v3.0.md, \u00a7 Appendix B: Workout Database (Starter Set)]])"
   },
   {
    "id": "wiki/Projects/Breakaway Project.md#41",
    "path": "wiki/Projects/Breakaway Project.md",
    "section": "Details > Appendix C  Sample Prompt \u2014 Daily Coaching Query",
-   "text": "- The operational format is a complete daily coaching prompt sent to Claude. ([[raw/Breakaway_PRD_v3.0#Appendix C: Sample Prompt \u2014 Daily Coaching Query|\u00a7 Appendix C: Sample Prompt \u2014 Daily Coaching Query]])\n- The athlete profile has an FTP of 250W and a race of Berkeley Hills Road Race on 2026-04-26. ([[raw/Breakaway_PRD_v3.0#Appendix C: Sample Prompt \u2014 Daily Coaching Query|\u00a7 Appendix C: Sample Prompt \u2014 Daily Coaching Query]])"
+   "text": "- The operational format is a complete daily coaching prompt sent to Claude. ([[raw/Breakaway_PRD_v3.0|Breakaway_PRD_v3.0.md, \u00a7 Appendix C: Sample Prompt \u2014 Daily Coaching Query]])\n- The athlete profile has an FTP of 250W and a race of Berkeley Hills Road Race on 2026-04-26. ([[raw/Breakaway_PRD_v3.0|Breakaway_PRD_v3.0.md, \u00a7 Appendix C: Sample Prompt \u2014 Daily Coaching Query]])"
   },
   {
    "id": "wiki/Projects/Breakaway Project.md#42",
@@ -1585,25 +1585,25 @@
    "id": "wiki/Projects/The GRKN.md#2",
    "path": "wiki/Projects/The GRKN.md",
    "section": "Key points",
-   "text": "- App name is The GRKN. ([[raw/PLAN#Plan: The GRKN \u2013 shared meal-planning app for two|\u00a7 Plan: The GRKN \u2013 shared meal-planning app for two]])\n- The app addresses the problem of partners deciding what to cook each week. ([[raw/PLAN#Context|\u00a7 Context]])\n- Backend and sync is Convex. ([[raw/PLAN#Decisions (confirmed)|\u00a7 Decisions (confirmed)]])\n- Every query updates live on both phones with Convex. ([[raw/PLAN#Decisions (confirmed)|\u00a7 Decisions (confirmed)]])\n- Each shopping item is its own document. ([[raw/PLAN#Getting sync right (why this won't repeat the Firebase problem)|\u00a7 Getting sync right (why this won't repeat the Firebase problem)]])"
+   "text": "- App name is The GRKN. ([[raw/PLAN|PLAN.md, \u00a7 Plan: The GRKN \u2013 shared meal-planning app for two]])\n- The app addresses the problem of partners deciding what to cook each week. ([[raw/PLAN#Context|\u00a7 Context]])\n- Backend and sync is Convex. ([[raw/PLAN#Decisions (confirmed)|\u00a7 Decisions (confirmed)]])\n- Every query updates live on both phones with Convex. ([[raw/PLAN#Decisions (confirmed)|\u00a7 Decisions (confirmed)]])\n- Each shopping item is its own document. ([[raw/PLAN#Getting sync right (why this won't repeat the Firebase problem)|\u00a7 Getting sync right (why this won't repeat the Firebase problem)]])\n- The Claude integration uses the `@anthropic-ai/sdk` with structured output for valid, typed recipes. ([[raw/PLAN|PLAN.md, \u00a7 Claude integration (convex/ai.ts, a Node server function)]])"
   },
   {
    "id": "wiki/Projects/The GRKN.md#3",
    "path": "wiki/Projects/The GRKN.md",
    "section": "Key points",
-   "text": "- The Claude integration uses the `@anthropic-ai/sdk` with structured output for valid, typed recipes. ([[raw/PLAN#Claude integration (`convex/ai.ts`, a Node server function)|\u00a7 Claude integration (`convex/ai.ts`, a Node server function)]])\n- The scale factor is planned servings divided by recipe servings to combine ingredients by `canonical`. ([[raw/PLAN#Shopping list build (`convex/shopping.ts`)|\u00a7 Shopping list build (`convex/shopping.ts`)]])\n- The fourth step is to build the week calendar, which includes breakfast (optional, repeatable), lunch and dinner, plus the 'Build shopping list' feature which combines and tests the list. ([[raw/PLAN#Build order|\u00a7 Build order]])"
+   "text": "- The scale factor is planned servings divided by recipe servings to combine ingredients by `canonical`. ([[raw/PLAN|PLAN.md, \u00a7 Shopping list build (convex/shopping.ts)]])\n- The fourth step is to build the week calendar, which includes breakfast (optional, repeatable), lunch and dinner, plus the 'Build shopping list' feature which combines and tests the list. ([[raw/PLAN#Build order|\u00a7 Build order]])\n- The build process should use official generators like `create-next-app`, `npx convex dev`, `shadcn add`, and `@convex-dev/auth` init instead of writing boilerplate by hand. ([[raw/PLAN#Keeping the build efficient (Claude Code token use)|\u00a7 Keeping the build efficient (Claude Code token use)]])"
   },
   {
    "id": "wiki/Projects/The GRKN.md#4",
    "path": "wiki/Projects/The GRKN.md",
    "section": "Key points",
-   "text": "- The build process should use official generators like `create-next-app`, `npx convex dev`, `shadcn add`, and `@convex-dev/auth` init instead of writing boilerplate by hand. ([[raw/PLAN#Keeping the build efficient (Claude Code token use)|\u00a7 Keeping the build efficient (Claude Code token use)]])\n- A fixed set of 10 prompts and imports must return correct glutenRisk flags for gluten checks. ([[raw/PLAN#Verification|\u00a7 Verification]])"
+   "text": "- A fixed set of 10 prompts and imports must return correct glutenRisk flags for gluten checks. ([[raw/PLAN#Verification|\u00a7 Verification]])"
   },
   {
    "id": "wiki/Projects/The GRKN.md#5",
    "path": "wiki/Projects/The GRKN.md",
    "section": "Details > Plan  The GRKN \u2013 shared meal-planning app for two",
-   "text": "- The GRKN is used in the manifest, page titles, home-screen icon label (\"GRKN\"), invite emails, and push notifications. ([[raw/PLAN#Plan: The GRKN \u2013 shared meal-planning app for two|\u00a7 Plan: The GRKN \u2013 shared meal-planning app for two]])"
+   "text": "- The GRKN is used in the manifest, page titles, home-screen icon label (\"GRKN\"), invite emails, and push notifications. ([[raw/PLAN|PLAN.md, \u00a7 Plan: The GRKN \u2013 shared meal-planning app for two]])"
   },
   {
    "id": "wiki/Projects/The GRKN.md#6",
@@ -1627,7 +1627,7 @@
    "id": "wiki/Projects/The GRKN.md#9",
    "path": "wiki/Projects/The GRKN.md",
    "section": "Details > Data model ( convex schema.ts )",
-   "text": "- The `households` document has fields: `name`, `glutenFreeDefault`, `region/country` (for what's in season), `units` (metric), and `defaultServings`. *(corrected in review)* ([[raw/PLAN#Data model (`convex/schema.ts`)|\u00a7 Data model (`convex/schema.ts`)]])\n- The `members` document has fields: `householdId`, `userId`, `displayName`, and `glutenFree` (boolean). ([[raw/PLAN#Data model (`convex/schema.ts`)|\u00a7 Data model (`convex/schema.ts`)]])"
+   "text": "- The `households` document has fields: `name`, `glutenFreeDefault`, `region/country` (for what's in season), `units` (metric), and `defaultServings`. *(corrected in review)* ([[raw/PLAN|PLAN.md, \u00a7 Data model (convex/schema.ts)]])\n- The `members` document has fields: `householdId`, `userId`, `displayName`, and `glutenFree` (boolean). ([[raw/PLAN|PLAN.md, \u00a7 Data model (convex/schema.ts)]])"
   },
   {
    "id": "wiki/Projects/The GRKN.md#10",
@@ -1651,19 +1651,19 @@
    "id": "wiki/Projects/The GRKN.md#13",
    "path": "wiki/Projects/The GRKN.md",
    "section": "Details > Push notifications ( convex push.ts , with a  web-push  action and VAPID keys)",
-   "text": "- Push notifications work on iPhone (iOS 16.4+) only once the app is installed to the home screen. ([[raw/PLAN#Push notifications (`convex/push.ts`, with a `web-push` action and VAPID keys)|\u00a7 Push notifications (`convex/push.ts`, with a `web-push` action and VAPID keys)]])"
+   "text": "- Push notifications work on iPhone (iOS 16.4+) only once the app is installed to the home screen. ([[raw/PLAN|PLAN.md, \u00a7 Push notifications (convex/push.ts, with a web-push action and VAPID keys)]])"
   },
   {
    "id": "wiki/Projects/The GRKN.md#14",
    "path": "wiki/Projects/The GRKN.md",
    "section": "Details > Claude integration ( convex ai.ts , a Node server function)",
-   "text": "- The system prompt always includes the gluten rule requiring Claude to set `glutenRisk` for every ingredient. ([[raw/PLAN#Claude integration (`convex/ai.ts`, a Node server function)|\u00a7 Claude integration (`convex/ai.ts`, a Node server function)]])\n- The system prompt also includes the household taste profile summary and dislikes. ([[raw/PLAN#Claude integration (`convex/ai.ts`, a Node server function)|\u00a7 Claude integration (`convex/ai.ts`, a Node server function)]])"
+   "text": "- The system prompt always includes the gluten rule requiring Claude to set `glutenRisk` for every ingredient. ([[raw/PLAN|PLAN.md, \u00a7 Claude integration (convex/ai.ts, a Node server function)]])\n- The system prompt also includes the household taste profile summary and dislikes. ([[raw/PLAN|PLAN.md, \u00a7 Claude integration (convex/ai.ts, a Node server function)]])"
   },
   {
    "id": "wiki/Projects/The GRKN.md#15",
    "path": "wiki/Projects/The GRKN.md",
    "section": "Details > Shopping list build ( convex shopping.ts )",
-   "text": "- The shopping list build uses the week's plan entries multiplied by a scale factor. ([[raw/PLAN#Shopping list build (`convex/shopping.ts`)|\u00a7 Shopping list build (`convex/shopping.ts`)]])"
+   "text": "- The shopping list build uses the week's plan entries multiplied by a scale factor. ([[raw/PLAN|PLAN.md, \u00a7 Shopping list build (convex/shopping.ts)]])"
   },
   {
    "id": "wiki/Projects/The GRKN.md#16",

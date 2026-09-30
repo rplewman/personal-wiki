@@ -1,7 +1,7 @@
 ---
 type: project
 source: raw/Breakaway_PRD_v3.0.md
-source_sha256: 65f793acfa8172dde75ae11ec06e55c024cf4275767e966f68225a1a584ad7b2
+source_sha256: f82acc41f55e9898887cfb87dbeddea7b5a6d9fcf68ded65a6856a77b068c4f8
 generated_by: wiki ingest (gemma4:e2b-it-qat)
 ingested: '2026-09-29T17:53:25'
 reviewed: false
@@ -61,14 +61,14 @@ Breakaway is an intelligent data aggregator and plan adjuster designed to be the
 ### 4. Race-Specific Onboarding Questionnaire
 - The onboarding questionnaire is the foundation of everything Breakaway does. ([[raw/Breakaway_PRD_v3.0#4. Race-Specific Onboarding Questionnaire|§ 4. Race-Specific Onboarding Questionnaire]])
 - The onboarding questionnaire is a structured intake that populates the Athlete Profile, selects the correct coaching template, and gives Max the context needed to make every subsequent recommendation meaningful. ([[raw/Breakaway_PRD_v3.0#4. Race-Specific Onboarding Questionnaire|§ 4. Race-Specific Onboarding Questionnaire]])
-- What is your target race is a dropdown from a supported race library or manual entry. ([[raw/Breakaway_PRD_v3.0#Block 1: Race Target|§ Block 1: Race Target]])
-- Selecting a supported race selects the coaching template, as each supported race has a documented energy system profile. ([[raw/Breakaway_PRD_v3.0#Block 1: Race Target|§ Block 1: Race Target]])
-- Do you know your current FTP (Functional Threshold Power) is a question. ([[raw/Breakaway_PRD_v3.0#Block 2: Current Fitness|§ Block 2: Current Fitness]])
-- If FTP is unknown, it is estimated from RPE data in the first 2 weeks. ([[raw/Breakaway_PRD_v3.0#Block 2: Current Fitness|§ Block 2: Current Fitness]])
-- Which platforms do you use is a visual checkbox menu with device logos. ([[raw/Breakaway_PRD_v3.0#Block 3: Connected Platforms|§ Block 3: Connected Platforms]])
-- Selecting a platform triggers an OAuth connection flow for each selected platform. ([[raw/Breakaway_PRD_v3.0#Block 3: Connected Platforms|§ Block 3: Connected Platforms]])
-- The question 'What is your goal for this race?' sets the ambition level. ([[raw/Breakaway_PRD_v3.0#Block 4: Race-Specific Context|§ Block 4: Race-Specific Context]])
-- Setting the goal affects pacing targets, taper management, and race strategy framing. ([[raw/Breakaway_PRD_v3.0#Block 4: Race-Specific Context|§ Block 4: Race-Specific Context]])
+- What is your target race is a dropdown from a supported race library or manual entry. ([[raw/Breakaway_PRD_v3.0|Breakaway_PRD_v3.0.md, § Block 1: Race Target]])
+- Selecting a supported race selects the coaching template, as each supported race has a documented energy system profile. ([[raw/Breakaway_PRD_v3.0|Breakaway_PRD_v3.0.md, § Block 1: Race Target]])
+- Do you know your current FTP (Functional Threshold Power) is a question. ([[raw/Breakaway_PRD_v3.0|Breakaway_PRD_v3.0.md, § Block 2: Current Fitness]])
+- If FTP is unknown, it is estimated from RPE data in the first 2 weeks. ([[raw/Breakaway_PRD_v3.0|Breakaway_PRD_v3.0.md, § Block 2: Current Fitness]])
+- Which platforms do you use is a visual checkbox menu with device logos. ([[raw/Breakaway_PRD_v3.0|Breakaway_PRD_v3.0.md, § Block 3: Connected Platforms]])
+- Selecting a platform triggers an OAuth connection flow for each selected platform. ([[raw/Breakaway_PRD_v3.0|Breakaway_PRD_v3.0.md, § Block 3: Connected Platforms]])
+- The question 'What is your goal for this race?' sets the ambition level. ([[raw/Breakaway_PRD_v3.0|Breakaway_PRD_v3.0.md, § Block 4: Race-Specific Context]])
+- Setting the goal affects pacing targets, taper management, and race strategy framing. ([[raw/Breakaway_PRD_v3.0|Breakaway_PRD_v3.0.md, § Block 4: Race-Specific Context]])
 - The Athlete Profile object is populated by the questionnaire completion. ([[raw/Breakaway_PRD_v3.0#4.2 Athlete Profile Output|§ 4.2 Athlete Profile Output]])
 - The Athlete Profile is the seed of the Athlete Data Layer. ([[raw/Breakaway_PRD_v3.0#4.2 Athlete Profile Output|§ 4.2 Athlete Profile Output]])
 
@@ -79,10 +79,10 @@ Breakaway is an intelligent data aggregator and plan adjuster designed to be the
 - Step 2 selects the template by matching it to the athlete’s available weekly hours tier. ([[raw/Breakaway_PRD_v3.0#5.1 Template Selection Logic|§ 5.1 Template Selection Logic]])
 - Every template follows the same periodization architecture. ([[raw/Breakaway_PRD_v3.0#5.2 Template Structure|§ 5.2 Template Structure]])
 - The Base phase focuses on aerobic foundation and fatigue resistance. ([[raw/Breakaway_PRD_v3.0#5.2 Template Structure|§ 5.2 Template Structure]])
-- The Berkeley Hills Road Race template is the first fully specified template. ([[raw/Breakaway_PRD_v3.0#5.3 Phase 1 Template: Berkeley Hills Road Race|§ 5.3 Phase 1 Template: Berkeley Hills Road Race]])
-- The Berkeley Hills Road Race template is the primary product validation vehicle. ([[raw/Breakaway_PRD_v3.0#5.3 Phase 1 Template: Berkeley Hills Road Race|§ 5.3 Phase 1 Template: Berkeley Hills Road Race]])
-- The Berkeley Hills Road Race has a distance of ~60 miles. ([[raw/Breakaway_PRD_v3.0#Race Profile: Berkeley Hills Road Race|§ Race Profile: Berkeley Hills Road Race]])
-- The Berkeley Hills Road Race has an elevation of ~5,800ft total climbing. ([[raw/Breakaway_PRD_v3.0#Race Profile: Berkeley Hills Road Race|§ Race Profile: Berkeley Hills Road Race]])
+- The Berkeley Hills Road Race template is the first fully specified template. ([[raw/Breakaway_PRD_v3.0|Breakaway_PRD_v3.0.md, § 5.3 Phase 1 Template: Berkeley Hills Road Race]])
+- The Berkeley Hills Road Race template is the primary product validation vehicle. ([[raw/Breakaway_PRD_v3.0|Breakaway_PRD_v3.0.md, § 5.3 Phase 1 Template: Berkeley Hills Road Race]])
+- The Berkeley Hills Road Race has a distance of ~60 miles. ([[raw/Breakaway_PRD_v3.0|Breakaway_PRD_v3.0.md, § Race Profile: Berkeley Hills Road Race]])
+- The Berkeley Hills Road Race has an elevation of ~5,800ft total climbing. ([[raw/Breakaway_PRD_v3.0|Breakaway_PRD_v3.0.md, § Race Profile: Berkeley Hills Road Race]])
 - The Base phase targets 380–420 TSS with 2x Zone 2 endurance, 1x sweet spot, and 1x long ride. ([[raw/Breakaway_PRD_v3.0#Template Workout Emphasis (Mid-Volume Tier, 10 hrs/week)|§ Template Workout Emphasis (Mid-Volume Tier, 10 hrs/week)]])
 - The Build phase targets 440–500 TSS with 2x threshold, 1x climbing simulation, and 1x endurance. ([[raw/Breakaway_PRD_v3.0#Template Workout Emphasis (Mid-Volume Tier, 10 hrs/week)|§ Template Workout Emphasis (Mid-Volume Tier, 10 hrs/week)]])
 - Flat criterium is planned for Phase 2 and emphasizes anaerobic capacity, repeated sprint recovery, and neuromuscular power. ([[raw/Breakaway_PRD_v3.0#5.4 Phase 2 Template Additions|§ 5.4 Phase 2 Template Additions]])
@@ -170,16 +170,16 @@ Breakaway is an intelligent data aggregator and plan adjuster designed to be the
 - The mobile-first versus web-first decision is open for the dashboard design. ([[raw/Breakaway_PRD_v3.0#12.3 Key Decisions Still Open|§ 12.3 Key Decisions Still Open]])
 
 ### Appendix A  Glossary
-- TSS is a measure of workout load combining intensity and duration. ([[raw/Breakaway_PRD_v3.0#Appendix A: Glossary|§ Appendix A: Glossary]])
-- FTP is the Functional Threshold Power, which is the max power a cyclist can sustain for approximately 60 minutes. ([[raw/Breakaway_PRD_v3.0#Appendix A: Glossary|§ Appendix A: Glossary]])
+- TSS is a measure of workout load combining intensity and duration. ([[raw/Breakaway_PRD_v3.0|Breakaway_PRD_v3.0.md, § Appendix A: Glossary]])
+- FTP is the Functional Threshold Power, which is the max power a cyclist can sustain for approximately 60 minutes. ([[raw/Breakaway_PRD_v3.0|Breakaway_PRD_v3.0.md, § Appendix A: Glossary]])
 
 ### Appendix B  Workout Database (Starter Set)
-- The Taku workout is in Zone 1 and lasts 30 min for active recovery. ([[raw/Breakaway_PRD_v3.0#Appendix B: Workout Database (Starter Set)|§ Appendix B: Workout Database (Starter Set)]])
-- The Pettit workout is in Zone 2 and lasts 60 min for aerobic endurance. ([[raw/Breakaway_PRD_v3.0#Appendix B: Workout Database (Starter Set)|§ Appendix B: Workout Database (Starter Set)]])
+- The Taku workout is in Zone 1 and lasts 30 min for active recovery. ([[raw/Breakaway_PRD_v3.0|Breakaway_PRD_v3.0.md, § Appendix B: Workout Database (Starter Set)]])
+- The Pettit workout is in Zone 2 and lasts 60 min for aerobic endurance. ([[raw/Breakaway_PRD_v3.0|Breakaway_PRD_v3.0.md, § Appendix B: Workout Database (Starter Set)]])
 
 ### Appendix C  Sample Prompt — Daily Coaching Query
-- The operational format is a complete daily coaching prompt sent to Claude. ([[raw/Breakaway_PRD_v3.0#Appendix C: Sample Prompt — Daily Coaching Query|§ Appendix C: Sample Prompt — Daily Coaching Query]])
-- The athlete profile has an FTP of 250W and a race of Berkeley Hills Road Race on 2026-04-26. ([[raw/Breakaway_PRD_v3.0#Appendix C: Sample Prompt — Daily Coaching Query|§ Appendix C: Sample Prompt — Daily Coaching Query]])
+- The operational format is a complete daily coaching prompt sent to Claude. ([[raw/Breakaway_PRD_v3.0|Breakaway_PRD_v3.0.md, § Appendix C: Sample Prompt — Daily Coaching Query]])
+- The athlete profile has an FTP of 250W and a race of Berkeley Hills Road Race on 2026-04-26. ([[raw/Breakaway_PRD_v3.0|Breakaway_PRD_v3.0.md, § Appendix C: Sample Prompt — Daily Coaching Query]])
 
 ## Concepts
 - [[Athlete Data Layer]]: This layer is Breakaway’s most defensible asset, serving as a PostgreSQL database with primary tables to store all Athlete Profile outputs.

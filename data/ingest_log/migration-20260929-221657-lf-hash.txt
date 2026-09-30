@@ -1,0 +1,4 @@
+Source hashes switched to LF-normalised SHA-256 (Obsidian rewrites CRLF as LF on open).
+draft-copilot: 8173c4622e95a545be0749e116e33f51fd5dcbd66dcae23eb4b7eb2c784ce607 -> 8173c4622e95a545be0749e116e33f51fd5dcbd66dcae23eb4b7eb2c784ce607 (text unchanged)
+plan: 8c56999515ddf126b44bd0dd39b70f77a9158e7f52f38c22f5cd1d0cd3c9c6f2 -> 2247673f77011c77c6be266aacc50ffaa73dc494cb45df6d3fb1e997a13cbe54 (text unchanged)
+breakaway-prd-v3-0: 65f793acfa8172dde75ae11ec06e55c024cf4275767e966f68225a1a584ad7b2 -> f82acc41f55e9898887cfb87dbeddea7b5a6d9fcf68ded65a6856a77b068c4f8 (text unchanged)

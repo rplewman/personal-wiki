@@ -58,7 +58,8 @@ The default `gemma4:e2b` tag is 7.2 GB, too heavy for this machine. The QAT Q4_0
 - **k raised from 6 to 8** once wiki pages were indexed, because they pushed out the Breakaway hosting passage ([retrieval-checks-k8.txt](evidence/retrieval-checks-k8.txt)).
 - **The harness checks facts, not only the model.** Number checks, constrained IDs and citation filtering catch errors a 2B model makes. In review, 5 faulty facts on the GRKN page were corrected via `data/review.json`.
 - **Sources are never edited.** Corrections and review notes go in `vault/wiki/`, for example `Breakaway PRD Review Notes` and the review section on `Draft Copilot`.
-- **Sources are checked by hash.** Opening the vault in Obsidian rewrote the line endings of two raw files (CRLF to LF, same text). The hash check caught it, and the original bytes were restored so the sources match their ingest hashes.
+- **Sources are checked by hash.** Opening a raw file in Obsidian rewrites its line endings (CRLF to LF, same text). The hash check caught it, so source hashes now ignore line endings (`chunker.file_hash`; the catalog migration is logged in `data/ingest_log/migration-*-lf-hash.txt`). Re-running `wiki ingest` reports all three sources unchanged.
+- **Obsidian heading links.** Links to headings containing `:` or backticks (such as `Appendix A: Glossary`) don't resolve in Obsidian. Found by clicking one, so those 34 links point to the raw file and name the section in the label.
 - **Chat history is never evidence.** Ask has no history. Transcripts are saved outside the vault, so they're never indexed.
 
 ## Test results

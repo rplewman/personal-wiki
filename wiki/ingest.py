@@ -126,6 +126,10 @@ def source_ref(raw_rel, section):
     h = heading_of(section)
     if not h or h == Path(raw_rel).stem or re.search(r"[#|\[\]^]", h):
         return f"[[{target}|{Path(raw_rel).name}]]"
+    if re.search(r"[:`]", h):
+        # Obsidian does not resolve heading links containing ':' or backticks (checked by clicking
+        # "§ Appendix A: Glossary" on 2026-09-29), so link the file and name the section in the label.
+        return f"[[{target}|{Path(raw_rel).name}, § {h.replace('`', '')}]]"
     return f"[[{target}#{h}|§ {h}]]"
 
 
