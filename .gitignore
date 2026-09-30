@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+# regenerable embedding cache (run `wiki index`)
+data/embed_cache.npz
+# personal session handoff notes
+NEXT_STEPS_PROMPT.md
+# Obsidian workspace state
+vault/.obsidian/workspace*.json

@@ -1,0 +1,829 @@
+{
+ "source": "raw/Breakaway_PRD_v3.0.md",
+ "sha256": "65f793acfa8172dde75ae11ec06e55c024cf4275767e966f68225a1a584ad7b2",
+ "model": "gemma4:e2b-it-qat",
+ "started": "2026-09-29T17:45:44",
+ "calls": [
+  {
+   "step": "extract",
+   "sections": [
+    "Breakaway — Product Requirements Document (v3.0)",
+    "Version History",
+    "v3.0 Change Summary",
+    "1. Executive Summary",
+    "2.1 The Fragmentation Problem",
+    "2.2 The Missing Layer",
+    "2.3 Why Race-Specific Plans Matter"
+   ],
+   "output": "{\n  \"Breakaway — Product Requirements Document (v3.0)\": [\n    \"Breakaway is an intelligent data aggregator and plan adjuster.\",\n    \"Breakaway maintains a curated library of race-specific plan templates (e.g., Berkeley Hills Road Race, flat criterium, gravel 100-miler). The AI adjusts workouts within these templates based on wearable inputs.\"\n  ],\n  \"Version History\": [\n    \"Version 1.0 was the Initial PRD, including Whoop + Strava + TrainerRoad + Garmin + MyFitnessPal scope.\",\n    \"Version 1.1 updated the API feasibility, making Strava the primary pipe, native nutrition logger, and TrainerRoad recommendation approach.\"\n  ],\n  \"v3.0 Change Summary\": [\n    \"Breakaway is positioned as a data aggregator and plan adjuster, not a from-scratch AI plan generator.\",\n    \"Breakaway maintains a curated library of race-specific plan templates (e.g., Berkeley Hills Road Race, flat criterium, gravel 100-miler). The AI adjusts workouts within these templates based on wearable inputs.\"\n  ],\n  \"1. Executive Summary\": [\n    \"Breakaway aggregates wearable data, maps it to a race-specific coaching template, and tells you exactly what to change — today.\",\n    \"Breakaway assigns a proven, race-specific coaching template to the athlete after they select their target race through a structured onboarding questionnaire.\",\n    \"Every day, Breakaway pulls data from connected wearables, evaluates it against the template, and recommends specific adjustments in plain English through Max — its AI coaching layer.\"\n    ],\n  \"2.1 The Fragmentation Problem\": [\n    \"TrainerRoad provides structured workouts, FTP progression, and plan templates.\",\n    \"Whoop provides HRV, sleep staging, and recovery score but does not know what the plan says or if a workout is appropriate for the day.\"\n    ],\n  \"2.2 The Missing Layer\": [\n    \"The missing layer sits above the data and translates it into a single, actionable daily recommendation tied to a specific race goal.\"\n  ],\n  \"2.3 Why Race-Specific Plans Matter\": [\n    \"Berkeley Hills Road Race is three laps of sustained threshold climbing followed by a VO₂ Max sprint to the line.\",\n    \"A plan built for a flat criterium will produce an athlete who is fast but cannot sustain power for 20 minutes on a climb.\"\n  ]\n}",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 48.61,
+    "load_s": 0.01,
+    "prompt_tokens": 1431,
+    "output_tokens": 530,
+    "tok_per_s": 20.5,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.0
+   }
+  },
+  {
+   "step": "extract",
+   "sections": [
+    "2.4 User Persona",
+    "3.1 Vision Statement",
+    "3.2 Product Positioning",
+    "3.3 What Breakaway Is and Is Not",
+    "3.4 Phase 1 Success Metrics",
+    "3.5 Non-Goals (Phase 1)",
+    "4. Race-Specific Onboarding Questionnaire",
+    "Block 1: Race Target",
+    "Block 2: Current Fitness",
+    "Block 3: Connected Platforms"
+   ],
+   "output": "{\n  \"2.4 User Persona\": [\n    \"The primary user is a competitive amateur cyclist preparing for a target road race or gran fondo.\",\n    \"The primary user trains 8–12 hours per week.\"\n    ],\n  \"3.1 Vision Statement\": [\n    \"The vision is to be the intelligent layer between an athlete's wearable data and their coaching plan.\",\n    \"The vision is to make every serious amateur's training as adaptive and race-specific as if they had a professional coach reviewing their data every morning.\"\n  ],\n  \"3.2 Product Positioning\": [\n    \"Breakaway is a data aggregator and plan adjuster.\",\n    \"Breakaway is not a training app, a social platform, or a workout library.\"\n    ],\n  \"3.3 What Breakaway Is and Is Not\": [\n    \"Breakaway IS a data aggregator across wearable platforms.\",\n    \"Breakaway IS a race-specific plan template adjuster.\"\n    ],\n  \"3.4 Phase 1 Success Metrics\": [\n    \"Daily active usage for the founder and team is a target of 7 days/week in Month 1.\",\n    \"Training plan adherence is a target of greater than 70% of suggested workouts completed in Month 2.\"\n    ],\n  \"3.5 Non-Goals (Phase 1)\": [\n    \"AI-generated training plans from scratch are not in Phase 1; templates only are.\",\n    \"Social or community features are not in Phase 1.\"\n    ],\n  \"4. Race-Specific Onboarding Questionnaire\": [\n    \"The onboarding questionnaire is the foundation of everything Breakaway does.\",\n    \"The onboarding questionnaire is a structured intake that populates the Athlete Profile, selects the correct coaching template, and gives Max the context needed to make every subsequent recommendation meaningful.\"\n    ],\n    \"Block 1: Race Target\": [\n      \"What is your target race is a dropdown from a supported race library or manual entry.\",\n      \"Selecting a supported race selects the coaching template, as each supported race has a documented energy system profile.\"\n    ],\n    \"Block 2: Current Fitness\": [\n      \"Do you know your current FTP (Functional Threshold Power) is a question.\",\n      \"If FTP is unknown, it is estimated from RPE data in the first 2 weeks.\"\n    ],\n    \"Block 3: Connected Platforms\": [\n      \"Which platforms do you use is a visual checkbox menu with device logos.\",\n      \"Selecting a platform triggers an OAuth connection flow for each selected platform.\"\n    ]\n  }",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 45.78,
+    "load_s": 0.04,
+    "prompt_tokens": 1560,
+    "output_tokens": 566,
+    "tok_per_s": 22.2,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.0
+   }
+  },
+  {
+   "step": "extract",
+   "sections": [
+    "Block 4: Race-Specific Context",
+    "4.2 Athlete Profile Output",
+    "5. Coaching Plan Template Library",
+    "5.1 Template Selection Logic",
+    "5.2 Template Structure",
+    "5.3 Phase 1 Template: Berkeley Hills Road Race",
+    "Race Profile: Berkeley Hills Road Race",
+    "Template Workout Emphasis (Mid-Volume Tier, 10 hrs/week)",
+    "5.4 Phase 2 Template Additions"
+   ],
+   "output": "{\n  \"Block 4: Race-Specific Context\": [\n    \"The question 'What is your goal for this race?' sets the ambition level.\",\n    \"Setting the goal affects pacing targets, taper management, and race strategy framing.\"\n  ],\n  \"4.2 Athlete Profile Output\": [\n    \"The Athlete Profile object is populated by the questionnaire completion.\",\n    \"The Athlete Profile is the seed of the Athlete Data Layer.\"\n    ],\n  \"5. Coaching Plan Template Library\": [\n    \"The template library is the coaching foundation of Breakaway.\",\n    \"The AI selects and adjusts templates; it does not generate them.\"\n  ],\n  \"5.1 Template Selection Logic\": [\n    \"Step 1 selects a template by mapping the target race to a race profile category.\",\n    \"Step 2 selects the template by matching it to the athlete’s available weekly hours tier.\"\n  ],\n  \"5.2 Template Structure\": [\n    \"Every template follows the same periodization architecture.\",\n    \"The Base phase focuses on aerobic foundation and fatigue resistance.\"\n    ],\n  \"5.3 Phase 1 Template: Berkeley Hills Road Race\": [\n    \"The Berkeley Hills Road Race template is the first fully specified template.\",\n    \"The Berkeley Hills Road Race template is the primary product validation vehicle.\"\n    ],\n  \"Race Profile: Berkeley Hills Road Race\": [\n    \"The Berkeley Hills Road Race has a distance of ~60 miles.\",\n    \"The Berkeley Hills Road Race has an elevation of ~5,800ft total climbing.\"\n    ],\n  \"Template Workout Emphasis (Mid-Volume Tier, 10 hrs/week)\": [\n    \"The Base phase targets 380–420 TSS with 2x Zone 2 endurance, 1x sweet spot, and 1x long ride.\",\n    \"The Build phase targets 440–500 TSS with 2x threshold, 1x climbing simulation, and 1x endurance.\"\n    ],\n  \"5.4 Phase 2 Template Additions\": [\n    \"Flat criterium is planned for Phase 2 and emphasizes anaerobic capacity, repeated sprint recovery, and neuromuscular power.\",\n    \"Rolling gran fondo is planned for Phase 2 and emphasizes aerobic endurance, pacing discipline, and fuelling.\"\n    ]\n  }",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 52.27,
+    "load_s": 0.02,
+    "prompt_tokens": 1812,
+    "output_tokens": 513,
+    "tok_per_s": 21.7,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.9
+   }
+  },
+  {
+   "step": "extract",
+   "sections": [
+    "6. Daily Coaching Experience",
+    "6.1 Training Readiness Score",
+    "6.2 Max Coaching Note",
+    "6.3 Contextual Reply Chips",
+    "6.4 Full Chat with Max",
+    "6.5 Manual Sleep Input",
+    "7. Athlete Data Layer — The Technical Moat",
+    "7.1 Why This Architecture Matters",
+    "7.2 Data Layer Structure",
+    "athlete_profile",
+    "daily_inputs"
+   ],
+   "output": "{\n  \"6. Daily Coaching Experience\": [\n    \"The daily experience is the product.\",\n    \"Every other feature exists to make this moment better.\"\n  ],\n  \"6.1 Training Readiness Score\": [\n    \"A single 0–100 score synthesises all available signals into one daily verdict.\",\n    \"The score is displayed as the hero element of the dashboard with a GO HARD / MODIFIED / RECOVER verdict.\"\n  ],\n  \"6.2 Max Coaching Note\": [\n    \"Max delivers two sentences every morning directly below the readiness score.\",\n    \"The first sentence states what was planned and what is being recommended instead if different.\"\n  ],\n  \"6.3 Contextual Reply Chips\": [\n    \"Max surfaces 3 dynamically generated follow-up prompts below the coaching note.\",\n    \"Tier 1 chips are daily contextual chips generated from today’s data.\"\n  ],\n  \"6.4 Full Chat with Max\": [\n    \"Tapping the coaching note opens a full conversational interface with Max.\",\n    \"Max has access to the athlete’s structured data context for the session.\"\n  ],\n  \"6.5 Manual Sleep Input\": [\n    \"Manual sleep input is available on-demand for users without a sleep tracker.\",\n    \"Manual sleep input asks only two questions: hours slept and a 1–10 quality rating.\"\n  ],\n  \"7. Athlete Data Layer — The Technical Moat\": [\n    \"The Athlete Data Layer is Breakaway’s most defensible asset.\",\n    \"The Athlete Data Layer is a structured, queryable store of every input and training ride.\"\n  ],\n  \"7.1 Why This Architecture Matters\": [\n    \"Most AI fitness products fail at the data layer.\",\n    \"Breakaway solves this by treating the athlete’s data as a structured database, not a conversation history.\"\n  ],\n  \"7.2 Data Layer Structure\": [\n    \"The Athlete Data Layer is a PostgreSQL database with primary tables.\",\n    \"The athlete_profile table stores static and semi-static athlete attributes.\"\n  ],\n  \"athlete_profile\": [\n    \"The athlete_profile table stores all Athlete Profile outputs from Section 4.2.\",\n    \"The athlete_profile table includes FTP history, injury log, goal history, and preferred workout times.\"\n  ],\n  \"daily_inputs\": [\n    \"The daily_inputs table has one row per calendar day.\",\n    \"The daily_inputs table is populated automatically from connected wearable APIs and manually from the nutrition logger.\"\n  ]\n}",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 48.21,
+    "load_s": 0.03,
+    "prompt_tokens": 1548,
+    "output_tokens": 561,
+    "tok_per_s": 20.1,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.8
+   }
+  },
+  {
+   "step": "extract",
+   "sections": [
+    "training_rides",
+    "plan_workouts",
+    "context_summaries",
+    "7.3 Claude Prompting Architecture",
+    "7.4 Longitudinal Memory — The Compounding Moat",
+    "8. Race & Fuelling Strategy"
+   ],
+   "output": "{\n  \"training_rides\": [\n    \"One row per completed activity is populated from Strava webhook.\",\n    \"The date field in training_rides is sourced from Strava as the activity date.\"\n  ],\n  \"plan_workouts\": [\n    \"One row per scheduled workout is created in the training block.\",\n    \"The status field in plan_workouts is updated from training_rides.\"\n  ],\n  \"context_summaries\": [\n    \"The daily_context summary object is passed to Claude every morning for coaching note generation.\",\n    \"The weekly_context summary object is passed to Claude for weekly plan review or adaptive replanning queries.\"\n  ],\n  \"7.3 Claude Prompting Architecture\": [\n    \"Claude never receives a raw data dump.\",\n    \"The daily context prompt is approximately 350–450 tokens regardless of underlying data.\",\n    \"Claude never touches the database directly; it only receives pre-assembled context objects.\"\n  ],\n  \"7.4 Longitudinal Memory — The Compounding Moat\": [\n    \"The memory_digest object is updated weekly by a background process.\",\n    \"The memory_digest object is compressed to under 200 tokens.\"\n  ],\n  \"8. Race & Fuelling Strategy\": [\n    \"Race strategy and fuelling guidance are delivered in the lead-up to the target race.\",\n    \"Breakaway synthesizes current fitness, course demands, and individual data into a concrete, personalised race plan.\"\n  ]\n}",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 38.14,
+    "load_s": 0.02,
+    "prompt_tokens": 1595,
+    "output_tokens": 329,
+    "tok_per_s": 19.7,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.7
+   }
+  },
+  {
+   "step": "extract",
+   "sections": [
+    "8.1 Pre-Race Plan (Generated 5–7 Days Before Race)",
+    "8.2 Fuelling Plan",
+    "8.3 Race Week Protocol (Activates 7 Days Before Race)",
+    "8.4 Post-Race Analysis",
+    "9.1 Signal Hierarchy",
+    "9.2 Integration Stack",
+    "9.3 Why Strava Is the Right Primary Pipe (Phase 1)"
+   ],
+   "output": "{\n  \"8.1 Pre-Race Plan (Generated 5–7 Days Before Race)\": [\n    \"Max generates a race plan document the athlete can print or screenshot and take to the start line.\",\n    \"The race plan document is populated from the race_context summary object and the athlete’s current fitness data.\"\n  ],\n  \"8.2 Fuelling Plan\": [\n    \"Max generates a personalised fuelling schedule based on race duration estimate, individual carb metabolism patterns from the nutrition log history, and standard endurance fuelling guidelines.\",\n    \"The fuelling plan is expressed in concrete, practical terms.\"\n  ],\n  \"8.3 Race Week Protocol (Activates 7 Days Before Race)\": [\n    \"Race -7 (Mon) focus is a final quality session with a short threshold effort to maintain sharpness.\",\n    \"Race -6 (Tue) focus is active recovery, which is a Zone 1 spin for 30–45 minutes with no efforts.\"\n  ],\n  \"8.4 Post-Race Analysis\": [\n    \"Max detects the Strava activity after the race and generates a brief analysis.\",\n    \"The analysis includes power file vs. pre-race plan comparison and identified limiters from the data.\"\n  ],\n  \"9.1 Signal Hierarchy\": [\n    \"Whoop is the primary source for HRV / Recovery data.\",\n    \"Garmin measures HRV opportunistically and is a secondary source for HRV / Recovery data.\"\n  ],\n  \"9.2 Integration Stack\": [\n    \"Whoop uses the Whoop Developer API v2 (OAuth 2.0) for integration in Phase 1.\",\n    \"Strava uses the Strava API (OAuth 2.0) to aggregate all activities and TSS in Phase 1.\"\n  ],\n  \"9.3 Why Strava Is the Right Primary Pipe (Phase 1)\": [\n    \"Strava acts as a universal aggregator for training data.\",\n    \"Garmin auto-syncs every activity to Strava, capturing all Garmin data without Garmin approval.\"\n  ]\n}",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 43.09,
+    "load_s": 0.03,
+    "prompt_tokens": 1776,
+    "output_tokens": 451,
+    "tok_per_s": 21.8,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.7
+   }
+  },
+  {
+   "step": "extract",
+   "sections": [
+    "10.1 Stack",
+    "10.2 Data Flow",
+    "10.3 Token Budget",
+    "11. Build Roadmap",
+    "Phase 1 — Core Loop  (Weeks 1–8)",
+    "Phase 2 — Breadth & Intelligence  (Months 2–4)"
+   ],
+   "output": "{\n  \"10.1 Stack\": [\n    \"Frontend uses React and Tailwind CSS for fast prototyping, mobile-friendly, and component-based development.\",\n    \"The backend uses Node.js and Express for JavaScript consistency and a strong API ecosystem.\"\n  ],\n  \"10.2 Data Flow\": [\n    \"Wearable APIs like Whoop and Strava push or poll data nightly, writing it to daily_inputs and training_rides tables.\",\n    \"Background jobs recompute context_summaries nightly, including daily_context, weekly_context, race_context, memory_digest, and nutrition_context.\"\n  ],\n  \"10.3 Token Budget\": [\n    \"The athlete profile context object is estimated to use about 80 tokens and is cached.\",\n    \"The daily context object is estimated to use about 120 tokens and is recomputed nightly and is cached.\"\n  ],\n  \"11. Build Roadmap\": [\n    \"Phase 1 must be validated before Phase 2 begins.\",\n    \"The north star is for 20 users to open Breakaway every morning for 30 consecutive days.\"\n  ],\n  \"Phase 1 — Core Loop  (Weeks 1–8)\": [\n    \"The onboarding process requires a structured questionnaire with 4 blocks and 14 questions.\",\n    \"Athlete Profile population and storage is a must-have deliverable.\",\n    \"Data integrations must include the Whoop API using OAuth 2.0.\",\n    \"Data integrations must include the Strava API for activity sync, TSS, and training load using OAuth 2.0.\"\n  ],\n  \"Phase 2 — Breadth & Intelligence  (Months 2–4)\": [\n    \"Garmin Connect direct integration is planned to provide VO₂ Max trend, independent HRV, and high-resolution power data.\",\n    \"Additional race templates planned include flat criterium, rolling gran fondo, and punchy circuit race.\"\n  ]\n}",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 47.8,
+    "load_s": 0.02,
+    "prompt_tokens": 1591,
+    "output_tokens": 429,
+    "tok_per_s": 22.6,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.7
+   }
+  },
+  {
+   "step": "extract",
+   "sections": [
+    "Phase 3 — Moat Widening  (Months 4–12)",
+    "12.1 API Risks",
+    "12.2 Product Risks",
+    "12.3 Key Decisions Still Open",
+    "Appendix A: Glossary",
+    "Appendix B: Workout Database (Starter Set)"
+   ],
+   "output": "{\n  \"Phase 3 — Moat Widening  (Months 4–12)\": [\n    \"Google Calendar integration supports life-aware replanning, travel detection, and stress event classification.\",\n    \"Lingo CGM offers real-time glucose monitoring and personalized fuelling timing, pending API access approval.\"\n  ],\n  \"12.1 API Risks\": [\n    \"Whoop API status is Open, free, and has an active changelog.\",\n    \"Strava API status is Open and well-documented, but policy has tightened for some data types in late 2024.\"\n  ],\n  \"12.2 Product Risks\": [\n    \"Coaching templates must be reviewed by a domain expert before beta launch.\",\n    \"The initial mitigation for template staleness is an FTP re-test prompt at weeks 4 and 8.\"\n  ],\n  \"12.3 Key Decisions Still Open\": [\n    \"Pricing options include free personal tool, freemium, or a $12–15/month subscription.\",\n    \"The mobile-first versus web-first decision is open for the dashboard design.\"\n  ],\n  \"Appendix A: Glossary\": [\n    \"TSS is a measure of workout load combining intensity and duration.\",\n    \"FTP is the Functional Threshold Power, which is the max power a cyclist can sustain for approximately 60 minutes.\"\n  ],\n  \"Appendix B: Workout Database (Starter Set)\": [\n    \"The Taku workout is in Zone 1 and lasts 30 min for active recovery.\",\n    \"The Pettit workout is in Zone 2 and lasts 60 min for aerobic endurance.\"\n  ]\n}",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 48.54,
+    "load_s": 0.01,
+    "prompt_tokens": 1618,
+    "output_tokens": 368,
+    "tok_per_s": 19.5,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.7
+   }
+  },
+  {
+   "step": "extract",
+   "sections": [
+    "Appendix C: Sample Prompt — Daily Coaching Query"
+   ],
+   "output": "{\n  \"Appendix C: Sample Prompt — Daily Coaching Query\": [\n    \"The operational format is a complete daily coaching prompt sent to Claude.\",\n    \"The athlete profile has an FTP of 250W and a race of Berkeley Hills Road Race on 2026-04-26.\"\n  ]\n}",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 12.39,
+    "load_s": 0.03,
+    "prompt_tokens": 615,
+    "output_tokens": 73,
+    "tok_per_s": 22.4,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.7
+   }
+  },
+  {
+   "step": "plan",
+   "output": "{\n  \"title\": \"Intelligent Data Aggregator Plan Adjuster\",\n  \"summary\": \"Breakaway is an intelligent data aggregator and plan adjuster designed to be the intelligent layer between an athlete's wearable data and their coaching plan. Its main goal is to make every serious amateur's training as adaptive and race-specific as if they had a professional coach reviewing their data every morning.\",\n  \"key_facts\": [\n    \"F1\",\n    \"F4\",\n    \"F15\",\n    \"F17\",\n    \"F19\",\n    \"F20\",\n    \"F51\",\n    \"F56\",\n    \"F63\",\n    \"F67\"\n  ],\n  \"concepts\": [\n    {\n      \"name\": \"Athlete Data Layer\",\n      \"how\": \"This layer is Breakaway’s most defensible asset, serving as a PostgreSQL database with primary tables to store all Athlete Profile outputs.\",\n      \"facts\": [\n        \"F58\",\n        \"F59\",\n        \"F36\"\n      ]\n    },\n    {\n      \"name\": \"Race Specific Plan Template Adjuster\",\n      \"how\": \"The system uses curated race-specific plan templates and AI to adjust workouts within them based on wearable inputs.\",\n      \"facts\": [\n        \"F5\",\n        \"F20\",\n        \"F38\"\n      ]\n    },\n    {\n      \"name\": \"Daily Context Summary\",\n      \"how\": \"The daily context summary object is passed to Claude every morning to generate the coaching note.\",\n      \"facts\": [\n        \"F63\",\n        \"F64\",\n        \"F86\"\n      ]\n    },\n    {\n      \"name\": \"Structured Onboarding Questionnaire\",\n      \"how\": \"The onboarding questionnaire is the foundation of everything Breakaway does, populating the Athlete Profile and selecting the correct coaching template.\",\n      \"facts\": [\n        \"F25\",\n        \"F26\",\n        \"F78\"\n      ]\n    }\n  ]\n}",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 56.19,
+    "load_s": 0.02,
+    "prompt_tokens": 2273,
+    "output_tokens": 472,
+    "tok_per_s": 23.6,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.9
+   }
+  }
+ ],
+ "rejected": [
+  {
+   "section": "Breakaway — Product Requirements Document (v3.0)",
+   "fact": "Breakaway maintains a curated library of race-specific plan templates (e.g., Berkeley Hills Road Race, flat criterium, gravel 100-miler). The AI adjusts workouts within these templates based on wearable inputs.",
+   "reason": "numbers not in cited section: ['100']"
+  },
+  {
+   "concept": {
+    "name": "Race Specific Plan Template Adjuster",
+    "how": "The system uses curated race-specific plan templates and AI to adjust workouts within them based on wearable inputs.",
+    "facts": [
+     "F5",
+     "F20",
+     "F38"
+    ]
+   },
+   "reason": "no name, no valid supporting facts, or names a project"
+  }
+ ],
+ "problems": [],
+ "seconds": 461.5,
+ "result": {
+  "raw": "raw/Breakaway_PRD_v3.0.md",
+  "sha256": "65f793acfa8172dde75ae11ec06e55c024cf4275767e966f68225a1a584ad7b2",
+  "page": "Intelligent Data Aggregator Plan Adjuster",
+  "summary": "Breakaway is an intelligent data aggregator and plan adjuster designed to be the intelligent layer between an athlete's wearable data and their coaching plan. Its main goal is to make every serious amateur's training as adaptive and race-specific as if they had a professional coach reviewing their data every morning.",
+  "key_points": [
+   {
+    "section": "Breakaway — Product Requirements Document (v3.0)",
+    "fact": "Breakaway is an intelligent data aggregator and plan adjuster."
+   },
+   {
+    "section": "Version History > v3.0 Change Summary",
+    "fact": "Breakaway is positioned as a data aggregator and plan adjuster, not a from-scratch AI plan generator."
+   },
+   {
+    "section": "3. Product Vision & Goals > 3.1 Vision Statement",
+    "fact": "The vision is to be the intelligent layer between an athlete's wearable data and their coaching plan."
+   },
+   {
+    "section": "3. Product Vision & Goals > 3.2 Product Positioning",
+    "fact": "Breakaway is a data aggregator and plan adjuster."
+   },
+   {
+    "section": "3. Product Vision & Goals > 3.3 What Breakaway Is and Is Not",
+    "fact": "Breakaway IS a data aggregator across wearable platforms."
+   },
+   {
+    "section": "3. Product Vision & Goals > 3.3 What Breakaway Is and Is Not",
+    "fact": "Breakaway IS a race-specific plan template adjuster."
+   },
+   {
+    "section": "6. Daily Coaching Experience > 6.1 Training Readiness Score",
+    "fact": "A single 0–100 score synthesises all available signals into one daily verdict."
+   },
+   {
+    "section": "7. Athlete Data Layer — The Technical Moat",
+    "fact": "The Athlete Data Layer is Breakaway’s most defensible asset."
+   },
+   {
+    "section": "7. Athlete Data Layer — The Technical Moat > 7.2 Data Layer Structure > context_summaries",
+    "fact": "The daily_context summary object is passed to Claude every morning for coaching note generation."
+   },
+   {
+    "section": "8. Race & Fuelling Strategy > 8.1 Pre-Race Plan (Generated 5–7 Days Before Race)",
+    "fact": "Max generates a race plan document the athlete can print or screenshot and take to the start line."
+   }
+  ],
+  "facts": [
+   {
+    "section": "Breakaway — Product Requirements Document (v3.0)",
+    "fact": "Breakaway is an intelligent data aggregator and plan adjuster."
+   },
+   {
+    "section": "Version History",
+    "fact": "Version 1.0 was the Initial PRD, including Whoop + Strava + TrainerRoad + Garmin + MyFitnessPal scope."
+   },
+   {
+    "section": "Version History",
+    "fact": "Version 1.1 updated the API feasibility, making Strava the primary pipe, native nutrition logger, and TrainerRoad recommendation approach."
+   },
+   {
+    "section": "Version History > v3.0 Change Summary",
+    "fact": "Breakaway is positioned as a data aggregator and plan adjuster, not a from-scratch AI plan generator."
+   },
+   {
+    "section": "Version History > v3.0 Change Summary",
+    "fact": "Breakaway maintains a curated library of race-specific plan templates (e.g., Berkeley Hills Road Race, flat criterium, gravel 100-miler). The AI adjusts workouts within these templates based on wearable inputs."
+   },
+   {
+    "section": "1. Executive Summary",
+    "fact": "Breakaway aggregates wearable data, maps it to a race-specific coaching template, and tells you exactly what to change — today."
+   },
+   {
+    "section": "1. Executive Summary",
+    "fact": "Breakaway assigns a proven, race-specific coaching template to the athlete after they select their target race through a structured onboarding questionnaire."
+   },
+   {
+    "section": "1. Executive Summary",
+    "fact": "Every day, Breakaway pulls data from connected wearables, evaluates it against the template, and recommends specific adjustments in plain English through Max — its AI coaching layer."
+   },
+   {
+    "section": "2. Problem Statement > 2.1 The Fragmentation Problem",
+    "fact": "TrainerRoad provides structured workouts, FTP progression, and plan templates."
+   },
+   {
+    "section": "2. Problem Statement > 2.1 The Fragmentation Problem",
+    "fact": "Whoop provides HRV, sleep staging, and recovery score but does not know what the plan says or if a workout is appropriate for the day."
+   },
+   {
+    "section": "2. Problem Statement > 2.2 The Missing Layer",
+    "fact": "The missing layer sits above the data and translates it into a single, actionable daily recommendation tied to a specific race goal."
+   },
+   {
+    "section": "2. Problem Statement > 2.3 Why Race-Specific Plans Matter",
+    "fact": "Berkeley Hills Road Race is three laps of sustained threshold climbing followed by a VO₂ Max sprint to the line."
+   },
+   {
+    "section": "2. Problem Statement > 2.3 Why Race-Specific Plans Matter",
+    "fact": "A plan built for a flat criterium will produce an athlete who is fast but cannot sustain power for 20 minutes on a climb."
+   },
+   {
+    "section": "2. Problem Statement > 2.4 User Persona",
+    "fact": "The primary user is a competitive amateur cyclist preparing for a target road race or gran fondo."
+   },
+   {
+    "section": "2. Problem Statement > 2.4 User Persona",
+    "fact": "The primary user trains 8–12 hours per week."
+   },
+   {
+    "section": "3. Product Vision & Goals > 3.1 Vision Statement",
+    "fact": "The vision is to be the intelligent layer between an athlete's wearable data and their coaching plan."
+   },
+   {
+    "section": "3. Product Vision & Goals > 3.1 Vision Statement",
+    "fact": "The vision is to make every serious amateur's training as adaptive and race-specific as if they had a professional coach reviewing their data every morning."
+   },
+   {
+    "section": "3. Product Vision & Goals > 3.2 Product Positioning",
+    "fact": "Breakaway is a data aggregator and plan adjuster."
+   },
+   {
+    "section": "3. Product Vision & Goals > 3.2 Product Positioning",
+    "fact": "Breakaway is not a training app, a social platform, or a workout library."
+   },
+   {
+    "section": "3. Product Vision & Goals > 3.3 What Breakaway Is and Is Not",
+    "fact": "Breakaway IS a data aggregator across wearable platforms."
+   },
+   {
+    "section": "3. Product Vision & Goals > 3.3 What Breakaway Is and Is Not",
+    "fact": "Breakaway IS a race-specific plan template adjuster."
+   },
+   {
+    "section": "3. Product Vision & Goals > 3.4 Phase 1 Success Metrics",
+    "fact": "Daily active usage for the founder and team is a target of 7 days/week in Month 1."
+   },
+   {
+    "section": "3. Product Vision & Goals > 3.4 Phase 1 Success Metrics",
+    "fact": "Training plan adherence is a target of greater than 70% of suggested workouts completed in Month 2."
+   },
+   {
+    "section": "3. Product Vision & Goals > 3.5 Non-Goals (Phase 1)",
+    "fact": "AI-generated training plans from scratch are not in Phase 1; templates only are."
+   },
+   {
+    "section": "3. Product Vision & Goals > 3.5 Non-Goals (Phase 1)",
+    "fact": "Social or community features are not in Phase 1."
+   },
+   {
+    "section": "4. Race-Specific Onboarding Questionnaire",
+    "fact": "The onboarding questionnaire is the foundation of everything Breakaway does."
+   },
+   {
+    "section": "4. Race-Specific Onboarding Questionnaire",
+    "fact": "The onboarding questionnaire is a structured intake that populates the Athlete Profile, selects the correct coaching template, and gives Max the context needed to make every subsequent recommendation meaningful."
+   },
+   {
+    "section": "4. Race-Specific Onboarding Questionnaire > 4.1 Question Sequence > Block 1: Race Target",
+    "fact": "What is your target race is a dropdown from a supported race library or manual entry."
+   },
+   {
+    "section": "4. Race-Specific Onboarding Questionnaire > 4.1 Question Sequence > Block 1: Race Target",
+    "fact": "Selecting a supported race selects the coaching template, as each supported race has a documented energy system profile."
+   },
+   {
+    "section": "4. Race-Specific Onboarding Questionnaire > 4.1 Question Sequence > Block 2: Current Fitness",
+    "fact": "Do you know your current FTP (Functional Threshold Power) is a question."
+   },
+   {
+    "section": "4. Race-Specific Onboarding Questionnaire > 4.1 Question Sequence > Block 2: Current Fitness",
+    "fact": "If FTP is unknown, it is estimated from RPE data in the first 2 weeks."
+   },
+   {
+    "section": "4. Race-Specific Onboarding Questionnaire > 4.1 Question Sequence > Block 3: Connected Platforms",
+    "fact": "Which platforms do you use is a visual checkbox menu with device logos."
+   },
+   {
+    "section": "4. Race-Specific Onboarding Questionnaire > 4.1 Question Sequence > Block 3: Connected Platforms",
+    "fact": "Selecting a platform triggers an OAuth connection flow for each selected platform."
+   },
+   {
+    "section": "4. Race-Specific Onboarding Questionnaire > 4.1 Question Sequence > Block 4: Race-Specific Context",
+    "fact": "The question 'What is your goal for this race?' sets the ambition level."
+   },
+   {
+    "section": "4. Race-Specific Onboarding Questionnaire > 4.1 Question Sequence > Block 4: Race-Specific Context",
+    "fact": "Setting the goal affects pacing targets, taper management, and race strategy framing."
+   },
+   {
+    "section": "4. Race-Specific Onboarding Questionnaire > 4.2 Athlete Profile Output",
+    "fact": "The Athlete Profile object is populated by the questionnaire completion."
+   },
+   {
+    "section": "4. Race-Specific Onboarding Questionnaire > 4.2 Athlete Profile Output",
+    "fact": "The Athlete Profile is the seed of the Athlete Data Layer."
+   },
+   {
+    "section": "5. Coaching Plan Template Library",
+    "fact": "The template library is the coaching foundation of Breakaway."
+   },
+   {
+    "section": "5. Coaching Plan Template Library",
+    "fact": "The AI selects and adjusts templates; it does not generate them."
+   },
+   {
+    "section": "5. Coaching Plan Template Library > 5.1 Template Selection Logic",
+    "fact": "Step 1 selects a template by mapping the target race to a race profile category."
+   },
+   {
+    "section": "5. Coaching Plan Template Library > 5.1 Template Selection Logic",
+    "fact": "Step 2 selects the template by matching it to the athlete’s available weekly hours tier."
+   },
+   {
+    "section": "5. Coaching Plan Template Library > 5.2 Template Structure",
+    "fact": "Every template follows the same periodization architecture."
+   },
+   {
+    "section": "5. Coaching Plan Template Library > 5.2 Template Structure",
+    "fact": "The Base phase focuses on aerobic foundation and fatigue resistance."
+   },
+   {
+    "section": "5. Coaching Plan Template Library > 5.3 Phase 1 Template: Berkeley Hills Road Race",
+    "fact": "The Berkeley Hills Road Race template is the first fully specified template."
+   },
+   {
+    "section": "5. Coaching Plan Template Library > 5.3 Phase 1 Template: Berkeley Hills Road Race",
+    "fact": "The Berkeley Hills Road Race template is the primary product validation vehicle."
+   },
+   {
+    "section": "5. Coaching Plan Template Library > 5.3 Phase 1 Template: Berkeley Hills Road Race > Race Profile: Berkeley Hills Road Race",
+    "fact": "The Berkeley Hills Road Race has a distance of ~60 miles."
+   },
+   {
+    "section": "5. Coaching Plan Template Library > 5.3 Phase 1 Template: Berkeley Hills Road Race > Race Profile: Berkeley Hills Road Race",
+    "fact": "The Berkeley Hills Road Race has an elevation of ~5,800ft total climbing."
+   },
+   {
+    "section": "5. Coaching Plan Template Library > 5.3 Phase 1 Template: Berkeley Hills Road Race > Template Workout Emphasis (Mid-Volume Tier, 10 hrs/week)",
+    "fact": "The Base phase targets 380–420 TSS with 2x Zone 2 endurance, 1x sweet spot, and 1x long ride."
+   },
+   {
+    "section": "5. Coaching Plan Template Library > 5.3 Phase 1 Template: Berkeley Hills Road Race > Template Workout Emphasis (Mid-Volume Tier, 10 hrs/week)",
+    "fact": "The Build phase targets 440–500 TSS with 2x threshold, 1x climbing simulation, and 1x endurance."
+   },
+   {
+    "section": "5. Coaching Plan Template Library > 5.4 Phase 2 Template Additions",
+    "fact": "Flat criterium is planned for Phase 2 and emphasizes anaerobic capacity, repeated sprint recovery, and neuromuscular power."
+   },
+   {
+    "section": "5. Coaching Plan Template Library > 5.4 Phase 2 Template Additions",
+    "fact": "Rolling gran fondo is planned for Phase 2 and emphasizes aerobic endurance, pacing discipline, and fuelling."
+   },
+   {
+    "section": "6. Daily Coaching Experience",
+    "fact": "The daily experience is the product."
+   },
+   {
+    "section": "6. Daily Coaching Experience",
+    "fact": "Every other feature exists to make this moment better."
+   },
+   {
+    "section": "6. Daily Coaching Experience > 6.1 Training Readiness Score",
+    "fact": "A single 0–100 score synthesises all available signals into one daily verdict."
+   },
+   {
+    "section": "6. Daily Coaching Experience > 6.1 Training Readiness Score",
+    "fact": "The score is displayed as the hero element of the dashboard with a GO HARD / MODIFIED / RECOVER verdict."
+   },
+   {
+    "section": "6. Daily Coaching Experience > 6.2 Max Coaching Note",
+    "fact": "Max delivers two sentences every morning directly below the readiness score."
+   },
+   {
+    "section": "6. Daily Coaching Experience > 6.2 Max Coaching Note",
+    "fact": "The first sentence states what was planned and what is being recommended instead if different."
+   },
+   {
+    "section": "6. Daily Coaching Experience > 6.3 Contextual Reply Chips",
+    "fact": "Max surfaces 3 dynamically generated follow-up prompts below the coaching note."
+   },
+   {
+    "section": "6. Daily Coaching Experience > 6.3 Contextual Reply Chips",
+    "fact": "Tier 1 chips are daily contextual chips generated from today’s data."
+   },
+   {
+    "section": "6. Daily Coaching Experience > 6.4 Full Chat with Max",
+    "fact": "Tapping the coaching note opens a full conversational interface with Max."
+   },
+   {
+    "section": "6. Daily Coaching Experience > 6.4 Full Chat with Max",
+    "fact": "Max has access to the athlete’s structured data context for the session."
+   },
+   {
+    "section": "6. Daily Coaching Experience > 6.5 Manual Sleep Input",
+    "fact": "Manual sleep input is available on-demand for users without a sleep tracker."
+   },
+   {
+    "section": "6. Daily Coaching Experience > 6.5 Manual Sleep Input",
+    "fact": "Manual sleep input asks only two questions: hours slept and a 1–10 quality rating."
+   },
+   {
+    "section": "7. Athlete Data Layer — The Technical Moat",
+    "fact": "The Athlete Data Layer is Breakaway’s most defensible asset."
+   },
+   {
+    "section": "7. Athlete Data Layer — The Technical Moat",
+    "fact": "The Athlete Data Layer is a structured, queryable store of every input and training ride."
+   },
+   {
+    "section": "7. Athlete Data Layer — The Technical Moat > 7.1 Why This Architecture Matters",
+    "fact": "Most AI fitness products fail at the data layer."
+   },
+   {
+    "section": "7. Athlete Data Layer — The Technical Moat > 7.1 Why This Architecture Matters",
+    "fact": "Breakaway solves this by treating the athlete’s data as a structured database, not a conversation history."
+   },
+   {
+    "section": "7. Athlete Data Layer — The Technical Moat > 7.2 Data Layer Structure",
+    "fact": "The Athlete Data Layer is a PostgreSQL database with primary tables."
+   },
+   {
+    "section": "7. Athlete Data Layer — The Technical Moat > 7.2 Data Layer Structure",
+    "fact": "The athlete_profile table stores static and semi-static athlete attributes."
+   },
+   {
+    "section": "7. Athlete Data Layer — The Technical Moat > 7.2 Data Layer Structure > athlete_profile",
+    "fact": "The athlete_profile table stores all Athlete Profile outputs from Section 4.2."
+   },
+   {
+    "section": "7. Athlete Data Layer — The Technical Moat > 7.2 Data Layer Structure > athlete_profile",
+    "fact": "The athlete_profile table includes FTP history, injury log, goal history, and preferred workout times."
+   },
+   {
+    "section": "7. Athlete Data Layer — The Technical Moat > 7.2 Data Layer Structure > daily_inputs",
+    "fact": "The daily_inputs table has one row per calendar day."
+   },
+   {
+    "section": "7. Athlete Data Layer — The Technical Moat > 7.2 Data Layer Structure > daily_inputs",
+    "fact": "The daily_inputs table is populated automatically from connected wearable APIs and manually from the nutrition logger."
+   },
+   {
+    "section": "7. Athlete Data Layer — The Technical Moat > 7.2 Data Layer Structure > training_rides",
+    "fact": "One row per completed activity is populated from Strava webhook."
+   },
+   {
+    "section": "7. Athlete Data Layer — The Technical Moat > 7.2 Data Layer Structure > training_rides",
+    "fact": "The date field in training_rides is sourced from Strava as the activity date."
+   },
+   {
+    "section": "7. Athlete Data Layer — The Technical Moat > 7.2 Data Layer Structure > plan_workouts",
+    "fact": "One row per scheduled workout is created in the training block."
+   },
+   {
+    "section": "7. Athlete Data Layer — The Technical Moat > 7.2 Data Layer Structure > plan_workouts",
+    "fact": "The status field in plan_workouts is updated from training_rides."
+   },
+   {
+    "section": "7. Athlete Data Layer — The Technical Moat > 7.2 Data Layer Structure > context_summaries",
+    "fact": "The daily_context summary object is passed to Claude every morning for coaching note generation."
+   },
+   {
+    "section": "7. Athlete Data Layer — The Technical Moat > 7.2 Data Layer Structure > context_summaries",
+    "fact": "The weekly_context summary object is passed to Claude for weekly plan review or adaptive replanning queries."
+   },
+   {
+    "section": "7. Athlete Data Layer — The Technical Moat > 7.3 Claude Prompting Architecture",
+    "fact": "Claude never receives a raw data dump."
+   },
+   {
+    "section": "7. Athlete Data Layer — The Technical Moat > 7.3 Claude Prompting Architecture",
+    "fact": "The daily context prompt is approximately 350–450 tokens regardless of underlying data."
+   },
+   {
+    "section": "7. Athlete Data Layer — The Technical Moat > 7.3 Claude Prompting Architecture",
+    "fact": "Claude never touches the database directly; it only receives pre-assembled context objects."
+   },
+   {
+    "section": "7. Athlete Data Layer — The Technical Moat > 7.4 Longitudinal Memory — The Compounding Moat",
+    "fact": "The memory_digest object is updated weekly by a background process."
+   },
+   {
+    "section": "7. Athlete Data Layer — The Technical Moat > 7.4 Longitudinal Memory — The Compounding Moat",
+    "fact": "The memory_digest object is compressed to under 200 tokens."
+   },
+   {
+    "section": "8. Race & Fuelling Strategy",
+    "fact": "Race strategy and fuelling guidance are delivered in the lead-up to the target race."
+   },
+   {
+    "section": "8. Race & Fuelling Strategy",
+    "fact": "Breakaway synthesizes current fitness, course demands, and individual data into a concrete, personalised race plan."
+   },
+   {
+    "section": "8. Race & Fuelling Strategy > 8.1 Pre-Race Plan (Generated 5–7 Days Before Race)",
+    "fact": "Max generates a race plan document the athlete can print or screenshot and take to the start line."
+   },
+   {
+    "section": "8. Race & Fuelling Strategy > 8.1 Pre-Race Plan (Generated 5–7 Days Before Race)",
+    "fact": "The race plan document is populated from the race_context summary object and the athlete’s current fitness data."
+   },
+   {
+    "section": "8. Race & Fuelling Strategy > 8.2 Fuelling Plan",
+    "fact": "Max generates a personalised fuelling schedule based on race duration estimate, individual carb metabolism patterns from the nutrition log history, and standard endurance fuelling guidelines."
+   },
+   {
+    "section": "8. Race & Fuelling Strategy > 8.2 Fuelling Plan",
+    "fact": "The fuelling plan is expressed in concrete, practical terms."
+   },
+   {
+    "section": "8. Race & Fuelling Strategy > 8.3 Race Week Protocol (Activates 7 Days Before Race)",
+    "fact": "Race -7 (Mon) focus is a final quality session with a short threshold effort to maintain sharpness."
+   },
+   {
+    "section": "8. Race & Fuelling Strategy > 8.3 Race Week Protocol (Activates 7 Days Before Race)",
+    "fact": "Race -6 (Tue) focus is active recovery, which is a Zone 1 spin for 30–45 minutes with no efforts."
+   },
+   {
+    "section": "8. Race & Fuelling Strategy > 8.4 Post-Race Analysis",
+    "fact": "Max detects the Strava activity after the race and generates a brief analysis."
+   },
+   {
+    "section": "8. Race & Fuelling Strategy > 8.4 Post-Race Analysis",
+    "fact": "The analysis includes power file vs. pre-race plan comparison and identified limiters from the data."
+   },
+   {
+    "section": "9. Data Integrations > 9.1 Signal Hierarchy",
+    "fact": "Whoop is the primary source for HRV / Recovery data."
+   },
+   {
+    "section": "9. Data Integrations > 9.1 Signal Hierarchy",
+    "fact": "Garmin measures HRV opportunistically and is a secondary source for HRV / Recovery data."
+   },
+   {
+    "section": "9. Data Integrations > 9.2 Integration Stack",
+    "fact": "Whoop uses the Whoop Developer API v2 (OAuth 2.0) for integration in Phase 1."
+   },
+   {
+    "section": "9. Data Integrations > 9.2 Integration Stack",
+    "fact": "Strava uses the Strava API (OAuth 2.0) to aggregate all activities and TSS in Phase 1."
+   },
+   {
+    "section": "9. Data Integrations > 9.3 Why Strava Is the Right Primary Pipe (Phase 1)",
+    "fact": "Strava acts as a universal aggregator for training data."
+   },
+   {
+    "section": "9. Data Integrations > 9.3 Why Strava Is the Right Primary Pipe (Phase 1)",
+    "fact": "Garmin auto-syncs every activity to Strava, capturing all Garmin data without Garmin approval."
+   },
+   {
+    "section": "10. Technical Architecture > 10.1 Stack",
+    "fact": "Frontend uses React and Tailwind CSS for fast prototyping, mobile-friendly, and component-based development."
+   },
+   {
+    "section": "10. Technical Architecture > 10.1 Stack",
+    "fact": "The backend uses Node.js and Express for JavaScript consistency and a strong API ecosystem."
+   },
+   {
+    "section": "10. Technical Architecture > 10.2 Data Flow",
+    "fact": "Wearable APIs like Whoop and Strava push or poll data nightly, writing it to daily_inputs and training_rides tables."
+   },
+   {
+    "section": "10. Technical Architecture > 10.2 Data Flow",
+    "fact": "Background jobs recompute context_summaries nightly, including daily_context, weekly_context, race_context, memory_digest, and nutrition_context."
+   },
+   {
+    "section": "10. Technical Architecture > 10.3 Token Budget",
+    "fact": "The athlete profile context object is estimated to use about 80 tokens and is cached."
+   },
+   {
+    "section": "10. Technical Architecture > 10.3 Token Budget",
+    "fact": "The daily context object is estimated to use about 120 tokens and is recomputed nightly and is cached."
+   },
+   {
+    "section": "11. Build Roadmap",
+    "fact": "Phase 1 must be validated before Phase 2 begins."
+   },
+   {
+    "section": "11. Build Roadmap",
+    "fact": "The north star is for 20 users to open Breakaway every morning for 30 consecutive days."
+   },
+   {
+    "section": "11. Build Roadmap > Phase 1 — Core Loop  (Weeks 1–8)",
+    "fact": "The onboarding process requires a structured questionnaire with 4 blocks and 14 questions."
+   },
+   {
+    "section": "11. Build Roadmap > Phase 1 — Core Loop  (Weeks 1–8)",
+    "fact": "Athlete Profile population and storage is a must-have deliverable."
+   },
+   {
+    "section": "11. Build Roadmap > Phase 1 — Core Loop  (Weeks 1–8)",
+    "fact": "Data integrations must include the Whoop API using OAuth 2.0."
+   },
+   {
+    "section": "11. Build Roadmap > Phase 1 — Core Loop  (Weeks 1–8)",
+    "fact": "Data integrations must include the Strava API for activity sync, TSS, and training load using OAuth 2.0."
+   },
+   {
+    "section": "11. Build Roadmap > Phase 2 — Breadth & Intelligence  (Months 2–4)",
+    "fact": "Garmin Connect direct integration is planned to provide VO₂ Max trend, independent HRV, and high-resolution power data."
+   },
+   {
+    "section": "11. Build Roadmap > Phase 2 — Breadth & Intelligence  (Months 2–4)",
+    "fact": "Additional race templates planned include flat criterium, rolling gran fondo, and punchy circuit race."
+   },
+   {
+    "section": "11. Build Roadmap > Phase 3 — Moat Widening  (Months 4–12)",
+    "fact": "Google Calendar integration supports life-aware replanning, travel detection, and stress event classification."
+   },
+   {
+    "section": "11. Build Roadmap > Phase 3 — Moat Widening  (Months 4–12)",
+    "fact": "Lingo CGM offers real-time glucose monitoring and personalized fuelling timing, pending API access approval."
+   },
+   {
+    "section": "12. Risks & Open Questions > 12.1 API Risks",
+    "fact": "Whoop API status is Open, free, and has an active changelog."
+   },
+   {
+    "section": "12. Risks & Open Questions > 12.1 API Risks",
+    "fact": "Strava API status is Open and well-documented, but policy has tightened for some data types in late 2024."
+   },
+   {
+    "section": "12. Risks & Open Questions > 12.2 Product Risks",
+    "fact": "Coaching templates must be reviewed by a domain expert before beta launch."
+   },
+   {
+    "section": "12. Risks & Open Questions > 12.2 Product Risks",
+    "fact": "The initial mitigation for template staleness is an FTP re-test prompt at weeks 4 and 8."
+   },
+   {
+    "section": "12. Risks & Open Questions > 12.3 Key Decisions Still Open",
+    "fact": "Pricing options include free personal tool, freemium, or a $12–15/month subscription."
+   },
+   {
+    "section": "12. Risks & Open Questions > 12.3 Key Decisions Still Open",
+    "fact": "The mobile-first versus web-first decision is open for the dashboard design."
+   },
+   {
+    "section": "Appendix A: Glossary",
+    "fact": "TSS is a measure of workout load combining intensity and duration."
+   },
+   {
+    "section": "Appendix A: Glossary",
+    "fact": "FTP is the Functional Threshold Power, which is the max power a cyclist can sustain for approximately 60 minutes."
+   },
+   {
+    "section": "Appendix B: Workout Database (Starter Set)",
+    "fact": "The Taku workout is in Zone 1 and lasts 30 min for active recovery."
+   },
+   {
+    "section": "Appendix B: Workout Database (Starter Set)",
+    "fact": "The Pettit workout is in Zone 2 and lasts 60 min for aerobic endurance."
+   },
+   {
+    "section": "Appendix C: Sample Prompt — Daily Coaching Query",
+    "fact": "The operational format is a complete daily coaching prompt sent to Claude."
+   },
+   {
+    "section": "Appendix C: Sample Prompt — Daily Coaching Query",
+    "fact": "The athlete profile has an FTP of 250W and a race of Berkeley Hills Road Race on 2026-04-26."
+   }
+  ],
+  "concepts": [
+   "Athlete Data Layer",
+   "Daily Context Summary",
+   "Structured Onboarding Questionnaire"
+  ],
+  "model": "gemma4:e2b-it-qat",
+  "ingested": "2026-09-29T17:53:25"
+ }
+}

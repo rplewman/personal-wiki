@@ -1,0 +1,91 @@
+== Tue 09/29/2026 20:21:03.50 offline run
+== internet check: google.com NOT reachable (curl failed), machine is offline
+
+Windows IP Configuration
+
+
+Unknown adapter NordLynx:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . : 
+
+Unknown adapter Local Area Connection 2:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . : 
+
+Unknown adapter OpenVPN Data Channel Offload for NordVPN:
+
+   Connection-specific DNS Suffix  . : 
+   Link-local IPv6 Address . . . . . : fe80::1764:f334:cc5d:5a2%16
+   IPv4 Address. . . . . . . . . . . : 10.100.0.2
+   Subnet Mask . . . . . . . . . . . : 255.255.252.0
+   Default Gateway . . . . . . . . . : 
+
+Wireless LAN adapter Wi-Fi 3:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . : 
+
+Wireless LAN adapter Wi-Fi 4:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . : 
+
+Wireless LAN adapter Wi-Fi:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . : berkeley.edu
+== ollama version:
+{"version":"0.34.3"}
+== wiki help
+usage: wiki [-h] <command> ...
+
+Personal Wiki: search and question your notes with local Gemma (Ollama), fully
+offline.
+
+positional arguments:
+  <command>
+    search    Show the passages that best match a query. No answer is
+              generated; works without Gemma.
+    ask       Answer one question from your notes with citations [S1].. or
+              'insufficient evidence'. No chat history, no persona.
+    chat      Talk with the wiki assistant: persona, remembers the last few
+              turns, uses your notes when needed.
+    ingest    Turn raw sources into checked wiki pages with Gemma. No files =
+              every new or changed file in vault/raw.
+    index     Rebuild the search index from vault/raw and vault/wiki (embeds
+              new passages only).
+    help      Show this help.
+
+options:
+  -h, --help  show this help message and exit
+== wiki search Vercel hosting
+[1] wiki/Shared Themes.md :: Hosting on Vercel  (bm25 #1, dense #1)
+    - [[The GRKN]] is planned to be hosted on Vercel, and installed on both iPhones from the Vercel URL ([[raw/PLAN#Decisions (confirmed)|PLAN.md § Decisions]]). - [[Breakaway Project]] plans Vercel for the frontend and Railway for the backend …
+
+[2] raw/Draft Copilot.md :: Approach > Choosing the architecture  (bm25 #2, dense #2)
+    The companion won. It was built as a **single `index.html` file** with the rankings data embedded: no build step and no dependencies. A tiny Node static server (`server.js`) serves it at `http://localhost:8931`. Vercel hosting was considere…
+
+[3] raw/Breakaway_PRD_v3.0.md :: 10. Technical Architecture > 10.1 Stack  (bm25 #3, dense #4)
+    | Layer | Technology | Rationale | |---|---|---| | Workout DB | JSON flat file | ~100 TrainerRoad workouts mapped by zone, duration, adaptation, link | | Auth | OAuth 2.0 | Required for Whoop, Strava, Garmin, Google Calendar | | Hosting | V…
+
+== wiki ingest vault\raw\Draft Copilot.md --force
+Ingesting Draft Copilot.md
+  extract 1/2 (5694 chars)...
+  extract 2/2 (3419 chars)...
+  plan page from 20 of 20 checked facts (0 rejected)...
+Connecting sources (shared themes)...
+raw/Draft Copilot.md: updated -> [[Draft Copilot]]  20 facts kept, 0 items rejected, concepts: Expert Consensus Rankings, Caching, Value Model, API Pre-Check  (124.6 s, log data/ingest_log/draft-copilot-20260929-202316.json)
+Shared themes linking projects: none found
+vault/index.md rebuilt. Search index: 288 passages (13 newly embedded).
+== evaluation: 4 ask tests + mode checks
+T1: What weights make up Breakaway's training readiness score?
+T2: How quickly does the draft helper notice a new pick?
+T3: Which hosting platform comes up across my app projects, and did each one end up using it?
+T4: What monthly subscription price was chosen for Breakaway?
+chat: capabilities + draft + shorter
+search
+chat claim vs ask
+Summary: C:\Users\thoma\Personal Wiki\evidence\eval-offline-20260929-203048.md
+== finished Tue 09/29/2026 20:30:48.56

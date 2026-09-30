@@ -1,0 +1,641 @@
+{
+ "started": "2026-09-29T18:30:29",
+ "model": "gemma4:e2b-it-qat",
+ "calls": [
+  {
+   "step": "themes",
+   "output": "{\n  \"themes\": [\n    {\n      \"name\": \"Data Aggregation Layer\",\n      \"query\": \"Data aggregation layer athlete wearable data\"\n    },\n    {\n      \"name\": \"Consensus Ranking System\",\n      \"query\": \"Expert consensus rankings draft recommendations\"\n    },\n    {\n      \"name\": \"Dynamic Viewport Layout\",\n      \"query\": \"Dynamic viewport layout recipe generation\"\n    },\n    {\n      \"name\": \"Structured Onboarding Questionnaire\",\n      \"query\": \"Structured onboarding questionnaire athlete data\"\n    }\n  ]\n}",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 11.9,
+    "load_s": 0.06,
+    "prompt_tokens": 367,
+    "output_tokens": 130,
+    "tok_per_s": 26.1,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.7
+   }
+  },
+  {
+   "step": "verify",
+   "theme": "Data Aggregation Layer",
+   "query": "Data aggregation layer athlete wearable data",
+   "output": "{\"Draft Copilot\": {\"facts\": [\"F1\", \"F2\", \"F3\"], \"how\": \"The Draft Copilot deals with recommendations based on expert consensus rankings and deliberately avoids Sleeper ADP.\"}, \"The GRKN\": {\"facts\": [\"F6\", \"F8\", \"F10\"], \"how\": \"The GRKN uses data models like `households` and `mealPlan` to track cook assignments for meals.\"}, \"Breakaway Project\": {\"facts\": [\"F11\", \"F13\", \"F14\", \"F15\"], \"how\": \"Breakaway Project is a data aggregator across wearable platforms, forming the Athlete Data Layer which is a structured, queryable store of every input and training ride.\"}}",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 14.14,
+    "load_s": 0.02,
+    "prompt_tokens": 427,
+    "output_tokens": 156,
+    "tok_per_s": 23.2,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.6
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Data Aggregation Layer",
+   "project": "Draft Copilot",
+   "fact": "Recommendations should come from expert consensus rankings, not Sleeper's ADP.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 4.65,
+    "load_s": 0.02,
+    "prompt_tokens": 157,
+    "output_tokens": 11,
+    "tok_per_s": 26.4,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.5
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Data Aggregation Layer",
+   "project": "Draft Copilot",
+   "fact": "The goal was a tool to use during a 12-team, full-PPR snake draft on Sleeper.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 4.97,
+    "load_s": 0.02,
+    "prompt_tokens": 167,
+    "output_tokens": 11,
+    "tok_per_s": 20.2,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.0
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Data Aggregation Layer",
+   "project": "Draft Copilot",
+   "fact": "The default rankings deliberately avoid Sleeper ADP.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 5.12,
+    "load_s": 0.26,
+    "prompt_tokens": 151,
+    "output_tokens": 11,
+    "tok_per_s": 22.8,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 1.7
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Data Aggregation Layer",
+   "project": "The GRKN",
+   "fact": "The `households` data model gets `defaultCooks` which maps days of the week to a `memberId?`.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 4.89,
+    "load_s": 0.04,
+    "prompt_tokens": 168,
+    "output_tokens": 11,
+    "tok_per_s": 22.1,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 1.5
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Data Aggregation Layer",
+   "project": "The GRKN",
+   "fact": "The `mealPlan` data model gets a `cookMemberId?` indicating who is cooking that meal.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 4.79,
+    "load_s": 0.1,
+    "prompt_tokens": 164,
+    "output_tokens": 11,
+    "tok_per_s": 21.9,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 1.9
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Data Aggregation Layer",
+   "project": "The GRKN",
+   "fact": "Only dinners have a cook in the `mealPlan` data model.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 5.37,
+    "load_s": 0.02,
+    "prompt_tokens": 156,
+    "output_tokens": 11,
+    "tok_per_s": 16.8,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 1.7
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Data Aggregation Layer",
+   "project": "Breakaway Project",
+   "fact": "The vision is to be the intelligent layer between an athlete's wearable data and their coaching plan.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 5.49,
+    "load_s": 0.01,
+    "prompt_tokens": 162,
+    "output_tokens": 11,
+    "tok_per_s": 18.8,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 1.8
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Data Aggregation Layer",
+   "project": "Breakaway Project",
+   "fact": "Breakaway IS a data aggregator across wearable platforms.",
+   "output": "{\"answer\": \"yes\", \"quote\": \"Breakaway IS a data aggregator across wearable platforms.\"}",
+   "kept": true,
+   "reason": null,
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 4.41,
+    "load_s": 0.01,
+    "prompt_tokens": 152,
+    "output_tokens": 22,
+    "tok_per_s": 26.1,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 1.8
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Data Aggregation Layer",
+   "project": "Breakaway Project",
+   "fact": "The Athlete Data Layer is a PostgreSQL database with primary tables.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 4.06,
+    "load_s": 0.01,
+    "prompt_tokens": 154,
+    "output_tokens": 11,
+    "tok_per_s": 31.0,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 1.8
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Data Aggregation Layer",
+   "project": "Breakaway Project",
+   "fact": "The Athlete Data Layer is a structured, queryable store of every input and training ride.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 4.32,
+    "load_s": 0.01,
+    "prompt_tokens": 160,
+    "output_tokens": 11,
+    "tok_per_s": 27.8,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 1.5
+   }
+  },
+  {
+   "step": "verify",
+   "theme": "Consensus Ranking System",
+   "query": "Expert consensus rankings draft recommendations",
+   "output": "{\"Draft Copilot\": {\"facts\": [\"F1\", \"F2\", \"F3\"], \"how\": \"Draft Copilot uses expert consensus rankings for recommendations and has a specific weight for FantasyPros consensus.\"},\"The GRKN\": {\"facts\": [], \"how\": \"The GRKN does not use or deal with a Consensus Ranking System based on the provided facts.\"}, \"Breakaway Project\": {\"facts\": [], \"how\": \"Breakaway Project does not use or deal with a Consensus Ranking System based on the provided facts.\"}}",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 12.64,
+    "load_s": 0.01,
+    "prompt_tokens": 430,
+    "output_tokens": 110,
+    "tok_per_s": 19.6,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 1.9
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Consensus Ranking System",
+   "project": "Draft Copilot",
+   "fact": "Recommendations should come from expert consensus rankings, not Sleeper's ADP.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 3.87,
+    "load_s": 0.01,
+    "prompt_tokens": 155,
+    "output_tokens": 11,
+    "tok_per_s": 35.0,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 1.9
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Consensus Ranking System",
+   "project": "Draft Copilot",
+   "fact": "FantasyPros consensus has a weight of 0.6.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 3.92,
+    "load_s": 0.01,
+    "prompt_tokens": 152,
+    "output_tokens": 11,
+    "tok_per_s": 29.8,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.0
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Consensus Ranking System",
+   "project": "Draft Copilot",
+   "fact": "The default rankings deliberately avoid Sleeper ADP.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 3.96,
+    "load_s": 0.01,
+    "prompt_tokens": 149,
+    "output_tokens": 11,
+    "tok_per_s": 28.3,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.0
+   }
+  },
+  {
+   "step": "verify",
+   "theme": "Dynamic Viewport Layout",
+   "query": "Dynamic viewport layout recipe generation",
+   "output": "{\"Draft Copilot\": {\"facts\": [\"F4\", \"F5\"], \"how\": \"The Draft Copilot was a tool designed to use during a 12-team, full-PPR snake draft on Sleeper, fetching picks every 3 seconds.\"}, \"The GRKN\": {\"facts\": [\"F6\", \"F7\"], \"how\": \"The GRKN layout uses the dynamic viewport height so the Safari toolbar never cuts off content, and content avoids the notch and home bar using viewport-fit=cover.\"},\"Breakaway Project\": {\"facts\": [], \"how\": \"This project does not have any listed facts that clearly show it uses or deals with Dynamic Viewport Layout.\"}\n}",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 15.76,
+    "load_s": 0.03,
+    "prompt_tokens": 506,
+    "output_tokens": 148,
+    "tok_per_s": 18.7,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 1.8
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Dynamic Viewport Layout",
+   "project": "Draft Copilot",
+   "fact": "The goal was a tool to use during a 12-team, full-PPR snake draft on Sleeper.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 4.24,
+    "load_s": 0.02,
+    "prompt_tokens": 167,
+    "output_tokens": 11,
+    "tok_per_s": 32.3,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 1.8
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Dynamic Viewport Layout",
+   "project": "Draft Copilot",
+   "fact": "The app fetches picks every 3 seconds.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 3.92,
+    "load_s": 0.02,
+    "prompt_tokens": 151,
+    "output_tokens": 11,
+    "tok_per_s": 32.9,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 1.9
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Dynamic Viewport Layout",
+   "project": "The GRKN",
+   "fact": "Layout uses the dynamic viewport height so the Safari toolbar never cuts off content.",
+   "output": "{\"answer\": \"yes\", \"quote\": \"Layout uses the dynamic viewport height so the Safari toolbar never cuts off content.\"}",
+   "kept": true,
+   "reason": null,
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 4.77,
+    "load_s": 0.02,
+    "prompt_tokens": 157,
+    "output_tokens": 27,
+    "tok_per_s": 25.9,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.1
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Dynamic Viewport Layout",
+   "project": "The GRKN",
+   "fact": "Content avoids the notch and home bar using viewport-fit=cover.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 4.55,
+    "load_s": 0.01,
+    "prompt_tokens": 156,
+    "output_tokens": 11,
+    "tok_per_s": 23.6,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.0
+   }
+  },
+  {
+   "step": "verify",
+   "theme": "Structured Onboarding Questionnaire",
+   "query": "Structured onboarding questionnaire athlete data",
+   "output": "{\"Draft Copilot\": {\"facts\": [\"F2\", \"F4\"], \"how\": \"The Draft Copilot was a tool used during a live fantasy football draft, which implies a structured process for making recommendations.\"}, \"The GRKN\": {\"facts\": [\"F8\", \"F9\"], \"how\": \"The Claude integration uses structured output for valid, typed recipes, and the meal plan data model includes a cookMemberId, suggesting structured data handling.\"}, \"Breakaway Project\": {\"facts\": [\"F11\", \"F12\", \"F13\", \"F14\", \"F15\"], \"how\": \"The onboarding process for Breakaway Project requires a structured questionnaire that populates the Athlete Profile and provides context for subsequent recommendations.\"}}",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 19.13,
+    "load_s": 0.01,
+    "prompt_tokens": 464,
+    "output_tokens": 156,
+    "tok_per_s": 16.1,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.2
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Structured Onboarding Questionnaire",
+   "project": "Draft Copilot",
+   "fact": "The goal was a tool to use during a 12-team, full-PPR snake draft on Sleeper.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 4.39,
+    "load_s": 0.01,
+    "prompt_tokens": 167,
+    "output_tokens": 11,
+    "tok_per_s": 21.3,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.2
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Structured Onboarding Questionnaire",
+   "project": "Draft Copilot",
+   "fact": "The Draft Copilot ran alongside a live Sleeper fantasy football draft.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 4.15,
+    "load_s": 0.01,
+    "prompt_tokens": 156,
+    "output_tokens": 11,
+    "tok_per_s": 27.8,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.3
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Structured Onboarding Questionnaire",
+   "project": "The GRKN",
+   "fact": "The Claude integration uses the `@anthropic-ai/sdk` with structured output for valid, typed recipes.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 4.03,
+    "load_s": 0.02,
+    "prompt_tokens": 164,
+    "output_tokens": 11,
+    "tok_per_s": 31.4,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.4
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Structured Onboarding Questionnaire",
+   "project": "The GRKN",
+   "fact": "The `mealPlan` data model gets a `cookMemberId?` indicating who is cooking that meal.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 4.08,
+    "load_s": 0.01,
+    "prompt_tokens": 164,
+    "output_tokens": 11,
+    "tok_per_s": 25.9,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.3
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Structured Onboarding Questionnaire",
+   "project": "Breakaway Project",
+   "fact": "The onboarding process requires a structured questionnaire with 4 blocks and 14 questions.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 3.91,
+    "load_s": 0.01,
+    "prompt_tokens": 159,
+    "output_tokens": 11,
+    "tok_per_s": 31.2,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.3
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Structured Onboarding Questionnaire",
+   "project": "Breakaway Project",
+   "fact": "The onboarding questionnaire is a structured intake that populates the Athlete Profile, selects the correct coaching template, and gives Max the context needed to make every subsequent recommendation meaningful.",
+   "output": "{\"answer\": \"yes\", \"quote\": \"The onboarding questionnaire is a structured intake\"}",
+   "kept": true,
+   "reason": null,
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 19.4,
+    "load_s": 0.01,
+    "prompt_tokens": 175,
+    "output_tokens": 19,
+    "tok_per_s": 28.0,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.2
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Structured Onboarding Questionnaire",
+   "project": "Breakaway Project",
+   "fact": "The onboarding questionnaire is the foundation of everything Breakaway does.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 9.5,
+    "load_s": 0.01,
+    "prompt_tokens": 154,
+    "output_tokens": 11,
+    "tok_per_s": 30.2,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.2
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Structured Onboarding Questionnaire",
+   "project": "Breakaway Project",
+   "fact": "The Athlete Profile object is populated by the questionnaire completion.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 32.47,
+    "load_s": 0.01,
+    "prompt_tokens": 153,
+    "output_tokens": 11,
+    "tok_per_s": 29.6,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.3
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Structured Onboarding Questionnaire",
+   "project": "Breakaway Project",
+   "fact": "Max has access to the athlete’s structured data context for the session.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 14.23,
+    "load_s": 0.02,
+    "prompt_tokens": 157,
+    "output_tokens": 11,
+    "tok_per_s": 22.1,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.1
+   }
+  }
+ ],
+ "themes": [
+  {
+   "name": "Data Aggregation Layer",
+   "query": "Data aggregation layer athlete wearable data",
+   "supported_by": [
+    "Breakaway Project"
+   ],
+   "kept": false
+  },
+  {
+   "name": "Consensus Ranking System",
+   "query": "Expert consensus rankings draft recommendations",
+   "supported_by": [],
+   "kept": false
+  },
+  {
+   "name": "Dynamic Viewport Layout",
+   "query": "Dynamic viewport layout recipe generation",
+   "supported_by": [
+    "The GRKN"
+   ],
+   "kept": false
+  },
+  {
+   "name": "Structured Onboarding Questionnaire",
+   "query": "Structured onboarding questionnaire athlete data",
+   "supported_by": [
+    "Breakaway Project"
+   ],
+   "kept": false
+  }
+ ]
+}

@@ -1,0 +1,196 @@
+{
+ "source": "raw/Draft Copilot.md",
+ "sha256": "8173c4622e95a545be0749e116e33f51fd5dcbd66dcae23eb4b7eb2c784ce607",
+ "model": "gemma4:e2b-it-qat",
+ "started": "2026-09-29T18:37:19",
+ "calls": [
+  {
+   "step": "extract",
+   "sections": [
+    "Draft Copilot",
+    "Objective",
+    "Choosing the architecture",
+    "Rankings dataset",
+    "Features",
+    "The Value Model"
+   ],
+   "output": "{\n  \"Draft Copilot\": [\n    \"The Draft Copilot was a small local web app.\",\n    \"The Draft Copilot ran alongside a live Sleeper fantasy football draft.\"\n    ],\n  \"Objective\": [\n    \"The goal was a tool to use during a 12-team, full-PPR snake draft on Sleeper.\",\n    \"Recommendations should come from expert consensus rankings, not Sleeper's ADP.\"\n    ],\n    \"Choosing the architecture\": [\n      \"The Screenshot app was rejected because reading text from images is unreliable.\",\n      \"The Live companion turned out to be the easier option.\"\n      ],\n      \"Rankings dataset\": [\n        \"The default rankings blend FantasyPros consensus and ESPN Field Yates PPR rankings.\",\n        \"A player on both lists gets FantasyPros_rank × 0.6 + ESPN_rank × 0.4.\"\n        ],\n      \"Features\": [\n        \"The app fetches picks every 3 seconds.\",\n        \"Sleeper's CDN caches the picks endpoint for up to 30 seconds.\"\n        ],\n      \"The Value Model\": [\n        \"The value model adds position scarcity as a secondary nudge.\",\n        \"The scarcity formula is scarcity = POS_SLOPE[pos] × (REPLACEMENT_RANK[pos] − position_rank).\"\n      ]\n    }",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 29.21,
+    "load_s": 0.02,
+    "prompt_tokens": 1699,
+    "output_tokens": 304,
+    "tok_per_s": 15.6,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 1.9
+   }
+  },
+  {
+   "step": "extract",
+   "sections": [
+    "How the model evolved",
+    "Bugs Found and Fixed",
+    "Lessons"
+   ],
+   "output": "{\n  \"How the model evolved\": [\n    \"The first version used `replacement_rank − position_rank` alone.\",\n    \"This first version answered the 2.10 question by favoring the RB11 over the TE1, but it let scarcity override real differences in talent.\"\n  ],\n  \"Bugs Found and Fixed\": [\n    \"The 'My Team' empty issue was caused by Sleeper leaving `roster_id` null on mock-draft picks.\",\n    \"The fix for the 'My Team' empty issue was to identify picks by `draft_slot`, which is set in both mock and real drafts.\"\n    ],\n  \"Lessons\": [\n    \"Check for an API before building scraping or screenshot reading.\",\n    \"Test on a mock draft before relying on the app live.\"\n    ]\n}",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 14.62,
+    "load_s": 0.01,
+    "prompt_tokens": 1034,
+    "output_tokens": 183,
+    "tok_per_s": 14.8,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 1.6
+   }
+  },
+  {
+   "step": "plan",
+   "output": "{\n  \"title\": \"Draft Copilot Source Note\",\n  \"summary\": \"The Draft Copilot was a small local web application designed to assist users during a 12-team, full-PPR snake fantasy football draft on Sleeper. Its main goal was to provide recommendations based on expert consensus rankings rather than Sleeper's standard ADP.\",\n  \"key_facts\": [\n    \"F1\",\n    \"F3\",\n    \"F4\",\n    \"F7\",\n    \"F8\",\n    \"F9\",\n    \"F12\",\n    \"F16\",\n    \"F17\"\n  ],\n  \"concepts\": [\n    {\n      \"name\": \"Expert Consensus Rankings\",\n      \"how\": \"Recommendations for the Draft Copilot should come from expert consensus rankings instead of Sleeper's ADP.\",\n      \"facts\": [\n        \"F4\",\n        \"F7\",\n        \"F8\"\n      ]\n    },\n    {\n      \"name\": \"Scarcity Formula\",\n      \"how\": \"The value model incorporates position scarcity as a secondary nudge, defined by the formula: scarcity = POS_SLOPE[pos] × (REPLACEMENT_RANK[pos] − position_rank).\",\n      \"facts\": [\n        \"F11\",\n        \"F12\",\n        \"F13\",\n        \"F14\"\n      ]\n    },\n    {\n      \"name\": \"API Pre-Check\",\n      \"how\": \"A check for an API should be performed before building scraping or screenshot reading components.\",\n      \"facts\": [\n        \"F17\"\n      ]\n    },\n    {\n      \"name\": \"Caching\",\n      \"how\": \"Sleeper's CDN caches the picks endpoint for up to 30 seconds.\",\n      \"facts\": [\n        \"F10\"\n      ]\n    }\n  ]\n}",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 35.55,
+    "load_s": 0.01,
+    "prompt_tokens": 743,
+    "output_tokens": 433,
+    "tok_per_s": 16.9,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.0
+   }
+  }
+ ],
+ "rejected": [],
+ "problems": [],
+ "seconds": 85.5,
+ "result": {
+  "raw": "raw/Draft Copilot.md",
+  "sha256": "8173c4622e95a545be0749e116e33f51fd5dcbd66dcae23eb4b7eb2c784ce607",
+  "page": "Draft Copilot",
+  "summary": "The Draft Copilot was a small local web application designed to assist users during a 12-team, full-PPR snake fantasy football draft on Sleeper. Its main goal was to provide recommendations based on expert consensus rankings rather than Sleeper's standard ADP.",
+  "key_points": [
+   {
+    "section": "Draft Copilot",
+    "fact": "The Draft Copilot was a small local web app."
+   },
+   {
+    "section": "Objective",
+    "fact": "The goal was a tool to use during a 12-team, full-PPR snake draft on Sleeper."
+   },
+   {
+    "section": "Objective",
+    "fact": "Recommendations should come from expert consensus rankings, not Sleeper's ADP."
+   },
+   {
+    "section": "Approach > Rankings dataset",
+    "fact": "The default rankings blend FantasyPros consensus and ESPN Field Yates PPR rankings."
+   },
+   {
+    "section": "Approach > Rankings dataset",
+    "fact": "A player on both lists gets FantasyPros_rank × 0.6 + ESPN_rank × 0.4."
+   },
+   {
+    "section": "Features",
+    "fact": "The app fetches picks every 3 seconds."
+   },
+   {
+    "section": "The Value Model",
+    "fact": "The scarcity formula is scarcity = POS_SLOPE[pos] × (REPLACEMENT_RANK[pos] − position_rank)."
+   },
+   {
+    "section": "Bugs Found and Fixed",
+    "fact": "The fix for the 'My Team' empty issue was to identify picks by `draft_slot`, which is set in both mock and real drafts."
+   },
+   {
+    "section": "Lessons",
+    "fact": "Check for an API before building scraping or screenshot reading."
+   }
+  ],
+  "facts": [
+   {
+    "section": "Draft Copilot",
+    "fact": "The Draft Copilot was a small local web app."
+   },
+   {
+    "section": "Draft Copilot",
+    "fact": "The Draft Copilot ran alongside a live Sleeper fantasy football draft."
+   },
+   {
+    "section": "Objective",
+    "fact": "The goal was a tool to use during a 12-team, full-PPR snake draft on Sleeper."
+   },
+   {
+    "section": "Objective",
+    "fact": "Recommendations should come from expert consensus rankings, not Sleeper's ADP."
+   },
+   {
+    "section": "Approach > Choosing the architecture",
+    "fact": "The Screenshot app was rejected because reading text from images is unreliable."
+   },
+   {
+    "section": "Approach > Choosing the architecture",
+    "fact": "The Live companion turned out to be the easier option."
+   },
+   {
+    "section": "Approach > Rankings dataset",
+    "fact": "The default rankings blend FantasyPros consensus and ESPN Field Yates PPR rankings."
+   },
+   {
+    "section": "Approach > Rankings dataset",
+    "fact": "A player on both lists gets FantasyPros_rank × 0.6 + ESPN_rank × 0.4."
+   },
+   {
+    "section": "Features",
+    "fact": "The app fetches picks every 3 seconds."
+   },
+   {
+    "section": "Features",
+    "fact": "Sleeper's CDN caches the picks endpoint for up to 30 seconds."
+   },
+   {
+    "section": "The Value Model",
+    "fact": "The value model adds position scarcity as a secondary nudge."
+   },
+   {
+    "section": "The Value Model",
+    "fact": "The scarcity formula is scarcity = POS_SLOPE[pos] × (REPLACEMENT_RANK[pos] − position_rank)."
+   },
+   {
+    "section": "The Value Model > How the model evolved",
+    "fact": "The first version used `replacement_rank − position_rank` alone."
+   },
+   {
+    "section": "The Value Model > How the model evolved",
+    "fact": "This first version answered the 2.10 question by favoring the RB11 over the TE1, but it let scarcity override real differences in talent."
+   },
+   {
+    "section": "Bugs Found and Fixed",
+    "fact": "The 'My Team' empty issue was caused by Sleeper leaving `roster_id` null on mock-draft picks."
+   },
+   {
+    "section": "Bugs Found and Fixed",
+    "fact": "The fix for the 'My Team' empty issue was to identify picks by `draft_slot`, which is set in both mock and real drafts."
+   },
+   {
+    "section": "Lessons",
+    "fact": "Check for an API before building scraping or screenshot reading."
+   },
+   {
+    "section": "Lessons",
+    "fact": "Test on a mock draft before relying on the app live."
+   }
+  ],
+  "concepts": [
+   "Expert Consensus Rankings",
+   "Scarcity Formula",
+   "API Pre-Check",
+   "Caching"
+  ],
+  "proposed_title": "Draft Copilot Source Note",
+  "model": "gemma4:e2b-it-qat",
+  "ingested": "2026-09-29T18:38:45"
+ }
+}

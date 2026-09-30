@@ -1,0 +1,114 @@
+{
+ "sources": {
+  "draft-copilot": {
+   "raw": "raw/Draft Copilot.md",
+   "sha256": "8173c4622e95a545be0749e116e33f51fd5dcbd66dcae23eb4b7eb2c784ce607",
+   "page": "Draft Copilot Project",
+   "summary": "The Draft Copilot was a small local web application designed to assist users during a live Sleeper fantasy football draft. Its main goal was to serve as a tool for a 12-team, full-PPR snake draft on the Sleeper platform.",
+   "key_points": [
+    {
+     "section": "Draft Copilot",
+     "fact": "The Draft Copilot was a small local web app that ran alongside a live Sleeper fantasy football draft."
+    },
+    {
+     "section": "Draft Copilot",
+     "fact": "The Draft Copilot was built in one session with Claude Code on September 2026."
+    },
+    {
+     "section": "Objective",
+     "fact": "The goal was a tool for a 12-team, full-PPR snake draft on Sleeper."
+    },
+    {
+     "section": "Approach > Choosing the architecture",
+     "fact": "Sleeper has a public, no-login JSON API for drafts."
+    },
+    {
+     "section": "Approach > Choosing the architecture",
+     "fact": "The companion was built as a single index.html file with rankings data embedded."
+    },
+    {
+     "section": "The Value Model > How the model evolved",
+     "fact": "The first version of the model used `replacement_rank` minus `position_rank`."
+    },
+    {
+     "section": "The Value Model > How the model evolved",
+     "fact": "The fix for the K/DST bug was to pin K and DST to the bottom."
+    },
+    {
+     "section": "The Value Model > How the model evolved",
+     "fact": "After the blend fix, consensus rank is the main signal and scarcity only adds a 0.4-weighted nudge."
+    },
+    {
+     "section": "Bugs Found and Fixed",
+     "fact": "The VALUE/REACH labels were reversed by changing the operation to `pick_no` minus `rank`."
+    },
+    {
+     "section": "Lessons",
+     "fact": "A scarcity score that overrides talent gives confident but wrong answers."
+    }
+   ],
+   "concepts": [
+    "JSON API Integration",
+    "Single Index File",
+    "Replacement Rank Calculation",
+    "Scarcity Score Override"
+   ],
+   "model": "gemma4:e2b-it-qat",
+   "ingested": "2026-09-29T17:32:17"
+  }
+ },
+ "concepts": {
+  "JSON API Integration": {
+   "sources": {
+    "draft-copilot": {
+     "how": "The Draft Copilot utilized Sleeper's public, no-login JSON API to access draft data.",
+     "refs": [
+      {
+       "section": "Approach > Choosing the architecture",
+       "fact": "Sleeper has a public, no-login JSON API for drafts."
+      }
+     ]
+    }
+   }
+  },
+  "Single Index File": {
+   "sources": {
+    "draft-copilot": {
+     "how": "The companion application was built as a single index.html file containing embedded rankings data.",
+     "refs": [
+      {
+       "section": "Approach > Choosing the architecture",
+       "fact": "The companion was built as a single index.html file with rankings data embedded."
+      }
+     ]
+    }
+   }
+  },
+  "Replacement Rank Calculation": {
+   "sources": {
+    "draft-copilot": {
+     "how": "The first version of the model calculated rankings using the formula `replacement_rank` minus `position_rank`.",
+     "refs": [
+      {
+       "section": "The Value Model > How the model evolved",
+       "fact": "The first version of the model used `replacement_rank` minus `position_rank`."
+      }
+     ]
+    }
+   }
+  },
+  "Scarcity Score Override": {
+   "sources": {
+    "draft-copilot": {
+     "how": "A scarcity score that overrides talent provides confident but potentially incorrect answers.",
+     "refs": [
+      {
+       "section": "Lessons",
+       "fact": "A scarcity score that overrides talent gives confident but wrong answers."
+      }
+     ]
+    }
+   }
+  }
+ }
+}

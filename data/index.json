@@ -1,0 +1,1753 @@
+{
+ "files": {
+  "raw/Breakaway_PRD_v3.0.md": "65f793acfa8172dde75ae11ec06e55c024cf4275767e966f68225a1a584ad7b2",
+  "raw/Draft Copilot.md": "8173c4622e95a545be0749e116e33f51fd5dcbd66dcae23eb4b7eb2c784ce607",
+  "raw/PLAN.md": "8c56999515ddf126b44bd0dd39b70f77a9158e7f52f38c22f5cd1d0cd3c9c6f2",
+  "wiki/Breakaway PRD Review Notes.md": "d98b1f02b6b192ff939ad83bc5ceee3770c9822ec6d3895e9488d1ffdc2e4937",
+  "wiki/Concepts/API Pre-Check.md": "0eb6d7ba875f54468914de5e3c88f0af7968521d4b493e1bf984310daf92fc1f",
+  "wiki/Concepts/Athlete Data Layer.md": "2768aeef1d770c2d08ec632d057cfdf139279d538a0f33ae333ab33e99e2dce6",
+  "wiki/Concepts/Caching.md": "9f06f13eddffce56d1ced76a5cd47aae020cc4bab951482625b2e0feb4dd3808",
+  "wiki/Concepts/Convex Sync.md": "ced7bf49747fc7f973ee4303ee8be1fa964c6aaa9824052bcd6f0d70d217dd06",
+  "wiki/Concepts/Daily Context Summary.md": "909b9a9de2b1f427c03c8630ce97d5389849818e063a75ad39d447b901f49372",
+  "wiki/Concepts/Dynamic Viewport Layout.md": "03ad0b5556d42cf5d7e0372f395e2e3ddaa735a7f42641c2dbaaa095d3f75e25",
+  "wiki/Concepts/Expert Consensus Rankings.md": "2b4169740774c88bc14d7b52ddeb0b23abacfc051552332746a7d124bdd030a4",
+  "wiki/Concepts/Recipe Generation Integration.md": "daf0b3eaa4b344e45c6bf646ce2320633fb43ac9bdc60865198f852d1e611792",
+  "wiki/Concepts/Shopping List Scaling.md": "0bb664b3f84719bb93a1023c51f4b7967ffd36c233e0ca223ec4cf1a999b147a",
+  "wiki/Concepts/Structured Onboarding Questionnaire.md": "7f32ddbbfb3d6c241de6f66274b4623906470c17d6de7b08523856eaf11fd3e1",
+  "wiki/Concepts/Value Model.md": "0fd3353b5f0f5bbdd165e78d16525bb794dde8e582a1c86ffe00e063d7b2d673",
+  "wiki/Projects/Breakaway Project.md": "77772d43fc9a5aa16f7cf65c9dfe17eae144c1d24036c6e243afe27a1a661bbb",
+  "wiki/Projects/Draft Copilot.md": "e53c429844cae5b7014a528f288df0bbe26ec65f6ff1cb4be77e08f00a042bb1",
+  "wiki/Projects/The GRKN.md": "0f6cbba4fecaeabdb304c6974b30133b5af010c0cfbeeedffb6a98e8d5587ae3",
+  "wiki/Shared Themes.md": "1457139e82dd74c723b5eb98ec65021ddb8e8dcbc8f86bc081b64c5e48a66cf1"
+ },
+ "chunks": [
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#0",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "Breakaway \u2014 Product Requirements Document (v3.0)",
+   "text": "> *\"An intelligent data aggregator that adjusts a proven coaching plan to your body \u2014 so you arrive at the start line in the best shape of your life.\"*"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#1",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "Version History",
+   "text": "| Version | Date | Summary of Changes |\n|---|---|---|\n| 1.0 | Mar 2026 | Initial PRD. Whoop + Strava + TrainerRoad + Garmin + MyFitnessPal scope. |\n| 1.1 | Mar 2026 | API feasibility update. Strava as primary pipe, native nutrition logger, TrainerRoad recommendation approach. |\n| 2.0 | Mar 2026 | Major expansion: longitudinal memory, race strategy, wearable integration menu, signal hierarchy, Max AI coach, phased roadmap. |\n| 3.0 | Mar 2026 | Strategic simplification. Reframed as intelligent data aggregator + template plan adjuster. Race-specific onboarding questionnaire. Structured Athlete Data Layer as primary moat. Token-efficient Claude prompting architecture formalised. Option A (template library) confirmed as Phase 1 plan approach. |"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#2",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "Version History > v3.0 Change Summary",
+   "text": "This version reflects a deliberate strategic simplification. The key changes from v2.0:\n\n- Product positioning clarified: Breakaway is a data aggregator and plan adjuster, not a from-scratch AI plan generator. Race-specific coaching templates are selected at onboarding, then adjusted daily by the AI based on incoming data.\n- Plan approach confirmed as Option A \u2014 Template Library: Breakaway maintains a curated library of race-specific plan templates (e.g. Berkeley Hills Road Race, flat criterium, gravel 100-miler). The AI adjusts workouts within these templates based on wearable inputs. It does not generate periodization from scratch."
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#3",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "Version History > v3.0 Change Summary",
+   "text": "- Onboarding redesigned as a structured questionnaire: a defined sequence of race and fitness questions anchors the experience from session one and populates the Athlete Profile.\n- Race-specific plan library introduced: each supported race type maps to a template with documented energy system demands. Berkeley Hills Road Race fully specified as the first template.\n- Athlete Data Layer formally specified as the primary technical moat: a structured, queryable store of all inputs and training rides designed to pass only relevant context to Claude, minimising token burn and prompt confusion."
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#4",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "Version History > v3.0 Change Summary",
+   "text": "- AI role clarified and bounded: Claude receives structured data summaries and returns targeted plan adjustments and coaching notes. Raw data is never passed directly. Claude never generates periodization plans from scratch."
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#5",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "1. Executive Summary",
+   "text": "Amateur cyclists training seriously for races face a compounding fragmentation problem: body data lives in Whoop, training load lives in Strava, nutrition is scattered, and the coaching plan lives in a PDF or a TrainerRoad calendar. No platform synthesises these signals into concrete, daily adjustments to an actual training plan."
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#6",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "1. Executive Summary",
+   "text": "Breakaway solves this by acting as an intelligent data aggregator and plan adjuster. The athlete selects their target race through a structured onboarding questionnaire. Breakaway assigns a proven, race-specific coaching template. Every day, it pulls data from connected wearables, evaluates it against the template, and through Max \u2014 its AI coaching layer \u2014 recommends specific adjustments in plain English. The athlete follows a real plan, not a stream of generic suggestions."
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#7",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "1. Executive Summary",
+   "text": "Critically, the plan is not generated by AI from scratch. It is a battle-tested template, curated by domain experts, that the AI makes smarter by adjusting it to the individual athlete's daily reality. This distinction matters: it is faster to build, easier to validate, lower in hallucination risk, and more trustworthy to the user.\n\nThe defensible moat is not the integrations \u2014 those are replicable. The moat is the Athlete Data Layer: a structured, queryable store of every wearable input and training ride, purpose-built to feed Claude only the precise context it needs. Over time, this layer builds a longitudinal model of the athlete that no competitor can replicate on day one.\n\n> [!note] One-line positioning"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#8",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "1. Executive Summary",
+   "text": "> Breakaway aggregates your wearable data, maps it to a race-specific coaching template, and tells you exactly what to change \u2014 today."
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#9",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "2. Problem Statement > 2.1 The Fragmentation Problem",
+   "text": "A competitive amateur cyclist today uses multiple disconnected tools, each doing one thing well in isolation:\n\n| Tool | What It Does Well | What It Cannot Do |\n|---|---|---|\n| TrainerRoad | Structured workouts, FTP progression, plan templates | Knows nothing about your recovery, nutrition, or life this week |\n| Whoop | HRV, sleep staging, recovery score | Has no idea what your plan says or whether today's workout is appropriate |\n| Garmin Connect | Power data, training load, VO\u2082 Max trend | Cannot adjust the plan based on how recovered you are |\n| Strava | Activity history, segment data, TSS | No coaching layer, no plan intelligence, no recommendations |\n| Nutrition apps | Calorie and macro logging | Completely disconnected from training demands or race timing |"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#10",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "2. Problem Statement > 2.1 The Fragmentation Problem",
+   "text": "The athlete is manually doing the synthesis that a coach would do: reading across all these tools, deciding whether today's planned workout still makes sense, and making a call. This is cognitively expensive and most athletes get it wrong."
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#11",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "2. Problem Statement > 2.2 The Missing Layer",
+   "text": "What is absent is not more data. Athletes have more data than they can process. What is absent is a layer that sits above the data and translates it into a single, actionable daily recommendation tied to a specific race goal. That is the job Breakaway does."
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#12",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "2. Problem Statement > 2.3 Why Race-Specific Plans Matter",
+   "text": "Generic training plans are built for an average athlete with an average race. Berkeley Hills Road Race is not average. It is three laps of sustained threshold climbing followed by a VO\u2082 Max sprint to the line. A plan built for a flat criterium will produce an athlete who is fast but cannot sustain power for 20 minutes on a climb. Race-specific templates fix this at the foundation."
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#13",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "2. Problem Statement > 2.4 User Persona",
+   "text": "Primary user: A competitive amateur cyclist preparing for a target road race or gran fondo. Trains 8\u201312 hours per week. Uses at least one of Whoop, Garmin, or Strava. Has a plan \u2014 either from TrainerRoad, a coach PDF, or a generic online source \u2014 but has no reliable way to adjust it in real time based on how their body is actually responding. Wants one clear answer every morning: should I do what the plan says today, and if not, what instead?"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#14",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "3. Product Vision & Goals > 3.1 Vision Statement",
+   "text": "To be the intelligent layer between an athlete's wearable data and their coaching plan \u2014 making every serious amateur's training as adaptive and race-specific as if they had a professional coach reviewing their data every morning."
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#15",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "3. Product Vision & Goals > 3.2 Product Positioning",
+   "text": "Breakaway is a data aggregator and plan adjuster. It is not a training app, a social platform, or a workout library. It is the AI layer that makes a proven coaching plan responsive to the actual athlete following it.\n\nThe plan is predetermined and race-specific. The intelligence is in the daily adjustment. The moat is the structured data layer that makes those adjustments increasingly precise over time."
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#16",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "3. Product Vision & Goals > 3.3 What Breakaway Is and Is Not",
+   "text": "| Breakaway IS | Breakaway IS NOT |\n|---|---|\n| A data aggregator across wearable platforms | A workout streaming app |\n| A race-specific plan template adjuster | An AI plan generator from scratch |\n| A daily coaching recommendation engine | A social or community platform |\n| A structured athlete data store | A generic fitness tracker |\n| A race strategy and fuelling advisor | A nutrition logging app (native logger is a fallback only) |\n| A compounding intelligence layer that improves with use | A stateless chatbot that resets every session |"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#17",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "3. Product Vision & Goals > 3.4 Phase 1 Success Metrics",
+   "text": "| Metric | Target | Timeframe |\n|---|---|---|\n| Daily active usage (founder + team) | 7 days/week | Month 1 |\n| Training plan adherence | Greater than 70% of suggested workouts completed | Month 2 |\n| User-reported coaching value | Greater than 8/10 vs. managing manually | Month 2 |\n| Race plan utility | Greater than 8/10 from beta users with upcoming races | Month 2 |\n| Beta waitlist | 50+ serious cyclists | Month 3 |\n| North star | 20 users open Breakaway every morning for 30 consecutive days | Month 3 |"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#18",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "3. Product Vision & Goals > 3.5 Non-Goals (Phase 1)",
+   "text": "- AI-generated training plans from scratch \u2014 templates only in Phase 1\n- Social or community features\n- Running, triathlon, or multi-sport support\n- MyFitnessPal sync (native logger as fallback)\n- Apple Health integration\n- Live in-race GPS coaching\n- Calendar integration (Phase 3)"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#19",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "4. Race-Specific Onboarding Questionnaire",
+   "text": "The onboarding questionnaire is the foundation of everything Breakaway does. It is not a settings screen. It is a structured intake that populates the Athlete Profile, selects the correct coaching template, and gives Max the context needed to make every subsequent recommendation meaningful.\n\nThe questionnaire is completed once at setup, with individual fields updateable later. It is designed to take under 5 minutes. Every question has a direct downstream effect on the plan or the coaching logic \u2014 nothing is collected that is not used.\n\n> [!note] Design principle\n> No question appears in the onboarding flow unless its answer changes the coaching output. If removing a question would not change anything Max does, the question does not belong here."
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#20",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "4. Race-Specific Onboarding Questionnaire > 4.1 Question Sequence > Block 1: Race Target",
+   "text": "These questions select the coaching template and set the entire training objective.\n\n| Question | Input Type | How It Is Used |\n|---|---|---|\n| What is your target race? | Dropdown from supported race library, or manual entry | Selects the coaching template. Each supported race has a documented energy system profile. |\n| What is the race date? | Date picker | Sets the training timeline. Determines number of build weeks, taper start, and race week protocol activation. |\n| Is this your A-race (peak priority) or a B/C-race? | Single select: A / B / C | A-race gets full taper and race week protocol. B/C-races are trained through or with partial taper. |"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#21",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "4. Race-Specific Onboarding Questionnaire > 4.1 Question Sequence > Block 1: Race Target",
+   "text": "| Question | Input Type | How It Is Used |\n|---|---|---|\n| Have you done this race before? | Yes / No | If yes, prompts for prior finish time and any notes. Feeds into the race strategy pacing model. |"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#22",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "4. Race-Specific Onboarding Questionnaire > 4.1 Question Sequence > Block 2: Current Fitness",
+   "text": "These questions calibrate the template intensity to the athlete's actual fitness level.\n\n| Question | Input Type | How It Is Used |\n|---|---|---|\n| Do you know your current FTP (Functional Threshold Power)? | Yes \u2192 number entry. No \u2192 skip. | Primary intensity calibrator. All training zones and workout targets are expressed as % of FTP. If unknown, estimated from RPE data in first 2 weeks. |\n| How many hours per week can you train? | Number slider (4\u201316 hrs) | Sets total weekly training stress budget. Determines which template volume tier is assigned. |\n| Which days are you available to train? | Multi-select day picker | Distributes template workouts across available days. Hard days are not placed on consecutive days unless unavoidable. |"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#23",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "4. Race-Specific Onboarding Questionnaire > 4.1 Question Sequence > Block 2: Current Fitness",
+   "text": "| Question | Input Type | How It Is Used |\n|---|---|---|\n| What is your experience level? | Beginner / Intermediate / Advanced / Category racer | Modifies template intensity and workout complexity. Beginners receive fewer VO\u2082 Max sessions; advanced athletes receive more race-specific specificity. |"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#24",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "4. Race-Specific Onboarding Questionnaire > 4.1 Question Sequence > Block 3: Connected Platforms",
+   "text": "These questions determine which data sources are available, which in turn determines the confidence level of Max\u2019s recommendations.\n\n| Question | Input Type | How It Is Used |\n|---|---|---|\n| Which platforms do you use? | Visual checkbox menu with device logos | Triggers OAuth connection flow for each selected platform. Determines which data dimensions have high vs. low confidence signals. |\n| Do you train with a power meter? | Yes / No | If yes, TSS is power-based (more accurate). If no, TSS is estimated from HR. This affects how conservatively Max interprets training load. |\n| Do you have a Whoop? | Yes (already selected above) / No | If no, recovery signal falls back to Garmin body battery or manual 1\u201310 slider. Max communicates lower confidence in recovery recommendations. |"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#25",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "4. Race-Specific Onboarding Questionnaire > 4.1 Question Sequence > Block 4: Race-Specific Context",
+   "text": "These questions appear only for the athlete\u2019s selected race type and feed the race strategy engine.\n\n| Question | Input Type | How It Is Used |\n|---|---|---|\n| What is your goal for this race? | Dropdown: Finish / Top half of field / Podium / Personal best time / Specific finish time | Sets the ambition level. Affects pacing targets, how conservatively the taper is managed, and the race strategy framing. |\n| Do you have the course GPX file? | Upload (optional) | If uploaded, Max parses gradient and identifies key climb profiles. If not uploaded, the template uses the pre-loaded course profile from the race library. |"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#26",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "4. Race-Specific Onboarding Questionnaire > 4.1 Question Sequence > Block 4: Race-Specific Context",
+   "text": "| Question | Input Type | How It Is Used |\n|---|---|---|\n| Any injuries or physical limitations we should know about? | Free text (optional) | Feeds into Max\u2019s context. High-impact injuries (hamstring, knee) suppress certain workout types in the recommendation logic. |\n| How would you describe your biggest limiter? | Dropdown: Sustained climbing / Short punchy efforts / Endurance / Sprint / All-around | Adds a second layer of specificity to workout selection within the template. A climber with poor sprint will receive more anaerobic work than the base template. |"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#27",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "4. Race-Specific Onboarding Questionnaire > 4.2 Athlete Profile Output",
+   "text": "On completion, the questionnaire populates a structured Athlete Profile object. This is the seed of the Athlete Data Layer (see Section 7) and is referenced in every Max session:\n\n| Profile Field | Source | Example Value |\n|---|---|---|\n| target_race | Q1 | Berkeley Hills Road Race |\n| race_date | Q2 | 2026-04-26 |\n| race_priority | Q3 | A |\n| prior_race_result | Q4 | DNR (first time) |\n| ftp | Q5 | 250W |\n| weekly_hours | Q6 | 10 |\n| available_days | Q7 | Tue, Thu, Sat, Sun |\n| experience_level | Q8 | Advanced |\n| connected_platforms | Q9 | Whoop, Garmin, Strava |\n| power_meter | Q10 | Yes |\n| race_goal | Q11 | Top half of field |\n| course_gpx | Q12 | berkeley_hills_2026.gpx (uploaded) |\n| injury_notes | Q13 | None reported |\n| primary_limiter | Q14 | Sustained climbing |"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#28",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "5. Coaching Plan Template Library",
+   "text": "The template library is the coaching foundation of Breakaway. Each template is a race-specific, periodized training block built by domain experts for a defined race profile. The AI does not generate these plans \u2014 it selects and adjusts them.\n\n> [!note] Option A confirmed\n> Templates are pre-built by coaches or domain experts and stored in the system. The AI's role is to select the correct template at onboarding and make daily adjustments to it based on incoming data. This approach is faster to build, easier to validate, and more trustworthy to users than AI-generated periodization."
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#29",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "5. Coaching Plan Template Library > 5.1 Template Selection Logic",
+   "text": "At the end of onboarding, Breakaway selects a template using a two-step process:\n\n- Step 1 \u2014 Race type match: the target race is mapped to a race profile category (sustained climbing road race, flat criterium, rolling gran fondo, punchy circuit race, gravel endurance). Each category has one or more templates.\n- Step 2 \u2014 Volume tier match: the template is scaled to the athlete\u2019s available weekly hours. Templates exist in three tiers: Low (4\u20138 hrs/week), Mid (8\u201312 hrs/week), High (12\u201316 hrs/week). The correct tier is selected automatically from the onboarding answer.\n\nThe selected template is displayed to the athlete with a plain-English explanation of why it was chosen and what it is designed to achieve."
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#30",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "5. Coaching Plan Template Library > 5.2 Template Structure",
+   "text": "Every template follows the same periodization architecture:\n\n| Phase | Duration | Primary Objective | Dominant Workout Types |\n|---|---|---|---|\n| Base | Weeks 1\u20133 | Aerobic foundation, fatigue resistance | Zone 2 endurance, sweet spot, aerobic tempo |\n| Build | Weeks 4\u20136 | Race-specific intensity, threshold development | Threshold intervals, sustained climbing simulation |\n| Speciality | Weeks 7\u20138 | Peak race-specific fitness | VO\u2082 Max, race-pace efforts, climbing repeats |\n| Taper | Week 9 (race \u22127 to race day) | Freshness, activation, race readiness | Short intensity, activation rides, openers |\n| Recovery | Embedded every 4th week | Adaptation, injury prevention | Zone 1\u20132, reduced volume, mobility |"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#31",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "5. Coaching Plan Template Library > 5.3 Phase 1 Template: Berkeley Hills Road Race",
+   "text": "The Berkeley Hills Road Race template is the first fully specified template in the library and the primary product validation vehicle. It is built around the race\u2019s documented energy system demands."
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#32",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "5. Coaching Plan Template Library > 5.3 Phase 1 Template: Berkeley Hills Road Race > Race Profile: Berkeley Hills Road Race",
+   "text": "| Race Attribute | Specification |\n|---|---|\n| Distance | ~60 miles |\n| Elevation | ~5,800ft total climbing |\n| Format | 3 laps of the same circuit |\n| Key climb | Wildcat Canyon Road \u2014 4.2 miles, average 6% gradient, sustained effort |\n| Decisive moment | Final lap sprint on South Park Drive after three rounds of threshold climbing |\n| Primary energy system | Sustained threshold (FTP 85\u201395% for 15\u201320 min repeats) |\n| Secondary energy system | VO\u2082 Max (race-decisive sprint, 3\u20135 min maximal effort) |\n| Key limiter | Ability to maintain threshold power on climbs 2 and 3 after fatiguing on climb 1 |\n| Estimated finish time (advanced) | 3:00\u20133:40 depending on category |"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#33",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "5. Coaching Plan Template Library > 5.3 Phase 1 Template: Berkeley Hills Road Race > Template Workout Emphasis (Mid-Volume Tier, 10 hrs/week)",
+   "text": "| Phase | Weekly TSS Target | Key Session Types | TrainerRoad Workout Examples |\n|---|---|---|---|\n| Base (Wk 1\u20133) | 380\u2013420 TSS | 2x Zone 2 endurance, 1x sweet spot, 1x long ride | Pettit, Antelope, Polar Bear |\n| Build (Wk 4\u20136) | 440\u2013500 TSS | 2x threshold, 1x climbing simulation, 1x endurance | Galena, Leconte, Carillon |\n| Speciality (Wk 7\u20138) | 460\u2013520 TSS | 1x threshold, 1x VO\u2082 Max, 1x race-pace climbing | Galena +2, Dade, Bashful +6 |\n| Taper (Wk 9) | 220\u2013260 TSS | Activation ride, short openers, rest | Taku, Truuli, rest days |"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#34",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "5. Coaching Plan Template Library > 5.4 Phase 2 Template Additions",
+   "text": "The following templates are planned for Phase 2, following validation of the Berkeley Hills template:\n\n- Flat criterium \u2014 emphasises anaerobic capacity, repeated sprint recovery, and neuromuscular power\n- Rolling gran fondo (80\u2013120 miles) \u2014 emphasises aerobic endurance, pacing discipline, and fuelling\n- Punchy circuit race \u2014 emphasises short power, VO\u2082 Max, and tactical positioning fitness\n- Gravel endurance (60\u2013100 miles) \u2014 emphasises fatigue resistance, mixed terrain power, and nutrition execution"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#35",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "6. Daily Coaching Experience",
+   "text": "The daily experience is the product. Every other feature exists to make this moment better. The athlete opens Breakaway each morning and gets one clear answer: here is what the plan says, here is what your body says, and here is what I recommend."
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#36",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "6. Daily Coaching Experience > 6.1 Training Readiness Score",
+   "text": "A single 0\u2013100 score synthesising all available signals into one daily verdict. Displayed as the hero element of the dashboard, with a GO HARD / MODIFIED / RECOVER verdict.\n\n| Input Signal | Weight | Source | Fallback if Unavailable |\n|---|---|---|---|\n| Recovery / HRV | 45% | Whoop (primary), Garmin body battery (secondary) | Manual 1\u201310 slider, on-demand only \u2014 never prompted |\n| Training Load Balance | 35% | CTL vs. ATL from Strava + Garmin power data | Strava HR-based estimate |\n| Nutrition / Carb Availability | 20% | Native macro logger | Estimated from training load if nothing logged |"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#37",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "6. Daily Coaching Experience > 6.1 Training Readiness Score",
+   "text": "The score is recalculated live when nutrition is logged. Max\u2019s recommendation is gated by the score: a score below 50 suppresses hard workouts regardless of what the template prescribes for that day."
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#38",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "6. Daily Coaching Experience > 6.2 Max Coaching Note",
+   "text": "Two sentences, delivered every morning, directly below the readiness score. The first sentence states what was planned and what is being recommended instead (if different). The second sentence gives the one most important reason why.\n\n> Planned: Galena \u2014 90 min threshold. Today\u2019s recommendation: Pettit \u2014 60 min Zone 2.\n> Your Whoop recovery is 61% and you\u2019ve accumulated 412 TSS this week \u2014 going hard today risks the quality of Saturday\u2019s key session.\n\nIf the plan is unchanged, the note confirms this and briefly explains what today\u2019s workout is building toward in the context of the race:\n\n> On track: Galena \u2014 90 min threshold, as planned.\n> This session simulates the sustained climbing demand of Wildcat Canyon \u2014 three weeks out, this is exactly the stimulus you need."
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#39",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "6. Daily Coaching Experience > 6.3 Contextual Reply Chips",
+   "text": "Below the coaching note, Max surfaces 3 dynamically generated follow-up prompts based on today\u2019s actual data. These are generated by Claude alongside the coaching note as a structured JSON field, ensuring they are always relevant to what Max just said.\n\n- Tier 1 \u2014 Daily contextual chips: generated from today\u2019s data (e.g. \u201cWhy Zone 2 today?\u201d appears only because recovery is flagged)\n- Tier 2 \u2014 Follow-on chips: appear after Max responds to guide the next question\n- Tier 3 \u2014 Persistent utility chips: always available via scroll \u2014 Week ahead, Race readiness, Fuelling plan, Adjust schedule\n\nMaximum 3 chips visible at any time."
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#40",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "6. Daily Coaching Experience > 6.4 Full Chat with Max",
+   "text": "Tapping the coaching note opens a full conversational interface with Max. Max has access to the athlete\u2019s structured data context for the session and can answer detailed questions about the plan, the race, fuelling, or any adjustment. All previous sessions are summarised in the Athlete Data Layer and available as context."
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#41",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "6. Daily Coaching Experience > 6.5 Manual Sleep Input",
+   "text": "Available on-demand for users without a sleep tracker. Accessible via a single tap from the dashboard. Never proactively prompted. Asks only two questions: hours slept and a 1\u201310 quality rating. Data is logged to the Athlete Data Layer and incorporated into the next readiness score calculation."
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#42",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "7. Athlete Data Layer \u2014 The Technical Moat",
+   "text": "> [!note] Primary moat\n> The Athlete Data Layer is Breakaway\u2019s most defensible asset. It is a structured, queryable store of every input and training ride, purpose-built to pass only the precise context Claude needs for each query. This minimises token burn, eliminates prompt confusion, and compounds in value with every week of use."
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#43",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "7. Athlete Data Layer \u2014 The Technical Moat > 7.1 Why This Architecture Matters",
+   "text": "Most AI fitness products fail at the data layer. They either pass everything into a single large prompt (expensive, slow, and confusing to the model) or pass nothing useful (producing generic advice). Neither is acceptable at scale or in a real product.\n\nBreakaway solves this by treating the athlete\u2019s data as a structured database, not a conversation history. Claude is never asked to reason across raw API responses. It receives a compressed, purpose-built context object assembled from the Athlete Data Layer immediately before each query. The result is faster responses, lower costs, and more precise coaching."
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#44",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "7. Athlete Data Layer \u2014 The Technical Moat > 7.2 Data Layer Structure",
+   "text": "The Athlete Data Layer is a PostgreSQL database with the following primary tables:"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#45",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "7. Athlete Data Layer \u2014 The Technical Moat > 7.2 Data Layer Structure > athlete_profile",
+   "text": "Static and semi-static athlete attributes populated at onboarding and updated manually. Fields include all Athlete Profile outputs from Section 4.2, plus: FTP history (date-stamped), injury log, goal history, and preferred workout times."
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#46",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "7. Athlete Data Layer \u2014 The Technical Moat > 7.2 Data Layer Structure > daily_inputs",
+   "text": "One row per calendar day. Populated automatically from connected wearable APIs and manually from the nutrition logger. Key fields:\n\n| Field | Source | Data Type | Notes |\n|---|---|---|---|\n| date | System | Date | Primary key for all daily lookups |\n| whoop_recovery | Whoop API | Integer 0\u2013100 | Null if Whoop not connected |\n| whoop_hrv | Whoop API | Float (ms) | Null if Whoop not connected |\n| whoop_sleep_hrs | Whoop API | Float | Falls back to manual_sleep_hrs if null |\n| manual_sleep_hrs | User input | Float | On-demand only. Never prompted. |\n| manual_sleep_quality | User input | Integer 1\u201310 | On-demand only. Never prompted. |\n| garmin_body_battery | Garmin API | Integer 0\u2013100 | Used as recovery fallback if Whoop null |"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#47",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "7. Athlete Data Layer \u2014 The Technical Moat > 7.2 Data Layer Structure > daily_inputs",
+   "text": "| Field | Source | Data Type | Notes |\n|---|---|---|---|\n| garmin_vo2max | Garmin API | Float | Updated weekly. Used for fitness trend. |\n| carbs_logged_g | Native logger | Integer | 0 if nothing logged |\n| protein_logged_g | Native logger | Integer | 0 if nothing logged |\n| calories_logged | Native logger | Integer | 0 if nothing logged |\n| readiness_score | Computed | Integer 0\u2013100 | Calculated from weighted inputs at query time |"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#48",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "7. Athlete Data Layer \u2014 The Technical Moat > 7.2 Data Layer Structure > training_rides",
+   "text": "One row per completed activity, populated from Strava webhook. Key fields:\n\n| Field | Source | Notes |\n|---|---|---|\n| date | Strava | Activity date |\n| strava_activity_id | Strava | Primary key for deduplication |\n| tss | Computed | Power-based if power meter present, HR-based otherwise |\n| normalised_power | Strava | Null if no power meter |\n| duration_hrs | Strava |  |\n| elevation_gain_m | Strava |  |\n| avg_hr | Strava |  |\n| planned_workout_id | Template | Foreign key to plan_workouts table. Null if unplanned ride. |\n| adherence_flag | Computed | COMPLETED / MODIFIED / SKIPPED / UNPLANNED |\n| max_note | System | Max\u2019s post-ride observation if generated |"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#49",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "7. Athlete Data Layer \u2014 The Technical Moat > 7.2 Data Layer Structure > plan_workouts",
+   "text": "The current coaching template, exploded into individual workout rows. One row per scheduled workout in the training block:\n\n| Field | Notes |\n|---|---|\n| date | Scheduled date for this workout |\n| template_id | Foreign key to the coaching template library |\n| phase | Base / Build / Speciality / Taper / Recovery |\n| week_number | Week within the training block |\n| workout_type | Zone 2 / Threshold / VO\u2082 Max / Anaerobic / Recovery / Long Ride |\n| trainerroad_workout_name | Named TR workout suggestion (e.g. Galena, Pettit, Dade) |\n| trainerroad_link | Direct URL to TrainerRoad workout |\n| target_tss | Expected TSS if completed as prescribed |\n| target_duration_hrs | Expected duration |\n| notes | Coach note on purpose of this workout in the training block |"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#50",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "7. Athlete Data Layer \u2014 The Technical Moat > 7.2 Data Layer Structure > plan_workouts",
+   "text": "| Field | Notes |\n|---|---|\n| status | UPCOMING / COMPLETED / MODIFIED / SKIPPED \u2014 updated from training_rides |"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#51",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "7. Athlete Data Layer \u2014 The Technical Moat > 7.2 Data Layer Structure > context_summaries",
+   "text": "Pre-computed summary objects that are passed to Claude instead of raw table data. Recomputed nightly and on-demand. The key innovation of the data layer: Claude never queries raw tables directly.\n\n| Summary Object | Contents | When Passed to Claude |\n|---|---|---|\n| daily_context | Today\u2019s readiness score, recovery signal + confidence level, training load status, carb availability, planned workout, any flags | Every morning coaching note generation |\n| weekly_context | 7-day TSS, CTL, ATL, TSB, adherence rate for the week, training phase, weeks to race | Weekly plan review, any adaptive replanning query |\n| race_context | Race profile, course demands, weeks out, taper status, race goal, prior result if available | Race strategy queries, pre-race plan generation, race week protocol |"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#52",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "7. Athlete Data Layer \u2014 The Technical Moat > 7.2 Data Layer Structure > context_summaries",
+   "text": "| Summary Object | Contents | When Passed to Claude |\n|---|---|---|\n| memory_digest | Compressed summary of key longitudinal patterns: compliance trends, workout types athlete avoids, identified physiological tendencies, historical race data | Any query where individual context materially changes the recommendation |\n| nutrition_context | Today\u2019s logged macros vs. targets, carb availability flag, training demand for today | Fuelling advice, pre/post-ride nutrition guidance |"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#53",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "7. Athlete Data Layer \u2014 The Technical Moat > 7.3 Claude Prompting Architecture",
+   "text": "This is the critical design decision that separates Breakaway from naive AI fitness products. Claude is never given a raw data dump. It receives a structured prompt assembled from pre-computed context summaries. A typical daily coaching query looks like this:\n\n```text\nATHLETE PROFILE (static)\nFTP: 250W | Race: Berkeley Hills Road Race | Date: April 26 | Weeks out: 3 | Goal: Top half of field | Limiter: Sustained climbing\n\nDAILY CONTEXT (from daily_inputs, computed)\nReadiness: 61/100 (MODIFIED) | Recovery: Whoop 61% HRV 52ms [HIGH confidence] | Sleep: 7.2h [HIGH confidence] | Carbs: 148g / 290g target [LOW confidence \u2014 manual] | CTL: 68 | ATL: 74 | TSB: -6\n\nPLAN CONTEXT\nPlanned today: Galena \u2014 90min threshold (TSS 95) | Phase: Speciality Week 1 | Template: Berkeley Hills Mid-Volume"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#54",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "7. Athlete Data Layer \u2014 The Technical Moat > 7.3 Claude Prompting Architecture",
+   "text": "MEMORY DIGEST\nCompliance: 82% over last 4 weeks. Tends to under-fuel on hard days. No injury flags active.\n\nQUERY\nGenerate today\u2019s coaching note (2 sentences max) and 3 contextual reply chip suggestions (JSON array). If readiness < 65, recommend a modified workout from the template\u2019s approved substitution list.\n```\n\nThis prompt structure has several deliberate properties:\n\n- Context is always labelled by type and confidence level \u2014 Max knows when to hedge\n- Raw numbers are never passed without interpretation (e.g. CTL/ATL are given, not the full 42-day time series)\n- The query is bounded: Max is asked to do one specific thing, not \u2018analyse my training\u2019"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#55",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "7. Athlete Data Layer \u2014 The Technical Moat > 7.3 Claude Prompting Architecture",
+   "text": "- Token count is predictable and capped: the daily context prompt is approximately 350\u2013450 tokens regardless of how much underlying data exists\n- Claude never touches the database directly \u2014 only the pre-assembled context objects"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#56",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "7. Athlete Data Layer \u2014 The Technical Moat > 7.4 Longitudinal Memory \u2014 The Compounding Moat",
+   "text": "The memory_digest object is what transforms Breakaway from a tool into a coaching relationship. It is updated weekly by a background process that analyses the training_rides and daily_inputs tables and extracts meaningful patterns:\n\n- Compliance patterns: which days and workout types the athlete consistently completes or skips\n- Physiological response curves: how many days HRV takes to recover after different effort types\n- Fuelling tendencies: days where calorie/carb intake correlates with poor performance\n- Race history: complete record of each race with pre-race plan, actual power file, and outcome"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#57",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "7. Athlete Data Layer \u2014 The Technical Moat > 7.4 Longitudinal Memory \u2014 The Compounding Moat",
+   "text": "The memory_digest is compressed to under 200 tokens but contains the most diagnostically relevant patterns for the current training context. A race-week session gets race history and taper patterns. A recovery day session gets fatigue response curves.\n\nThis is the switching cost. Rebuilding this digest from scratch takes 6\u20138 weeks of data. No competitor who acquires a new user has it on day one."
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#58",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "8. Race & Fuelling Strategy",
+   "text": "Race strategy and fuelling guidance are delivered in the lead-up to the target race. This is one of the most differentiated features in Breakaway \u2014 no existing platform synthesises current fitness, course demands, and individual data into a concrete, personalised race plan."
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#59",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "8. Race & Fuelling Strategy > 8.1 Pre-Race Plan (Generated 5\u20137 Days Before Race)",
+   "text": "Max generates a race plan document the athlete can print or screenshot and take to the start line. It is populated from the race_context summary object and the athlete\u2019s current fitness data:\n\n- Target watts by course segment, expressed as % of current FTP\n- Pacing strategy narrative: where to conserve, where to push, where this specific race is typically won\n- Key decision points by kilometre or mile marker\n- Weather note if race-day forecast is available\n\nExample output \u2014 Berkeley Hills Road Race:"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#60",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "8. Race & Fuelling Strategy > 8.1 Pre-Race Plan (Generated 5\u20137 Days Before Race)",
+   "text": "> Your CTL is 71, TSB is +4 \u2014 you\u2019re in good form. Target 87% FTP on Wildcat Canyon (laps 1 and 2). Sit in for the first 10 miles; the pace will feel easy \u2014 let it. The race fractures at the base of lap 3\u2019s climb. That\u2019s your moment. Push to 93% FTP from the bottom and do not respond to attacks before KM 28. The sprint on South Park Drive is 3\u20135 minutes \u2014 treat it as a VO\u2082 Max effort, everything you have left."
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#61",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "8. Race & Fuelling Strategy > 8.2 Fuelling Plan",
+   "text": "Max generates a personalised fuelling schedule based on race duration estimate, individual carb metabolism patterns from the nutrition log history, and standard endurance fuelling guidelines. It is expressed in concrete, practical terms:\n\n- Pre-race meal: timing, carbohydrate target, example foods\n- On-bike fuelling: gel and bottle timing by approximate race time (e.g. first gel at 45 minutes, carb bottle sips every 20 minutes)\n- Target carbohydrate intake per hour during the race\n- Post-race recovery nutrition window and targets\n\nExample:\n\n> Race morning \u2014 3 hours before: 120g carbs. 15 min before gun: 1 gel. On bike: gel at 45 min, gel at 1:20, carb bottle throughout. Target 65g carbs/hour once underway. You tend to under-fuel on hard days \u2014 set a phone reminder for each gel."
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#62",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "8. Race & Fuelling Strategy > 8.2 Fuelling Plan",
+   "text": "The final sentence of the fuelling plan example above (\u201cyou tend to under-fuel\u201d) is drawn from the memory_digest. This is the feature that makes it feel like a real coach \u2014 one who has been watching."
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#63",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "8. Race & Fuelling Strategy > 8.3 Race Week Protocol (Activates 7 Days Before Race)",
+   "text": "Day-by-day taper guidance for the final week:\n\n| Day | Focus | Max\u2019s Guidance |\n|---|---|---|\n| Race \u22127 (Mon) | Final quality session | Short threshold effort \u2014 maintain sharpness, do not add fatigue. Galena \u2212 2 or equivalent. |\n| Race \u22126 (Tue) | Active recovery | Zone 1 spin, 30\u201345 min. Legs only, no efforts. |\n| Race \u22125 (Wed) | Race openers | Short VO\u2082 Max efforts \u2014 3x3 min at 110% FTP. Wake the engine. |\n| Race \u22124 (Thu) | Rest | Complete rest or gentle walk. Prioritise sleep. |\n| Race \u22123 (Fri) | Travel / logistics | Rest. Recon the course start area if possible. Carb loading begins tonight. |\n| Race \u22122 (Sat) | Activation | 20\u201330 min easy spin with 3x30 sec race-pace efforts. Bike check. |\n| Race \u22121 (Sun) | Rest | Rest completely. Final carb-loading meal. Sleep priority. |"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#64",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "8. Race & Fuelling Strategy > 8.3 Race Week Protocol (Activates 7 Days Before Race)",
+   "text": "| Day | Focus | Max\u2019s Guidance |\n|---|---|---|\n| Race Day | Execute the plan | Follow the pre-race plan. Trust the build. |"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#65",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "8. Race & Fuelling Strategy > 8.4 Post-Race Analysis",
+   "text": "After the race, Max detects the Strava activity (flagged as race type by duration and effort level) and generates a brief analysis:\n\n- Power file vs. pre-race plan: where execution matched, where it deviated\n- Identified limiters from the data: fitness ceiling, fuelling issue, tactical errors, pacing\n- Key learnings stored in the memory_digest for the next race cycle\n\nEach completed race makes the next race plan smarter. This is the flywheel."
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#66",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "9. Data Integrations > 9.1 Signal Hierarchy",
+   "text": "When multiple sources provide data for the same dimension, a defined hierarchy governs which signal is used. Signal selection is based on published accuracy research, product market sentiment, and what each platform was built to optimise for.\n\n| Dimension | Primary | Secondary | Fallback | Rationale |\n|---|---|---|---|---|\n| HRV / Recovery | Whoop | Garmin body battery (lower weight) | Manual 1\u201310 slider | Whoop\u2019s algorithm is optimised for overnight HRV during slow-wave sleep. It is Whoop\u2019s core IP. Garmin measures HRV opportunistically. |\n| Sleep | Whoop | Garmin sleep tracking | On-demand manual entry \u2014 never prompted | Whoop provides sleep staging. Manual input is available but never solicited. |"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#67",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "9. Data Integrations > 9.1 Signal Hierarchy",
+   "text": "| Dimension | Primary | Secondary | Fallback | Rationale |\n|---|---|---|---|---|\n| VO\u2082 Max / Fitness trend | Garmin (Firstbeat) | None | FTP-based estimate | Garmin\u2019s Firstbeat algorithm is validated against lab VO\u2082 Max. Whoop does not attempt this. |\n| Training load (TSS) | Garmin via Strava (power) | Garmin HR-based via Strava | Duration + RPE | Power-based TSS is objective. HR-based slightly overestimates intensity. |\n| Nutrition / glucose | Native logger | None | Generic population model | Native logger for Phase 1. Lingo CGM as Phase 3 integration. |"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#68",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "9. Data Integrations > 9.2 Integration Stack",
+   "text": "| Source | Data Used | Method | Feasibility | Phase |\n|---|---|---|---|---|\n| Whoop | Recovery %, HRV, sleep staging, strain | Whoop Developer API v2 (OAuth 2.0) \u2014 free, open | Easy | Phase 1 |\n| Strava | All activities, TSS, power \u2014 aggregates Garmin + TrainerRoad auto-sync | Strava API (OAuth 2.0) | Easy | Phase 1 |\n| Garmin Connect | Direct VO\u2082 Max trend, independent HRV, higher-resolution power files | Garmin Developer Program \u2014 application required (~2 days) | Gated | Phase 2 |\n| TrainerRoad | Workout name + link recommendations only. No data pulled. | No API. Internal workout database. | No dependency | Phase 1 |\n| Native Nutrition Logger | Carbs, protein, fat, calories \u2014 quick-add chips + manual entry | Built in-house | Built in-house | Phase 1 |"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#69",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "9. Data Integrations > 9.2 Integration Stack",
+   "text": "| Source | Data Used | Method | Feasibility | Phase |\n|---|---|---|---|---|\n| Google Calendar | Life events, travel \u2014 for life-aware replanning | Google Calendar API (OAuth 2.0) | Easy | Phase 3 |\n| Lingo CGM (Abbott) | Real-time glucose, glycemic response | Restricted API. Waitlist only. | Blocked | Phase 3 |\n| MyFitnessPal | Full nutrition diary | API closed to new developers | Unavailable | Dropped |"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#70",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "9. Data Integrations > 9.3 Why Strava Is the Right Primary Pipe (Phase 1)",
+   "text": "Strava acts as a universal aggregator for training data, making it more valuable than a direct Garmin integration for Phase 1: Garmin auto-syncs every activity to Strava, so pulling from Strava captures all Garmin data without the Garmin approval process. TrainerRoad completed workouts also auto-sync to Strava, meaning Breakaway sees actual workout completion without any TrainerRoad API dependency. In Phase 2, Garmin direct integration adds VO\u2082 Max trending and independent HRV data."
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#71",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "10. Technical Architecture > 10.1 Stack",
+   "text": "| Layer | Technology | Rationale |\n|---|---|---|\n| Frontend | React + Tailwind CSS | Fast prototyping, mobile-friendly, component-based |\n| Backend | Node.js / Express | JavaScript consistency, strong API ecosystem |\n| Database | PostgreSQL | Relational structure for Athlete Data Layer, training plans, time-series inputs |\n| AI Layer | Claude API (Sonnet) | Coaching notes, plan adjustments, race strategy, reply chip generation |\n| Athlete Data Layer | PostgreSQL + nightly background jobs | Structured context summaries computed nightly and on-demand |\n| Template Library | JSON flat file (Phase 1) \u2192 PostgreSQL (Phase 2) | Race-specific coaching templates with workout assignments by phase and week |"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#72",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "10. Technical Architecture > 10.1 Stack",
+   "text": "| Layer | Technology | Rationale |\n|---|---|---|\n| Workout DB | JSON flat file | ~100 TrainerRoad workouts mapped by zone, duration, adaptation, link |\n| Auth | OAuth 2.0 | Required for Whoop, Strava, Garmin, Google Calendar |\n| Hosting | Vercel (frontend) + Railway (backend) | Simple deployment for MVP |"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#73",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "10. Technical Architecture > 10.2 Data Flow",
+   "text": "The data flow is designed to keep Claude\u2019s context clean and predictable:\n\n- Wearable APIs (Whoop, Strava) push or are polled nightly. Data is written to daily_inputs and training_rides tables.\n- Background jobs recompute context_summaries nightly: daily_context, weekly_context, race_context, memory_digest, nutrition_context.\n- On user open, the app reads the pre-computed daily_context summary and displays the dashboard. No Claude call is made at this point.\n- When the coaching note is requested (either automatically each morning or manually), the backend assembles the structured prompt from the relevant context summaries and makes a single Claude API call."
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#74",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "10. Technical Architecture > 10.2 Data Flow",
+   "text": "- Claude returns a JSON response: coaching_note (string, max 2 sentences), modified_workout (object or null), reply_chips (array of 3 strings).\n- The response is cached for the day. Subsequent chat messages with Max use the cached coaching note as context and extend the conversation without re-fetching summaries."
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#75",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "10. Technical Architecture > 10.3 Token Budget",
+   "text": "Token efficiency is a first-class design constraint. The target is a predictable, capped prompt size regardless of how much underlying data exists:\n\n| Context Object | Estimated Tokens | Notes |\n|---|---|---|\n| Athlete profile (static) | ~80 tokens | Rarely changes. Cached. |\n| Daily context | ~120 tokens | Recomputed nightly. |\n| Weekly context | ~80 tokens | Recomputed nightly. |\n| Race context | ~100 tokens | Changes only as race approaches. |\n| Memory digest | ~150 tokens | Compressed pattern summary. Updated weekly. |\n| Query instruction | ~50 tokens | Specific, bounded task description. |\n| Total daily coaching prompt | ~580 tokens | Well within efficient range. Leaves ample room for Claude\u2019s response. |"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#76",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "10. Technical Architecture > 10.3 Token Budget",
+   "text": "For longer conversational sessions (full chat with Max), the conversation history is passed in addition to the context objects. A hard cap of 4,000 tokens total per session is enforced. Older conversation turns are summarised and replaced rather than dropped raw."
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#77",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "11. Build Roadmap",
+   "text": "> [!note] Phase discipline\n> Phase 1 must be validated before Phase 2 begins. The north star: 20 users open Breakaway every morning for 30 consecutive days. If that is achieved, every feature on the Phase 2 and 3 roadmap is justified. If not, the question is why \u2014 before anything else is built."
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#78",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "11. Build Roadmap > Phase 1 \u2014 Core Loop  (Weeks 1\u20138)",
+   "text": "Everything needed to validate the core proposition. One supported race template. One primary user flow.\n\n| Area | Deliverable | Priority |\n|---|---|---|\n| Onboarding | Structured questionnaire (4 blocks, 14 questions) | Must-have |\n| Onboarding | Athlete Profile population and storage | Must-have |\n| Data integrations | Whoop API (OAuth 2.0) | Must-have |\n| Data integrations | Strava API (OAuth 2.0) \u2014 activity sync, TSS, training load | Must-have |\n| Athlete Data Layer | daily_inputs, training_rides, plan_workouts, context_summaries tables | Must-have |\n| Athlete Data Layer | Nightly background jobs to populate context_summaries | Must-have |\n| Athlete Data Layer | Token-efficient prompt assembly logic | Must-have |"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#79",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "11. Build Roadmap > Phase 1 \u2014 Core Loop  (Weeks 1\u20138)",
+   "text": "| Area | Deliverable | Priority |\n|---|---|---|\n| Template library | Berkeley Hills Road Race template (Mid-Volume tier) | Must-have |\n| Template library | Workout database (~100 TrainerRoad workouts, JSON) | Must-have |\n| Daily dashboard | Training readiness score (weighted: recovery 45%, load 35%, nutrition 20%) | Must-have |\n| Daily dashboard | Max coaching note (2 sentences, plan adjustment logic) | Must-have |\n| Daily dashboard | Contextual reply chips (Claude-generated JSON) | Must-have |\n| Daily dashboard | Full chat with Max | Must-have |\n| Nutrition | Native macro logger with quick-add chips | Must-have |\n| Nutrition | Manual sleep input (on-demand, never prompted) | Must-have |\n| Race strategy | Pre-race plan generation (5\u20137 days out) | Must-have |"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#80",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "11. Build Roadmap > Phase 1 \u2014 Core Loop  (Weeks 1\u20138)",
+   "text": "| Area | Deliverable | Priority |\n|---|---|---|\n| Race strategy | Race week protocol (activates D\u22127) | Must-have |\n| Race strategy | Fuelling plan (generated with pre-race plan) | Must-have |\n| Race strategy | Post-race analysis (triggered by Strava activity) | Should-have |\n| Beta | Onboarding flow polish, 5\u201310 beta users | Must-have |"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#81",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "11. Build Roadmap > Phase 2 \u2014 Breadth & Intelligence  (Months 2\u20134)",
+   "text": "- Garmin Connect direct integration \u2014 VO\u2082 Max trend, independent HRV, high-resolution power data\n- Additional race templates: flat criterium, rolling gran fondo, punchy circuit race\n- Integration selection menu \u2014 visual onboarding with device logos and capability descriptions\n- Adaptive replanning \u2014 missed workout detection, conflict flagging, automatic reshuffling\n- Memory digest surfacing \u2014 \u2018Your Profile\u2019 view showing Max\u2019s learned model of the athlete\n- Berkeley Hills template: High-Volume and Low-Volume tiers\n- Additional template tiers for all Phase 2 race types"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#82",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "11. Build Roadmap > Phase 3 \u2014 Moat Widening  (Months 4\u201312)",
+   "text": "- Google Calendar integration \u2014 life-aware replanning, travel detection, stress event classification\n- Lingo CGM \u2014 real-time glucose, personalised fuelling timing (pending API access)\n- Annual season retrospective \u2014 full-season analysis document and renewal moment\n- Multi-race season planning \u2014 A, B, and C race periodization across a full season\n- In-race reference card \u2014 generated one-pager with key decision points by kilometre\n- AI-generated plan option \u2014 for advanced users who have completed one full template cycle and want a fully customised build (Phase 3 only, after template approach is validated)"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#83",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "12. Risks & Open Questions > 12.1 API Risks",
+   "text": "| Integration | Status | Risk | Mitigation |\n|---|---|---|---|\n| Whoop API | Open, free, active changelog | Low | Proceed |\n| Strava API | Open, well-documented | Low | Monitor policy. Tightened for some data types in late 2024. |\n| Garmin Connect | Requires developer application (~2 days) | Medium | Deferred to Phase 2. Strava covers Garmin data for Phase 1. |\n| TrainerRoad | No API. Recommendation-only. | Low | Only risk: workout renames. Monitor periodically. |\n| Lingo CGM | API restricted, not publicly available | Blocked | Phase 3. Waitlist capture in onboarding. Monitor for API opening. |\n| MyFitnessPal | API closed | Resolved | Dropped. Native logger built instead. |"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#84",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "12. Risks & Open Questions > 12.2 Product Risks",
+   "text": "- Template accuracy: coaching templates must be reviewed by a domain expert (coach or experienced racer) before beta launch. AI-generated template errors are not acceptable.\n- Template staleness: as athletes\u2019 fitness evolves, the template intensity may need recalibration. An FTP re-test prompt at weeks 4 and 8 is the initial mitigation.\n- Nutrition advice liability: coaching notes framed as suggestions, not medical advice. Disclaimer in onboarding.\n- Cold start confidence: in the first 1\u20132 weeks, the memory_digest is sparse. Max must communicate appropriate confidence levels. \u201cI\u2019m still learning your patterns \u2014 check back in after a few more rides.\u201d"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#85",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "12. Risks & Open Questions > 12.2 Product Risks",
+   "text": "- Token cost at scale: the 580-token prompt target must be validated against actual Claude API costs at projected user volumes. Background summary jobs may need optimisation if compute costs are prohibitive."
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#86",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "12. Risks & Open Questions > 12.3 Key Decisions Still Open",
+   "text": "- Pricing: free personal tool vs. freemium vs. $12\u201315/month subscription?\n- Mobile-first vs. web-first: dashboard suits desktop; daily coaching note and race day reference suits mobile.\n- Template curation process: who builds and validates the templates? Founder only for Phase 1, or bring in an experienced coach as an advisor?\n- FTP estimation: for users who don\u2019t know their FTP, what is the onboarding protocol? RPE-based estimation ride, or a deferred first-week test?\n- Whoop-less fallback quality: how confident is the coaching note when recovery signal is manual only? Should Max explicitly flag lower confidence in the coaching note text?"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#87",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "Appendix A: Glossary",
+   "text": "| Term | Definition |\n|---|---|\n| TSS | Training Stress Score \u2014 a measure of workout load combining intensity and duration |\n| CTL | Chronic Training Load \u2014 rolling 42-day average TSS; represents fitness |\n| ATL | Acute Training Load \u2014 rolling 7-day average TSS; represents fatigue |\n| TSB | Training Stress Balance (Form) \u2014 CTL minus ATL; positive = fresh, negative = fatigued |\n| FTP | Functional Threshold Power \u2014 max power a cyclist can sustain for approximately 60 minutes |\n| HRV | Heart Rate Variability \u2014 key biomarker of recovery and readiness |\n| VO\u2082 Max | Maximal oxygen uptake \u2014 the gold standard metric for aerobic fitness. Also Max\u2019s namesake. |\n| Whoop Recovery | A 0\u2013100% score reflecting readiness to train based on HRV, sleep, and resting HR |"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#88",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "Appendix A: Glossary",
+   "text": "| Term | Definition |\n|---|---|\n| Zone 2 | Aerobic endurance zone \u2014 roughly 56\u201375% of FTP; builds mitochondrial density |\n| Athlete Data Layer | Breakaway\u2019s structured database of all wearable inputs, training rides, and pre-computed context summaries |\n| Context Summary | A pre-computed, token-efficient data object passed to Claude instead of raw table data |\n| Memory Digest | A compressed summary of longitudinal athlete patterns \u2014 the core of the compounding moat |\n| Template Library | The curated library of race-specific coaching plan templates. Phase 1 contains Berkeley Hills Road Race. |\n| Graceful Degradation | Breakaway\u2019s design principle: every user gets a meaningful product regardless of which devices they own |"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#89",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "Appendix A: Glossary",
+   "text": "| Term | Definition |\n|---|---|\n| Option A | The confirmed Phase 1 plan approach: pre-built templates adjusted by AI, not AI-generated from scratch |"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#90",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "Appendix B: Workout Database (Starter Set)",
+   "text": "| Workout | Zone | Duration | Adaptation | Notes |\n|---|---|---|---|---|\n| Taku | Zone 1 | 30 min | Active recovery | Lightest possible load. Use on red days. |\n| Pettit | Zone 2 | 60 min | Aerobic endurance | Go-to easy ride. Accessible and effective. |\n| Baxter | Zone 2 | 90 min | Aerobic endurance | Longer endurance. Good for moderate recovery days. |\n| Antelope | Zone 3\u20134 | 90 min | Sweet spot / threshold | Core build workout for road racers. |\n| Carillon | Zone 4 | 60 min | Threshold | Shorter threshold. Use when time is limited. |\n| Galena | Zone 4 | 90 min | Threshold / sustained power | Key Berkeley Hills workout. Simulates Wildcat Canyon. |\n| Galena +2 | Zone 4 | 90 min | Threshold / sustained power | Harder version for speciality phase. |"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#91",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "Appendix B: Workout Database (Starter Set)",
+   "text": "| Workout | Zone | Duration | Adaptation | Notes |\n|---|---|---|---|---|\n| Leconte | Zone 4 | 90 min | Threshold / climbing | Sustained climbing simulation. |\n| Dade | Zone 5 | 60 min | VO\u2082 Max | Hard but manageable. Good intro to intensity. |\n| Bashful +6 | Zone 5 | 60 min | VO\u2082 Max | Short, sharp efforts. Builds top-end power. |\n| Pierce | Zone 6 | 45 min | Anaerobic / punchy | Criterium-style short power efforts. |\n| Truuli | Zone 4 | 30 min | Pre-race activation | Race-week opener. Short threshold efforts. |"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#92",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "Appendix C: Sample Prompt \u2014 Daily Coaching Query",
+   "text": "The following is an example of a complete daily coaching prompt as assembled by the backend and sent to Claude. This is the operational format, not a simplified illustration.\n\n```text\nATHLETE PROFILE\nFTP: 250W | Race: Berkeley Hills Road Race | Date: 2026-04-26 | Weeks out: 3 | Goal: Top half of field | Limiter: Sustained climbing | Experience: Advanced | Available days: Tue Thu Sat Sun\n\nDAILY CONTEXT  [computed 2026-04-07]\nReadiness score: 61 (MODIFIED)\nRecovery: Whoop 61%, HRV 52ms [HIGH confidence]\nSleep: 7.2h [HIGH confidence]\nCarbs logged: 148g / target 290g [LOW confidence \u2014 manual log]\nCTL: 68 | ATL: 74 | TSB: -6\n\nPLAN CONTEXT\nTemplate: Berkeley Hills Road Race \u2014 Mid Volume\nPhase: Speciality Week 1 of 2\nPlanned today: Galena \u2014 90 min threshold (target TSS 95)"
+  },
+  {
+   "id": "raw/Breakaway_PRD_v3.0.md#93",
+   "path": "raw/Breakaway_PRD_v3.0.md",
+   "section": "Appendix C: Sample Prompt \u2014 Daily Coaching Query",
+   "text": "Next key session: Saturday \u2014 Galena +2 (target TSS 110)\n\nMEMORY DIGEST  [updated 2026-04-05]\nCompliance last 4 weeks: 82%. Tends to under-fuel on hard days (3 of last 5 threshold sessions logged carbs below 60% of target). No injury flags active. Strong threshold compliance. Historically skips Sunday rides when fatigued.\n\nQUERY\nGenerate today\u2019s coaching note. Max 2 sentences. If readiness < 65, recommend the approved substitution for Galena from the template (Pettit). Include the primary reason for any change. Then return 3 contextual reply chips as a JSON array of strings. Format: {coaching_note: string, modified_workout: string|null, reply_chips: string[]}\n```"
+  },
+  {
+   "id": "raw/Draft Copilot.md#0",
+   "path": "raw/Draft Copilot.md",
+   "section": "Draft Copilot",
+   "text": "A small local web app that ran alongside a live Sleeper fantasy football draft. It tracked every pick in real time and recommended who to take next. It was built in one session with Claude Code on the day of the draft in September 2026."
+  },
+  {
+   "id": "raw/Draft Copilot.md#1",
+   "path": "raw/Draft Copilot.md",
+   "section": "Objective",
+   "text": "The goal was a tool to use during a **12-team, full-PPR snake draft** on Sleeper, to make sure that:\n\n1. **The right players get drafted.** Recommendations should come from expert consensus rankings, not Sleeper's ADP (average draft position), which reflects what the crowd picks rather than how good players are.\n2. **Positional gaps get filled.** The app should know which starting slots are still empty and point toward them.\n3. **Each pick is a good pick for that round**, not just the best player left. For example, is the 11th-ranked RB a better choice at pick 2.10 than the top-ranked TE?\n4. **There's quick context on each player**: a short upside/downside note and any injury status."
+  },
+  {
+   "id": "raw/Draft Copilot.md#2",
+   "path": "raw/Draft Copilot.md",
+   "section": "Approach > Choosing the architecture",
+   "text": "Two ideas were considered:\n\n- **Screenshot app.** Upload a screenshot of the draft board and get a suggestion. This was rejected because reading text from images is unreliable and breaks whenever Sleeper changes its layout.\n- **Live companion.** This turned out to be the *easier* option. Sleeper has a **public, no-login JSON API** for drafts:\n  - `GET https://api.sleeper.app/v1/draft/{draft_id}` returns draft settings, roster slots and scoring.\n  - `GET https://api.sleeper.app/v1/draft/{draft_id}/picks` returns every pick made so far."
+  },
+  {
+   "id": "raw/Draft Copilot.md#3",
+   "path": "raw/Draft Copilot.md",
+   "section": "Approach > Choosing the architecture",
+   "text": "The companion won. It was built as a **single `index.html` file** with the rankings data embedded: no build step and no dependencies. A tiny Node static server (`server.js`) serves it at `http://localhost:8931`. Vercel hosting was considered and dropped in favour of running it locally."
+  },
+  {
+   "id": "raw/Draft Copilot.md#4",
+   "path": "raw/Draft Copilot.md",
+   "section": "Approach > Rankings dataset",
+   "text": "The default rankings deliberately avoid Sleeper ADP. They blend two expert sources, both confirmed to be **full-PPR** lists:\n\n| Source | Coverage | Weight |\n|---|---|---|\n| FantasyPros consensus (about 128 experts, PPR cheat sheet) | Top 100 | 0.6 |\n| ESPN Field Yates PPR rankings | Top 160 | 0.4 |\n\n- A player on both lists gets `FantasyPros_rank \u00d7 0.6 + ESPN_rank \u00d7 0.4`, and the list is re-sorted by that blended score. FantasyPros gets more weight because it is already an average of many experts.\n- A player on only one list (mostly ESPN's 101\u2013160 range) keeps that source's rank.\n- The result is about 160 players, each with an overall rank, position rank and each source's individual rank.\n- It's a **static snapshot** from draft day and does not refresh automatically."
+  },
+  {
+   "id": "raw/Draft Copilot.md#5",
+   "path": "raw/Draft Copilot.md",
+   "section": "Approach > Rankings dataset",
+   "text": "**Why it differs from ADP:** ADP is crowd behaviour. It captures name recognition, hype and slow reactions to news. Expert rankings are considered opinions of each player's season value, so they usually react to trades and role changes before ADP does."
+  },
+  {
+   "id": "raw/Draft Copilot.md#6",
+   "path": "raw/Draft Copilot.md",
+   "section": "Features",
+   "text": "- **Live polling:** the app fetches picks every 3 seconds. Sleeper's CDN caches the picks endpoint for up to 30 seconds (`s-maxage=30`), so a new pick can take up to about 30 seconds to appear. That's well inside a 60-second pick clock.\n- **Best Available:** consensus rankings with anyone already drafted by *any* team removed. It can be filtered by position and searched.\n- **My Team and Needs tracker:** your own picks are detected automatically and slotted into QB/RB/WR/TE/FLEX/K/DEF, with each starting slot shown as filled or still open.\n- **Value sort:** the default sort order, which adjusts consensus rank for position scarcity (see below). You can switch back to raw consensus rank."
+  },
+  {
+   "id": "raw/Draft Copilot.md#7",
+   "path": "raw/Draft Copilot.md",
+   "section": "Features",
+   "text": "- **Top recommendation banner:** the single best-value pick available right now (skipping K/DST), tagged \"fills a need\" where it applies.\n- **Needs highlight:** a green edge on Best Available rows for positions (or flex-eligible positions) you still need.\n- **VALUE / REACH tags:** these compare a player's consensus rank with the current pick number. They appear on Best Available before you pick, and on the Live Picks feed (last 25 picks) afterwards.\n- **Player notes and injury badges:** a one-line upside/downside note per player, plus live injury status (Questionable, IR, PUP) from Sleeper's player database.\n- **Bye-week clash warnings:** a flag on any available player whose bye week matches a player already on your roster."
+  },
+  {
+   "id": "raw/Draft Copilot.md#8",
+   "path": "raw/Draft Copilot.md",
+   "section": "Features",
+   "text": "- **Strategy panel:** short guidance on draft order. Prioritise RB/WR early, wait on QB unless an elite rushing QB falls, take either an elite TE or wait, and leave K/DST until last.\n- **Settings:** set the draft ID and your draft slot. Both are saved in `localStorage`, so they survive a page refresh."
+  },
+  {
+   "id": "raw/Draft Copilot.md#9",
+   "path": "raw/Draft Copilot.md",
+   "section": "The Value Model",
+   "text": "Raw consensus rank answers \"who is the better player?\", but not \"who is the better pick right now?\" The value model adds position scarcity as a *secondary nudge*:\n\n```text\nscarcity   = POS_SLOPE[pos] \u00d7 (REPLACEMENT_RANK[pos] \u2212 position_rank)\nblended    = \u2212consensus_rank + 0.4 \u00d7 scarcity\n\nREPLACEMENT_RANK = { QB:14, RB:34, WR:40, TE:14, K:12, DST:12 }\nPOS_SLOPE        = { QB:0.6, RB:1.3, WR:1.0, TE:1.0, K:0.3, DST:0.3 }\n```\n\n- **Replacement rank** is roughly how deep you can go at a position before you're down to players any team could pick up on waivers."
+  },
+  {
+   "id": "raw/Draft Copilot.md#10",
+   "path": "raw/Draft Copilot.md",
+   "section": "The Value Model",
+   "text": "- **Slope** is how much each step down the position ranks costs. RB drops off sharply after the true workhorse backs (1.3). WR declines more gradually because PPR keeps more receivers useful (1.0). QB, K and DST are cheap to stream, so a step there costs less (0.6 and 0.3).\n- K and DST are always sorted below skill positions, whatever their score.\n- Each row shows `#rank` and `scarcity +N` separately, so you can see *why* a player landed where they did.\n\nIt's a heuristic based on rank distance to replacement level, not true value-based drafting built on projected points, since no paid projection data was used."
+  },
+  {
+   "id": "raw/Draft Copilot.md#11",
+   "path": "raw/Draft Copilot.md",
+   "section": "The Value Model > How the model evolved",
+   "text": "1. **First version:** `replacement_rank \u2212 position_rank` alone. This answered the 2.10 question (it favoured the RB11 over the TE1), but it let scarcity *override* real differences in talent.\n2. **K/DST bug:** late in the draft, a still-available top defense outscored deep bench RBs, which contradicted the strategy panel. The fix was to pin K and DST to the bottom.\n3. **Blend fix:** an elite RB (ranked #3 overall) was scored below a WR ranked #12 overall. After the fix, consensus rank is the main signal and scarcity only adds a 0.4-weighted nudge."
+  },
+  {
+   "id": "raw/Draft Copilot.md#12",
+   "path": "raw/Draft Copilot.md",
+   "section": "The Value Model > How the model evolved",
+   "text": "4. **Slope fix:** because WR's replacement cutoff was deeper (40 vs 34), every WR got about 6 more scarcity points than an RB at the same depth. That flipped **13 adjacent RB-over-WR pairs**, all in the same direction. Per-position slopes removed every flip where the consensus gap was more than 5 spots. Six near-ties (gaps of 0.2\u20130.6 points) remain as genuine close calls."
+  },
+  {
+   "id": "raw/Draft Copilot.md#13",
+   "path": "raw/Draft Copilot.md",
+   "section": "Bugs Found and Fixed",
+   "text": "| Bug | Cause | Fix |\n|---|---|---|\n| \"My Team\" empty in mock drafts | Sleeper leaves `roster_id` null on mock-draft picks | Identify your picks by `draft_slot`, which is set in both mock and real drafts |\n| Refresh reset the draft board | Draft ID was only kept in memory | Save the draft ID and slot to `localStorage` |\n| VALUE/REACH labels reversed | `rank \u2212 pick_no` operands were the wrong way round | Changed to `pick_no \u2212 rank` |\n| Taking Brian Robinson would also mark Bijan Robinson as taken | Name matching shortened first names to an initial (\"b robinson\") | Match on full normalized names |\n| Drafted defenses never left Best Available | Sleeper labels them `DEF`, the rankings use `DST` | Normalize position labels |"
+  },
+  {
+   "id": "raw/Draft Copilot.md#14",
+   "path": "raw/Draft Copilot.md",
+   "section": "Bugs Found and Fixed",
+   "text": "| Bug | Cause | Fix |\n|---|---|---|\n| Wrong injury and experience data (e.g. Travis Etienne shown on IR; Jayden Daniels shown as a rookie) | The same initial-only matching in the offline data-enrichment script let Trevor Etienne and Jalon Daniels overwrite them | Fixed the script and re-checked all 160 players against Sleeper's data |\n| Kenny Gainwell never matched as drafted | ESPN called him \"Kenneth\", Sleeper uses \"Kenny\" | Renamed him to match Sleeper |\n| Wrong \"rookie\" / \"sophomore\" notes | Hand-written notes weren't checked against Sleeper's `years_exp` | Corrected 23 notes (12 second-year players, 7 third-year players, and others) |\n\nAll of the fixes were verified against a Sleeper **instant mock draft**, which works with the app exactly like a real draft."
+  },
+  {
+   "id": "raw/Draft Copilot.md#15",
+   "path": "raw/Draft Copilot.md",
+   "section": "Lessons",
+   "text": "- **Check for an API before building scraping or screenshot reading.** Sleeper's public API turned the \"hard\" idea into the easy one.\n- **Test on a mock draft before relying on the app live.** Mock drafts showed up the `roster_id` difference and most of the other bugs before they could matter.\n- **Name matching is the weakest point when joining datasets.** Shortening names to initials caused three separate bugs. Match on full names and check every player afterwards.\n- **Fix a bug everywhere its logic is copied.** The matching bug was fixed in the app but left in the offline script, and it came back as wrong injury and experience data."
+  },
+  {
+   "id": "raw/Draft Copilot.md#16",
+   "path": "raw/Draft Copilot.md",
+   "section": "Lessons",
+   "text": "- **Keep heuristics secondary to consensus.** A scarcity score that overrides talent gives confident but wrong answers. Using it only as a nudge, and showing it separately, keeps the reasoning visible.\n- **Expert rank vs ADP gaps are signals, not errors.** When a player's expert rank is far above their ADP, check for a recent trade or role change before treating it as a mistake."
+  },
+  {
+   "id": "raw/PLAN.md#0",
+   "path": "raw/PLAN.md",
+   "section": "Plan: The GRKN \u2013 shared meal-planning app for two",
+   "text": "App name **The GRKN** is used in the manifest, page titles, home-screen icon label (\"GRKN\"), invite emails and push notifications."
+  },
+  {
+   "id": "raw/PLAN.md#1",
+   "path": "raw/PLAN.md",
+   "section": "Context",
+   "text": "You and your partner get stuck deciding what to cook each week, struggle to find new recipes that are good and nutritious, and have no shared shopping list you can both tick off live in the store. A previous Firebase attempt failed because the two of you weren't seeing each other's changes reliably, so **dependable real-time sync is the top requirement**. The finished app is:\n- hosted online\n- installable on both phones\n- a week calendar for breakfast (optional), lunch and dinner\n- a meal-prep guide for the start of the week\n- a recipe library\n- Claude-generated recipes (gluten-free by default, with a way to turn that off)\n- recipe import from websites, Instagram and cookbook photos\n- week suggestions that share ingredients, so you shop smarter\n- step-by-step cook cards with timers"
+  },
+  {
+   "id": "raw/PLAN.md#2",
+   "path": "raw/PLAN.md",
+   "section": "Context",
+   "text": "- a simple UI where the **ingredient list gets top priority**\n\nThe folder `C:\\Users\\thoma\\GRKN` is empty, so this is a new build."
+  },
+  {
+   "id": "raw/PLAN.md#3",
+   "path": "raw/PLAN.md",
+   "section": "Decisions (confirmed)",
+   "text": "- **Backend and sync: Convex.** Every query updates live on both phones, writes show on screen immediately and then sync, changes are transactional, and it reconnects and resends on its own. It also stores files (recipe photos) and runs the server functions that call Claude, so the Anthropic key never reaches the phone.\n- **Frontend: a web app built only for iPhone** (you both use iPhones). It uses Next.js (App Router) + TypeScript + Tailwind + shadcn/ui, is installed to the home screen from Safari, and is hosted on Vercel. There is **no desktop layout**. On a computer it shows as a centred, phone-width screen."
+  },
+  {
+   "id": "raw/PLAN.md#4",
+   "path": "raw/PLAN.md",
+   "section": "iPhone-first UI rules (built in from day one, never added later)",
+   "text": "- **Screen fit:**\n  - It opens full screen from the home screen, using the standard iOS home-screen app settings (status bar style, app icon, launch screens).\n  - Content avoids the notch and home bar (`viewport-fit=cover`).\n  - Layout uses the dynamic viewport height, so the Safari toolbar never cuts off content.\n  - Background bounce is locked, so pull-to-refresh can't fight with scrolling.\n- **Native patterns:**\n  - a bottom tab bar that sits above the home indicator\n  - bottom sheets (`vaul`) instead of pop-ups\n  - swipe to delete and swipe between weeks and cook steps (`framer-motion`)\n  - large titles and back navigation that feel like iOS\n  - press states instead of hover effects\n- **Touch:**\n  - tap targets are at least 44pt\n  - text fields use 16px text, so iOS doesn't zoom in"
+  },
+  {
+   "id": "raw/PLAN.md#5",
+   "path": "raw/PLAN.md",
+   "section": "iPhone-first UI rules (built in from day one, never added later)",
+   "text": "- the number keypad appears for quantities\n  - no action depends on hover or a right-click\n  - long-press actions have a visible alternative (\u22ef menu)\n- **iOS limits planned around:**\n  - Safari has no vibration support, so timers use sound plus push. The sound is unlocked when you tap Start, because iOS requires a tap before playing audio.\n  - Keeping the screen awake needs iOS 18.4 or later in a home-screen app. It fails silently on older versions.\n  - Push needs the app installed to the home screen (iOS 16.4+).\n  - Web Share Target isn't supported on iOS, so Instagram and website sharing uses a **\"Send to GRKN\" iOS Shortcut** in the share sheet. The Shortcut opens `/create/import?url=\u2026`. Setup is a one-tap install link from Settings. Pasting the link also works."
+  },
+  {
+   "id": "raw/PLAN.md#6",
+   "path": "raw/PLAN.md",
+   "section": "iPhone-first UI rules (built in from day one, never added later)",
+   "text": "- The camera for cookbook pages opens through a file input set to capture, and each photo is shrunk on the phone to about 1600px before upload (fewer tokens and faster).\n- **Performance on a phone:**\n  - lists load recipes on the server, only small interactive pieces run on the phone\n  - no big libraries\n  - fonts use the iPhone's own font, SF Pro (`system-ui`)\n  - the app shell is saved on the phone, so it opens instantly\n- **Login: Convex Auth** with an email magic link (sent through Resend) and Google. Each of you has your own account in one shared **household**, joined with a 6-character invite code."
+  },
+  {
+   "id": "raw/PLAN.md#7",
+   "path": "raw/PLAN.md",
+   "section": "iPhone-first UI rules (built in from day one, never added later)",
+   "text": "- **Gluten (coeliac-strict):** a household setting, **\"Gluten-free by default: ON\"**. On the generate and plan screens there's a toggle, \"Include gluten this time (e.g. she's away)\". Each ingredient gets `glutenRisk: none | contains | check-label`:\n  - **contains** covers wheat, barley, rye, malt, regular soy sauce, standard beer, and oats unless certified GF.\n  - **check-label** covers stock cubes, sauces, spice mixes, sausages, chocolate and the like.\n  - Every recipe gets a `glutenFree` flag, which is true only if nothing is marked `contains`.\n  - The recipe page shows a banner listing items to check, and cross-contamination notes where they apply (separate toaster or colander, flour dust)."
+  },
+  {
+   "id": "raw/PLAN.md#8",
+   "path": "raw/PLAN.md",
+   "section": "iPhone-first UI rules (built in from day one, never added later)",
+   "text": "- Imported recipes are checked by Claude and flagged, and a GF swap is suggested for each problem ingredient.\n  - On the shopping list, `check-label` items carry a small \"GF? check label\" tag.\n- **Recipe images: none.** Text-only cards with a clear layout (title, time, GF badge, key ingredients). Cookbook photos are kept only as the import source.\n- **Store connectivity:** signal is fine, so standard Convex sync is enough (no offline outbox)."
+  },
+  {
+   "id": "raw/PLAN.md#9",
+   "path": "raw/PLAN.md",
+   "section": "Getting sync right (why this won't repeat the Firebase problem)",
+   "text": "1. **Each shopping item is its own document.** When one person ticks \"milk\" and the other ticks \"eggs\", nothing conflicts.\n2. **Ticks set a value; they don't flip it.** The tick action is `setChecked(itemId, checked: boolean)`, not \"toggle\". If you both tap the same item, the result is still correct and stable.\n3. **Instant feedback:** every tick, add and reorder shows on screen immediately and then syncs.\n4. **Server-side list building:** combining the week's recipes into a shopping list happens in one transactional step on the server. Rebuilding the list keeps ticked items, manual items and edits, and only adds, removes or adjusts the items that came from recipes."
+  },
+  {
+   "id": "raw/PLAN.md#10",
+   "path": "raw/PLAN.md",
+   "section": "Getting sync right (why this won't repeat the Firebase problem)",
+   "text": "5. **Connection indicator:** a small dot shows \"Live / Reconnecting / Offline \u2013 changes will sync\". Changes made while offline are held and sent when you reconnect.\n6. **In the store:** the shopping screen keeps the phone awake, ticked items drop to the bottom of their aisle, and each tick shows who made it (\"\u2713 by Rory\")."
+  },
+  {
+   "id": "raw/PLAN.md#11",
+   "path": "raw/PLAN.md",
+   "section": "Data model (`convex/schema.ts`)",
+   "text": "- `households` {name, glutenFreeDefault, region/country (for what's in season), units (metric), defaultServings}\n- `members` {householdId, userId, displayName, glutenFree:boolean}; `invites` {householdId, code, expiresAt}\n- `recipes` {householdId, title, description, servings, prepMin, cookMin, tags[], cuisine, source {kind: generated|url|instagram|photo|manual, url?}, glutenFree, glutenNotes?, **ingredients[]** {id, qty, unit, name, canonical, aisle, note?, optional?, glutenRisk, gfSwap?}, **steps[]** {id, text, timers[] {label, seconds}, ingredientIds[]}, nutritionPerServing {kcal, protein, carbs, fat, fibre}, favourite, cookedCount, lastCookedAt, notes (personal tweaks)}"
+  },
+  {
+   "id": "raw/PLAN.md#12",
+   "path": "raw/PLAN.md",
+   "section": "Data model (`convex/schema.ts`)",
+   "text": "- `ratings` {recipeId, userId, stars 1\u20135, wouldCookAgain, comment?, cookedAt}: one rating per person each time you cook it\n- `tasteProfile` (one per member plus a household summary) {likes[], dislikes[] (ingredients or cuisines), spiceLevel, notes, summary}: the summary is rewritten by Claude from ratings, comments and dislikes every few ratings, and is included in every generation prompt\n- `pantry` {householdId, name, canonical, qty?, unit?, useSoon:boolean, addedAt}: what's on hand. Items marked `useSoon` get priority when generating and planning. Ticking a shopping item can move it into the pantry (optional). \"Mark recipe cooked\" offers to remove the pantry items it used up.\n- `pushSubscriptions` {userId, endpoint, keys, prefs {partnerChanges, sundayNudge, timers}}"
+  },
+  {
+   "id": "raw/PLAN.md#13",
+   "path": "raw/PLAN.md",
+   "section": "Data model (`convex/schema.ts`)",
+   "text": "- `mealPlan` {householdId, date (YYYY-MM-DD), slot: breakfast|lunch|dinner, recipeId? | freeText?, servings, addedBy, repeatGroupId?}, indexed by household+date. `repeatGroupId` links the same breakfast repeated across several days, so editing one of them can apply to all.\n- Recipes also get `mealTypes[]` (breakfast|lunch|dinner|snack) and `makeAhead:boolean`, with fridge life in days.\n- `households` also gets `slotsShown` {breakfast:boolean (default off, so breakfast appears only when you turn it on), lunch, dinner}, `prepDay` (default Sunday) and `targetsByMeal` {breakfast, lunch, dinner: {proteinG, fibreG}}.\n- `shoppingItems` {householdId, name, canonical, qty, unit, aisle, checked, checkedBy?, checkedAt?, sources[] {recipeId, mealPlanId}, manual:boolean, sortKey}"
+  },
+  {
+   "id": "raw/PLAN.md#14",
+   "path": "raw/PLAN.md",
+   "section": "Data model (`convex/schema.ts`)",
+   "text": "- `staples` {householdId, canonical}: things you always have at home (oil, salt), left off generated lists\n- `aiJobs` {householdId, kind, status, input, result?, error?}: Claude calls run in the background and the screen updates live when they finish\n- `weeklyBriefs` {householdId, weekStart, proteins[] (e.g. salmon, chicken, tofu), theme? (\"Mexican week\"), notes?, targets {proteinG, fibreG} per serving, includeGluten, createdBy}: one brief per week, kept as history so each new week can be steered away from the last few"
+  },
+  {
+   "id": "raw/PLAN.md#15",
+   "path": "raw/PLAN.md",
+   "section": "Data model (`convex/schema.ts`)",
+   "text": "- `planDrafts` {householdId, weekStart, briefId?, status: drafting|accepted} + `planDraftSlots` {draftId, date, slot, state: pending|suggested|kept|empty, recipeId? | card?, freeText?, nutritionEst, updatedBy}: the shared Planning board. Each slot is its own document, so the two of you can edit different slots at the same time without clashing.\n- `prepPlans` {householdId, weekStart, prepDay, basedOn (fingerprint of the kept meals), stale:boolean, sessions[] {when: \"Sunday\" | \"Wednesday top-up\", totalMin, tasks[] {id, text, durationMin, timers[], forMeals[] {date, slot, recipeId}, storage (\"fridge, 4 days, airtight\"), doneBy?, doneAt?}}, dontPrepAhead[] {item, reason}}: the week's meal-prep guide. Tasks are ticked off live by either of you."
+  },
+  {
+   "id": "raw/PLAN.md#16",
+   "path": "raw/PLAN.md",
+   "section": "Data model (`convex/schema.ts`)",
+   "text": "- `seasonalProduce` {region, month, items[] {canonical, name, peak:boolean}}: a curated table of what's in season. It's generated once per region by Claude, can be checked and edited in Settings, and is then read for free (no AI call per request)."
+  },
+  {
+   "id": "raw/PLAN.md#17",
+   "path": "raw/PLAN.md",
+   "section": "Screens (4 tabs at the bottom, big tap targets)",
+   "text": "1. **Week:** the calendar. A list of Monday to Sunday, each day with Breakfast (if turned on), Lunch and Dinner slots. Breakfast rows are compact, and one breakfast can be set to **repeat** (\"Overnight oats Mon\u2013Fri\"), since breakfasts are usually the same for several days. At the top of the week is a **Meal prep card** (see below). Tap an empty slot to pick a saved recipe, generate one, or type free text (\"leftovers\", \"eating out\"). Swipe between weeks. At the top: **\"Suggest my week\"** and **\"Build shopping list\"**. Each week shows a chip like \"12 shared ingredients\"."
+  },
+  {
+   "id": "raw/PLAN.md#18",
+   "path": "raw/PLAN.md",
+   "section": "Screens (4 tabs at the bottom, big tap targets)",
+   "text": "2. **Recipes:** your library. Search, filter chips (Favourites, GF, Quick <30m, In season, Cuisine; \"In season\" shows recipes whose main vegetables are in season this month), and sort by \"not cooked in a while\". The recipe page shows **ingredients first**: a big tickable list with a servings scaler (\u00b1 buttons) and gluten highlights. Below that come the steps, the \"Add to week\" button and **\"Cook\"**.\n3. **Shop:** the shared list, grouped by aisle (Produce, Meat, Dairy, Pantry, Frozen, Other). Includes a quick-add box, each item's source recipe shown on long-press, and \"Clear ticked\"."
+  },
+  {
+   "id": "raw/PLAN.md#19",
+   "path": "raw/PLAN.md",
+   "section": "Screens (4 tabs at the bottom, big tap targets)",
+   "text": "4. **Create:** the Claude hub. At the top is an **\"In season now\"** strip: this month's vegetables and fruit as chips, with peak items starred. Tapping a chip opens Generate with that vegetable filled in. Below the strip are four cards:\n   - **Weekly brief** (the main way to plan a week):\n     - **Choose proteins:** tap-to-pick chips (salmon, chicken, beef mince, prawns, tofu, eggs, lamb, pork, white fish, lentils/beans, plus custom). A soft warning appears if you pick the same proteins as last week.\n     - **Theme and notes (optional):** e.g. \"something Thai\" or \"one fakeaway night\".\n     - **Slots:** which breakfasts, lunches and dinners to fill.\n     - **Breakfast options** (when breakfast is included):"
+  },
+  {
+   "id": "raw/PLAN.md#20",
+   "path": "raw/PLAN.md",
+   "section": "Screens (4 tabs at the bottom, big tap targets)",
+   "text": "- **Style:** quick (under 10 min), make-ahead (batch on prep day), or weekend brunch.\n       - **Variety:** how many different breakfasts to have that week (for example, 1 on repeat for weekdays plus 1 weekend brunch).\n       - **Gluten:** oats are only allowed if certified GF, and are flagged on the shopping list.\n     - **Guidance (recommendations, not hard rules):** Claude aims for about 35 g protein and 10 g fibre per serving at lunch and dinner, and about 25 g protein and 8 g fibre at breakfast. You can change these for each meal type in Settings. Each meal shows its estimate with a soft indicator (green when near the target, amber when well below). Nothing is blocked or regenerated automatically.\n     - **Gluten toggle.**"
+  },
+  {
+   "id": "raw/PLAN.md#21",
+   "path": "raw/PLAN.md",
+   "section": "Screens (4 tabs at the bottom, big tap targets)",
+   "text": "- **What Claude returns:** a draft week built around the chosen proteins, with in-season vegetables in every meal and fibre from legumes, whole grains, veg and seeds. Ingredient overlap is kept high, and there's **variety versus the last 3 weeks**: different cuisines and cooking methods, and no repeated recipes.\n   - **Planning board** (the iterative step between the brief and the calendar):\n     - The draft week appears as a board of slot cards (day \u00d7 lunch/dinner). New suggestions stream in slot by slot, so you can start reviewing before the whole week is done.\n     - **Actions on each card:**\n       - **\u2713 Keep:** locks the meal in."
+  },
+  {
+   "id": "raw/PLAN.md#22",
+   "path": "raw/PLAN.md",
+   "section": "Screens (4 tabs at the bottom, big tap targets)",
+   "text": "- **\u270e Edit:** either tweak it in plain words (\"less spicy\", \"swap salmon for prawns\", \"make it 20 min\"), which Claude revises for that one recipe, or edit the ingredients and steps by hand.\n       - **\u21bb Replace with a generated recipe:** optionally add a hint (\"something with lentils\").\n       - **\u21c4 Replace with your own recipe:** pick from the library, or import one on the spot (paste a link, Instagram post or cookbook photo) or type it in. It goes straight into that slot.\n       - **\u2715 Remove:** leaves the slot empty or sets free text such as \"eating out\".\n     - **Regenerate the rest:** replaces every meal that isn't kept, taking into account the meals you've kept (for overlap, protein variety and not repeating cuisines)."
+  },
+  {
+   "id": "raw/PLAN.md#23",
+   "path": "raw/PLAN.md",
+   "section": "Screens (4 tabs at the bottom, big tap targets)",
+   "text": "- **Week summary:** running protein and fibre averages, the proteins used, the number of shared ingredients, and the gluten status, all updating as you edit.\n     - **Shared draft:** the draft is saved in Convex, so you both see and edit the same board live and can plan together from separate phones.\n     - **Accept week:** writes the kept and filled slots to the calendar. You can then build the shopping list straight away.\n   - **Generate:** ingredients to use, a \"What's in season\" toggle (based on region and month), cuisine or mood, max time, servings, and the gluten toggle. Returns **3 recipe cards** to save or add straight to a day."
+  },
+  {
+   "id": "raw/PLAN.md#24",
+   "path": "raw/PLAN.md",
+   "section": "Screens (4 tabs at the bottom, big tap targets)",
+   "text": "- **Import:** paste a website link, paste an Instagram link or caption, or take/upload photos of cookbook pages (several pages allowed). The result opens as an **editable draft** to check before saving.\n   - **Plan smart:** pick which slots to fill and a mix (for example, 3 saved favourites and 2 new). Claude suggests a week that maximises ingredient overlap, showing a list of the shared ingredients, and the result can be accepted into the calendar in one tap. Weekly brief uses this same planner with extra inputs, and both lead to the same Planning board.\n- **Pantry** (a section at the top of the Create tab, and also reached from Settings): a quick-add list of what's on hand, with a \"Use soon\" star. The Generate screen has a \"Use my pantry\" option."
+  },
+  {
+   "id": "raw/PLAN.md#25",
+   "path": "raw/PLAN.md",
+   "section": "Screens (4 tabs at the bottom, big tap targets)",
+   "text": "- **Settings:** household and invite code, the gluten default, region and units, staples, your taste profile (editable likes and dislikes, plus Claude's summary), notification switches, **Export all recipes (JSON)**, and the Claude monthly spend cap.\n- **Undo:** ticking, removing or clearing shows a 5-second \"Undo\" message.\n- **Meal prep card** (at the top of the Week screen, built from the meals you've locked in):\n  - **When it appears:** after \"Accept week\", or on request with \"Make prep plan\" once some meals are kept. Its summary line reads like \"Sunday prep \u00b7 ~75 min \u00b7 covers 9 meals\".\n  - **Prep sessions:** each session is a checklist that either of you can tick off live. Tasks come in a sensible order, so oven and stovetop jobs run side by side. For example:"
+  },
+  {
+   "id": "raw/PLAN.md#26",
+   "path": "raw/PLAN.md",
+   "section": "Screens (4 tabs at the bottom, big tap targets)",
+   "text": "1. Put the oven on and roast veg for Mon\u2013Wed.\n    2. While that's in, cook rice for 3 lunches and make the tahini sauce.\n    3. Marinate the chicken for Tuesday.\n  - **For each task:** how long it takes, which meals it's for, tap-to-start timers (the same ones as Cook mode), and how to store it (fridge or freezer, number of days, container).\n  - **Food safety and freshness:** a \"Don't prep ahead\" list covers things like fish (cook on the day or 1 day ahead at most), cut avocado, and dressed salads. Anything that won't last until the day it's eaten is scheduled for a **midweek top-up** session instead.\n  - **Gluten:** in weeks that include gluten, GF items are prepped first, with separate boards and colanders, and each container is labelled \"GF\" or \"contains gluten\"."
+  },
+  {
+   "id": "raw/PLAN.md#27",
+   "path": "raw/PLAN.md",
+   "section": "Screens (4 tabs at the bottom, big tap targets)",
+   "text": "- **Breakfast:** make-ahead breakfasts (overnight oats, egg muffins, chia pots) are included in the prep session.\n  - **Staying up to date:** if meals in the week change after the plan was made, the card shows \"Meals changed \u2013 update prep plan\".\n  - **In Cook mode:** steps already done during prep show as \"\u2713 Prepped Sunday\" and are collapsed, so on the night you only see the remaining steps.\n- **Cook mode** (full screen):\n  - one step card at a time; swipe or tap to move on\n  - timers found in the step text (\"simmer 10 min\") become tap-to-start timer chips\n  - several timers can run at once in a strip at the bottom, with a sound and a push notification when each finishes\n  - the screen stays awake\n  - an \"Ingredients\" drawer is always one tap away and highlights what this step uses"
+  },
+  {
+   "id": "raw/PLAN.md#28",
+   "path": "raw/PLAN.md",
+   "section": "Screens (4 tabs at the bottom, big tap targets)",
+   "text": "- \"Done cooking\" updates cookedCount and lastCookedAt and asks each of you for a quick rating: stars, would-cook-again, and an optional note. This feeds the taste memory."
+  },
+  {
+   "id": "raw/PLAN.md#29",
+   "path": "raw/PLAN.md",
+   "section": "Cooking nights + calendar feed (build step 8.5, after the meal prep guide)",
+   "text": "**Data model**\n- `mealPlan` gets `cookMemberId?`: who is cooking that meal. Only dinners have a cook.\n- `households` gets `defaultCooks` {monday\u2026sunday: memberId?}, e.g. Rory cooks Mon and Wed. A new dinner takes the default cook for its day, and each dinner can be changed.\n- `households` gets `dinnerTime` (default 19:00).\n- `members` gets `calendarToken`: a secret random token for that person's calendar feed. It can be reset.\n\n**Screens**\n- **Week:** each dinner row shows the cook's initial (\"R\"). Tap it, or use \u22ef \u2192 \"Who's cooking\", to change the cook.\n- **Settings \u2192 Cooking nights:** a chip per weekday to pick who cooks, and a dinner time."
+  },
+  {
+   "id": "raw/PLAN.md#30",
+   "path": "raw/PLAN.md",
+   "section": "Cooking nights + calendar feed (build step 8.5, after the meal prep guide)",
+   "text": "- **Settings \u2192 Add to Google Calendar:** a \"Subscribe\" button, with steps to copy the feed link and add it in Google Calendar on the web (Other calendars \u2192 From URL). There's also a \"Reset link\" button.\n\n**Calendar feed** (`convex/http.ts`, `GET /cal/<token>.ics`)\n- It lists only the dinners where you're the cook, for the next 3 weeks. Free-text dinners (\"eating out\") are left out.\n- Each event is called \"You're cooking: Salmon traybake\". It starts at dinner time minus (prep + cook) minutes and ends at dinner time. The description holds the prep and cook minutes, the gluten status and a link to the recipe.\n- Once the meal prep guide (M8) exists, the feed also includes prep sessions for whoever is doing them, e.g. \"Sunday prep \u00b7 ~75 min \u00b7 covers 9 meals\"."
+  },
+  {
+   "id": "raw/PLAN.md#31",
+   "path": "raw/PLAN.md",
+   "section": "Cooking nights + calendar feed (build step 8.5, after the meal prep guide)",
+   "text": "- **Limits:** Google refreshes subscribed calendars only every few hours, up to about a day, so last-minute changes show up late. Google also ignores reminders set inside a feed, so you set a default notification for that calendar once in Google Calendar (e.g. 30 min before).\n- **Instant option:** an \"Add to Google Calendar\" button on each planned dinner opens a prefilled Google Calendar event (a `calendar.google.com/\u2026action=TEMPLATE` link). It's one tap and needs no sign-in."
+  },
+  {
+   "id": "raw/PLAN.md#32",
+   "path": "raw/PLAN.md",
+   "section": "Cooking nights + calendar feed (build step 8.5, after the meal prep guide)",
+   "text": "**Verification:** Rory is set to cook Mon and Wed, so new dinners on those days get Rory. The feed contains only Rory's dinners, with the right start time and duration. Changing the cook moves the dinner between the two feeds. A reset link stops the old URL from working. Once M8 exists, prep sessions appear in the feed of the person doing them."
+  },
+  {
+   "id": "raw/PLAN.md#33",
+   "path": "raw/PLAN.md",
+   "section": "Push notifications (`convex/push.ts`, with a `web-push` action and VAPID keys)",
+   "text": "- These work on iPhone (iOS 16.4+) **only once the app is installed to the home screen**. Onboarding walks you through installing, then asks for permission.\n- **Partner changes:** messages are grouped so there's no spam. For example, \"Rory added 4 items to the list\" or \"Rory planned Thursday dinner\" are sent after 2 minutes with no further changes, using a Convex scheduled function. You're never notified about your own changes.\n- **Prep day reminder:** the morning of your prep day, e.g. \"Sunday prep: ~75 min, 9 meals covered\".\n- **Sunday nudge:** a Convex cron job sends \"Plan next week?\" at a time you choose, only if next week has empty slots."
+  },
+  {
+   "id": "raw/PLAN.md#34",
+   "path": "raw/PLAN.md",
+   "section": "Push notifications (`convex/push.ts`, with a `web-push` action and VAPID keys)",
+   "text": "- **Cook timers while the phone is locked:** starting a timer also schedules a server-side push for when it finishes (`scheduler.runAt`), and cancelling the timer cancels it. The phone also plays a sound while the app is open."
+  },
+  {
+   "id": "raw/PLAN.md#35",
+   "path": "raw/PLAN.md",
+   "section": "Claude integration (`convex/ai.ts`, a Node server function)",
+   "text": "- Uses the `@anthropic-ai/sdk` with **structured output** (tool use / JSON schema matching `recipes`) so the results are always valid, typed recipes. **Load the `claude-api` skill before writing this file.**\n- **Model choice by task, to keep costs down:**\n  - `claude-haiku-4-5` for cheap, mechanical jobs: normalising JSON-LD imports, tagging aisles and gluten risk, and rewriting the taste summary\n  - `claude-sonnet-5` for creative jobs: generating recipes, extracting recipes from photos or text, and the overlap planner\n  - no Opus by default\n- **The system prompt always includes:**\n  - the gluten rule, which is coeliac-strict and requires Claude to set `glutenRisk` for every ingredient\n  - the household taste profile summary and dislikes (hard exclusions)"
+  },
+  {
+   "id": "raw/PLAN.md#36",
+   "path": "raw/PLAN.md",
+   "section": "Claude integration (`convex/ai.ts`, a Node server function)",
+   "text": "- the top-rated and low-rated recipe titles\n  - the pantry's \"use soon\" items\n  - region and current month (for seasonality)\n  - units and servings\n  - recently cooked titles, to avoid repeats\n  - nutrition guidance: balanced plates and vegetables in every meal\n\n  It also asks Claude to break timers down into seconds per step and to label each ingredient with its aisle and a canonical name.\n- **Keeping prompts small:**\n  - The system prompt, gluten rules and output schema are fixed text, placed first with `cache_control`, so repeat calls cost about 10% of the input tokens.\n  - The changing parts (profile summary, pantry, recent titles) go after the cached block and are kept short: the profile is a summary of about 150 words or less, and recent titles are capped at 20."
+  },
+  {
+   "id": "raw/PLAN.md#37",
+   "path": "raw/PLAN.md",
+   "section": "Claude integration (`convex/ai.ts`, a Node server function)",
+   "text": "- The planner receives compact ingredient lists (canonical names only), not full recipes.\n  - Each task sets a tight `max_tokens`.\n  - Generating returns 3 short cards first (title, one-line description, key ingredients). The full recipe is generated only for the card you pick. That's about 3\u00d7 fewer output tokens than generating three complete recipes.\n  - Website imports that have JSON-LD skip Claude extraction entirely and only get a Haiku pass for tagging.\n- **Spend guard:** each call logs its token usage to `aiJobs`. When the monthly cap (set in Settings) is reached, new calls are refused with a friendly message. Prompt caching is used on the long system prompt and profile."
+  },
+  {
+   "id": "raw/PLAN.md#38",
+   "path": "raw/PLAN.md",
+   "section": "Claude integration (`convex/ai.ts`, a Node server function)",
+   "text": "- **Website import:** fetch the page on the server, then look for schema.org `Recipe` JSON-LD first, which is free and exact. Claude then only normalises it (aisles, canonical names, timers, GF check). If there's no JSON-LD, the cleaned page text goes to Claude to extract the recipe.\n- **Instagram:** Instagram blocks scraping, so this takes two routes. First, try the public caption (og:description) from the link. If that fails, the screen asks you to paste the caption or add screenshots, which go to Claude vision. Links arrive through the \"Send to GRKN\" iOS Shortcut or by pasting.\n- **Cookbook photos:** stored in Convex, then 1\u20134 page images are sent to Claude vision in a single request."
+  },
+  {
+   "id": "raw/PLAN.md#39",
+   "path": "raw/PLAN.md",
+   "section": "Claude integration (`convex/ai.ts`, a Node server function)",
+   "text": "- **Overlap planner:** takes the saved recipes' canonical ingredient lists plus the constraints. Claude returns a week of existing recipe IDs and new generated recipes. The server then works out the actual overlap score itself rather than trusting the model's count.\n- **Weekly brief planner** (`claude-sonnet-5`, one call per week):\n  - **Inputs:** the brief (proteins, theme, targets), the in-season list for this region and month (from `seasonalProduce`), compact titles, cuisines and proteins from the last 3 weeks' plans (to avoid repeating them), saved recipe ingredient lists, and the pantry's \"use soon\" items."
+  },
+  {
+   "id": "raw/PLAN.md#40",
+   "path": "raw/PLAN.md",
+   "section": "Claude integration (`convex/ai.ts`, a Node server function)",
+   "text": "- **Output:** a structured result per slot (an existing recipe ID or a short new-recipe card), with a nutrition estimate per serving. Each slot is written to `planDrafts` as it arrives.\n  - **Targets are soft:** they're passed to Claude as recommendations. The server only works out the estimates for the indicators and never forces a retry.\n  - **Actions on a single slot:**\n    - **Replace:** one small call, given the kept meals as context.\n    - **Edit in words:** a Haiku call that revises that one recipe from your instruction.\n    - **Regenerate the rest:** one call covering only the slots that aren't kept.\n    - **Your own or imported recipe:** reuses the Import pipeline, and the result is saved straight into the slot."
+  },
+  {
+   "id": "raw/PLAN.md#41",
+   "path": "raw/PLAN.md",
+   "section": "Claude integration (`convex/ai.ts`, a Node server function)",
+   "text": "- **Full recipes on demand:** as with Generate, full recipes are written only for new cards you keep, which keeps output tokens low.\n- **Prep planner** (`claude-sonnet-5`, one call per plan):\n  - **Inputs:** only the kept meals, each sent in a compact form (recipe ID, date and slot, ingredients with amounts, step text, `makeAhead` and fridge-life days), plus the prep day and the gluten status.\n  - **Output:** structured `prepPlans`, where each task names the meal slots and step IDs it covers.\n  - **Server checks:** every task must point at real meals and steps. The server also recomputes each meal's \"eaten on\" day against the storage days Claude gives, and moves anything that would be too old into the midweek top-up."
+  },
+  {
+   "id": "raw/PLAN.md#42",
+   "path": "raw/PLAN.md",
+   "section": "Claude integration (`convex/ai.ts`, a Node server function)",
+   "text": "- **Updating:** \"Update prep plan\" regenerates the plan but keeps tasks you've already ticked.\n- **Breakfast generation** uses the same Generate flow with a meal-type selector. Breakfast cards are kept short, and make-ahead breakfasts get `makeAhead` and fridge-life days.\n- **Seasonal suggestions:** the \"In season now\" strip, the Generate toggle and the Recipes filter all read `seasonalProduce`, so they don't cost an AI call. The table is created with one Haiku call per region the first time, then reviewed in Settings.\n- **Nutrition accuracy:** protein and fibre are estimates. The recipe page labels them \"\u2248 estimated\", and portion sizes of the protein are stated in grams so the numbers can be checked."
+  },
+  {
+   "id": "raw/PLAN.md#43",
+   "path": "raw/PLAN.md",
+   "section": "Shopping list build (`convex/shopping.ts`)",
+   "text": "Uses the week's plan entries \u00d7 a scale factor (planned servings \u00f7 recipe servings) \u2192 combines ingredients by `canonical` \u2192 converts units where the family matches (g/kg, ml/l, tsp/tbsp/cup) and otherwise keeps separate lines \u2192 leaves out `staples` \u2192 matches the result against the existing items: sources get updated, ticked and manual items are kept, and items no longer needed from any recipe are removed. Kept as pure functions in `lib/ingredients.ts` so they can be unit tested."
+  },
+  {
+   "id": "raw/PLAN.md#44",
+   "path": "raw/PLAN.md",
+   "section": "Project layout",
+   "text": "```\nGRKN/\n  app/(tabs)/week, recipes, recipes/[id], recipes/[id]/cook, shop, create/{generate,import,plan}\n  app/join/[code], app/settings, app/manifest.ts\n  components/ (RecipeCard, IngredientList, StepCard, TimerStrip, WeekGrid, ShopItem, SyncDot)\n  convex/ schema.ts, auth.ts, households.ts, recipes.ts, mealPlan.ts, shopping.ts, ai.ts, import.ts\n  lib/ ingredients.ts (units, merge), timers.ts, week.ts\n```"
+  },
+  {
+   "id": "raw/PLAN.md#45",
+   "path": "raw/PLAN.md",
+   "section": "Build order",
+   "text": "1. Set up the project: Next.js, Tailwind, shadcn, Convex, Convex Auth (magic link + Google), households and invite codes, the installable-app manifest and icons, a Vercel project, and `ANTHROPIC_API_KEY` and `AUTH_RESEND_KEY` stored in Convex env.\n2. **Shopping list first**: tick, add and clear with instant updates, the connection dot, and the screen-awake lock. Then test it on two phones before building anything else, to prove the sync works.\n2.5. Shopping bundles: one-tap saved item groups (see PROGRESS.md for the agreed design).\n3. Recipe library: manual entry, the recipe page with ingredients first, and the servings scaler."
+  },
+  {
+   "id": "raw/PLAN.md#46",
+   "path": "raw/PLAN.md",
+   "section": "Build order",
+   "text": "4. Week calendar with breakfast (optional, repeatable), lunch and dinner, plus \"Build shopping list\" (list combining + tests). Breakfast is part of the data model from here onwards.\n5. Cook mode with timers, ratings and notes.\n6. Claude, part 1: the seasonal produce table and \"In season now\" strip, generate (with the coeliac rules, taste profile and in-season toggle), then import (URL \u2192 Instagram \u2192 photos).\n7. Claude, part 2: the overlap planner, **Weekly brief** (proteins, soft protein and fibre targets, variety across weeks) and the shared **Planning board** (keep, edit, replace with a generated or your own recipe, remove, regenerate the rest), plus pantry and \"use soon\" and the taste-profile summary rewrite."
+  },
+  {
+   "id": "raw/PLAN.md#47",
+   "path": "raw/PLAN.md",
+   "section": "Build order",
+   "text": "8. **Meal prep guide:** the prep planner, the Meal prep card with live-ticked tasks and timers, the \"Don't prep ahead\" list and midweek top-up, the \"Meals changed\" prompt, and \"\u2713 Prepped\" steps in Cook mode.\n8.5. Cooking nights (who cooks each dinner, default cook per weekday) + a Google Calendar feed with cook and prep times, and prep sessions from M8.\n9. Push notifications: install onboarding, partner-change messages, the Sunday cron job (which opens the Weekly brief), the prep day reminder, locked-screen timers.\n10. Polish: the Recipes \"In season\" filter, staples, \"not cooked lately\", nutrition display, export, undo, and the spend cap.\n11. **Tentative \u2013 native iOS wrapper with alarm timers** (see below). Could replace or sit next to 9; decide after 8."
+  },
+  {
+   "id": "raw/PLAN.md#48",
+   "path": "raw/PLAN.md",
+   "section": "Native iOS wrapper (tentative, not committed)",
+   "text": "- **Why:** a home-screen web app can't sound on a locked phone or through the silent switch (found in M5). Push (9) helps, but it's a normal notification sound that silent mode and Focus still mute. Only a native app can set real timers.\n- **What:** wrap the existing app with **Capacitor** (same Next.js code, Convex and sign-in inside a native iOS shell; no rewrite). Add a small Swift plugin for **AlarmKit** (iOS 26+): Cook-mode and prep timer chips start real system timers that ring like the Clock app (lock screen, silent mode, Focus), with a Live Activity countdown on the lock screen and in the Dynamic Island. They run on the phone, so no signal is needed. In the plain web version the chips keep working as they do now."
+  },
+  {
+   "id": "raw/PLAN.md#49",
+   "path": "raw/PLAN.md",
+   "section": "Native iOS wrapper (tentative, not committed)",
+   "text": "- **Nice extras once native:** push without \"Add to Home Screen\", a real share-sheet target instead of the \"Send to GRKN\" Shortcut, simpler camera import.\n- **Building without a Mac:** all code is written on Windows; the iOS build runs in the cloud on **Codemagic** (free monthly Mac build time, automatic code signing, uploads to TestFlight). GitHub Actions Mac runners are the fallback. No simulator on Windows, so each native change is tested on the phone via TestFlight (~15\u201330 min per round); keep the native part small. A Mac mini isn't planned for now.\n- **Distribution:** TestFlight internal testing for the two of us (no App Store review, no public listing)."
+  },
+  {
+   "id": "raw/PLAN.md#50",
+   "path": "raw/PLAN.md",
+   "section": "Native iOS wrapper (tentative, not committed)",
+   "text": "- **Needs:** Apple Developer account ($99/year), a Codemagic account linked to the GitHub repo, an App Store Connect API key for signing/upload, app icons and launch screen.\n- **Work:** about one milestone (wrapper, AlarmKit plugin, TestFlight pipeline), plus one-off Apple setup."
+  },
+  {
+   "id": "raw/PLAN.md#51",
+   "path": "raw/PLAN.md",
+   "section": "Keeping the build efficient (Claude Code token use)",
+   "text": "- **Generate code with tools:** use official generators (`create-next-app`, `npx convex dev`, `shadcn add`, `@convex-dev/auth` init) instead of writing boilerplate by hand.\n- **No subagents,** and only one browser check per milestone. Read screen state as text rather than screenshots, unless it's a visual check.\n- **Write each file once.** Make targeted edits after that, don't reread files that were just written, and keep shell output short with `--silent` or `tail` on installs and builds.\n- **Reuse over custom:** shadcn components for the UI, Convex's own optimistic-update helpers, the `web-push` library, and schema.org parsing with a small hand-written extractor (no heavy scraping libraries)."
+  },
+  {
+   "id": "raw/PLAN.md#52",
+   "path": "raw/PLAN.md",
+   "section": "Keeping the build efficient (Claude Code token use)",
+   "text": "- **Small milestones:** each build step ends with a quick check (typecheck + relevant tests), so errors are caught early rather than debugged across the whole app.\n- **Short commit messages** and no long explanations between steps. I'll report in at the end of each milestone."
+  },
+  {
+   "id": "raw/PLAN.md#53",
+   "path": "raw/PLAN.md",
+   "section": "Later (not in v1)",
+   "text": "Leftovers and batch cooking (one cook fills two slots), aisle order per store, a durable offline outbox, and AI images."
+  },
+  {
+   "id": "raw/PLAN.md#54",
+   "path": "raw/PLAN.md",
+   "section": "Accounts / keys you'll need",
+   "text": "Convex (free), Vercel (free), Anthropic API key, Resend (free, for magic links), Google OAuth client (optional). I'll generate the VAPID keys for push notifications. Your region is needed for \"in season\"; it gets set in Settings."
+  },
+  {
+   "id": "raw/PLAN.md#55",
+   "path": "raw/PLAN.md",
+   "section": "Verification",
+   "text": "- **Unit tests (Vitest):** `lib/ingredients.ts` combining and unit conversion; timer detection from step text; the rule that `glutenFree` is derived from `glutenRisk`.\n- **Gluten checks:** a fixed set of 10 prompts and imports (including soy sauce, stock, oats and beer batter) must come back with the correct `glutenRisk` flags. This set is re-run whenever the prompts change.\n- **Weekly brief checks:** a brief of salmon + chicken uses both, puts an in-season vegetable in every dinner, and shares no recipe titles with the previous week's plan. The protein and fibre indicators show and update correctly."
+  },
+  {
+   "id": "raw/PLAN.md#56",
+   "path": "raw/PLAN.md",
+   "section": "Verification",
+   "text": "- **Breakfast checks:** turning breakfast on and off shows and hides the rows. A breakfast repeated Mon\u2013Fri adds the right total amounts to the shopping list (5 servings), and editing it changes all the linked days.\n- **Prep plan checks:** a week with salmon on Thursday must not prep the salmon on Sunday. Every task links to a meal that's actually kept. Changing a kept meal marks the plan \"Meals changed\". Ticking a task on one phone shows on the other within about 1 second."
+  },
+  {
+   "id": "raw/PLAN.md#57",
+   "path": "raw/PLAN.md",
+   "section": "Verification",
+   "text": "- **Planning board checks:** keep 2 meals then \"Regenerate the rest\", and the kept meals stay unchanged. Edit a meal in words and only that slot changes. Replace a meal with a library recipe and with an imported link. With two sessions open on the same draft, each person's edits to different slots appear for the other within about 1 second.\n- **Push notifications:** both installed iPhones receive a partner-change message and a locked-screen timer alert.\n- **Real-phone check after milestone 2:** install on both iPhones from the Vercel URL, and confirm the shopping list syncs and feels native before any more features are built."
+  },
+  {
+   "id": "raw/PLAN.md#58",
+   "path": "raw/PLAN.md",
+   "section": "Verification",
+   "text": "- **Convex function tests (`convex-test`):** rebuilding the list keeps checked and manual items; both of you calling `setChecked` at the same time ends up correct; household access rules (one household can't read another's data).\n- **iPhone layout test (Playwright WebKit with the iPhone 15/SE device profiles):** no sideways scrolling, the tab bar clears the home indicator, tap targets are at least 44px, and text fields are at least 16px. This runs on every milestone.\n- **Two-person sync test (Playwright):** two browser sessions logged in as different members. A ticks, B sees it within about 1s. Both tick different items at the same time. B goes offline, ticks, comes back, and A receives it."
+  },
+  {
+   "id": "raw/PLAN.md#59",
+   "path": "raw/PLAN.md",
+   "section": "Verification",
+   "text": "- **Manual checks:** install the app on both phones from the Vercel URL, then do a real shop together; generate a GF recipe and a non-GF one; import one website, one Instagram post and one cookbook photo; run cook mode with 2 timers at once."
+  },
+  {
+   "id": "wiki/Breakaway PRD Review Notes.md#0",
+   "path": "wiki/Breakaway PRD Review Notes.md",
+   "section": "Breakaway PRD Review Notes",
+   "text": "Review of [[Breakaway_PRD_v3.0]] (raw source, draft v3.0 from March 2026), carried out on 2026-09-29 when it was converted from Word to Markdown. The PRD is a historical plan: its example race date (2026-04-26) has passed."
+  },
+  {
+   "id": "wiki/Breakaway PRD Review Notes.md#1",
+   "path": "wiki/Breakaway PRD Review Notes.md",
+   "section": "Changes made during conversion",
+   "text": "- **Personal data replaced with illustrative values:** FTP (now 250W), available training days (now Tue/Thu/Sat/Sun) and injury notes (now \"None reported\"). Sample readiness, HRV, CTL/ATL and memory-digest figures are example values only.\n- **Formatting:** Word tables rebuilt as Markdown tables, highlighted boxes turned into callouts, and the prompt examples put in code blocks."
+  },
+  {
+   "id": "wiki/Breakaway PRD Review Notes.md#2",
+   "path": "wiki/Breakaway PRD Review Notes.md",
+   "section": "Open issues in the PRD",
+   "text": "1. **Strava API risk is understated (\u00a79.3, \u00a712.1).** Strava's November 2024 API agreement update restricts third-party use of Strava data in AI models, and limits showing a user's data to anyone except that user. Breakaway sends Strava-derived ride data to Claude, and Strava is its primary Phase 1 data source. Check the current Strava API terms before building on it. A direct Garmin integration or file upload may be needed as the Phase 1 source.\n2. **Token numbers disagree.** The daily prompt is ~350\u2013450 tokens in \u00a77.3 and ~580 in \u00a710.3. The memory digest is \"under 200\" tokens in \u00a77.4 and ~150 in \u00a710.3.\n3. **Periodization overlap (\u00a75.2).** A recovery week \"every 4th week\" collides with week 4 being the first Build week. Say whether recovery replaces week 4 or shifts later phases."
+  },
+  {
+   "id": "wiki/Breakaway PRD Review Notes.md#3",
+   "path": "wiki/Breakaway PRD Review Notes.md",
+   "section": "Open issues in the PRD",
+   "text": "4. **Onboarding duplicate (\u00a74.1, Block 3).** \"Do you have a Whoop?\" is already answered by the platforms checklist (Q9). If it's dropped, the questionnaire is 13 questions, not 14.\n5. **Race-week weekdays are off by one (\u00a78.3).** The table puts Race \u22121 on a Sunday, but the example race date (2026-04-26) is itself a Sunday.\n6. **Dated example.** Weeks-out, race-date and phase examples are built around a race on 2026-04-26."
+  },
+  {
+   "id": "wiki/Concepts/API Pre-Check.md#0",
+   "path": "wiki/Concepts/API Pre-Check.md",
+   "section": "API Pre-Check",
+   "text": "> Concept page assembled by `wiki ingest` from facts local Gemma found in each source. Mentioned in 1 source."
+  },
+  {
+   "id": "wiki/Concepts/API Pre-Check.md#1",
+   "path": "wiki/Concepts/API Pre-Check.md",
+   "section": "In [[Draft Copilot]]",
+   "text": "The process involves checking for an API before attempting to build scraping or screenshot reading solutions.\n\n- Check for an API before building scraping or screenshot reading. ([[raw/Draft Copilot#Lessons|\u00a7 Lessons]])\n\n<!-- Human notes: anything below this line is kept when the page is re-ingested. -->"
+  },
+  {
+   "id": "wiki/Concepts/Athlete Data Layer.md#0",
+   "path": "wiki/Concepts/Athlete Data Layer.md",
+   "section": "Athlete Data Layer",
+   "text": "> Concept page assembled by `wiki ingest` from facts local Gemma found in each source. Mentioned in 1 source."
+  },
+  {
+   "id": "wiki/Concepts/Athlete Data Layer.md#1",
+   "path": "wiki/Concepts/Athlete Data Layer.md",
+   "section": "In [[Breakaway Project]]",
+   "text": "This layer is Breakaway\u2019s most defensible asset, serving as a PostgreSQL database with primary tables to store all Athlete Profile outputs.\n\n- The Athlete Data Layer is a PostgreSQL database with primary tables. ([[raw/Breakaway_PRD_v3.0#7.2 Data Layer Structure|\u00a7 7.2 Data Layer Structure]])\n- The athlete_profile table stores all Athlete Profile outputs from Section 4.2. ([[raw/Breakaway_PRD_v3.0#athlete_profile|\u00a7 athlete_profile]])\n- The Athlete Profile is the seed of the Athlete Data Layer. ([[raw/Breakaway_PRD_v3.0#4.2 Athlete Profile Output|\u00a7 4.2 Athlete Profile Output]])\n\n<!-- Human notes: anything below this line is kept when the page is re-ingested. -->"
+  },
+  {
+   "id": "wiki/Concepts/Caching.md#0",
+   "path": "wiki/Concepts/Caching.md",
+   "section": "Caching",
+   "text": "> Concept page assembled by `wiki ingest` from facts local Gemma found in each source. Mentioned in 1 source."
+  },
+  {
+   "id": "wiki/Concepts/Caching.md#1",
+   "path": "wiki/Concepts/Caching.md",
+   "section": "In [[Draft Copilot]]",
+   "text": "Sleeper's CDN caches the picks endpoint for up to 30 seconds, which the application leverages.\n\n- Sleeper's CDN caches the picks endpoint for up to 30 seconds. ([[raw/Draft Copilot#Features|\u00a7 Features]])\n\n<!-- Human notes: anything below this line is kept when the page is re-ingested. -->"
+  },
+  {
+   "id": "wiki/Concepts/Convex Sync.md#0",
+   "path": "wiki/Concepts/Convex Sync.md",
+   "section": "Convex Sync",
+   "text": "> Concept page assembled by `wiki ingest` from facts local Gemma found in each source. Mentioned in 1 source."
+  },
+  {
+   "id": "wiki/Concepts/Convex Sync.md#1",
+   "path": "wiki/Concepts/Convex Sync.md",
+   "section": "In [[The GRKN]]",
+   "text": "The backend and synchronization are handled by Convex, ensuring that every query updates live on both phones.\n\n- Backend and sync is Convex. ([[raw/PLAN#Decisions (confirmed)|\u00a7 Decisions (confirmed)]])\n- Every query updates live on both phones with Convex. ([[raw/PLAN#Decisions (confirmed)|\u00a7 Decisions (confirmed)]])\n\n<!-- Human notes: anything below this line is kept when the page is re-ingested. -->"
+  },
+  {
+   "id": "wiki/Concepts/Daily Context Summary.md#0",
+   "path": "wiki/Concepts/Daily Context Summary.md",
+   "section": "Daily Context Summary",
+   "text": "> Concept page assembled by `wiki ingest` from facts local Gemma found in each source. Mentioned in 1 source."
+  },
+  {
+   "id": "wiki/Concepts/Daily Context Summary.md#1",
+   "path": "wiki/Concepts/Daily Context Summary.md",
+   "section": "In [[Breakaway Project]]",
+   "text": "The daily context summary object is passed to Claude every morning to generate the coaching note.\n\n- The daily_context summary object is passed to Claude every morning for coaching note generation. ([[raw/Breakaway_PRD_v3.0#context_summaries|\u00a7 context_summaries]])\n- Claude never receives a raw data dump. ([[raw/Breakaway_PRD_v3.0#7.3 Claude Prompting Architecture|\u00a7 7.3 Claude Prompting Architecture]])\n- The operational format is a complete daily coaching prompt sent to Claude. ([[raw/Breakaway_PRD_v3.0#Appendix C: Sample Prompt \u2014 Daily Coaching Query|\u00a7 Appendix C: Sample Prompt \u2014 Daily Coaching Query]])\n\n<!-- Human notes: anything below this line is kept when the page is re-ingested. -->"
+  },
+  {
+   "id": "wiki/Concepts/Dynamic Viewport Layout.md#0",
+   "path": "wiki/Concepts/Dynamic Viewport Layout.md",
+   "section": "Dynamic Viewport Layout",
+   "text": "> Concept page assembled by `wiki ingest` from facts local Gemma found in each source. Mentioned in 1 source."
+  },
+  {
+   "id": "wiki/Concepts/Dynamic Viewport Layout.md#1",
+   "path": "wiki/Concepts/Dynamic Viewport Layout.md",
+   "section": "In [[The GRKN]]",
+   "text": "The layout utilizes dynamic viewport height to ensure the Safari toolbar never cuts off content, and the app avoids the notch and home bar using viewport-fit=cover.\n\n- Content avoids the notch and home bar using viewport-fit=cover. ([[raw/PLAN#iPhone-first UI rules (built in from day one, never added later)|\u00a7 iPhone-first UI rules (built in from day one, never added later)]])\n- Layout uses the dynamic viewport height so the Safari toolbar never cuts off content. ([[raw/PLAN#iPhone-first UI rules (built in from day one, never added later)|\u00a7 iPhone-first UI rules (built in from day one, never added later)]])\n\n<!-- Human notes: anything below this line is kept when the page is re-ingested. -->"
+  },
+  {
+   "id": "wiki/Concepts/Expert Consensus Rankings.md#0",
+   "path": "wiki/Concepts/Expert Consensus Rankings.md",
+   "section": "Expert Consensus Rankings",
+   "text": "> Concept page assembled by `wiki ingest` from facts local Gemma found in each source. Mentioned in 1 source."
+  },
+  {
+   "id": "wiki/Concepts/Expert Consensus Rankings.md#1",
+   "path": "wiki/Concepts/Expert Consensus Rankings.md",
+   "section": "In [[Draft Copilot]]",
+   "text": "Recommendations are derived from expert consensus rankings rather than Sleeper's standard ADP.\n\n- Recommendations should come from expert consensus rankings, not Sleeper's ADP. ([[raw/Draft Copilot#Objective|\u00a7 Objective]])\n- The default rankings blend FantasyPros consensus and ESPN Field Yates PPR rankings. ([[raw/Draft Copilot#Rankings dataset|\u00a7 Rankings dataset]])\n- A player on both lists gets FantasyPros_rank \u00d7 0.6 + ESPN_rank \u00d7 0.4, and the list is re-sorted by that blended score. ([[raw/Draft Copilot#Rankings dataset|\u00a7 Rankings dataset]])\n\n<!-- Human notes: anything below this line is kept when the page is re-ingested. -->"
+  },
+  {
+   "id": "wiki/Concepts/Recipe Generation Integration.md#0",
+   "path": "wiki/Concepts/Recipe Generation Integration.md",
+   "section": "Recipe Generation Integration",
+   "text": "> Concept page assembled by `wiki ingest` from facts local Gemma found in each source. Mentioned in 1 source."
+  },
+  {
+   "id": "wiki/Concepts/Recipe Generation Integration.md#1",
+   "path": "wiki/Concepts/Recipe Generation Integration.md",
+   "section": "In [[The GRKN]]",
+   "text": "The system uses the Claude integration with structured output to generate valid, typed recipes, incorporating rules about gluten risk and household taste profiles.\n\n- The Claude integration uses the `@anthropic-ai/sdk` with structured output for valid, typed recipes. ([[raw/PLAN#Claude integration (`convex/ai.ts`, a Node server function)|\u00a7 Claude integration (`convex/ai.ts`, a Node server function)]])\n- The system prompt always includes the gluten rule requiring Claude to set `glutenRisk` for every ingredient. ([[raw/PLAN#Claude integration (`convex/ai.ts`, a Node server function)|\u00a7 Claude integration (`convex/ai.ts`, a Node server function)]])"
+  },
+  {
+   "id": "wiki/Concepts/Recipe Generation Integration.md#2",
+   "path": "wiki/Concepts/Recipe Generation Integration.md",
+   "section": "In [[The GRKN]]",
+   "text": "- The system prompt also includes the household taste profile summary and dislikes. ([[raw/PLAN#Claude integration (`convex/ai.ts`, a Node server function)|\u00a7 Claude integration (`convex/ai.ts`, a Node server function)]])\n\n<!-- Human notes: anything below this line is kept when the page is re-ingested. -->"
+  },
+  {
+   "id": "wiki/Concepts/Shopping List Scaling.md#0",
+   "path": "wiki/Concepts/Shopping List Scaling.md",
+   "section": "Shopping List Scaling",
+   "text": "> Concept page assembled by `wiki ingest` from facts local Gemma found in each source. Mentioned in 1 source."
+  },
+  {
+   "id": "wiki/Concepts/Shopping List Scaling.md#1",
+   "path": "wiki/Concepts/Shopping List Scaling.md",
+   "section": "In [[The GRKN]]",
+   "text": "The shopping list is built by multiplying the week's plan entries by a scale factor, which is calculated by dividing planned servings by recipe servings to combine ingredients by canonical units.\n\n- The shopping list build uses the week's plan entries multiplied by a scale factor. ([[raw/PLAN#Shopping list build (`convex/shopping.ts`)|\u00a7 Shopping list build (`convex/shopping.ts`)]])\n- The scale factor is planned servings divided by recipe servings to combine ingredients by `canonical`. ([[raw/PLAN#Shopping list build (`convex/shopping.ts`)|\u00a7 Shopping list build (`convex/shopping.ts`)]])\n\n<!-- Human notes: anything below this line is kept when the page is re-ingested. -->"
+  },
+  {
+   "id": "wiki/Concepts/Structured Onboarding Questionnaire.md#0",
+   "path": "wiki/Concepts/Structured Onboarding Questionnaire.md",
+   "section": "Structured Onboarding Questionnaire",
+   "text": "> Concept page assembled by `wiki ingest` from facts local Gemma found in each source. Mentioned in 1 source."
+  },
+  {
+   "id": "wiki/Concepts/Structured Onboarding Questionnaire.md#1",
+   "path": "wiki/Concepts/Structured Onboarding Questionnaire.md",
+   "section": "In [[Breakaway Project]]",
+   "text": "The onboarding questionnaire is the foundation of everything Breakaway does, populating the Athlete Profile and selecting the correct coaching template.\n\n- The onboarding questionnaire is the foundation of everything Breakaway does. ([[raw/Breakaway_PRD_v3.0#4. Race-Specific Onboarding Questionnaire|\u00a7 4. Race-Specific Onboarding Questionnaire]])\n- The onboarding questionnaire is a structured intake that populates the Athlete Profile, selects the correct coaching template, and gives Max the context needed to make every subsequent recommendation meaningful. ([[raw/Breakaway_PRD_v3.0#4. Race-Specific Onboarding Questionnaire|\u00a7 4. Race-Specific Onboarding Questionnaire]])"
+  },
+  {
+   "id": "wiki/Concepts/Structured Onboarding Questionnaire.md#2",
+   "path": "wiki/Concepts/Structured Onboarding Questionnaire.md",
+   "section": "In [[Breakaway Project]]",
+   "text": "- The onboarding process requires a structured questionnaire with 4 blocks and 14 questions. ([[raw/Breakaway_PRD_v3.0#Phase 1 \u2014 Core Loop  (Weeks 1\u20138)|\u00a7 Phase 1 \u2014 Core Loop  (Weeks 1\u20138)]])\n\n<!-- Human notes: anything below this line is kept when the page is re-ingested. -->"
+  },
+  {
+   "id": "wiki/Concepts/Value Model.md#0",
+   "path": "wiki/Concepts/Value Model.md",
+   "section": "Value Model",
+   "text": "> Concept page assembled by `wiki ingest` from facts local Gemma found in each source. Mentioned in 1 source."
+  },
+  {
+   "id": "wiki/Concepts/Value Model.md#1",
+   "path": "wiki/Concepts/Value Model.md",
+   "section": "In [[Draft Copilot]]",
+   "text": "The value model incorporates position scarcity as a secondary nudge to the raw consensus rank.\n\n- The value model adds position scarcity as a secondary nudge to the raw consensus rank. ([[raw/Draft Copilot#The Value Model|\u00a7 The Value Model]])\n- The first version used `replacement_rank \u2212 position_rank` alone. ([[raw/Draft Copilot#How the model evolved|\u00a7 How the model evolved]])\n- This first version answered the 2.10 question by favoring the RB11 over the TE1, but it let scarcity override real differences in talent. ([[raw/Draft Copilot#How the model evolved|\u00a7 How the model evolved]])\n\n<!-- Human notes: anything below this line is kept when the page is re-ingested. -->"
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#0",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Breakaway Project",
+   "text": "> Generated by local Gemma (`gemma4:e2b-it-qat`) from [[raw/Breakaway_PRD_v3.0|Breakaway_PRD_v3.0.md]] and checked by the harness. Each point links to the section it came from."
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#1",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Summary",
+   "text": "Breakaway is an intelligent data aggregator and plan adjuster designed to be the intelligent layer between an athlete's wearable data and their coaching plan. Its main goal is to make every serious amateur's training as adaptive and race-specific as if they had a professional coach reviewing their data every morning."
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#2",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Key points",
+   "text": "- Breakaway is an intelligent data aggregator and plan adjuster. ([[raw/Breakaway_PRD_v3.0#Breakaway \u2014 Product Requirements Document (v3.0)|\u00a7 Breakaway \u2014 Product Requirements Document (v3.0)]])\n- Breakaway is positioned as a data aggregator and plan adjuster, not a from-scratch AI plan generator. ([[raw/Breakaway_PRD_v3.0#v3.0 Change Summary|\u00a7 v3.0 Change Summary]])\n- The vision is to be the intelligent layer between an athlete's wearable data and their coaching plan. ([[raw/Breakaway_PRD_v3.0#3.1 Vision Statement|\u00a7 3.1 Vision Statement]])\n- Breakaway IS a data aggregator across wearable platforms. ([[raw/Breakaway_PRD_v3.0#3.3 What Breakaway Is and Is Not|\u00a7 3.3 What Breakaway Is and Is Not]])"
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#3",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Key points",
+   "text": "- Breakaway IS a race-specific plan template adjuster. ([[raw/Breakaway_PRD_v3.0#3.3 What Breakaway Is and Is Not|\u00a7 3.3 What Breakaway Is and Is Not]])\n- A single 0\u2013100 score synthesises all available signals into one daily verdict. ([[raw/Breakaway_PRD_v3.0#6.1 Training Readiness Score|\u00a7 6.1 Training Readiness Score]])\n- The Athlete Data Layer is Breakaway\u2019s most defensible asset. ([[raw/Breakaway_PRD_v3.0#7. Athlete Data Layer \u2014 The Technical Moat|\u00a7 7. Athlete Data Layer \u2014 The Technical Moat]])\n- The daily_context summary object is passed to Claude every morning for coaching note generation. ([[raw/Breakaway_PRD_v3.0#context_summaries|\u00a7 context_summaries]])"
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#4",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Key points",
+   "text": "- Max generates a race plan document the athlete can print or screenshot and take to the start line. ([[raw/Breakaway_PRD_v3.0#8.1 Pre-Race Plan (Generated 5\u20137 Days Before Race)|\u00a7 8.1 Pre-Race Plan (Generated 5\u20137 Days Before Race)]])"
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#5",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Details > Version History",
+   "text": "- Version 1.0 was the Initial PRD, including Whoop + Strava + TrainerRoad + Garmin + MyFitnessPal scope. ([[raw/Breakaway_PRD_v3.0#Version History|\u00a7 Version History]])\n- Version 1.1 updated the API feasibility, making Strava the primary pipe, native nutrition logger, and TrainerRoad recommendation approach. ([[raw/Breakaway_PRD_v3.0#Version History|\u00a7 Version History]])\n- Breakaway maintains a curated library of race-specific plan templates (e.g., Berkeley Hills Road Race, flat criterium, gravel 100-miler). The AI adjusts workouts within these templates based on wearable inputs. ([[raw/Breakaway_PRD_v3.0#v3.0 Change Summary|\u00a7 v3.0 Change Summary]])"
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#6",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Details > 1. Executive Summary",
+   "text": "- Breakaway aggregates wearable data, maps it to a race-specific coaching template, and tells you exactly what to change \u2014 today. ([[raw/Breakaway_PRD_v3.0#1. Executive Summary|\u00a7 1. Executive Summary]])\n- Breakaway assigns a proven, race-specific coaching template to the athlete after they select their target race through a structured onboarding questionnaire. ([[raw/Breakaway_PRD_v3.0#1. Executive Summary|\u00a7 1. Executive Summary]])\n- Every day, Breakaway pulls data from connected wearables, evaluates it against the template, and recommends specific adjustments in plain English through Max \u2014 its AI coaching layer. ([[raw/Breakaway_PRD_v3.0#1. Executive Summary|\u00a7 1. Executive Summary]])"
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#7",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Details > 2. Problem Statement",
+   "text": "- TrainerRoad provides structured workouts, FTP progression, and plan templates. ([[raw/Breakaway_PRD_v3.0#2.1 The Fragmentation Problem|\u00a7 2.1 The Fragmentation Problem]])\n- Whoop provides HRV, sleep staging, and recovery score but does not know what the plan says or if a workout is appropriate for the day. ([[raw/Breakaway_PRD_v3.0#2.1 The Fragmentation Problem|\u00a7 2.1 The Fragmentation Problem]])\n- The missing layer sits above the data and translates it into a single, actionable daily recommendation tied to a specific race goal. ([[raw/Breakaway_PRD_v3.0#2.2 The Missing Layer|\u00a7 2.2 The Missing Layer]])"
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#8",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Details > 2. Problem Statement",
+   "text": "- Berkeley Hills Road Race is three laps of sustained threshold climbing followed by a VO\u2082 Max sprint to the line. ([[raw/Breakaway_PRD_v3.0#2.3 Why Race-Specific Plans Matter|\u00a7 2.3 Why Race-Specific Plans Matter]])\n- A plan built for a flat criterium will produce an athlete who is fast but cannot sustain power for 20 minutes on a climb. ([[raw/Breakaway_PRD_v3.0#2.3 Why Race-Specific Plans Matter|\u00a7 2.3 Why Race-Specific Plans Matter]])\n- The primary user is a competitive amateur cyclist preparing for a target road race or gran fondo. ([[raw/Breakaway_PRD_v3.0#2.4 User Persona|\u00a7 2.4 User Persona]])\n- The primary user trains 8\u201312 hours per week. ([[raw/Breakaway_PRD_v3.0#2.4 User Persona|\u00a7 2.4 User Persona]])"
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#9",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Details > 3. Product Vision & Goals",
+   "text": "- The vision is to make every serious amateur's training as adaptive and race-specific as if they had a professional coach reviewing their data every morning. ([[raw/Breakaway_PRD_v3.0#3.1 Vision Statement|\u00a7 3.1 Vision Statement]])\n- Breakaway is not a training app, a social platform, or a workout library. ([[raw/Breakaway_PRD_v3.0#3.2 Product Positioning|\u00a7 3.2 Product Positioning]])\n- Daily active usage for the founder and team is a target of 7 days/week in Month 1. ([[raw/Breakaway_PRD_v3.0#3.4 Phase 1 Success Metrics|\u00a7 3.4 Phase 1 Success Metrics]])\n- Training plan adherence is a target of greater than 70% of suggested workouts completed in Month 2. ([[raw/Breakaway_PRD_v3.0#3.4 Phase 1 Success Metrics|\u00a7 3.4 Phase 1 Success Metrics]])"
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#10",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Details > 3. Product Vision & Goals",
+   "text": "- AI-generated training plans from scratch are not in Phase 1; templates only are. ([[raw/Breakaway_PRD_v3.0#3.5 Non-Goals (Phase 1)|\u00a7 3.5 Non-Goals (Phase 1)]])\n- Social or community features are not in Phase 1. ([[raw/Breakaway_PRD_v3.0#3.5 Non-Goals (Phase 1)|\u00a7 3.5 Non-Goals (Phase 1)]])"
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#11",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Details > 4. Race-Specific Onboarding Questionnaire",
+   "text": "- The onboarding questionnaire is the foundation of everything Breakaway does. ([[raw/Breakaway_PRD_v3.0#4. Race-Specific Onboarding Questionnaire|\u00a7 4. Race-Specific Onboarding Questionnaire]])\n- The onboarding questionnaire is a structured intake that populates the Athlete Profile, selects the correct coaching template, and gives Max the context needed to make every subsequent recommendation meaningful. ([[raw/Breakaway_PRD_v3.0#4. Race-Specific Onboarding Questionnaire|\u00a7 4. Race-Specific Onboarding Questionnaire]])\n- What is your target race is a dropdown from a supported race library or manual entry. ([[raw/Breakaway_PRD_v3.0#Block 1: Race Target|\u00a7 Block 1: Race Target]])"
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#12",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Details > 4. Race-Specific Onboarding Questionnaire",
+   "text": "- Selecting a supported race selects the coaching template, as each supported race has a documented energy system profile. ([[raw/Breakaway_PRD_v3.0#Block 1: Race Target|\u00a7 Block 1: Race Target]])\n- Do you know your current FTP (Functional Threshold Power) is a question. ([[raw/Breakaway_PRD_v3.0#Block 2: Current Fitness|\u00a7 Block 2: Current Fitness]])\n- If FTP is unknown, it is estimated from RPE data in the first 2 weeks. ([[raw/Breakaway_PRD_v3.0#Block 2: Current Fitness|\u00a7 Block 2: Current Fitness]])\n- Which platforms do you use is a visual checkbox menu with device logos. ([[raw/Breakaway_PRD_v3.0#Block 3: Connected Platforms|\u00a7 Block 3: Connected Platforms]])"
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#13",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Details > 4. Race-Specific Onboarding Questionnaire",
+   "text": "- Selecting a platform triggers an OAuth connection flow for each selected platform. ([[raw/Breakaway_PRD_v3.0#Block 3: Connected Platforms|\u00a7 Block 3: Connected Platforms]])\n- The question 'What is your goal for this race?' sets the ambition level. ([[raw/Breakaway_PRD_v3.0#Block 4: Race-Specific Context|\u00a7 Block 4: Race-Specific Context]])\n- Setting the goal affects pacing targets, taper management, and race strategy framing. ([[raw/Breakaway_PRD_v3.0#Block 4: Race-Specific Context|\u00a7 Block 4: Race-Specific Context]])\n- The Athlete Profile object is populated by the questionnaire completion. ([[raw/Breakaway_PRD_v3.0#4.2 Athlete Profile Output|\u00a7 4.2 Athlete Profile Output]])"
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#14",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Details > 4. Race-Specific Onboarding Questionnaire",
+   "text": "- The Athlete Profile is the seed of the Athlete Data Layer. ([[raw/Breakaway_PRD_v3.0#4.2 Athlete Profile Output|\u00a7 4.2 Athlete Profile Output]])"
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#15",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Details > 5. Coaching Plan Template Library",
+   "text": "- The template library is the coaching foundation of Breakaway. ([[raw/Breakaway_PRD_v3.0#5. Coaching Plan Template Library|\u00a7 5. Coaching Plan Template Library]])\n- The AI selects and adjusts templates; it does not generate them. ([[raw/Breakaway_PRD_v3.0#5. Coaching Plan Template Library|\u00a7 5. Coaching Plan Template Library]])\n- Step 1 selects a template by mapping the target race to a race profile category. ([[raw/Breakaway_PRD_v3.0#5.1 Template Selection Logic|\u00a7 5.1 Template Selection Logic]])\n- Step 2 selects the template by matching it to the athlete\u2019s available weekly hours tier. ([[raw/Breakaway_PRD_v3.0#5.1 Template Selection Logic|\u00a7 5.1 Template Selection Logic]])"
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#16",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Details > 5. Coaching Plan Template Library",
+   "text": "- Every template follows the same periodization architecture. ([[raw/Breakaway_PRD_v3.0#5.2 Template Structure|\u00a7 5.2 Template Structure]])\n- The Base phase focuses on aerobic foundation and fatigue resistance. ([[raw/Breakaway_PRD_v3.0#5.2 Template Structure|\u00a7 5.2 Template Structure]])\n- The Berkeley Hills Road Race template is the first fully specified template. ([[raw/Breakaway_PRD_v3.0#5.3 Phase 1 Template: Berkeley Hills Road Race|\u00a7 5.3 Phase 1 Template: Berkeley Hills Road Race]])\n- The Berkeley Hills Road Race template is the primary product validation vehicle. ([[raw/Breakaway_PRD_v3.0#5.3 Phase 1 Template: Berkeley Hills Road Race|\u00a7 5.3 Phase 1 Template: Berkeley Hills Road Race]])"
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#17",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Details > 5. Coaching Plan Template Library",
+   "text": "- The Berkeley Hills Road Race has a distance of ~60 miles. ([[raw/Breakaway_PRD_v3.0#Race Profile: Berkeley Hills Road Race|\u00a7 Race Profile: Berkeley Hills Road Race]])\n- The Berkeley Hills Road Race has an elevation of ~5,800ft total climbing. ([[raw/Breakaway_PRD_v3.0#Race Profile: Berkeley Hills Road Race|\u00a7 Race Profile: Berkeley Hills Road Race]])\n- The Base phase targets 380\u2013420 TSS with 2x Zone 2 endurance, 1x sweet spot, and 1x long ride. ([[raw/Breakaway_PRD_v3.0#Template Workout Emphasis (Mid-Volume Tier, 10 hrs/week)|\u00a7 Template Workout Emphasis (Mid-Volume Tier, 10 hrs/week)]])"
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#18",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Details > 5. Coaching Plan Template Library",
+   "text": "- The Build phase targets 440\u2013500 TSS with 2x threshold, 1x climbing simulation, and 1x endurance. ([[raw/Breakaway_PRD_v3.0#Template Workout Emphasis (Mid-Volume Tier, 10 hrs/week)|\u00a7 Template Workout Emphasis (Mid-Volume Tier, 10 hrs/week)]])\n- Flat criterium is planned for Phase 2 and emphasizes anaerobic capacity, repeated sprint recovery, and neuromuscular power. ([[raw/Breakaway_PRD_v3.0#5.4 Phase 2 Template Additions|\u00a7 5.4 Phase 2 Template Additions]])\n- Rolling gran fondo is planned for Phase 2 and emphasizes aerobic endurance, pacing discipline, and fuelling. ([[raw/Breakaway_PRD_v3.0#5.4 Phase 2 Template Additions|\u00a7 5.4 Phase 2 Template Additions]])"
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#19",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Details > 6. Daily Coaching Experience",
+   "text": "- The daily experience is the product. ([[raw/Breakaway_PRD_v3.0#6. Daily Coaching Experience|\u00a7 6. Daily Coaching Experience]])\n- Every other feature exists to make this moment better. ([[raw/Breakaway_PRD_v3.0#6. Daily Coaching Experience|\u00a7 6. Daily Coaching Experience]])\n- The score is displayed as the hero element of the dashboard with a GO HARD / MODIFIED / RECOVER verdict. ([[raw/Breakaway_PRD_v3.0#6.1 Training Readiness Score|\u00a7 6.1 Training Readiness Score]])\n- Max delivers two sentences every morning directly below the readiness score. ([[raw/Breakaway_PRD_v3.0#6.2 Max Coaching Note|\u00a7 6.2 Max Coaching Note]])\n- The first sentence states what was planned and what is being recommended instead if different. ([[raw/Breakaway_PRD_v3.0#6.2 Max Coaching Note|\u00a7 6.2 Max Coaching Note]])"
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#20",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Details > 6. Daily Coaching Experience",
+   "text": "- Max surfaces 3 dynamically generated follow-up prompts below the coaching note. ([[raw/Breakaway_PRD_v3.0#6.3 Contextual Reply Chips|\u00a7 6.3 Contextual Reply Chips]])\n- Tier 1 chips are daily contextual chips generated from today\u2019s data. ([[raw/Breakaway_PRD_v3.0#6.3 Contextual Reply Chips|\u00a7 6.3 Contextual Reply Chips]])\n- Tapping the coaching note opens a full conversational interface with Max. ([[raw/Breakaway_PRD_v3.0#6.4 Full Chat with Max|\u00a7 6.4 Full Chat with Max]])\n- Max has access to the athlete\u2019s structured data context for the session. ([[raw/Breakaway_PRD_v3.0#6.4 Full Chat with Max|\u00a7 6.4 Full Chat with Max]])\n- Manual sleep input is available on-demand for users without a sleep tracker. ([[raw/Breakaway_PRD_v3.0#6.5 Manual Sleep Input|\u00a7 6.5 Manual Sleep Input]])"
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#21",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Details > 6. Daily Coaching Experience",
+   "text": "- Manual sleep input asks only two questions: hours slept and a 1\u201310 quality rating. ([[raw/Breakaway_PRD_v3.0#6.5 Manual Sleep Input|\u00a7 6.5 Manual Sleep Input]])"
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#22",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Details > 7. Athlete Data Layer \u2014 The Technical Moat",
+   "text": "- The Athlete Data Layer is a structured, queryable store of every input and training ride. ([[raw/Breakaway_PRD_v3.0#7. Athlete Data Layer \u2014 The Technical Moat|\u00a7 7. Athlete Data Layer \u2014 The Technical Moat]])\n- Most AI fitness products fail at the data layer. ([[raw/Breakaway_PRD_v3.0#7.1 Why This Architecture Matters|\u00a7 7.1 Why This Architecture Matters]])\n- Breakaway solves this by treating the athlete\u2019s data as a structured database, not a conversation history. ([[raw/Breakaway_PRD_v3.0#7.1 Why This Architecture Matters|\u00a7 7.1 Why This Architecture Matters]])\n- The Athlete Data Layer is a PostgreSQL database with primary tables. ([[raw/Breakaway_PRD_v3.0#7.2 Data Layer Structure|\u00a7 7.2 Data Layer Structure]])"
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#23",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Details > 7. Athlete Data Layer \u2014 The Technical Moat",
+   "text": "- The athlete_profile table stores static and semi-static athlete attributes. ([[raw/Breakaway_PRD_v3.0#7.2 Data Layer Structure|\u00a7 7.2 Data Layer Structure]])\n- The athlete_profile table stores all Athlete Profile outputs from Section 4.2. ([[raw/Breakaway_PRD_v3.0#athlete_profile|\u00a7 athlete_profile]])\n- The athlete_profile table includes FTP history, injury log, goal history, and preferred workout times. ([[raw/Breakaway_PRD_v3.0#athlete_profile|\u00a7 athlete_profile]])\n- The daily_inputs table has one row per calendar day. ([[raw/Breakaway_PRD_v3.0#daily_inputs|\u00a7 daily_inputs]])\n- The daily_inputs table is populated automatically from connected wearable APIs and manually from the nutrition logger. ([[raw/Breakaway_PRD_v3.0#daily_inputs|\u00a7 daily_inputs]])"
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#24",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Details > 7. Athlete Data Layer \u2014 The Technical Moat",
+   "text": "- One row per completed activity is populated from Strava webhook. ([[raw/Breakaway_PRD_v3.0#training_rides|\u00a7 training_rides]])\n- The date field in training_rides is sourced from Strava as the activity date. ([[raw/Breakaway_PRD_v3.0#training_rides|\u00a7 training_rides]])\n- One row per scheduled workout is created in the training block. ([[raw/Breakaway_PRD_v3.0#plan_workouts|\u00a7 plan_workouts]])\n- The status field in plan_workouts is updated from training_rides. ([[raw/Breakaway_PRD_v3.0#plan_workouts|\u00a7 plan_workouts]])\n- The weekly_context summary object is passed to Claude for weekly plan review or adaptive replanning queries. ([[raw/Breakaway_PRD_v3.0#context_summaries|\u00a7 context_summaries]])"
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#25",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Details > 7. Athlete Data Layer \u2014 The Technical Moat",
+   "text": "- Claude never receives a raw data dump. ([[raw/Breakaway_PRD_v3.0#7.3 Claude Prompting Architecture|\u00a7 7.3 Claude Prompting Architecture]])\n- The daily context prompt is approximately 350\u2013450 tokens regardless of underlying data. ([[raw/Breakaway_PRD_v3.0#7.3 Claude Prompting Architecture|\u00a7 7.3 Claude Prompting Architecture]])\n- Claude never touches the database directly; it only receives pre-assembled context objects. ([[raw/Breakaway_PRD_v3.0#7.3 Claude Prompting Architecture|\u00a7 7.3 Claude Prompting Architecture]])\n- The memory_digest object is updated weekly by a background process. ([[raw/Breakaway_PRD_v3.0#7.4 Longitudinal Memory \u2014 The Compounding Moat|\u00a7 7.4 Longitudinal Memory \u2014 The Compounding Moat]])"
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#26",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Details > 7. Athlete Data Layer \u2014 The Technical Moat",
+   "text": "- The memory_digest object is compressed to under 200 tokens. ([[raw/Breakaway_PRD_v3.0#7.4 Longitudinal Memory \u2014 The Compounding Moat|\u00a7 7.4 Longitudinal Memory \u2014 The Compounding Moat]])"
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#27",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Details > 8. Race & Fuelling Strategy",
+   "text": "- Race strategy and fuelling guidance are delivered in the lead-up to the target race. ([[raw/Breakaway_PRD_v3.0#8. Race & Fuelling Strategy|\u00a7 8. Race & Fuelling Strategy]])\n- Breakaway synthesizes current fitness, course demands, and individual data into a concrete, personalised race plan. ([[raw/Breakaway_PRD_v3.0#8. Race & Fuelling Strategy|\u00a7 8. Race & Fuelling Strategy]])\n- The race plan document is populated from the race_context summary object and the athlete\u2019s current fitness data. ([[raw/Breakaway_PRD_v3.0#8.1 Pre-Race Plan (Generated 5\u20137 Days Before Race)|\u00a7 8.1 Pre-Race Plan (Generated 5\u20137 Days Before Race)]])"
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#28",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Details > 8. Race & Fuelling Strategy",
+   "text": "- Max generates a personalised fuelling schedule based on race duration estimate, individual carb metabolism patterns from the nutrition log history, and standard endurance fuelling guidelines. ([[raw/Breakaway_PRD_v3.0#8.2 Fuelling Plan|\u00a7 8.2 Fuelling Plan]])\n- The fuelling plan is expressed in concrete, practical terms. ([[raw/Breakaway_PRD_v3.0#8.2 Fuelling Plan|\u00a7 8.2 Fuelling Plan]])\n- Race -7 (Mon) focus is a final quality session with a short threshold effort to maintain sharpness. ([[raw/Breakaway_PRD_v3.0#8.3 Race Week Protocol (Activates 7 Days Before Race)|\u00a7 8.3 Race Week Protocol (Activates 7 Days Before Race)]])"
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#29",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Details > 8. Race & Fuelling Strategy",
+   "text": "- Race -6 (Tue) focus is active recovery, which is a Zone 1 spin for 30\u201345 minutes with no efforts. ([[raw/Breakaway_PRD_v3.0#8.3 Race Week Protocol (Activates 7 Days Before Race)|\u00a7 8.3 Race Week Protocol (Activates 7 Days Before Race)]])\n- Max detects the Strava activity after the race and generates a brief analysis. ([[raw/Breakaway_PRD_v3.0#8.4 Post-Race Analysis|\u00a7 8.4 Post-Race Analysis]])\n- The analysis includes power file vs. pre-race plan comparison and identified limiters from the data. ([[raw/Breakaway_PRD_v3.0#8.4 Post-Race Analysis|\u00a7 8.4 Post-Race Analysis]])"
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#30",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Details > 9. Data Integrations",
+   "text": "- Whoop is the primary source for HRV / Recovery data. ([[raw/Breakaway_PRD_v3.0#9.1 Signal Hierarchy|\u00a7 9.1 Signal Hierarchy]])\n- Garmin measures HRV opportunistically and is a secondary source for HRV / Recovery data. ([[raw/Breakaway_PRD_v3.0#9.1 Signal Hierarchy|\u00a7 9.1 Signal Hierarchy]])\n- Whoop uses the Whoop Developer API v2 (OAuth 2.0) for integration in Phase 1. ([[raw/Breakaway_PRD_v3.0#9.2 Integration Stack|\u00a7 9.2 Integration Stack]])\n- Strava uses the Strava API (OAuth 2.0) to aggregate all activities and TSS in Phase 1. ([[raw/Breakaway_PRD_v3.0#9.2 Integration Stack|\u00a7 9.2 Integration Stack]])"
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#31",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Details > 9. Data Integrations",
+   "text": "- Strava acts as a universal aggregator for training data. ([[raw/Breakaway_PRD_v3.0#9.3 Why Strava Is the Right Primary Pipe (Phase 1)|\u00a7 9.3 Why Strava Is the Right Primary Pipe (Phase 1)]])\n- Garmin auto-syncs every activity to Strava, capturing all Garmin data without Garmin approval. ([[raw/Breakaway_PRD_v3.0#9.3 Why Strava Is the Right Primary Pipe (Phase 1)|\u00a7 9.3 Why Strava Is the Right Primary Pipe (Phase 1)]])"
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#32",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Details > 10. Technical Architecture",
+   "text": "- Frontend uses React and Tailwind CSS for fast prototyping, mobile-friendly, and component-based development. ([[raw/Breakaway_PRD_v3.0#10.1 Stack|\u00a7 10.1 Stack]])\n- The backend uses Node.js and Express for JavaScript consistency and a strong API ecosystem. ([[raw/Breakaway_PRD_v3.0#10.1 Stack|\u00a7 10.1 Stack]])\n- Wearable APIs like Whoop and Strava push or poll data nightly, writing it to daily_inputs and training_rides tables. ([[raw/Breakaway_PRD_v3.0#10.2 Data Flow|\u00a7 10.2 Data Flow]])\n- Background jobs recompute context_summaries nightly, including daily_context, weekly_context, race_context, memory_digest, and nutrition_context. ([[raw/Breakaway_PRD_v3.0#10.2 Data Flow|\u00a7 10.2 Data Flow]])"
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#33",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Details > 10. Technical Architecture",
+   "text": "- The athlete profile context object is estimated to use about 80 tokens and is cached. ([[raw/Breakaway_PRD_v3.0#10.3 Token Budget|\u00a7 10.3 Token Budget]])\n- The daily context object is estimated to use about 120 tokens and is recomputed nightly and is cached. ([[raw/Breakaway_PRD_v3.0#10.3 Token Budget|\u00a7 10.3 Token Budget]])"
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#34",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Details > 11. Build Roadmap",
+   "text": "- Phase 1 must be validated before Phase 2 begins. ([[raw/Breakaway_PRD_v3.0#11. Build Roadmap|\u00a7 11. Build Roadmap]])\n- The north star is for 20 users to open Breakaway every morning for 30 consecutive days. ([[raw/Breakaway_PRD_v3.0#11. Build Roadmap|\u00a7 11. Build Roadmap]])\n- The onboarding process requires a structured questionnaire with 4 blocks and 14 questions. ([[raw/Breakaway_PRD_v3.0#Phase 1 \u2014 Core Loop  (Weeks 1\u20138)|\u00a7 Phase 1 \u2014 Core Loop  (Weeks 1\u20138)]])\n- Athlete Profile population and storage is a must-have deliverable. ([[raw/Breakaway_PRD_v3.0#Phase 1 \u2014 Core Loop  (Weeks 1\u20138)|\u00a7 Phase 1 \u2014 Core Loop  (Weeks 1\u20138)]])\n- Data integrations must include the Whoop API using OAuth 2.0. ([[raw/Breakaway_PRD_v3.0#Phase 1 \u2014 Core Loop  (Weeks 1\u20138)|\u00a7 Phase 1 \u2014 Core Loop  (Weeks 1\u20138)]])"
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#35",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Details > 11. Build Roadmap",
+   "text": "- Data integrations must include the Strava API for activity sync, TSS, and training load using OAuth 2.0. ([[raw/Breakaway_PRD_v3.0#Phase 1 \u2014 Core Loop  (Weeks 1\u20138)|\u00a7 Phase 1 \u2014 Core Loop  (Weeks 1\u20138)]])\n- Garmin Connect direct integration is planned to provide VO\u2082 Max trend, independent HRV, and high-resolution power data. ([[raw/Breakaway_PRD_v3.0#Phase 2 \u2014 Breadth & Intelligence  (Months 2\u20134)|\u00a7 Phase 2 \u2014 Breadth & Intelligence  (Months 2\u20134)]])\n- Additional race templates planned include flat criterium, rolling gran fondo, and punchy circuit race. ([[raw/Breakaway_PRD_v3.0#Phase 2 \u2014 Breadth & Intelligence  (Months 2\u20134)|\u00a7 Phase 2 \u2014 Breadth & Intelligence  (Months 2\u20134)]])"
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#36",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Details > 11. Build Roadmap",
+   "text": "- Google Calendar integration supports life-aware replanning, travel detection, and stress event classification. ([[raw/Breakaway_PRD_v3.0#Phase 3 \u2014 Moat Widening  (Months 4\u201312)|\u00a7 Phase 3 \u2014 Moat Widening  (Months 4\u201312)]])\n- Lingo CGM offers real-time glucose monitoring and personalized fuelling timing, pending API access approval. ([[raw/Breakaway_PRD_v3.0#Phase 3 \u2014 Moat Widening  (Months 4\u201312)|\u00a7 Phase 3 \u2014 Moat Widening  (Months 4\u201312)]])"
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#37",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Details > 12. Risks & Open Questions",
+   "text": "- Whoop API status is Open, free, and has an active changelog. ([[raw/Breakaway_PRD_v3.0#12.1 API Risks|\u00a7 12.1 API Risks]])\n- Strava API status is Open and well-documented, but policy has tightened for some data types in late 2024. ([[raw/Breakaway_PRD_v3.0#12.1 API Risks|\u00a7 12.1 API Risks]])\n- Coaching templates must be reviewed by a domain expert before beta launch. ([[raw/Breakaway_PRD_v3.0#12.2 Product Risks|\u00a7 12.2 Product Risks]])\n- The initial mitigation for template staleness is an FTP re-test prompt at weeks 4 and 8. ([[raw/Breakaway_PRD_v3.0#12.2 Product Risks|\u00a7 12.2 Product Risks]])\n- Pricing options include free personal tool, freemium, or a $12\u201315/month subscription. ([[raw/Breakaway_PRD_v3.0#12.3 Key Decisions Still Open|\u00a7 12.3 Key Decisions Still Open]])"
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#38",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Details > 12. Risks & Open Questions",
+   "text": "- The mobile-first versus web-first decision is open for the dashboard design. ([[raw/Breakaway_PRD_v3.0#12.3 Key Decisions Still Open|\u00a7 12.3 Key Decisions Still Open]])"
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#39",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Details > Appendix A  Glossary",
+   "text": "- TSS is a measure of workout load combining intensity and duration. ([[raw/Breakaway_PRD_v3.0#Appendix A: Glossary|\u00a7 Appendix A: Glossary]])\n- FTP is the Functional Threshold Power, which is the max power a cyclist can sustain for approximately 60 minutes. ([[raw/Breakaway_PRD_v3.0#Appendix A: Glossary|\u00a7 Appendix A: Glossary]])"
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#40",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Details > Appendix B  Workout Database (Starter Set)",
+   "text": "- The Taku workout is in Zone 1 and lasts 30 min for active recovery. ([[raw/Breakaway_PRD_v3.0#Appendix B: Workout Database (Starter Set)|\u00a7 Appendix B: Workout Database (Starter Set)]])\n- The Pettit workout is in Zone 2 and lasts 60 min for aerobic endurance. ([[raw/Breakaway_PRD_v3.0#Appendix B: Workout Database (Starter Set)|\u00a7 Appendix B: Workout Database (Starter Set)]])"
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#41",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Details > Appendix C  Sample Prompt \u2014 Daily Coaching Query",
+   "text": "- The operational format is a complete daily coaching prompt sent to Claude. ([[raw/Breakaway_PRD_v3.0#Appendix C: Sample Prompt \u2014 Daily Coaching Query|\u00a7 Appendix C: Sample Prompt \u2014 Daily Coaching Query]])\n- The athlete profile has an FTP of 250W and a race of Berkeley Hills Road Race on 2026-04-26. ([[raw/Breakaway_PRD_v3.0#Appendix C: Sample Prompt \u2014 Daily Coaching Query|\u00a7 Appendix C: Sample Prompt \u2014 Daily Coaching Query]])"
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#42",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Concepts",
+   "text": "- [[Athlete Data Layer]]: This layer is Breakaway\u2019s most defensible asset, serving as a PostgreSQL database with primary tables to store all Athlete Profile outputs.\n- [[Daily Context Summary]]: The daily context summary object is passed to Claude every morning to generate the coaching note.\n- [[Structured Onboarding Questionnaire]]: The onboarding questionnaire is the foundation of everything Breakaway does, populating the Athlete Profile and selecting the correct coaching template."
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#43",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Related notes",
+   "text": "- [[Breakaway PRD Review Notes]] (hand-written)\n- [[Shared Themes]] (hand-written)"
+  },
+  {
+   "id": "wiki/Projects/Breakaway Project.md#44",
+   "path": "wiki/Projects/Breakaway Project.md",
+   "section": "Source",
+   "text": "- `vault/raw/Breakaway_PRD_v3.0.md`: [[raw/Breakaway_PRD_v3.0|Breakaway_PRD_v3.0.md]]\n\n<!-- Human notes: anything below this line is kept when the page is re-ingested. -->"
+  },
+  {
+   "id": "wiki/Projects/Draft Copilot.md#0",
+   "path": "wiki/Projects/Draft Copilot.md",
+   "section": "Draft Copilot",
+   "text": "> Generated by local Gemma (`gemma4:e2b-it-qat`) from [[raw/Draft Copilot|Draft Copilot.md]] and checked by the harness. Each point links to the section it came from."
+  },
+  {
+   "id": "wiki/Projects/Draft Copilot.md#1",
+   "path": "wiki/Projects/Draft Copilot.md",
+   "section": "Summary",
+   "text": "This source describes a small local web application designed to assist users during a live 12-team, full-PPR snake fantasy football draft on Sleeper. The main goal of the tool is to provide real-time pick tracking and recommendations based on expert consensus rankings."
+  },
+  {
+   "id": "wiki/Projects/Draft Copilot.md#2",
+   "path": "wiki/Projects/Draft Copilot.md",
+   "section": "Key points",
+   "text": "- A small local web app ran alongside a live Sleeper fantasy football draft. ([[raw/Draft Copilot|Draft Copilot.md]])\n- The app tracked every pick in real time and recommended who to take next. ([[raw/Draft Copilot|Draft Copilot.md]])\n- The goal was a tool to use during a 12-team, full-PPR snake draft on Sleeper. ([[raw/Draft Copilot#Objective|\u00a7 Objective]])\n- Recommendations should come from expert consensus rankings, not Sleeper's ADP. ([[raw/Draft Copilot#Objective|\u00a7 Objective]])\n- The default rankings blend FantasyPros consensus and ESPN Field Yates PPR rankings. ([[raw/Draft Copilot#Rankings dataset|\u00a7 Rankings dataset]])"
+  },
+  {
+   "id": "wiki/Projects/Draft Copilot.md#3",
+   "path": "wiki/Projects/Draft Copilot.md",
+   "section": "Key points",
+   "text": "- A player on both lists gets FantasyPros_rank \u00d7 0.6 + ESPN_rank \u00d7 0.4, and the list is re-sorted by that blended score. ([[raw/Draft Copilot#Rankings dataset|\u00a7 Rankings dataset]])\n- The app fetches picks every 3 seconds. ([[raw/Draft Copilot#Features|\u00a7 Features]])\n- Sleeper's CDN caches the picks endpoint for up to 30 seconds. ([[raw/Draft Copilot#Features|\u00a7 Features]])\n- My Team and Needs tracker automatically detects your own picks and slots them into starting slots. ([[raw/Draft Copilot#Features|\u00a7 Features]])\n- Check for an API before building scraping or screenshot reading. ([[raw/Draft Copilot#Lessons|\u00a7 Lessons]])"
+  },
+  {
+   "id": "wiki/Projects/Draft Copilot.md#4",
+   "path": "wiki/Projects/Draft Copilot.md",
+   "section": "Details > Approach",
+   "text": "- A screenshot app was rejected because reading text from images is unreliable. ([[raw/Draft Copilot#Choosing the architecture|\u00a7 Choosing the architecture]])\n- The live companion was the easier option because Sleeper has a public, no-login JSON API for drafts. ([[raw/Draft Copilot#Choosing the architecture|\u00a7 Choosing the architecture]])"
+  },
+  {
+   "id": "wiki/Projects/Draft Copilot.md#5",
+   "path": "wiki/Projects/Draft Copilot.md",
+   "section": "Details > Features",
+   "text": "- Best Available shows consensus rankings with anyone already drafted by any team removed. ([[raw/Draft Copilot#Features|\u00a7 Features]])"
+  },
+  {
+   "id": "wiki/Projects/Draft Copilot.md#6",
+   "path": "wiki/Projects/Draft Copilot.md",
+   "section": "Details > The Value Model",
+   "text": "- Raw consensus rank answers who is the better player, but not who is the better pick right now. ([[raw/Draft Copilot#The Value Model|\u00a7 The Value Model]])\n- The value model adds position scarcity as a secondary nudge to the raw consensus rank. ([[raw/Draft Copilot#The Value Model|\u00a7 The Value Model]])\n- The first version used `replacement_rank \u2212 position_rank` alone. ([[raw/Draft Copilot#How the model evolved|\u00a7 How the model evolved]])\n- This first version answered the 2.10 question by favoring the RB11 over the TE1, but it let scarcity override real differences in talent. ([[raw/Draft Copilot#How the model evolved|\u00a7 How the model evolved]])"
+  },
+  {
+   "id": "wiki/Projects/Draft Copilot.md#7",
+   "path": "wiki/Projects/Draft Copilot.md",
+   "section": "Details > Bugs Found and Fixed",
+   "text": "- The 'My Team' empty in mock drafts bug was caused by Sleeper leaving `roster_id` null on mock-draft picks. ([[raw/Draft Copilot#Bugs Found and Fixed|\u00a7 Bugs Found and Fixed]])\n- The fix for the 'My Team' empty in mock drafts bug was to identify picks by `draft_slot`, which is set in both mock and real drafts. ([[raw/Draft Copilot#Bugs Found and Fixed|\u00a7 Bugs Found and Fixed]])"
+  },
+  {
+   "id": "wiki/Projects/Draft Copilot.md#8",
+   "path": "wiki/Projects/Draft Copilot.md",
+   "section": "Details > Lessons",
+   "text": "- Test on a mock draft before relying on the app live. ([[raw/Draft Copilot#Lessons|\u00a7 Lessons]])"
+  },
+  {
+   "id": "wiki/Projects/Draft Copilot.md#9",
+   "path": "wiki/Projects/Draft Copilot.md",
+   "section": "Concepts",
+   "text": "- [[Expert Consensus Rankings]]: Recommendations are derived from expert consensus rankings rather than Sleeper's standard ADP.\n- [[API Pre-Check]]: The process involves checking for an API before attempting to build scraping or screenshot reading solutions.\n- [[Caching]]: Sleeper's CDN caches the picks endpoint for up to 30 seconds, which the application leverages.\n- [[Value Model]]: The value model incorporates position scarcity as a secondary nudge to the raw consensus rank."
+  },
+  {
+   "id": "wiki/Projects/Draft Copilot.md#10",
+   "path": "wiki/Projects/Draft Copilot.md",
+   "section": "Related notes",
+   "text": "- [[Shared Themes]] (hand-written)"
+  },
+  {
+   "id": "wiki/Projects/Draft Copilot.md#11",
+   "path": "wiki/Projects/Draft Copilot.md",
+   "section": "Source",
+   "text": "- `vault/raw/Draft Copilot.md`: [[raw/Draft Copilot|Draft Copilot.md]]\n\n<!-- Human notes: anything below this line is kept when the page is re-ingested. -->"
+  },
+  {
+   "id": "wiki/Projects/The GRKN.md#0",
+   "path": "wiki/Projects/The GRKN.md",
+   "section": "The GRKN",
+   "text": "> Generated by local Gemma (`gemma4:e2b-it-qat`) from [[raw/PLAN|PLAN.md]] and checked by the harness. Each point links to the section it came from."
+  },
+  {
+   "id": "wiki/Projects/The GRKN.md#1",
+   "path": "wiki/Projects/The GRKN.md",
+   "section": "Summary",
+   "text": "The GRKN is an application designed to help partners decide what to cook each week and find new, nutritious recipes. It manages household details, meal planning, and shopping list creation through a connected backend."
+  },
+  {
+   "id": "wiki/Projects/The GRKN.md#2",
+   "path": "wiki/Projects/The GRKN.md",
+   "section": "Key points",
+   "text": "- App name is The GRKN. ([[raw/PLAN#Plan: The GRKN \u2013 shared meal-planning app for two|\u00a7 Plan: The GRKN \u2013 shared meal-planning app for two]])\n- The app addresses the problem of partners deciding what to cook each week. ([[raw/PLAN#Context|\u00a7 Context]])\n- Backend and sync is Convex. ([[raw/PLAN#Decisions (confirmed)|\u00a7 Decisions (confirmed)]])\n- Every query updates live on both phones with Convex. ([[raw/PLAN#Decisions (confirmed)|\u00a7 Decisions (confirmed)]])\n- Each shopping item is its own document. ([[raw/PLAN#Getting sync right (why this won't repeat the Firebase problem)|\u00a7 Getting sync right (why this won't repeat the Firebase problem)]])"
+  },
+  {
+   "id": "wiki/Projects/The GRKN.md#3",
+   "path": "wiki/Projects/The GRKN.md",
+   "section": "Key points",
+   "text": "- The Claude integration uses the `@anthropic-ai/sdk` with structured output for valid, typed recipes. ([[raw/PLAN#Claude integration (`convex/ai.ts`, a Node server function)|\u00a7 Claude integration (`convex/ai.ts`, a Node server function)]])\n- The scale factor is planned servings divided by recipe servings to combine ingredients by `canonical`. ([[raw/PLAN#Shopping list build (`convex/shopping.ts`)|\u00a7 Shopping list build (`convex/shopping.ts`)]])\n- The fourth step is to build the week calendar, which includes breakfast (optional, repeatable), lunch and dinner, plus the 'Build shopping list' feature which combines and tests the list. ([[raw/PLAN#Build order|\u00a7 Build order]])"
+  },
+  {
+   "id": "wiki/Projects/The GRKN.md#4",
+   "path": "wiki/Projects/The GRKN.md",
+   "section": "Key points",
+   "text": "- The build process should use official generators like `create-next-app`, `npx convex dev`, `shadcn add`, and `@convex-dev/auth` init instead of writing boilerplate by hand. ([[raw/PLAN#Keeping the build efficient (Claude Code token use)|\u00a7 Keeping the build efficient (Claude Code token use)]])\n- A fixed set of 10 prompts and imports must return correct glutenRisk flags for gluten checks. ([[raw/PLAN#Verification|\u00a7 Verification]])"
+  },
+  {
+   "id": "wiki/Projects/The GRKN.md#5",
+   "path": "wiki/Projects/The GRKN.md",
+   "section": "Details > Plan  The GRKN \u2013 shared meal-planning app for two",
+   "text": "- The GRKN is used in the manifest, page titles, home-screen icon label (\"GRKN\"), invite emails, and push notifications. ([[raw/PLAN#Plan: The GRKN \u2013 shared meal-planning app for two|\u00a7 Plan: The GRKN \u2013 shared meal-planning app for two]])"
+  },
+  {
+   "id": "wiki/Projects/The GRKN.md#6",
+   "path": "wiki/Projects/The GRKN.md",
+   "section": "Details > Context",
+   "text": "- The app addresses the problem of struggling to find new recipes that are good and nutritious for cooking each week. ([[raw/PLAN#Context|\u00a7 Context]])"
+  },
+  {
+   "id": "wiki/Projects/The GRKN.md#7",
+   "path": "wiki/Projects/The GRKN.md",
+   "section": "Details > iPhone-first UI rules (built in from day one, never added later)",
+   "text": "- Screen fit opens full screen from the home screen using standard iOS home-screen app settings. ([[raw/PLAN#iPhone-first UI rules (built in from day one, never added later)|\u00a7 iPhone-first UI rules (built in from day one, never added later)]])\n- Content avoids the notch and home bar using viewport-fit=cover. ([[raw/PLAN#iPhone-first UI rules (built in from day one, never added later)|\u00a7 iPhone-first UI rules (built in from day one, never added later)]])\n- Layout uses the dynamic viewport height so the Safari toolbar never cuts off content. ([[raw/PLAN#iPhone-first UI rules (built in from day one, never added later)|\u00a7 iPhone-first UI rules (built in from day one, never added later)]])"
+  },
+  {
+   "id": "wiki/Projects/The GRKN.md#8",
+   "path": "wiki/Projects/The GRKN.md",
+   "section": "Details > iPhone-first UI rules (built in from day one, never added later)",
+   "text": "- Background bounce is locked so pull-to-refresh cannot fight with scrolling. ([[raw/PLAN#iPhone-first UI rules (built in from day one, never added later)|\u00a7 iPhone-first UI rules (built in from day one, never added later)]])"
+  },
+  {
+   "id": "wiki/Projects/The GRKN.md#9",
+   "path": "wiki/Projects/The GRKN.md",
+   "section": "Details > Data model ( convex schema.ts )",
+   "text": "- The `households` document has fields: `name`, `glutenFreeDefault`, `region/country` (for what's in season), `units` (metric), and `defaultServings`. *(corrected in review)* ([[raw/PLAN#Data model (`convex/schema.ts`)|\u00a7 Data model (`convex/schema.ts`)]])\n- The `members` document has fields: `householdId`, `userId`, `displayName`, and `glutenFree` (boolean). ([[raw/PLAN#Data model (`convex/schema.ts`)|\u00a7 Data model (`convex/schema.ts`)]])"
+  },
+  {
+   "id": "wiki/Projects/The GRKN.md#10",
+   "path": "wiki/Projects/The GRKN.md",
+   "section": "Details > Screens (4 tabs at the bottom, big tap targets)",
+   "text": "- Meal prep card appears after 'Accept week' or on request with 'Make prep plan' once some meals are kept. ([[raw/PLAN#Screens (4 tabs at the bottom, big tap targets)|\u00a7 Screens (4 tabs at the bottom, big tap targets)]])\n- The meal prep card summary line reads like 'Sunday prep \u00b7 ~75 min \u00b7 covers 9 meals'. ([[raw/PLAN#Screens (4 tabs at the bottom, big tap targets)|\u00a7 Screens (4 tabs at the bottom, big tap targets)]])\n- Prep sessions are checklists that either of you can tick off live. ([[raw/PLAN#Screens (4 tabs at the bottom, big tap targets)|\u00a7 Screens (4 tabs at the bottom, big tap targets)]])"
+  },
+  {
+   "id": "wiki/Projects/The GRKN.md#11",
+   "path": "wiki/Projects/The GRKN.md",
+   "section": "Details > Cooking nights + calendar feed (build step 8.5, after the meal prep guide)",
+   "text": "- The `mealPlan` data model gets a `cookMemberId?` indicating who is cooking that meal. ([[raw/PLAN#Cooking nights + calendar feed (build step 8.5, after the meal prep guide)|\u00a7 Cooking nights + calendar feed (build step 8.5, after the meal prep guide)]])\n- Only dinners have a cook in the `mealPlan` data model. ([[raw/PLAN#Cooking nights + calendar feed (build step 8.5, after the meal prep guide)|\u00a7 Cooking nights + calendar feed (build step 8.5, after the meal prep guide)]])\n- The `households` data model gets `defaultCooks` which maps days of the week to a `memberId?`. ([[raw/PLAN#Cooking nights + calendar feed (build step 8.5, after the meal prep guide)|\u00a7 Cooking nights + calendar feed (build step 8.5, after the meal prep guide)]])"
+  },
+  {
+   "id": "wiki/Projects/The GRKN.md#12",
+   "path": "wiki/Projects/The GRKN.md",
+   "section": "Details > Cooking nights + calendar feed (build step 8.5, after the meal prep guide)",
+   "text": "- A new dinner takes the default cook for its day, and each dinner's cook can be changed; separately, `households` gets a `dinnerTime` that defaults to 19:00. *(corrected in review)* ([[raw/PLAN#Cooking nights + calendar feed (build step 8.5, after the meal prep guide)|\u00a7 Cooking nights + calendar feed (build step 8.5, after the meal prep guide)]])"
+  },
+  {
+   "id": "wiki/Projects/The GRKN.md#13",
+   "path": "wiki/Projects/The GRKN.md",
+   "section": "Details > Push notifications ( convex push.ts , with a  web-push  action and VAPID keys)",
+   "text": "- Push notifications work on iPhone (iOS 16.4+) only once the app is installed to the home screen. ([[raw/PLAN#Push notifications (`convex/push.ts`, with a `web-push` action and VAPID keys)|\u00a7 Push notifications (`convex/push.ts`, with a `web-push` action and VAPID keys)]])"
+  },
+  {
+   "id": "wiki/Projects/The GRKN.md#14",
+   "path": "wiki/Projects/The GRKN.md",
+   "section": "Details > Claude integration ( convex ai.ts , a Node server function)",
+   "text": "- The system prompt always includes the gluten rule requiring Claude to set `glutenRisk` for every ingredient. ([[raw/PLAN#Claude integration (`convex/ai.ts`, a Node server function)|\u00a7 Claude integration (`convex/ai.ts`, a Node server function)]])\n- The system prompt also includes the household taste profile summary and dislikes. ([[raw/PLAN#Claude integration (`convex/ai.ts`, a Node server function)|\u00a7 Claude integration (`convex/ai.ts`, a Node server function)]])"
+  },
+  {
+   "id": "wiki/Projects/The GRKN.md#15",
+   "path": "wiki/Projects/The GRKN.md",
+   "section": "Details > Shopping list build ( convex shopping.ts )",
+   "text": "- The shopping list build uses the week's plan entries multiplied by a scale factor. ([[raw/PLAN#Shopping list build (`convex/shopping.ts`)|\u00a7 Shopping list build (`convex/shopping.ts`)]])"
+  },
+  {
+   "id": "wiki/Projects/The GRKN.md#16",
+   "path": "wiki/Projects/The GRKN.md",
+   "section": "Details > Project layout",
+   "text": "- The project layout includes directories for `app/(tabs)/week`, `recipes`, `recipes/[id]`, `recipes/[id]/cook`, `shop`, `create/{generate,import,plan}`, `app/join/[code]`, `app/settings`, and `app/manifest.ts`. ([[raw/PLAN#Project layout|\u00a7 Project layout]])\n- The project layout includes components like `RecipeCard`, `IngredientList`, `StepCard`, `TimerStrip`, `WeekGrid`, `ShopItem`, and `SyncDot` in `components/`. ([[raw/PLAN#Project layout|\u00a7 Project layout]])"
+  },
+  {
+   "id": "wiki/Projects/The GRKN.md#17",
+   "path": "wiki/Projects/The GRKN.md",
+   "section": "Details > Build order",
+   "text": "- The second step is to build the shopping list, which involves ticking, adding, and clearing with instant updates, the connection dot, and the screen-awake lock. ([[raw/PLAN#Build order|\u00a7 Build order]])\n- The third step is to build the recipe library, which includes manual entry, the recipe page with ingredients first, and the servings scaler. ([[raw/PLAN#Build order|\u00a7 Build order]])"
+  },
+  {
+   "id": "wiki/Projects/The GRKN.md#18",
+   "path": "wiki/Projects/The GRKN.md",
+   "section": "Details > Native iOS wrapper (tentative, not committed)",
+   "text": "- The tentative, not-yet-committed native iOS wrapper would wrap the existing app with Capacitor. *(corrected in review)* ([[raw/PLAN#Native iOS wrapper (tentative, not committed)|\u00a7 Native iOS wrapper (tentative, not committed)]])\n- The native iOS wrapper will add a small Swift plugin for AlarmKit (iOS 26+) to start real system timers for Cook-mode and prep timer chips. ([[raw/PLAN#Native iOS wrapper (tentative, not committed)|\u00a7 Native iOS wrapper (tentative, not committed)]])\n- The native iOS wrapper will run on the phone, so no signal is needed for the timers. ([[raw/PLAN#Native iOS wrapper (tentative, not committed)|\u00a7 Native iOS wrapper (tentative, not committed)]])"
+  },
+  {
+   "id": "wiki/Projects/The GRKN.md#19",
+   "path": "wiki/Projects/The GRKN.md",
+   "section": "Details > Native iOS wrapper (tentative, not committed)",
+   "text": "- All code is written on Windows, and the iOS build runs in the cloud on Codemagic. ([[raw/PLAN#Native iOS wrapper (tentative, not committed)|\u00a7 Native iOS wrapper (tentative, not committed)]])"
+  },
+  {
+   "id": "wiki/Projects/The GRKN.md#20",
+   "path": "wiki/Projects/The GRKN.md",
+   "section": "Details > Keeping the build efficient (Claude Code token use)",
+   "text": "- The build process should use no subagents and only one browser check per milestone, reading screen state as text rather than screenshots unless it is a visual check. ([[raw/PLAN#Keeping the build efficient (Claude Code token use)|\u00a7 Keeping the build efficient (Claude Code token use)]])"
+  },
+  {
+   "id": "wiki/Projects/The GRKN.md#21",
+   "path": "wiki/Projects/The GRKN.md",
+   "section": "Details > Later (not in v1)",
+   "text": "- Later features include leftovers and batch cooking, aisle order per store, a durable offline outbox, and AI images. ([[raw/PLAN#Later (not in v1)|\u00a7 Later (not in v1)]])"
+  },
+  {
+   "id": "wiki/Projects/The GRKN.md#22",
+   "path": "wiki/Projects/The GRKN.md",
+   "section": "Details > Accounts   keys you'll need",
+   "text": "- Vercel (free) is one of the accounts the build needs, alongside Convex (free), an Anthropic API key and Resend (free, for magic links). *(corrected in review)* ([[raw/PLAN#Accounts / keys you'll need|\u00a7 Accounts / keys you'll need]])"
+  },
+  {
+   "id": "wiki/Projects/The GRKN.md#23",
+   "path": "wiki/Projects/The GRKN.md",
+   "section": "Details > Verification",
+   "text": "- Unit tests use Vitest for combining and unit conversion. ([[raw/PLAN#Verification|\u00a7 Verification]])\n- Unit tests (Vitest) cover timer detection from step text. *(corrected in review)* ([[raw/PLAN#Verification|\u00a7 Verification]])\n- The rule that glutenFree is derived from glutenRisk is used in unit tests. ([[raw/PLAN#Verification|\u00a7 Verification]])"
+  },
+  {
+   "id": "wiki/Projects/The GRKN.md#24",
+   "path": "wiki/Projects/The GRKN.md",
+   "section": "Concepts",
+   "text": "- [[Convex Sync]]: The backend and synchronization are handled by Convex, ensuring that every query updates live on both phones.\n- [[Recipe Generation Integration]]: The system uses the Claude integration with structured output to generate valid, typed recipes, incorporating rules about gluten risk and household taste profiles.\n- [[Dynamic Viewport Layout]]: The layout utilizes dynamic viewport height to ensure the Safari toolbar never cuts off content, and the app avoids the notch and home bar using viewport-fit=cover.\n- [[Shopping List Scaling]]: The shopping list is built by multiplying the week's plan entries by a scale factor, which is calculated by dividing planned servings by recipe servings to combine ingredients by canonical units."
+  },
+  {
+   "id": "wiki/Projects/The GRKN.md#25",
+   "path": "wiki/Projects/The GRKN.md",
+   "section": "Related notes",
+   "text": "- [[Shared Themes]] (hand-written)"
+  },
+  {
+   "id": "wiki/Projects/The GRKN.md#26",
+   "path": "wiki/Projects/The GRKN.md",
+   "section": "Review",
+   "text": "A person checked this page against the source. 5 generated facts were corrected or removed (listed in `data/review.json`)."
+  },
+  {
+   "id": "wiki/Projects/The GRKN.md#27",
+   "path": "wiki/Projects/The GRKN.md",
+   "section": "Source",
+   "text": "- `vault/raw/PLAN.md`: [[raw/PLAN|PLAN.md]]\n\n<!-- Human notes: anything below this line is kept when the page is re-ingested. -->"
+  },
+  {
+   "id": "wiki/Shared Themes.md#0",
+   "path": "wiki/Shared Themes.md",
+   "section": "Shared Themes",
+   "text": "Hand-written on 2026-09-29. Links between my three app projects, each backed by the raw source. The automatic connect step in `wiki ingest` did not find reliable shared themes (see README, limitation), so these links are written by hand."
+  },
+  {
+   "id": "wiki/Shared Themes.md#1",
+   "path": "wiki/Shared Themes.md",
+   "section": "Hosting on Vercel",
+   "text": "- [[The GRKN]] is planned to be hosted on Vercel, and installed on both iPhones from the Vercel URL ([[raw/PLAN#Decisions (confirmed)|PLAN.md \u00a7 Decisions]]).\n- [[Breakaway Project]] plans Vercel for the frontend and Railway for the backend ([[raw/Breakaway_PRD_v3.0#10.1 Stack|PRD \u00a7 10.1 Stack]]).\n- [[Draft Copilot]] considered Vercel hosting and dropped it in favour of running locally ([[raw/Draft Copilot#Choosing the architecture|Draft Copilot.md \u00a7 Choosing the architecture]])."
+  },
+  {
+   "id": "wiki/Shared Themes.md#2",
+   "path": "wiki/Shared Themes.md",
+   "section": "Claude inside the app",
+   "text": "- [[The GRKN]] uses Claude to generate recipes and to check imported ones ([[raw/PLAN|PLAN.md]]).\n- [[Breakaway Project]] passes structured data summaries to Claude, which returns plan adjustments and coaching notes; raw data is never passed directly ([[raw/Breakaway_PRD_v3.0|Breakaway_PRD_v3.0.md]])."
+  },
+  {
+   "id": "wiki/Shared Themes.md#3",
+   "path": "wiki/Shared Themes.md",
+   "section": "Combining several sources into one recommendation",
+   "text": "- [[Breakaway Project]] aggregates wearable data (Whoop, Strava) into one daily recommendation ([[Athlete Data Layer]]).\n- [[Draft Copilot]] blends FantasyPros consensus and ESPN rankings to recommend the next pick ([[Expert Consensus Rankings]])."
+  }
+ ]
+}

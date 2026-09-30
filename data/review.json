@@ -1,0 +1,29 @@
+{
+ "plan": {
+  "Vercel is free for accounts and keys to use.": {
+   "action": "replace",
+   "text": "Vercel (free) is one of the accounts the build needs, alongside Convex (free), an Anthropic API key and Resend (free, for magic links).",
+   "note": "Generated sentence garbled the 'Accounts / keys you'll need' list."
+  },
+  "A new dinner takes the default cook for its day, and each dinner can be changed in the `households` data model `dinnerTime` which defaults to 19:00.": {
+   "action": "replace",
+   "text": "A new dinner takes the default cook for its day, and each dinner's cook can be changed; separately, `households` gets a `dinnerTime` that defaults to 19:00.",
+   "note": "Generated sentence merged two separate data-model lines (defaultCooks and dinnerTime)."
+  },
+  "Unit tests detect timer detection from step text.": {
+   "action": "replace",
+   "text": "Unit tests (Vitest) cover timer detection from step text.",
+   "note": "Garbled wording."
+  },
+  "The native iOS wrapper will wrap the existing app with Capacitor.": {
+   "action": "replace",
+   "text": "The tentative, not-yet-committed native iOS wrapper would wrap the existing app with Capacitor.",
+   "note": "Source marks the wrapper as tentative; generated fact stated it as decided."
+  },
+  "The `households` document has fields: `name`, `glutenFreeDefault`, `region/country` (for what's in season), `units` (metric), and `defaultServings).": {
+   "action": "replace",
+   "text": "The `households` document has fields: `name`, `glutenFreeDefault`, `region/country` (for what's in season), `units` (metric), and `defaultServings`.",
+   "note": "Broken code formatting."
+  }
+ }
+}

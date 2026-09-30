@@ -1,0 +1,91 @@
+## k=6 (after wiki pages were indexed): T3 fails
+
+T1 (direct-single-source): What weights make up Breakaway's training readiness score?
+  PASS  raw/Breakaway_PRD_v3.0.md contains ['45%', '35%', '20%']  -> rank [1]
+     1. raw/Breakaway_PRD_v3.0.md :: 6. Daily Coaching Experience > 6.1 Training Readiness Score
+     2. raw/Breakaway_PRD_v3.0.md :: 6. Daily Coaching Experience > 6.1 Training Readiness Score
+     3. wiki/Projects/Breakaway Project.md :: Key points
+     4. wiki/Projects/Breakaway Project.md :: Details > 6. Daily Coaching Experience
+     5. raw/Breakaway_PRD_v3.0.md :: Appendix A: Glossary
+     6. wiki/Projects/Breakaway Project.md :: Summary
+
+T2 (paraphrased): How quickly does the draft helper notice a new pick?
+  PASS  raw/Draft Copilot.md contains ['every 3 seconds']  -> rank [1]
+     1. raw/Draft Copilot.md :: Features
+     2. wiki/Concepts/Draft Tracking System.md :: In [[Draft Copilot]]
+     3. wiki/Projects/Draft Copilot.md :: Key points
+     4. wiki/Projects/Draft Copilot.md :: Concepts
+     5. raw/Draft Copilot.md :: Bugs Found and Fixed
+     6. wiki/Projects/Draft Copilot.md :: Key points
+
+T3 (cross-source): Which hosting platform comes up across my app projects, and did each one end up using it?
+  PASS  raw/PLAN.md contains ['hosted on Vercel']  -> rank [2]
+  FAIL  raw/Breakaway_PRD_v3.0.md contains ['Vercel (frontend) + Railway (backend)']  -> rank -
+  PASS  raw/Draft Copilot.md contains ['Vercel hosting was considered and dropped']  -> rank [3]
+     1. wiki/Shared Themes.md :: Hosting on Vercel
+     2. raw/PLAN.md :: Decisions (confirmed)
+     3. raw/Draft Copilot.md :: Approach > Choosing the architecture
+     4. raw/PLAN.md :: Build order
+     5. raw/Draft Copilot.md :: Lessons
+     6. wiki/Shared Themes.md :: Shared Themes
+
+T4 (unsupported): What monthly subscription price was chosen for Breakaway?
+  PASS  raw/Breakaway_PRD_v3.0.md contains ['Pricing']  -> rank [2]
+     1. wiki/Projects/Breakaway Project.md :: Details > 12. Risks & Open Questions
+     2. raw/Breakaway_PRD_v3.0.md :: 12. Risks & Open Questions > 12.3 Key Decisions Still Open
+     3. raw/Breakaway_PRD_v3.0.md :: 5. Coaching Plan Template Library > 5.1 Template Selection Logic
+     4. wiki/Projects/Breakaway Project.md :: Key points
+     5. wiki/Projects/Breakaway Project.md :: Details > 3. Product Vision & Goals
+     6. raw/Breakaway_PRD_v3.0.md :: 1. Executive Summary
+
+3/4 questions retrieved all expected passages (mode=hybrid, k=6, max_per_source=3).
+
+## k=8 (new default)
+
+T1 (direct-single-source): What weights make up Breakaway's training readiness score?
+  PASS  raw/Breakaway_PRD_v3.0.md contains ['45%', '35%', '20%']  -> rank [1]
+     1. raw/Breakaway_PRD_v3.0.md :: 6. Daily Coaching Experience > 6.1 Training Readiness Score
+     2. raw/Breakaway_PRD_v3.0.md :: 6. Daily Coaching Experience > 6.1 Training Readiness Score
+     3. wiki/Projects/Breakaway Project.md :: Key points
+     4. wiki/Projects/Breakaway Project.md :: Details > 6. Daily Coaching Experience
+     5. raw/Breakaway_PRD_v3.0.md :: Appendix A: Glossary
+     6. wiki/Projects/Breakaway Project.md :: Summary
+     7. wiki/Concepts/Structured Onboarding Questionnaire.md :: In [[Breakaway Project]]
+     8. wiki/Breakaway PRD Review Notes.md :: Changes made during conversion
+
+T2 (paraphrased): How quickly does the draft helper notice a new pick?
+  PASS  raw/Draft Copilot.md contains ['every 3 seconds']  -> rank [1]
+     1. raw/Draft Copilot.md :: Features
+     2. wiki/Concepts/Draft Tracking System.md :: In [[Draft Copilot]]
+     3. wiki/Projects/Draft Copilot.md :: Key points
+     4. wiki/Projects/Draft Copilot.md :: Concepts
+     5. raw/Draft Copilot.md :: Bugs Found and Fixed
+     6. wiki/Projects/Draft Copilot.md :: Key points
+     7. raw/Draft Copilot.md :: Approach > Choosing the architecture
+     8. wiki/Concepts/Expert Consensus Rankings.md :: In [[Draft Copilot]]
+
+T3 (cross-source): Which hosting platform comes up across my app projects, and did each one end up using it?
+  PASS  raw/PLAN.md contains ['hosted on Vercel']  -> rank [2]
+  PASS  raw/Breakaway_PRD_v3.0.md contains ['Vercel (frontend) + Railway (backend)']  -> rank [7]
+  PASS  raw/Draft Copilot.md contains ['Vercel hosting was considered and dropped']  -> rank [3]
+     1. wiki/Shared Themes.md :: Hosting on Vercel
+     2. raw/PLAN.md :: Decisions (confirmed)
+     3. raw/Draft Copilot.md :: Approach > Choosing the architecture
+     4. raw/PLAN.md :: Build order
+     5. raw/Draft Copilot.md :: Lessons
+     6. wiki/Shared Themes.md :: Shared Themes
+     7. raw/Breakaway_PRD_v3.0.md :: 10. Technical Architecture > 10.1 Stack
+     8. raw/PLAN.md :: Verification
+
+T4 (unsupported): What monthly subscription price was chosen for Breakaway?
+  PASS  raw/Breakaway_PRD_v3.0.md contains ['Pricing']  -> rank [2]
+     1. wiki/Projects/Breakaway Project.md :: Details > 12. Risks & Open Questions
+     2. raw/Breakaway_PRD_v3.0.md :: 12. Risks & Open Questions > 12.3 Key Decisions Still Open
+     3. raw/Breakaway_PRD_v3.0.md :: 5. Coaching Plan Template Library > 5.1 Template Selection Logic
+     4. wiki/Projects/Breakaway Project.md :: Key points
+     5. wiki/Projects/Breakaway Project.md :: Details > 3. Product Vision & Goals
+     6. raw/Breakaway_PRD_v3.0.md :: 1. Executive Summary
+     7. wiki/Concepts/Structured Onboarding Questionnaire.md :: In [[Breakaway Project]]
+     8. wiki/Concepts/Structured Onboarding Questionnaire.md :: In [[Breakaway Project]]
+
+4/4 questions retrieved all expected passages (mode=hybrid, k=8, max_per_source=3).

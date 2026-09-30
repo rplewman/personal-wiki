@@ -1,0 +1,56 @@
+== 2026-09-29T18:35:41-07:00 offline run
+== internet check (expect failure):
+200
+== ollama:
+{"version":"0.34.3"}
+== wiki help
+usage: wiki [-h] <command> ...
+
+Personal Wiki: search and question your notes with local Gemma (Ollama), fully
+offline.
+
+positional arguments:
+  <command>
+    search    Show the passages that best match a query. No answer is
+              generated; works without Gemma.
+    ask       Answer one question from your notes with citations [S1].. or
+              'insufficient evidence'. No chat history, no persona.
+    chat      Talk with the wiki assistant: persona, remembers the last few
+              turns, uses your notes when needed.
+    ingest    Turn raw sources into checked wiki pages with Gemma. No files =
+              every new or changed file in vault/raw.
+    index     Rebuild the search index from vault/raw and vault/wiki (embeds
+              new passages only).
+    help      Show this help.
+
+options:
+  -h, --help  show this help message and exit
+== wiki ingest Draft Copilot --force
+Ingesting Draft Copilot.md
+  extract 1/2 (5694 chars)...
+  extract 2/2 (3419 chars)...
+  plan page from 20 of 20 checked facts (0 rejected)...
+Connecting sources (shared themes)...
+raw/Draft Copilot.md: updated -> [[Draft Copilot]]  20 facts kept, 0 items rejected, concepts: Expert Consensus Rankings, Scarcity Formula, API Pre-Check, Draft Tracking System  (68.0 s, log data/ingest_log/draft-copilot-20260929-183652.json)
+Shared themes linking projects: none found
+vault/index.md rebuilt. Search index: 289 passages (13 newly embedded).
+== wiki search
+[1] wiki/Shared Themes.md :: Hosting on Vercel  (bm25 #1, dense #1)
+    - [[The GRKN]] is planned to be hosted on Vercel, and installed on both iPhones from the Vercel URL ([[raw/PLAN#Decisions (confirmed)|PLAN.md § Decisions]]). - [[Breakaway Project]] plans Vercel for the frontend and Railway for the backend …
+
+[2] raw/Draft Copilot.md :: Approach > Choosing the architecture  (bm25 #2, dense #2)
+    The companion won. It was built as a **single `index.html` file** with the rankings data embedded: no build step and no dependencies. A tiny Node static server (`server.js`) serves it at `http://localhost:8931`. Vercel hosting was considere…
+
+[3] raw/Breakaway_PRD_v3.0.md :: 10. Technical Architecture > 10.1 Stack  (bm25 #3, dense #4)
+    | Layer | Technology | Rationale | |---|---|---| | Workout DB | JSON flat file | ~100 TrainerRoad workouts mapped by zone, duration, adaptation, link | | Auth | OAuth 2.0 | Required for Whoop, Strava, Garmin, Google Calendar | | Hosting | V…
+
+== eval
+T1: What weights make up Breakaway's training readiness score?
+T2: How quickly does the draft helper notice a new pick?
+T3: Which hosting platform comes up across my app projects, and did each one end up using it?
+T4: What monthly subscription price was chosen for Breakaway?
+chat: capabilities + draft + shorter
+search
+chat claim vs ask
+Summary: C:\Users\thoma\Personal Wiki\evidence\eval-offline-20260929-184446.md
+== done 2026-09-29T18:44:46-07:00

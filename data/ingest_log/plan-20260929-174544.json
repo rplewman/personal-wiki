@@ -1,0 +1,437 @@
+{
+ "source": "raw/PLAN.md",
+ "sha256": "8c56999515ddf126b44bd0dd39b70f77a9158e7f52f38c22f5cd1d0cd3c9c6f2",
+ "model": "gemma4:e2b-it-qat",
+ "started": "2026-09-29T17:39:43",
+ "calls": [
+  {
+   "step": "extract",
+   "sections": [
+    "Plan: The GRKN – shared meal-planning app for two",
+    "Context",
+    "Decisions (confirmed)",
+    "iPhone-first UI rules (built in from day one, never added later)"
+   ],
+   "output": "{\n  \"Plan: The GRKN – shared meal-planning app for two\": [\n    \"App name is The GRKN.\",\n    \"The GRKN is used in the manifest, page titles, home-screen icon label (\\\"GRKN\\\"), invite emails, and push notifications.\"\n  ],\n  \"Context\": [\n    \"The app addresses the problem of partners deciding what to cook each week.\",\n    \"The app addresses the problem of struggling to find new recipes that are good and nutritious for cooking each week.\"\n    ],\n  \"Decisions (confirmed)\": [\n    \"Backend and sync is Convex.\",\n    \"Every query updates live on both phones with Convex.\"\n    ],\n    \"iPhone-first UI rules (built in from day one, never added later)\": [\n      \"Screen fit opens full screen from the home screen using standard iOS home-screen app settings.\",\n      \"Content avoids the notch and home bar using viewport-fit=cover.\",\n      \"Layout uses the dynamic viewport height so the Safari toolbar never cuts off content.\",\n      \"Background bounce is locked so pull-to-refresh cannot fight with scrolling.\"\n    ]\n  }",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 32.48,
+    "load_s": 0.02,
+    "prompt_tokens": 1491,
+    "output_tokens": 253,
+    "tok_per_s": 21.1,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.5
+   }
+  },
+  {
+   "step": "extract",
+   "sections": [
+    "Getting sync right (why this won't repeat the Firebase problem)",
+    "Data model (`convex/schema.ts`)"
+   ],
+   "output": "{\n  \"Getting sync right (why this won't repeat the Firebase problem)\": [\n    \"Each shopping item is its own document.\",\n    \"Ticks set a value; they don't flip it. The tick action is `setChecked(itemId, checked: boolean)`, not \\\"toggle\\\". If you both tap the same item, the result is still correct and stable. Instant feedback: every tick, add and reorder shows on screen immediately and then syncs. Server-side list building: combining the week's recipes into a shopping list happens in one transactional step on the server. Rebuilding the list keeps ticked items, manual items and edits, and only adds, removes or adjusts the items that came from recipes. Connection indicator: a small dot shows \\\"Live / Reconnecting / Offline – changes will sync\\\". Changes made while offline are held and sent when you reconnect. In the store: the shopping screen keeps the phone awake, ticked items drop to the bottom of their aisle, and each tick shows who made it (\\\"✓ by Rory\\\").\"\n  ],\n  \"Data model (`convex/schema.ts`)\": [\n    \"The `households` document has fields: `name`, `glutenFreeDefault`, `region/country` (for what's in season), `units` (metric), and `defaultServings).\",\n    \"The `members` document has fields: `householdId`, `userId`, `displayName`, and `glutenFree` (boolean).\",\n    \"The `invites` document has fields: `householdId`, `code`, and `expiresAt`. The `recipes` document has fields: `householdId`, `title`, `description`, `servings`, `prepMin`, `cookMin`, `tags[]`, `cuisine`, `source` (with kind: generated|url|instagram|photo|manual, url?), `glutenFree`, `glutenNotes?`, `ingredients[]` (with id, qty, unit, name, canonical, aisle, note?, optional?, glutenRisk, gfSwap?), `steps[]` (with id, text, timers[] {label, seconds}, ingredientIds[]), and `nutritionPerServing` (with kcal, protein, carbs, fat, fibre).\",\n    \"The `ratings` document has fields: `recipeId`, `userId`, `stars` (1–5), `wouldCookAgain`, `comment?`, and `cookedAt`. The `tasteProfile` document has fields: `likes[]` and `dislikes[]` (ingredients or cuisines), `spiceLevel`, `notes`, and `summary`. The `summary` is rewritten by Claude from ratings, comments and dislikes every few ratings and is included in every generation prompt. The `pantry` document has fields: `householdId`, `name`, `canonical`, `qty?`, `unit?`, `useSoon` (boolean), and `addedAt). Ticking a shopping item can move it into the pantry (optional). \\\"Mark recipe cooked\\\" offers to remove the pantry items it used up.\"\n  ]\n}",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 58.19,
+    "load_s": 0.03,
+    "prompt_tokens": 1457,
+    "output_tokens": 641,
+    "tok_per_s": 20.7,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.6
+   }
+  },
+  {
+   "step": "extract",
+   "sections": [
+    "Screens (4 tabs at the bottom, big tap targets)"
+   ],
+   "output": "{\n  \"Screens (4 tabs at the bottom, big tap targets)\": [\n    \"The calendar shows a list of Monday to Sunday with Breakfast, Lunch, and Dinner slots.\",\n    \"Breakfast rows are compact, and one breakfast can be set to repeat.\",\n    \"At the top of the week is a Meal prep card.\",\n    \"Users can tap an empty slot to pick a saved recipe, generate one, or type free text like \\\"leftovers\\\" or \\\"eating out\\\".', [1], [2], [3], [4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4] : [1, 2, 3, 4]",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 69.72,
+    "load_s": 0.04,
+    "prompt_tokens": 1604,
+    "output_tokens": 1000,
+    "tok_per_s": 22.4,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.8
+   }
+  },
+  {
+   "step": "extract",
+   "sections": [
+    "Screens (4 tabs at the bottom, big tap targets)",
+    "Cooking nights + calendar feed (build step 8.5, after the meal prep guide)",
+    "Push notifications (`convex/push.ts`, with a `web-push` action and VAPID keys)"
+   ],
+   "output": "{\n  \"Screens (4 tabs at the bottom, big tap targets)\": [\n    \"Meal prep card appears after 'Accept week' or on request with 'Make prep plan' once some meals are kept.\",\n    \"The meal prep card summary line reads like 'Sunday prep · ~75 min · covers 9 meals'.\",\n    \"Prep sessions are checklists that either of you can tick off live.\",\n    \"Tasks in prep sessions come in a sensible order so oven and stovetop jobs run side by side for example: 'Put the oven on and roast veg for Mon–Wed.' and 'While that's in, cook rice for 3 lunches and make the tahini sauce.' and 'Marinate the chicken for Tuesday.' for example.\"\n  ],\n  \"Cooking nights + calendar feed (build step 8.5, after the meal prep guide)\": [\n    \"The `mealPlan` data model gets a `cookMemberId?` indicating who is cooking that meal.\",\n    \"Only dinners have a cook in the `mealPlan` data model.\",\n    \"The `households` data model gets `defaultCooks` which maps days of the week to a `memberId?`.\",\n    \"A new dinner takes the default cook for its day, and each dinner can be changed in the `households` data model `dinnerTime` which defaults to 19:00.\"\n  ],\n  \"Push notifications (`convex/push.ts`, with a `web-push` action and VAPID keys)\": [\n    \"Push notifications work on iPhone (iOS 16.4+) only once the app is installed to the home screen.\",\n    \"Partner changes group messages so there is no spam, for example, 'Rory added 4 items to the list' or 'Rory planned Thursday dinner' are sent after 2 minutes with no further changes, using a Convex scheduled function, and you are never notified about your own changes.\"\n  ]\n}",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 43.06,
+    "load_s": 0.02,
+    "prompt_tokens": 1640,
+    "output_tokens": 426,
+    "tok_per_s": 19.7,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.6
+   }
+  },
+  {
+   "step": "extract",
+   "sections": [
+    "Claude integration (`convex/ai.ts`, a Node server function)"
+   ],
+   "output": "{\n  \"Claude integration (`convex/ai.ts`, a Node server function)\": [\n    \"The Claude integration uses the `@anthropic-ai/sdk` with structured output for valid, typed recipes.\",\n    \"The system prompt always includes the gluten rule requiring Claude to set `glutenRisk` for every ingredient.\",\n    \"The system prompt also includes the household taste profile summary and dislikes.\",\n    \"The system prompt includes the top-rated and low-rated recipe titles and the pantry's \\\"use soon\\\" items and region and current month for seasonality and units and servings and recently cooked titles to avoid repeats and nutrition guidance: balanced plates and vegetables in every meal.\"\n  ]\n}",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 27.48,
+    "load_s": 0.01,
+    "prompt_tokens": 1592,
+    "output_tokens": 147,
+    "tok_per_s": 20.6,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.8
+   }
+  },
+  {
+   "step": "extract",
+   "sections": [
+    "Shopping list build (`convex/shopping.ts`)",
+    "Project layout",
+    "Build order",
+    "Native iOS wrapper (tentative, not committed)",
+    "Keeping the build efficient (Claude Code token use)",
+    "Later (not in v1)"
+   ],
+   "output": "{\n  \"Shopping list build (`convex/shopping.ts`)\": [\n    \"The shopping list build uses the week's plan entries multiplied by a scale factor.\",\n    \"The scale factor is planned servings divided by recipe servings to combine ingredients by `canonical`.\"\n  ],\n  \"Project layout\": [\n    \"The project layout includes directories for `app/(tabs)/week`, `recipes`, `recipes/[id]`, `recipes/[id]/cook`, `shop`, `create/{generate,import,plan}`, `app/join/[code]`, `app/settings`, and `app/manifest.ts`.\",\n    \"The project layout includes components like `RecipeCard`, `IngredientList`, `StepCard`, `TimerStrip`, `WeekGrid`, `ShopItem`, and `SyncDot` in `components/`.\"\n    ],\n  \"Build order\": [\n    \"The first step is to set up the project with Next.js, Tailwind, shadcn, Convex, Convex Auth (magic link + Google), households and invite codes, the installable-app manifest and icons, a Vercel project, and `ANTHROPIC_API_KEY` and `AUTH_RESEND_KEY` stored in Convex env.\",\n    \"The second step is to build the shopping list, which involves ticking, adding, and clearing with instant updates, the connection dot, and the screen-awake lock.\",\n    \"The third step is to build the recipe library, which includes manual entry, the recipe page with ingredients first, and the servings scaler.\",\n    \"The fourth step is to build the week calendar, which includes breakfast (optional, repeatable), lunch and dinner, plus the 'Build shopping list' feature which combines and tests the list.\"\n    ],\n  \"Native iOS wrapper (tentative, not committed)\": [\n    \"The native iOS wrapper will wrap the existing app with Capacitor.\",\n    \"The native iOS wrapper will add a small Swift plugin for AlarmKit (iOS 26+) to start real system timers for Cook-mode and prep timer chips.\",\n    \"The native iOS wrapper will run on the phone, so no signal is needed for the timers.\",\n    \"All code is written on Windows, and the iOS build runs in the cloud on Codemagic.\"\n    ],\n  \"Keeping the build efficient (Claude Code token use)\": [\n    \"The build process should use official generators like `create-next-app`, `npx convex dev`, `shadcn add`, and `@convex-dev/auth` init instead of writing boilerplate by hand.\",\n    \"The build process should use no subagents and only one browser check per milestone, reading screen state as text rather than screenshots unless it is a visual check.\"\n    ],\n  \"Later (not in v1)\": [\n    \"Later features include leftovers and batch cooking, aisle order per store, a durable offline outbox, and AI images.\"\n  ]\n}",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 52.95,
+    "load_s": 0.03,
+    "prompt_tokens": 1694,
+    "output_tokens": 631,
+    "tok_per_s": 21.9,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.7
+   }
+  },
+  {
+   "step": "extract",
+   "sections": [
+    "Accounts / keys you'll need",
+    "Verification"
+   ],
+   "output": "{\n  \"Accounts / keys you'll need\": [\n    \"Convex is free.\",\n    \"Vercel is free for accounts and keys to use.\"\n  ],\n  \"Verification\": [\n    \"Unit tests use Vitest for combining and unit conversion.\",\n    \"Unit tests detect timer detection from step text.\",\n    \"The rule that glutenFree is derived from glutenRisk is used in unit tests.\",\n    \"A fixed set of 10 prompts and imports must return correct glutenRisk flags for gluten checks.\"\n  ]\n}",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 18.84,
+    "load_s": 0.01,
+    "prompt_tokens": 878,
+    "output_tokens": 119,
+    "tok_per_s": 19.3,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.3
+   }
+  },
+  {
+   "step": "plan",
+   "output": "{\n  \"title\": \"Recipe Planning Application\",\n  \"summary\": \"The GRKN is an application designed to help partners decide what to cook each week and find new, nutritious recipes. It manages household details, meal planning, and shopping list creation through a connected backend.\",\n  \"key_facts\": [\n    \"F1\",\n    \"F3\",\n    \"F5\",\n    \"F6\",\n    \"F11\",\n    \"F22\",\n    \"F26\",\n    \"F31\",\n    \"F36\",\n    \"F43\"\n  ],\n  \"concepts\": [\n    {\n      \"name\": \"Convex Sync\",\n      \"how\": \"The backend and synchronization are handled by Convex, ensuring that every query updates live on both phones.\",\n      \"facts\": [\n        \"F5\",\n        \"F6\"\n      ]\n    },\n    {\n      \"name\": \"Recipe Generation Integration\",\n      \"how\": \"The system uses the Claude integration with structured output to generate valid, typed recipes, incorporating rules about gluten risk and household taste profiles.\",\n      \"facts\": [\n        \"F22\",\n        \"F23\",\n        \"F24\"\n      ]\n    },\n    {\n      \"name\": \"Dynamic Viewport Layout\",\n      \"how\": \"The layout utilizes dynamic viewport height to ensure the Safari toolbar never cuts off content, and the app avoids the notch and home bar using viewport-fit=cover.\",\n      \"facts\": [\n        \"F8\",\n        \"F9\"\n      ]\n    },\n    {\n      \"name\": \"Shopping List Scaling\",\n      \"how\": \"The shopping list is built by multiplying the week's plan entries by a scale factor, which is calculated by dividing planned servings by recipe servings to combine ingredients by canonical units.\",\n      \"facts\": [\n        \"F25\",\n        \"F26\"\n      ]\n    }\n  ]\n}",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 41.98,
+    "load_s": 0.02,
+    "prompt_tokens": 1460,
+    "output_tokens": 442,
+    "tok_per_s": 19.5,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 3.0
+   }
+  }
+ ],
+ "rejected": [
+  {
+   "section": "Getting sync right (why this won't repeat the Firebase problem)",
+   "fact": "Ticks set a value; they don't flip it. The tick action is `setChecked(itemId, checked: boolean)`, not \"toggle\". If you both tap the same item, the result is still correct and stable. Instant feedback: every tick, add and reorder shows on screen immediately and then syncs. Server-side list building: combining the week's recipes into a shopping list happens in one transactional step on the server. Rebuilding the list keeps ticked items, manual items and edits, and only adds, removes or adjusts the items that came from recipes. Connection indicator: a small dot shows \"Live / Reconnecting / Offline – changes will sync\". Changes made while offline are held and sent when you reconnect. In the store: the shopping screen keeps the phone awake, ticked items drop to the bottom of their aisle, and each tick shows who made it (\"✓ by Rory\").",
+   "reason": "too long"
+  },
+  {
+   "section": "Data model (`convex/schema.ts`)",
+   "fact": "The `invites` document has fields: `householdId`, `code`, and `expiresAt`. The `recipes` document has fields: `householdId`, `title`, `description`, `servings`, `prepMin`, `cookMin`, `tags[]`, `cuisine`, `source` (with kind: generated|url|instagram|photo|manual, url?), `glutenFree`, `glutenNotes?`, `ingredients[]` (with id, qty, unit, name, canonical, aisle, note?, optional?, glutenRisk, gfSwap?), `steps[]` (with id, text, timers[] {label, seconds}, ingredientIds[]), and `nutritionPerServing` (with kcal, protein, carbs, fat, fibre).",
+   "reason": "too long"
+  },
+  {
+   "section": "Data model (`convex/schema.ts`)",
+   "fact": "The `ratings` document has fields: `recipeId`, `userId`, `stars` (1–5), `wouldCookAgain`, `comment?`, and `cookedAt`. The `tasteProfile` document has fields: `likes[]` and `dislikes[]` (ingredients or cuisines), `spiceLevel`, `notes`, and `summary`. The `summary` is rewritten by Claude from ratings, comments and dislikes every few ratings and is included in every generation prompt. The `pantry` document has fields: `householdId`, `name`, `canonical`, `qty?`, `unit?`, `useSoon` (boolean), and `addedAt). Ticking a shopping item can move it into the pantry (optional). \"Mark recipe cooked\" offers to remove the pantry items it used up.",
+   "reason": "too long"
+  },
+  {
+   "section": "Screens (4 tabs at the bottom, big tap targets)",
+   "fact": "Tasks in prep sessions come in a sensible order so oven and stovetop jobs run side by side for example: 'Put the oven on and roast veg for Mon–Wed.' and 'While that's in, cook rice for 3 lunches and make the tahini sauce.' and 'Marinate the chicken for Tuesday.' for example.",
+   "reason": "too long"
+  },
+  {
+   "section": "Push notifications (`convex/push.ts`, with a `web-push` action and VAPID keys)",
+   "fact": "Partner changes group messages so there is no spam, for example, 'Rory added 4 items to the list' or 'Rory planned Thursday dinner' are sent after 2 minutes with no further changes, using a Convex scheduled function, and you are never notified about your own changes.",
+   "reason": "too long"
+  },
+  {
+   "section": "Claude integration (`convex/ai.ts`, a Node server function)",
+   "fact": "The system prompt includes the top-rated and low-rated recipe titles and the pantry's \"use soon\" items and region and current month for seasonality and units and servings and recently cooked titles to avoid repeats and nutrition guidance: balanced plates and vegetables in every meal.",
+   "reason": "too long"
+  },
+  {
+   "section": "Build order",
+   "fact": "The first step is to set up the project with Next.js, Tailwind, shadcn, Convex, Convex Auth (magic link + Google), households and invite codes, the installable-app manifest and icons, a Vercel project, and `ANTHROPIC_API_KEY` and `AUTH_RESEND_KEY` stored in Convex env.",
+   "reason": "too long"
+  },
+  {
+   "section": "Accounts / keys you'll need",
+   "fact": "Convex is free.",
+   "reason": "too short"
+  }
+ ],
+ "problems": [
+  "extract: invalid JSON for sections ['Screens (4 tabs at the bottom, big tap targets)']"
+ ],
+ "seconds": 361.1,
+ "result": {
+  "raw": "raw/PLAN.md",
+  "sha256": "8c56999515ddf126b44bd0dd39b70f77a9158e7f52f38c22f5cd1d0cd3c9c6f2",
+  "page": "Recipe Planning Application",
+  "summary": "The GRKN is an application designed to help partners decide what to cook each week and find new, nutritious recipes. It manages household details, meal planning, and shopping list creation through a connected backend.",
+  "key_points": [
+   {
+    "section": "Plan: The GRKN – shared meal-planning app for two",
+    "fact": "App name is The GRKN."
+   },
+   {
+    "section": "Context",
+    "fact": "The app addresses the problem of partners deciding what to cook each week."
+   },
+   {
+    "section": "Decisions (confirmed)",
+    "fact": "Backend and sync is Convex."
+   },
+   {
+    "section": "Decisions (confirmed)",
+    "fact": "Every query updates live on both phones with Convex."
+   },
+   {
+    "section": "Getting sync right (why this won't repeat the Firebase problem)",
+    "fact": "Each shopping item is its own document."
+   },
+   {
+    "section": "Claude integration (`convex/ai.ts`, a Node server function)",
+    "fact": "The Claude integration uses the `@anthropic-ai/sdk` with structured output for valid, typed recipes."
+   },
+   {
+    "section": "Shopping list build (`convex/shopping.ts`)",
+    "fact": "The scale factor is planned servings divided by recipe servings to combine ingredients by `canonical`."
+   },
+   {
+    "section": "Build order",
+    "fact": "The fourth step is to build the week calendar, which includes breakfast (optional, repeatable), lunch and dinner, plus the 'Build shopping list' feature which combines and tests the list."
+   },
+   {
+    "section": "Keeping the build efficient (Claude Code token use)",
+    "fact": "The build process should use official generators like `create-next-app`, `npx convex dev`, `shadcn add`, and `@convex-dev/auth` init instead of writing boilerplate by hand."
+   },
+   {
+    "section": "Verification",
+    "fact": "A fixed set of 10 prompts and imports must return correct glutenRisk flags for gluten checks."
+   }
+  ],
+  "facts": [
+   {
+    "section": "Plan: The GRKN – shared meal-planning app for two",
+    "fact": "App name is The GRKN."
+   },
+   {
+    "section": "Plan: The GRKN – shared meal-planning app for two",
+    "fact": "The GRKN is used in the manifest, page titles, home-screen icon label (\"GRKN\"), invite emails, and push notifications."
+   },
+   {
+    "section": "Context",
+    "fact": "The app addresses the problem of partners deciding what to cook each week."
+   },
+   {
+    "section": "Context",
+    "fact": "The app addresses the problem of struggling to find new recipes that are good and nutritious for cooking each week."
+   },
+   {
+    "section": "Decisions (confirmed)",
+    "fact": "Backend and sync is Convex."
+   },
+   {
+    "section": "Decisions (confirmed)",
+    "fact": "Every query updates live on both phones with Convex."
+   },
+   {
+    "section": "iPhone-first UI rules (built in from day one, never added later)",
+    "fact": "Screen fit opens full screen from the home screen using standard iOS home-screen app settings."
+   },
+   {
+    "section": "iPhone-first UI rules (built in from day one, never added later)",
+    "fact": "Content avoids the notch and home bar using viewport-fit=cover."
+   },
+   {
+    "section": "iPhone-first UI rules (built in from day one, never added later)",
+    "fact": "Layout uses the dynamic viewport height so the Safari toolbar never cuts off content."
+   },
+   {
+    "section": "iPhone-first UI rules (built in from day one, never added later)",
+    "fact": "Background bounce is locked so pull-to-refresh cannot fight with scrolling."
+   },
+   {
+    "section": "Getting sync right (why this won't repeat the Firebase problem)",
+    "fact": "Each shopping item is its own document."
+   },
+   {
+    "section": "Data model (`convex/schema.ts`)",
+    "fact": "The `households` document has fields: `name`, `glutenFreeDefault`, `region/country` (for what's in season), `units` (metric), and `defaultServings)."
+   },
+   {
+    "section": "Data model (`convex/schema.ts`)",
+    "fact": "The `members` document has fields: `householdId`, `userId`, `displayName`, and `glutenFree` (boolean)."
+   },
+   {
+    "section": "Screens (4 tabs at the bottom, big tap targets)",
+    "fact": "Meal prep card appears after 'Accept week' or on request with 'Make prep plan' once some meals are kept."
+   },
+   {
+    "section": "Screens (4 tabs at the bottom, big tap targets)",
+    "fact": "The meal prep card summary line reads like 'Sunday prep · ~75 min · covers 9 meals'."
+   },
+   {
+    "section": "Screens (4 tabs at the bottom, big tap targets)",
+    "fact": "Prep sessions are checklists that either of you can tick off live."
+   },
+   {
+    "section": "Cooking nights + calendar feed (build step 8.5, after the meal prep guide)",
+    "fact": "The `mealPlan` data model gets a `cookMemberId?` indicating who is cooking that meal."
+   },
+   {
+    "section": "Cooking nights + calendar feed (build step 8.5, after the meal prep guide)",
+    "fact": "Only dinners have a cook in the `mealPlan` data model."
+   },
+   {
+    "section": "Cooking nights + calendar feed (build step 8.5, after the meal prep guide)",
+    "fact": "The `households` data model gets `defaultCooks` which maps days of the week to a `memberId?`."
+   },
+   {
+    "section": "Cooking nights + calendar feed (build step 8.5, after the meal prep guide)",
+    "fact": "A new dinner takes the default cook for its day, and each dinner can be changed in the `households` data model `dinnerTime` which defaults to 19:00."
+   },
+   {
+    "section": "Push notifications (`convex/push.ts`, with a `web-push` action and VAPID keys)",
+    "fact": "Push notifications work on iPhone (iOS 16.4+) only once the app is installed to the home screen."
+   },
+   {
+    "section": "Claude integration (`convex/ai.ts`, a Node server function)",
+    "fact": "The Claude integration uses the `@anthropic-ai/sdk` with structured output for valid, typed recipes."
+   },
+   {
+    "section": "Claude integration (`convex/ai.ts`, a Node server function)",
+    "fact": "The system prompt always includes the gluten rule requiring Claude to set `glutenRisk` for every ingredient."
+   },
+   {
+    "section": "Claude integration (`convex/ai.ts`, a Node server function)",
+    "fact": "The system prompt also includes the household taste profile summary and dislikes."
+   },
+   {
+    "section": "Shopping list build (`convex/shopping.ts`)",
+    "fact": "The shopping list build uses the week's plan entries multiplied by a scale factor."
+   },
+   {
+    "section": "Shopping list build (`convex/shopping.ts`)",
+    "fact": "The scale factor is planned servings divided by recipe servings to combine ingredients by `canonical`."
+   },
+   {
+    "section": "Project layout",
+    "fact": "The project layout includes directories for `app/(tabs)/week`, `recipes`, `recipes/[id]`, `recipes/[id]/cook`, `shop`, `create/{generate,import,plan}`, `app/join/[code]`, `app/settings`, and `app/manifest.ts`."
+   },
+   {
+    "section": "Project layout",
+    "fact": "The project layout includes components like `RecipeCard`, `IngredientList`, `StepCard`, `TimerStrip`, `WeekGrid`, `ShopItem`, and `SyncDot` in `components/`."
+   },
+   {
+    "section": "Build order",
+    "fact": "The second step is to build the shopping list, which involves ticking, adding, and clearing with instant updates, the connection dot, and the screen-awake lock."
+   },
+   {
+    "section": "Build order",
+    "fact": "The third step is to build the recipe library, which includes manual entry, the recipe page with ingredients first, and the servings scaler."
+   },
+   {
+    "section": "Build order",
+    "fact": "The fourth step is to build the week calendar, which includes breakfast (optional, repeatable), lunch and dinner, plus the 'Build shopping list' feature which combines and tests the list."
+   },
+   {
+    "section": "Native iOS wrapper (tentative, not committed)",
+    "fact": "The native iOS wrapper will wrap the existing app with Capacitor."
+   },
+   {
+    "section": "Native iOS wrapper (tentative, not committed)",
+    "fact": "The native iOS wrapper will add a small Swift plugin for AlarmKit (iOS 26+) to start real system timers for Cook-mode and prep timer chips."
+   },
+   {
+    "section": "Native iOS wrapper (tentative, not committed)",
+    "fact": "The native iOS wrapper will run on the phone, so no signal is needed for the timers."
+   },
+   {
+    "section": "Native iOS wrapper (tentative, not committed)",
+    "fact": "All code is written on Windows, and the iOS build runs in the cloud on Codemagic."
+   },
+   {
+    "section": "Keeping the build efficient (Claude Code token use)",
+    "fact": "The build process should use official generators like `create-next-app`, `npx convex dev`, `shadcn add`, and `@convex-dev/auth` init instead of writing boilerplate by hand."
+   },
+   {
+    "section": "Keeping the build efficient (Claude Code token use)",
+    "fact": "The build process should use no subagents and only one browser check per milestone, reading screen state as text rather than screenshots unless it is a visual check."
+   },
+   {
+    "section": "Later (not in v1)",
+    "fact": "Later features include leftovers and batch cooking, aisle order per store, a durable offline outbox, and AI images."
+   },
+   {
+    "section": "Accounts / keys you'll need",
+    "fact": "Vercel is free for accounts and keys to use."
+   },
+   {
+    "section": "Verification",
+    "fact": "Unit tests use Vitest for combining and unit conversion."
+   },
+   {
+    "section": "Verification",
+    "fact": "Unit tests detect timer detection from step text."
+   },
+   {
+    "section": "Verification",
+    "fact": "The rule that glutenFree is derived from glutenRisk is used in unit tests."
+   },
+   {
+    "section": "Verification",
+    "fact": "A fixed set of 10 prompts and imports must return correct glutenRisk flags for gluten checks."
+   }
+  ],
+  "concepts": [
+   "Convex Sync",
+   "Recipe Generation Integration",
+   "Dynamic Viewport Layout",
+   "Shopping List Scaling"
+  ],
+  "model": "gemma4:e2b-it-qat",
+  "ingested": "2026-09-29T17:45:44"
+ }
+}

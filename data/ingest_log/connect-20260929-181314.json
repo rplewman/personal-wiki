@@ -1,0 +1,701 @@
+{
+ "started": "2026-09-29T18:07:52",
+ "model": "gemma4:e2b-it-qat",
+ "calls": [
+  {
+   "step": "themes",
+   "output": "{\n  \"themes\": [\n    {\n      \"name\": \"Data Aggregation\",\n      \"query\": \"Data aggregation technique or source\"\n    },\n    {\n      \"name\": \"State Persistence\",\n      \"query\": \"Draft state persistence or data storage\"\n    },\n    {\n      \"name\": \"Context Summary\",\n      \"query\": \"Daily context summary or plan adjustment\"\n    },\n    {\n      \"name\": \"Integration Layer\",\n      \"query\": \"Intelligent layer between data and plan\"\n    }\n  ]\n}",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 22.42,
+    "load_s": 11.69,
+    "prompt_tokens": 361,
+    "output_tokens": 126,
+    "tok_per_s": 27.6,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.5
+   }
+  },
+  {
+   "step": "verify",
+   "theme": "Data Aggregation",
+   "query": "Data aggregation technique or source",
+   "output": "{\"Draft Copilot\": {\"facts\": [\"F2\", \"F3\"], \"how\": \"Draft Copilot deals with data aggregation by blending FantasyPros consensus and ESPN Field Yates PPR rankings to provide recommendations.\"}, \"The GRKN\": {\"facts\": [\"F7\", \"F9\"], \"how\": \"The GRKN deals with data aggregation by having a data model that maps days of the week to member IDs and updates live queries across phones.\"}, \"Breakaway Project\": {\"facts\": [\"F11\", \"F12\", \"F13\", \"F14\"], \"how\": \"Breakaway Project is a data aggregator across wearable platforms and functions as an intelligent data aggregator and plan adjuster using data from sources like Strava and Whoop.\"}}",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 12.89,
+    "load_s": 0.02,
+    "prompt_tokens": 413,
+    "output_tokens": 155,
+    "tok_per_s": 26.5,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.1
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Data Aggregation",
+   "project": "Draft Copilot",
+   "fact": "The rankings blend FantasyPros consensus and ESPN Field Yates PPR rankings.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 4.68,
+    "load_s": 0.03,
+    "prompt_tokens": 152,
+    "output_tokens": 11,
+    "tok_per_s": 32.7,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.0
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Data Aggregation",
+   "project": "Draft Copilot",
+   "fact": "The app tracked every pick in real time and recommended who to take next.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 5.39,
+    "load_s": 0.02,
+    "prompt_tokens": 154,
+    "output_tokens": 11,
+    "tok_per_s": 24.1,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.0
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Data Aggregation",
+   "project": "The GRKN",
+   "fact": "The `households` data model gets `defaultCooks` which maps days of the week to a `memberId?`.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 5.5,
+    "load_s": 0.02,
+    "prompt_tokens": 165,
+    "output_tokens": 11,
+    "tok_per_s": 24.1,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.0
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Data Aggregation",
+   "project": "The GRKN",
+   "fact": "Every query updates live on both phones with Convex.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 5.11,
+    "load_s": 0.03,
+    "prompt_tokens": 149,
+    "output_tokens": 11,
+    "tok_per_s": 28.6,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.1
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Data Aggregation",
+   "project": "Breakaway Project",
+   "fact": "Strava acts as a universal aggregator for training data.",
+   "output": "{\"answer\": \"yes\", \"quote\": \"Strava acts as a universal aggregator for training data.\"}",
+   "kept": true,
+   "reason": null,
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 5.86,
+    "load_s": 0.02,
+    "prompt_tokens": 150,
+    "output_tokens": 23,
+    "tok_per_s": 22.9,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.1
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Data Aggregation",
+   "project": "Breakaway Project",
+   "fact": "Breakaway IS a data aggregator across wearable platforms.",
+   "output": "{\"answer\": \"yes\", \"quote\": \"Breakaway IS a data aggregator across wearable platforms.\"}",
+   "kept": true,
+   "reason": null,
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 5.95,
+    "load_s": 0.02,
+    "prompt_tokens": 149,
+    "output_tokens": 22,
+    "tok_per_s": 22.0,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.1
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Data Aggregation",
+   "project": "Breakaway Project",
+   "fact": "Breakaway is an intelligent data aggregator and plan adjuster.",
+   "output": "{\"answer\": \"yes\", \"quote\": \"Breakaway is an intelligent data aggregator and plan adjuster.\"}",
+   "kept": true,
+   "reason": null,
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 5.93,
+    "load_s": 0.02,
+    "prompt_tokens": 150,
+    "output_tokens": 23,
+    "tok_per_s": 22.6,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.1
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Data Aggregation",
+   "project": "Breakaway Project",
+   "fact": "Whoop is the primary source for HRV / Recovery data.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 5.51,
+    "load_s": 0.01,
+    "prompt_tokens": 151,
+    "output_tokens": 11,
+    "tok_per_s": 24.4,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.2
+   }
+  },
+  {
+   "step": "verify",
+   "theme": "State Persistence",
+   "query": "Draft state persistence or data storage",
+   "output": "{\n  \"Draft Copilot\": {\n    \"facts\": [\n      \"F1\"\n    ],\n    \"how\": \"Draft Copilot deals with state persistence by saving the draft ID and slot to `localStorage` to fix a bug.\"\n  },\n  \"The GRKN\": {\n    \"facts\": [\n      \"F6\"\n    ],\n    \"how\": \"The GRKN relates to state persistence by having the `households` data model include `defaultCooks` which maps days of the week to a `memberId?`.\"\n  },\n  \"Breakaway Project\": {\n    \"facts\": [\n      \"F11\",\n      \"F12\",\n      \"F15\"\n    ],\n    \"how\": \"Breakaway Project deals with state persistence through the Athlete Profile population and storage, which serves as the seed for the Athlete Data Layer, a structured, queryable store of every input and training ride.\"\n  }\n}",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 20.21,
+    "load_s": 0.02,
+    "prompt_tokens": 439,
+    "output_tokens": 213,
+    "tok_per_s": 20.0,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.2
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "State Persistence",
+   "project": "Draft Copilot",
+   "fact": "The 'Refresh reset the draft board' bug was fixed by saving the draft ID and slot to `localStorage`.",
+   "output": "{\"answer\": \"yes\", \"quote\": \"saving the draft ID and slot to `localStorage`\"}",
+   "kept": true,
+   "reason": null,
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 5.38,
+    "load_s": 0.01,
+    "prompt_tokens": 158,
+    "output_tokens": 22,
+    "tok_per_s": 24.5,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.1
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "State Persistence",
+   "project": "The GRKN",
+   "fact": "The `households` data model gets `defaultCooks` which maps days of the week to a `memberId?`.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 4.74,
+    "load_s": 0.02,
+    "prompt_tokens": 162,
+    "output_tokens": 11,
+    "tok_per_s": 28.1,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.1
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "State Persistence",
+   "project": "Breakaway Project",
+   "fact": "Athlete Profile population and storage is a must-have deliverable.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 5.35,
+    "load_s": 0.02,
+    "prompt_tokens": 149,
+    "output_tokens": 11,
+    "tok_per_s": 23.0,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.0
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "State Persistence",
+   "project": "Breakaway Project",
+   "fact": "The Athlete Profile is the seed of the Athlete Data Layer.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 5.32,
+    "load_s": 0.02,
+    "prompt_tokens": 148,
+    "output_tokens": 11,
+    "tok_per_s": 24.3,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.0
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "State Persistence",
+   "project": "Breakaway Project",
+   "fact": "The Athlete Data Layer is a structured, queryable store of every input and training ride.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 5.5,
+    "load_s": 0.05,
+    "prompt_tokens": 154,
+    "output_tokens": 11,
+    "tok_per_s": 24.1,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.1
+   }
+  },
+  {
+   "step": "verify",
+   "theme": "Context Summary",
+   "query": "Daily context summary or plan adjustment",
+   "output": "{\"Draft Copilot\": {\"facts\": [\"F5\"], \"how\": \"The Draft Copilot uses best available shows consensus rankings with anyone already drafted by any team removed to inform its recommendations.\"}, \"The GRKN\": {\"facts\": [\"F6\", \"F8\"], \"how\": \"The GRKN includes a meal prep card summary line and a system prompt that incorporates the household taste profile summary and dislikes.\"}, \"Breakaway Project\": {\"facts\": [\"F11\", \"F12\", \"F13\", \"F14\", \"F15\"], \"how\": \"The Breakaway Project passes daily and weekly context summary objects to Claude for plan review, coaching note generation, and nightly recomputation of various context summaries.\"}}",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 13.83,
+    "load_s": 0.01,
+    "prompt_tokens": 486,
+    "output_tokens": 152,
+    "tok_per_s": 26.3,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.1
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Context Summary",
+   "project": "Draft Copilot",
+   "fact": "Best Available shows consensus rankings with anyone already drafted by any team removed.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 5.38,
+    "load_s": 0.01,
+    "prompt_tokens": 150,
+    "output_tokens": 11,
+    "tok_per_s": 24.2,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.0
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Context Summary",
+   "project": "The GRKN",
+   "fact": "The meal prep card summary line reads like 'Sunday prep · ~75 min · covers 9 meals'.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 5.51,
+    "load_s": 0.01,
+    "prompt_tokens": 158,
+    "output_tokens": 11,
+    "tok_per_s": 23.4,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 1.8
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Context Summary",
+   "project": "The GRKN",
+   "fact": "The system prompt also includes the household taste profile summary and dislikes.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 4.75,
+    "load_s": 0.02,
+    "prompt_tokens": 149,
+    "output_tokens": 11,
+    "tok_per_s": 31.6,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 1.7
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Context Summary",
+   "project": "Breakaway Project",
+   "fact": "The weekly_context summary object is passed to Claude for weekly plan review or adaptive replanning queries.",
+   "output": "{\"answer\": \"yes\", \"quote\": \"The weekly_context summary object is passed to Claude for weekly plan review or adaptive replanning queries.\"}",
+   "kept": true,
+   "reason": null,
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 5.47,
+    "load_s": 0.01,
+    "prompt_tokens": 156,
+    "output_tokens": 32,
+    "tok_per_s": 28.3,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 1.7
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Context Summary",
+   "project": "Breakaway Project",
+   "fact": "The daily_context summary object is passed to Claude every morning for coaching note generation.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 5.41,
+    "load_s": 0.03,
+    "prompt_tokens": 153,
+    "output_tokens": 11,
+    "tok_per_s": 23.8,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 1.7
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Context Summary",
+   "project": "Breakaway Project",
+   "fact": "Background jobs recompute context_summaries nightly, including daily_context, weekly_context, race_context, memory_digest, and nutrition_context.",
+   "output": "{\"answer\": \"yes\", \"quote\": \"Background jobs recompute context_summaries nightly, including daily_context, weekly_context, race_context, memory_digest, and nutrition_context.\"}",
+   "kept": true,
+   "reason": null,
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 6.46,
+    "load_s": 0.01,
+    "prompt_tokens": 168,
+    "output_tokens": 44,
+    "tok_per_s": 27.6,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 1.8
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Context Summary",
+   "project": "Breakaway Project",
+   "fact": "The daily context prompt is approximately 350–450 tokens regardless of underlying data.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 5.48,
+    "load_s": 0.01,
+    "prompt_tokens": 156,
+    "output_tokens": 11,
+    "tok_per_s": 22.5,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 1.8
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Context Summary",
+   "project": "Breakaway Project",
+   "fact": "The daily context object is estimated to use about 120 tokens and is recomputed nightly and is cached.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 5.52,
+    "load_s": 0.02,
+    "prompt_tokens": 159,
+    "output_tokens": 11,
+    "tok_per_s": 21.7,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 1.8
+   }
+  },
+  {
+   "step": "verify",
+   "theme": "Integration Layer",
+   "query": "Intelligent layer between data and plan",
+   "output": "{\"Draft Copilot\": {\"facts\": [\"F3\", \"F4\"], \"how\": \"Draft Copilot runs a small local web app alongside a live fantasy football draft to serve as a tool for a 12-team, full-PPR snake draft.\"}, \"The GRKN\": {\"facts\": [\"F6\", \"F7\", \"F8\"], \"how\": \"The GRKN uses data models like `mealPlan` and `households` to manage who cooks meals and maps default cooks to days of the week.\"}, \"Breakaway Project\": {\"facts\": [\"F11\", \"F12\", \"F15\"], \"how\": \"Breakaway Project aims to be the intelligent layer between wearable data and coaching plans, acting as an intelligent data aggregator and plan adjuster that translates data into actionable daily recommendations.\"}}",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 14.21,
+    "load_s": 0.02,
+    "prompt_tokens": 449,
+    "output_tokens": 172,
+    "tok_per_s": 25.6,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 1.6
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Integration Layer",
+   "project": "Draft Copilot",
+   "fact": "A small local web app ran alongside a live Sleeper fantasy football draft.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 5.6,
+    "load_s": 0.02,
+    "prompt_tokens": 151,
+    "output_tokens": 11,
+    "tok_per_s": 22.9,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 1.6
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Integration Layer",
+   "project": "Draft Copilot",
+   "fact": "The goal was a tool to use during a 12-team, full-PPR snake draft on Sleeper.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 5.56,
+    "load_s": 0.02,
+    "prompt_tokens": 161,
+    "output_tokens": 11,
+    "tok_per_s": 28.3,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 1.6
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Integration Layer",
+   "project": "The GRKN",
+   "fact": "The `mealPlan` data model gets a `cookMemberId?` indicating who is cooking that meal.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 5.54,
+    "load_s": 0.02,
+    "prompt_tokens": 158,
+    "output_tokens": 11,
+    "tok_per_s": 19.7,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 1.7
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Integration Layer",
+   "project": "The GRKN",
+   "fact": "Only dinners have a cook in the `mealPlan` data model.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 5.49,
+    "load_s": 0.02,
+    "prompt_tokens": 150,
+    "output_tokens": 11,
+    "tok_per_s": 22.8,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 1.7
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Integration Layer",
+   "project": "The GRKN",
+   "fact": "The `households` data model gets `defaultCooks` which maps days of the week to a `memberId?`.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 5.33,
+    "load_s": 0.02,
+    "prompt_tokens": 162,
+    "output_tokens": 11,
+    "tok_per_s": 28.0,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 1.7
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Integration Layer",
+   "project": "Breakaway Project",
+   "fact": "The vision is to be the intelligent layer between an athlete's wearable data and their coaching plan.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 5.35,
+    "load_s": 0.02,
+    "prompt_tokens": 156,
+    "output_tokens": 11,
+    "tok_per_s": 21.8,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 1.7
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Integration Layer",
+   "project": "Breakaway Project",
+   "fact": "Breakaway is an intelligent data aggregator and plan adjuster.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 4.38,
+    "load_s": 0.02,
+    "prompt_tokens": 147,
+    "output_tokens": 11,
+    "tok_per_s": 32.2,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 1.7
+   }
+  },
+  {
+   "step": "confirm",
+   "theme": "Integration Layer",
+   "project": "Breakaway Project",
+   "fact": "The missing layer sits above the data and translates it into a single, actionable daily recommendation tied to a specific race goal.",
+   "output": "{\"answer\": \"no\", \"quote\": \"\"}",
+   "kept": false,
+   "reason": "answered no",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 5.78,
+    "load_s": 0.02,
+    "prompt_tokens": 160,
+    "output_tokens": 11,
+    "tok_per_s": 23.2,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 1.7
+   }
+  }
+ ],
+ "themes": [
+  {
+   "name": "Data Aggregation",
+   "query": "Data aggregation technique or source",
+   "supported_by": [
+    "Breakaway Project"
+   ],
+   "kept": false
+  },
+  {
+   "name": "State Persistence",
+   "query": "Draft state persistence or data storage",
+   "supported_by": [
+    "Draft Copilot"
+   ],
+   "kept": false
+  },
+  {
+   "name": "Context Summary",
+   "query": "Daily context summary or plan adjustment",
+   "supported_by": [
+    "Breakaway Project"
+   ],
+   "kept": false
+  },
+  {
+   "name": "Integration Layer",
+   "query": "Intelligent layer between data and plan",
+   "supported_by": [],
+   "kept": false
+  }
+ ]
+}

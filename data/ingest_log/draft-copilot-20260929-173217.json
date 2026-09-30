@@ -1,0 +1,125 @@
+{
+ "source": "raw/Draft Copilot.md",
+ "sha256": "8173c4622e95a545be0749e116e33f51fd5dcbd66dcae23eb4b7eb2c784ce607",
+ "model": "gemma4:e2b-it-qat",
+ "started": "2026-09-29T17:30:40",
+ "calls": [
+  {
+   "step": "extract",
+   "sections": [
+    "Draft Copilot",
+    "Objective",
+    "Choosing the architecture",
+    "Rankings dataset",
+    "Features",
+    "The Value Model"
+   ],
+   "output": "{\n  \"facts\": [\n    {\n      \"section\": \"Draft Copilot\",\n      \"fact\": \"The Draft Copilot was a small local web app that ran alongside a live Sleeper fantasy football draft.\"\n    },\n    {\n      \"section\": \"Draft Copilot\",\n      \"fact\": \"The Draft Copilot was built in one session with Claude Code on September 2026.\"\n    },\n    {\n      \"section\": \"Objective\",\n      \"fact\": \"The goal was a tool for a 12-team, full-PPR snake draft on Sleeper.\"\n    },\n    {\n      \"section\": \"Choosing the architecture\",\n      \"fact\": \"Sleeper has a public, no-login JSON API for drafts.\"\n    },\n    {\n      \"section\": \"Choosing the architecture\",\n      \"fact\": \"The companion was built as a single index.html file with rankings data embedded.\"\n    }\n  ]\n}",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 44.3,
+    "load_s": 13.0,
+    "prompt_tokens": 1696,
+    "output_tokens": 217,
+    "tok_per_s": 23.6,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 0.7
+   }
+  },
+  {
+   "step": "extract",
+   "sections": [
+    "How the model evolved",
+    "Bugs Found and Fixed",
+    "Lessons"
+   ],
+   "output": "{\n  \"facts\": [\n    {\n      \"section\": \"How the model evolved\",\n      \"fact\": \"The first version of the model used `replacement_rank` minus `position_rank`.\"\n    },\n    {\n      \"section\": \"How the model evolved\",\n      \"fact\": \"The fix for the K/DST bug was to pin K and DST to the bottom.\"\n    },\n    {\n      \"section\": \"How the model evolved\",\n      \"fact\": \"After the blend fix, consensus rank is the main signal and scarcity only adds a 0.4-weighted nudge.\"\n    },\n    {\n      \"section\": \"Bugs Found and Fixed\",\n      \"fact\": \"The VALUE/REACH labels were reversed by changing the operation to `pick_no` minus `rank`.\"\n    },\n    {\n      \"section\": \"Lessons\",\n      \"fact\": \"A scarcity score that overrides talent gives confident but wrong answers.\"\n    }\n  ]\n}",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 23.08,
+    "load_s": 0.01,
+    "prompt_tokens": 1031,
+    "output_tokens": 222,
+    "tok_per_s": 24.5,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 0.6
+   }
+  },
+  {
+   "step": "plan",
+   "output": "{\n  \"title\": \"Draft Copilot Project\",\n  \"summary\": \"The Draft Copilot was a small local web application designed to assist users during a live Sleeper fantasy football draft. Its main goal was to serve as a tool for a 12-team, full-PPR snake draft on the Sleeper platform.\",\n  \"key_facts\": [\n    \"F1\",\n    \"F2\",\n    \"F3\",\n    \"F4\",\n    \"F5\",\n    \"F6\",\n    \"F7\",\n    \"F8\",\n    \"F9\",\n    \"F10\"\n  ],\n  \"concepts\": [\n    {\n      \"name\": \"JSON API Integration\",\n      \"how\": \"The Draft Copilot utilized Sleeper's public, no-login JSON API to access draft data.\",\n      \"facts\": [\n        \"F4\"\n      ]\n    },\n    {\n      \"name\": \"Single Index File\",\n      \"how\": \"The companion application was built as a single index.html file containing embedded rankings data.\",\n      \"facts\": [\n        \"F5\"\n      ]\n    },\n    {\n      \"name\": \"Replacement Rank Calculation\",\n      \"how\": \"The first version of the model calculated rankings using the formula `replacement_rank` minus `position_rank`.\",\n      \"facts\": [\n        \"F6\"\n      ]\n    },\n    {\n      \"name\": \"Scarcity Score Override\",\n      \"how\": \"A scarcity score that overrides talent provides confident but potentially incorrect answers.\",\n      \"facts\": [\n        \"F10\"\n      ]\n    }\n  ]\n}",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 23.52,
+    "load_s": 0.14,
+    "prompt_tokens": 504,
+    "output_tokens": 379,
+    "tok_per_s": 24.7,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 1.0
+   }
+  }
+ ],
+ "rejected": [],
+ "problems": [],
+ "seconds": 97.1,
+ "result": {
+  "raw": "raw/Draft Copilot.md",
+  "sha256": "8173c4622e95a545be0749e116e33f51fd5dcbd66dcae23eb4b7eb2c784ce607",
+  "page": "Draft Copilot Project",
+  "summary": "The Draft Copilot was a small local web application designed to assist users during a live Sleeper fantasy football draft. Its main goal was to serve as a tool for a 12-team, full-PPR snake draft on the Sleeper platform.",
+  "key_points": [
+   {
+    "section": "Draft Copilot",
+    "fact": "The Draft Copilot was a small local web app that ran alongside a live Sleeper fantasy football draft."
+   },
+   {
+    "section": "Draft Copilot",
+    "fact": "The Draft Copilot was built in one session with Claude Code on September 2026."
+   },
+   {
+    "section": "Objective",
+    "fact": "The goal was a tool for a 12-team, full-PPR snake draft on Sleeper."
+   },
+   {
+    "section": "Approach > Choosing the architecture",
+    "fact": "Sleeper has a public, no-login JSON API for drafts."
+   },
+   {
+    "section": "Approach > Choosing the architecture",
+    "fact": "The companion was built as a single index.html file with rankings data embedded."
+   },
+   {
+    "section": "The Value Model > How the model evolved",
+    "fact": "The first version of the model used `replacement_rank` minus `position_rank`."
+   },
+   {
+    "section": "The Value Model > How the model evolved",
+    "fact": "The fix for the K/DST bug was to pin K and DST to the bottom."
+   },
+   {
+    "section": "The Value Model > How the model evolved",
+    "fact": "After the blend fix, consensus rank is the main signal and scarcity only adds a 0.4-weighted nudge."
+   },
+   {
+    "section": "Bugs Found and Fixed",
+    "fact": "The VALUE/REACH labels were reversed by changing the operation to `pick_no` minus `rank`."
+   },
+   {
+    "section": "Lessons",
+    "fact": "A scarcity score that overrides talent gives confident but wrong answers."
+   }
+  ],
+  "concepts": [
+   "JSON API Integration",
+   "Single Index File",
+   "Replacement Rank Calculation",
+   "Scarcity Score Override"
+  ],
+  "model": "gemma4:e2b-it-qat",
+  "ingested": "2026-09-29T17:32:17"
+ }
+}

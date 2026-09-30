@@ -1,0 +1,63 @@
+# Ask-mode test questions. Kept outside vault/ so they never become retrievable evidence.
+# Each expected_passage was checked against the raw source text on 2026-09-29.
+# retrieval_must_contain: strings at least one of the top-k retrieved chunks must contain
+# (checked per source) before the model is involved at all.
+
+- id: T1
+  kind: direct-single-source
+  question: "What weights make up Breakaway's training readiness score?"
+  expected_sources: ["raw/Breakaway_PRD_v3.0.md"]
+  expected_section: "6.1 Training Readiness Score"
+  expected_passage: >
+    | Recovery / HRV | 45% | ... | Training Load Balance | 35% | ... |
+    Nutrition / Carb Availability | 20% |
+  retrieval_must_contain:
+    "raw/Breakaway_PRD_v3.0.md": ["45%", "35%", "20%"]
+  expected_behaviour: >
+    States recovery/HRV 45%, training load balance 35%, nutrition/carb availability 20%,
+    citing the Breakaway PRD.
+
+- id: T2
+  kind: paraphrased
+  question: "How quickly does the draft helper notice a new pick?"
+  expected_sources: ["raw/Draft Copilot.md"]
+  expected_section: "Features"
+  expected_passage: >
+    Live polling: the app fetches picks every 3 seconds. Sleeper's CDN caches the picks
+    endpoint for up to 30 seconds (s-maxage=30), so a new pick can take up to about
+    30 seconds to appear.
+  retrieval_must_contain:
+    "raw/Draft Copilot.md": ["every 3 seconds"]
+  expected_behaviour: >
+    Says it polls every 3 seconds but CDN caching means a pick can take up to ~30 seconds
+    to appear, citing Draft Copilot.
+
+- id: T3
+  kind: cross-source
+  question: "Which hosting platform comes up across my app projects, and did each one end up using it?"
+  expected_sources: ["raw/PLAN.md", "raw/Breakaway_PRD_v3.0.md", "raw/Draft Copilot.md"]
+  expected_section: "PLAN Decisions; PRD 10.1 Stack; Draft Copilot Choosing the architecture"
+  expected_passage: >
+    PLAN: "is hosted on Vercel". PRD: "Hosting | Vercel (frontend) + Railway (backend)".
+    Draft Copilot: "Vercel hosting was considered and dropped in favour of running it locally."
+  retrieval_must_contain:
+    "raw/PLAN.md": ["hosted on Vercel"]
+    "raw/Breakaway_PRD_v3.0.md": ["Vercel (frontend) + Railway (backend)"]
+    "raw/Draft Copilot.md": ["Vercel hosting was considered and dropped"]
+  expected_behaviour: >
+    Names Vercel. GRKN plans to host on Vercel; Breakaway plans Vercel for the frontend
+    and Railway for the backend; Draft Copilot considered Vercel but runs locally.
+    Cites all three sources and does not claim all three use Vercel.
+
+- id: T4
+  kind: unsupported
+  question: "What monthly subscription price was chosen for Breakaway?"
+  expected_sources: ["raw/Breakaway_PRD_v3.0.md"]
+  expected_section: "12.3 Key Decisions Still Open"
+  expected_passage: >
+    Pricing: free personal tool vs. freemium vs. $12–15/month subscription?
+  retrieval_must_contain:
+    "raw/Breakaway_PRD_v3.0.md": ["Pricing"]
+  expected_behaviour: >
+    Insufficient evidence: no price was chosen. Pricing is an open decision, and
+    $12–15/month is only one option. Must not present it as the chosen price.

@@ -1,0 +1,1141 @@
+{
+ "sources": {
+  "draft-copilot": {
+   "raw": "raw/Draft Copilot.md",
+   "sha256": "8173c4622e95a545be0749e116e33f51fd5dcbd66dcae23eb4b7eb2c784ce607",
+   "page": "Draft Copilot",
+   "summary": "This source describes a small local web application designed to assist users during a live 12-team, full-PPR snake fantasy football draft on Sleeper. The main goal of the tool is to provide real-time pick tracking and recommendations based on expert consensus rankings.",
+   "key_points": [
+    {
+     "section": "Draft Copilot",
+     "fact": "A small local web app ran alongside a live Sleeper fantasy football draft."
+    },
+    {
+     "section": "Draft Copilot",
+     "fact": "The app tracked every pick in real time and recommended who to take next."
+    },
+    {
+     "section": "Objective",
+     "fact": "The goal was a tool to use during a 12-team, full-PPR snake draft on Sleeper."
+    },
+    {
+     "section": "Objective",
+     "fact": "Recommendations should come from expert consensus rankings, not Sleeper's ADP."
+    },
+    {
+     "section": "Approach > Rankings dataset",
+     "fact": "The default rankings blend FantasyPros consensus and ESPN Field Yates PPR rankings."
+    },
+    {
+     "section": "Approach > Rankings dataset",
+     "fact": "A player on both lists gets FantasyPros_rank × 0.6 + ESPN_rank × 0.4, and the list is re-sorted by that blended score."
+    },
+    {
+     "section": "Features",
+     "fact": "The app fetches picks every 3 seconds."
+    },
+    {
+     "section": "Features",
+     "fact": "Sleeper's CDN caches the picks endpoint for up to 30 seconds."
+    },
+    {
+     "section": "Features",
+     "fact": "My Team and Needs tracker automatically detects your own picks and slots them into starting slots."
+    },
+    {
+     "section": "Lessons",
+     "fact": "Check for an API before building scraping or screenshot reading."
+    }
+   ],
+   "facts": [
+    {
+     "section": "Draft Copilot",
+     "fact": "A small local web app ran alongside a live Sleeper fantasy football draft."
+    },
+    {
+     "section": "Draft Copilot",
+     "fact": "The app tracked every pick in real time and recommended who to take next."
+    },
+    {
+     "section": "Objective",
+     "fact": "The goal was a tool to use during a 12-team, full-PPR snake draft on Sleeper."
+    },
+    {
+     "section": "Objective",
+     "fact": "Recommendations should come from expert consensus rankings, not Sleeper's ADP."
+    },
+    {
+     "section": "Approach > Choosing the architecture",
+     "fact": "A screenshot app was rejected because reading text from images is unreliable."
+    },
+    {
+     "section": "Approach > Choosing the architecture",
+     "fact": "The live companion was the easier option because Sleeper has a public, no-login JSON API for drafts."
+    },
+    {
+     "section": "Approach > Rankings dataset",
+     "fact": "The default rankings blend FantasyPros consensus and ESPN Field Yates PPR rankings."
+    },
+    {
+     "section": "Approach > Rankings dataset",
+     "fact": "A player on both lists gets FantasyPros_rank × 0.6 + ESPN_rank × 0.4, and the list is re-sorted by that blended score."
+    },
+    {
+     "section": "Features",
+     "fact": "The app fetches picks every 3 seconds."
+    },
+    {
+     "section": "Features",
+     "fact": "Sleeper's CDN caches the picks endpoint for up to 30 seconds."
+    },
+    {
+     "section": "Features",
+     "fact": "Best Available shows consensus rankings with anyone already drafted by any team removed."
+    },
+    {
+     "section": "Features",
+     "fact": "My Team and Needs tracker automatically detects your own picks and slots them into starting slots."
+    },
+    {
+     "section": "The Value Model",
+     "fact": "Raw consensus rank answers who is the better player, but not who is the better pick right now."
+    },
+    {
+     "section": "The Value Model",
+     "fact": "The value model adds position scarcity as a secondary nudge to the raw consensus rank."
+    },
+    {
+     "section": "The Value Model > How the model evolved",
+     "fact": "The first version used `replacement_rank − position_rank` alone."
+    },
+    {
+     "section": "The Value Model > How the model evolved",
+     "fact": "This first version answered the 2.10 question by favoring the RB11 over the TE1, but it let scarcity override real differences in talent."
+    },
+    {
+     "section": "Bugs Found and Fixed",
+     "fact": "The 'My Team' empty in mock drafts bug was caused by Sleeper leaving `roster_id` null on mock-draft picks."
+    },
+    {
+     "section": "Bugs Found and Fixed",
+     "fact": "The fix for the 'My Team' empty in mock drafts bug was to identify picks by `draft_slot`, which is set in both mock and real drafts."
+    },
+    {
+     "section": "Lessons",
+     "fact": "Check for an API before building scraping or screenshot reading."
+    },
+    {
+     "section": "Lessons",
+     "fact": "Test on a mock draft before relying on the app live."
+    }
+   ],
+   "concepts": [
+    "Expert Consensus Rankings",
+    "Caching",
+    "Value Model",
+    "API Pre-Check"
+   ],
+   "proposed_title": "Draft Copilot Source Note",
+   "model": "gemma4:e2b-it-qat",
+   "ingested": "2026-09-29T20:23:16"
+  },
+  "plan": {
+   "raw": "raw/PLAN.md",
+   "sha256": "8c56999515ddf126b44bd0dd39b70f77a9158e7f52f38c22f5cd1d0cd3c9c6f2",
+   "page": "The GRKN",
+   "summary": "The GRKN is an application designed to help partners decide what to cook each week and find new, nutritious recipes. It manages household details, meal planning, and shopping list creation through a connected backend.",
+   "key_points": [
+    {
+     "section": "Plan: The GRKN – shared meal-planning app for two",
+     "fact": "App name is The GRKN."
+    },
+    {
+     "section": "Context",
+     "fact": "The app addresses the problem of partners deciding what to cook each week."
+    },
+    {
+     "section": "Decisions (confirmed)",
+     "fact": "Backend and sync is Convex."
+    },
+    {
+     "section": "Decisions (confirmed)",
+     "fact": "Every query updates live on both phones with Convex."
+    },
+    {
+     "section": "Getting sync right (why this won't repeat the Firebase problem)",
+     "fact": "Each shopping item is its own document."
+    },
+    {
+     "section": "Claude integration (`convex/ai.ts`, a Node server function)",
+     "fact": "The Claude integration uses the `@anthropic-ai/sdk` with structured output for valid, typed recipes."
+    },
+    {
+     "section": "Shopping list build (`convex/shopping.ts`)",
+     "fact": "The scale factor is planned servings divided by recipe servings to combine ingredients by `canonical`."
+    },
+    {
+     "section": "Build order",
+     "fact": "The fourth step is to build the week calendar, which includes breakfast (optional, repeatable), lunch and dinner, plus the 'Build shopping list' feature which combines and tests the list."
+    },
+    {
+     "section": "Keeping the build efficient (Claude Code token use)",
+     "fact": "The build process should use official generators like `create-next-app`, `npx convex dev`, `shadcn add`, and `@convex-dev/auth` init instead of writing boilerplate by hand."
+    },
+    {
+     "section": "Verification",
+     "fact": "A fixed set of 10 prompts and imports must return correct glutenRisk flags for gluten checks."
+    }
+   ],
+   "facts": [
+    {
+     "section": "Plan: The GRKN – shared meal-planning app for two",
+     "fact": "App name is The GRKN."
+    },
+    {
+     "section": "Plan: The GRKN – shared meal-planning app for two",
+     "fact": "The GRKN is used in the manifest, page titles, home-screen icon label (\"GRKN\"), invite emails, and push notifications."
+    },
+    {
+     "section": "Context",
+     "fact": "The app addresses the problem of partners deciding what to cook each week."
+    },
+    {
+     "section": "Context",
+     "fact": "The app addresses the problem of struggling to find new recipes that are good and nutritious for cooking each week."
+    },
+    {
+     "section": "Decisions (confirmed)",
+     "fact": "Backend and sync is Convex."
+    },
+    {
+     "section": "Decisions (confirmed)",
+     "fact": "Every query updates live on both phones with Convex."
+    },
+    {
+     "section": "iPhone-first UI rules (built in from day one, never added later)",
+     "fact": "Screen fit opens full screen from the home screen using standard iOS home-screen app settings."
+    },
+    {
+     "section": "iPhone-first UI rules (built in from day one, never added later)",
+     "fact": "Content avoids the notch and home bar using viewport-fit=cover."
+    },
+    {
+     "section": "iPhone-first UI rules (built in from day one, never added later)",
+     "fact": "Layout uses the dynamic viewport height so the Safari toolbar never cuts off content."
+    },
+    {
+     "section": "iPhone-first UI rules (built in from day one, never added later)",
+     "fact": "Background bounce is locked so pull-to-refresh cannot fight with scrolling."
+    },
+    {
+     "section": "Getting sync right (why this won't repeat the Firebase problem)",
+     "fact": "Each shopping item is its own document."
+    },
+    {
+     "section": "Data model (`convex/schema.ts`)",
+     "fact": "The `households` document has fields: `name`, `glutenFreeDefault`, `region/country` (for what's in season), `units` (metric), and `defaultServings)."
+    },
+    {
+     "section": "Data model (`convex/schema.ts`)",
+     "fact": "The `members` document has fields: `householdId`, `userId`, `displayName`, and `glutenFree` (boolean)."
+    },
+    {
+     "section": "Screens (4 tabs at the bottom, big tap targets)",
+     "fact": "Meal prep card appears after 'Accept week' or on request with 'Make prep plan' once some meals are kept."
+    },
+    {
+     "section": "Screens (4 tabs at the bottom, big tap targets)",
+     "fact": "The meal prep card summary line reads like 'Sunday prep · ~75 min · covers 9 meals'."
+    },
+    {
+     "section": "Screens (4 tabs at the bottom, big tap targets)",
+     "fact": "Prep sessions are checklists that either of you can tick off live."
+    },
+    {
+     "section": "Cooking nights + calendar feed (build step 8.5, after the meal prep guide)",
+     "fact": "The `mealPlan` data model gets a `cookMemberId?` indicating who is cooking that meal."
+    },
+    {
+     "section": "Cooking nights + calendar feed (build step 8.5, after the meal prep guide)",
+     "fact": "Only dinners have a cook in the `mealPlan` data model."
+    },
+    {
+     "section": "Cooking nights + calendar feed (build step 8.5, after the meal prep guide)",
+     "fact": "The `households` data model gets `defaultCooks` which maps days of the week to a `memberId?`."
+    },
+    {
+     "section": "Cooking nights + calendar feed (build step 8.5, after the meal prep guide)",
+     "fact": "A new dinner takes the default cook for its day, and each dinner can be changed in the `households` data model `dinnerTime` which defaults to 19:00."
+    },
+    {
+     "section": "Push notifications (`convex/push.ts`, with a `web-push` action and VAPID keys)",
+     "fact": "Push notifications work on iPhone (iOS 16.4+) only once the app is installed to the home screen."
+    },
+    {
+     "section": "Claude integration (`convex/ai.ts`, a Node server function)",
+     "fact": "The Claude integration uses the `@anthropic-ai/sdk` with structured output for valid, typed recipes."
+    },
+    {
+     "section": "Claude integration (`convex/ai.ts`, a Node server function)",
+     "fact": "The system prompt always includes the gluten rule requiring Claude to set `glutenRisk` for every ingredient."
+    },
+    {
+     "section": "Claude integration (`convex/ai.ts`, a Node server function)",
+     "fact": "The system prompt also includes the household taste profile summary and dislikes."
+    },
+    {
+     "section": "Shopping list build (`convex/shopping.ts`)",
+     "fact": "The shopping list build uses the week's plan entries multiplied by a scale factor."
+    },
+    {
+     "section": "Shopping list build (`convex/shopping.ts`)",
+     "fact": "The scale factor is planned servings divided by recipe servings to combine ingredients by `canonical`."
+    },
+    {
+     "section": "Project layout",
+     "fact": "The project layout includes directories for `app/(tabs)/week`, `recipes`, `recipes/[id]`, `recipes/[id]/cook`, `shop`, `create/{generate,import,plan}`, `app/join/[code]`, `app/settings`, and `app/manifest.ts`."
+    },
+    {
+     "section": "Project layout",
+     "fact": "The project layout includes components like `RecipeCard`, `IngredientList`, `StepCard`, `TimerStrip`, `WeekGrid`, `ShopItem`, and `SyncDot` in `components/`."
+    },
+    {
+     "section": "Build order",
+     "fact": "The second step is to build the shopping list, which involves ticking, adding, and clearing with instant updates, the connection dot, and the screen-awake lock."
+    },
+    {
+     "section": "Build order",
+     "fact": "The third step is to build the recipe library, which includes manual entry, the recipe page with ingredients first, and the servings scaler."
+    },
+    {
+     "section": "Build order",
+     "fact": "The fourth step is to build the week calendar, which includes breakfast (optional, repeatable), lunch and dinner, plus the 'Build shopping list' feature which combines and tests the list."
+    },
+    {
+     "section": "Native iOS wrapper (tentative, not committed)",
+     "fact": "The native iOS wrapper will wrap the existing app with Capacitor."
+    },
+    {
+     "section": "Native iOS wrapper (tentative, not committed)",
+     "fact": "The native iOS wrapper will add a small Swift plugin for AlarmKit (iOS 26+) to start real system timers for Cook-mode and prep timer chips."
+    },
+    {
+     "section": "Native iOS wrapper (tentative, not committed)",
+     "fact": "The native iOS wrapper will run on the phone, so no signal is needed for the timers."
+    },
+    {
+     "section": "Native iOS wrapper (tentative, not committed)",
+     "fact": "All code is written on Windows, and the iOS build runs in the cloud on Codemagic."
+    },
+    {
+     "section": "Keeping the build efficient (Claude Code token use)",
+     "fact": "The build process should use official generators like `create-next-app`, `npx convex dev`, `shadcn add`, and `@convex-dev/auth` init instead of writing boilerplate by hand."
+    },
+    {
+     "section": "Keeping the build efficient (Claude Code token use)",
+     "fact": "The build process should use no subagents and only one browser check per milestone, reading screen state as text rather than screenshots unless it is a visual check."
+    },
+    {
+     "section": "Later (not in v1)",
+     "fact": "Later features include leftovers and batch cooking, aisle order per store, a durable offline outbox, and AI images."
+    },
+    {
+     "section": "Accounts / keys you'll need",
+     "fact": "Vercel is free for accounts and keys to use."
+    },
+    {
+     "section": "Verification",
+     "fact": "Unit tests use Vitest for combining and unit conversion."
+    },
+    {
+     "section": "Verification",
+     "fact": "Unit tests detect timer detection from step text."
+    },
+    {
+     "section": "Verification",
+     "fact": "The rule that glutenFree is derived from glutenRisk is used in unit tests."
+    },
+    {
+     "section": "Verification",
+     "fact": "A fixed set of 10 prompts and imports must return correct glutenRisk flags for gluten checks."
+    }
+   ],
+   "concepts": [
+    "Convex Sync",
+    "Recipe Generation Integration",
+    "Dynamic Viewport Layout",
+    "Shopping List Scaling"
+   ],
+   "model": "gemma4:e2b-it-qat",
+   "ingested": "2026-09-29T17:45:44",
+   "proposed_title": "Recipe Planning Application"
+  },
+  "breakaway-prd-v3-0": {
+   "raw": "raw/Breakaway_PRD_v3.0.md",
+   "sha256": "65f793acfa8172dde75ae11ec06e55c024cf4275767e966f68225a1a584ad7b2",
+   "page": "Breakaway Project",
+   "summary": "Breakaway is an intelligent data aggregator and plan adjuster designed to be the intelligent layer between an athlete's wearable data and their coaching plan. Its main goal is to make every serious amateur's training as adaptive and race-specific as if they had a professional coach reviewing their data every morning.",
+   "key_points": [
+    {
+     "section": "Breakaway — Product Requirements Document (v3.0)",
+     "fact": "Breakaway is an intelligent data aggregator and plan adjuster."
+    },
+    {
+     "section": "Version History > v3.0 Change Summary",
+     "fact": "Breakaway is positioned as a data aggregator and plan adjuster, not a from-scratch AI plan generator."
+    },
+    {
+     "section": "3. Product Vision & Goals > 3.1 Vision Statement",
+     "fact": "The vision is to be the intelligent layer between an athlete's wearable data and their coaching plan."
+    },
+    {
+     "section": "3. Product Vision & Goals > 3.3 What Breakaway Is and Is Not",
+     "fact": "Breakaway IS a data aggregator across wearable platforms."
+    },
+    {
+     "section": "3. Product Vision & Goals > 3.3 What Breakaway Is and Is Not",
+     "fact": "Breakaway IS a race-specific plan template adjuster."
+    },
+    {
+     "section": "6. Daily Coaching Experience > 6.1 Training Readiness Score",
+     "fact": "A single 0–100 score synthesises all available signals into one daily verdict."
+    },
+    {
+     "section": "7. Athlete Data Layer — The Technical Moat",
+     "fact": "The Athlete Data Layer is Breakaway’s most defensible asset."
+    },
+    {
+     "section": "7. Athlete Data Layer — The Technical Moat > 7.2 Data Layer Structure > context_summaries",
+     "fact": "The daily_context summary object is passed to Claude every morning for coaching note generation."
+    },
+    {
+     "section": "8. Race & Fuelling Strategy > 8.1 Pre-Race Plan (Generated 5–7 Days Before Race)",
+     "fact": "Max generates a race plan document the athlete can print or screenshot and take to the start line."
+    }
+   ],
+   "facts": [
+    {
+     "section": "Breakaway — Product Requirements Document (v3.0)",
+     "fact": "Breakaway is an intelligent data aggregator and plan adjuster."
+    },
+    {
+     "section": "Version History",
+     "fact": "Version 1.0 was the Initial PRD, including Whoop + Strava + TrainerRoad + Garmin + MyFitnessPal scope."
+    },
+    {
+     "section": "Version History",
+     "fact": "Version 1.1 updated the API feasibility, making Strava the primary pipe, native nutrition logger, and TrainerRoad recommendation approach."
+    },
+    {
+     "section": "Version History > v3.0 Change Summary",
+     "fact": "Breakaway is positioned as a data aggregator and plan adjuster, not a from-scratch AI plan generator."
+    },
+    {
+     "section": "Version History > v3.0 Change Summary",
+     "fact": "Breakaway maintains a curated library of race-specific plan templates (e.g., Berkeley Hills Road Race, flat criterium, gravel 100-miler). The AI adjusts workouts within these templates based on wearable inputs."
+    },
+    {
+     "section": "1. Executive Summary",
+     "fact": "Breakaway aggregates wearable data, maps it to a race-specific coaching template, and tells you exactly what to change — today."
+    },
+    {
+     "section": "1. Executive Summary",
+     "fact": "Breakaway assigns a proven, race-specific coaching template to the athlete after they select their target race through a structured onboarding questionnaire."
+    },
+    {
+     "section": "1. Executive Summary",
+     "fact": "Every day, Breakaway pulls data from connected wearables, evaluates it against the template, and recommends specific adjustments in plain English through Max — its AI coaching layer."
+    },
+    {
+     "section": "2. Problem Statement > 2.1 The Fragmentation Problem",
+     "fact": "TrainerRoad provides structured workouts, FTP progression, and plan templates."
+    },
+    {
+     "section": "2. Problem Statement > 2.1 The Fragmentation Problem",
+     "fact": "Whoop provides HRV, sleep staging, and recovery score but does not know what the plan says or if a workout is appropriate for the day."
+    },
+    {
+     "section": "2. Problem Statement > 2.2 The Missing Layer",
+     "fact": "The missing layer sits above the data and translates it into a single, actionable daily recommendation tied to a specific race goal."
+    },
+    {
+     "section": "2. Problem Statement > 2.3 Why Race-Specific Plans Matter",
+     "fact": "Berkeley Hills Road Race is three laps of sustained threshold climbing followed by a VO₂ Max sprint to the line."
+    },
+    {
+     "section": "2. Problem Statement > 2.3 Why Race-Specific Plans Matter",
+     "fact": "A plan built for a flat criterium will produce an athlete who is fast but cannot sustain power for 20 minutes on a climb."
+    },
+    {
+     "section": "2. Problem Statement > 2.4 User Persona",
+     "fact": "The primary user is a competitive amateur cyclist preparing for a target road race or gran fondo."
+    },
+    {
+     "section": "2. Problem Statement > 2.4 User Persona",
+     "fact": "The primary user trains 8–12 hours per week."
+    },
+    {
+     "section": "3. Product Vision & Goals > 3.1 Vision Statement",
+     "fact": "The vision is to be the intelligent layer between an athlete's wearable data and their coaching plan."
+    },
+    {
+     "section": "3. Product Vision & Goals > 3.1 Vision Statement",
+     "fact": "The vision is to make every serious amateur's training as adaptive and race-specific as if they had a professional coach reviewing their data every morning."
+    },
+    {
+     "section": "3. Product Vision & Goals > 3.2 Product Positioning",
+     "fact": "Breakaway is not a training app, a social platform, or a workout library."
+    },
+    {
+     "section": "3. Product Vision & Goals > 3.3 What Breakaway Is and Is Not",
+     "fact": "Breakaway IS a data aggregator across wearable platforms."
+    },
+    {
+     "section": "3. Product Vision & Goals > 3.3 What Breakaway Is and Is Not",
+     "fact": "Breakaway IS a race-specific plan template adjuster."
+    },
+    {
+     "section": "3. Product Vision & Goals > 3.4 Phase 1 Success Metrics",
+     "fact": "Daily active usage for the founder and team is a target of 7 days/week in Month 1."
+    },
+    {
+     "section": "3. Product Vision & Goals > 3.4 Phase 1 Success Metrics",
+     "fact": "Training plan adherence is a target of greater than 70% of suggested workouts completed in Month 2."
+    },
+    {
+     "section": "3. Product Vision & Goals > 3.5 Non-Goals (Phase 1)",
+     "fact": "AI-generated training plans from scratch are not in Phase 1; templates only are."
+    },
+    {
+     "section": "3. Product Vision & Goals > 3.5 Non-Goals (Phase 1)",
+     "fact": "Social or community features are not in Phase 1."
+    },
+    {
+     "section": "4. Race-Specific Onboarding Questionnaire",
+     "fact": "The onboarding questionnaire is the foundation of everything Breakaway does."
+    },
+    {
+     "section": "4. Race-Specific Onboarding Questionnaire",
+     "fact": "The onboarding questionnaire is a structured intake that populates the Athlete Profile, selects the correct coaching template, and gives Max the context needed to make every subsequent recommendation meaningful."
+    },
+    {
+     "section": "4. Race-Specific Onboarding Questionnaire > 4.1 Question Sequence > Block 1: Race Target",
+     "fact": "What is your target race is a dropdown from a supported race library or manual entry."
+    },
+    {
+     "section": "4. Race-Specific Onboarding Questionnaire > 4.1 Question Sequence > Block 1: Race Target",
+     "fact": "Selecting a supported race selects the coaching template, as each supported race has a documented energy system profile."
+    },
+    {
+     "section": "4. Race-Specific Onboarding Questionnaire > 4.1 Question Sequence > Block 2: Current Fitness",
+     "fact": "Do you know your current FTP (Functional Threshold Power) is a question."
+    },
+    {
+     "section": "4. Race-Specific Onboarding Questionnaire > 4.1 Question Sequence > Block 2: Current Fitness",
+     "fact": "If FTP is unknown, it is estimated from RPE data in the first 2 weeks."
+    },
+    {
+     "section": "4. Race-Specific Onboarding Questionnaire > 4.1 Question Sequence > Block 3: Connected Platforms",
+     "fact": "Which platforms do you use is a visual checkbox menu with device logos."
+    },
+    {
+     "section": "4. Race-Specific Onboarding Questionnaire > 4.1 Question Sequence > Block 3: Connected Platforms",
+     "fact": "Selecting a platform triggers an OAuth connection flow for each selected platform."
+    },
+    {
+     "section": "4. Race-Specific Onboarding Questionnaire > 4.1 Question Sequence > Block 4: Race-Specific Context",
+     "fact": "The question 'What is your goal for this race?' sets the ambition level."
+    },
+    {
+     "section": "4. Race-Specific Onboarding Questionnaire > 4.1 Question Sequence > Block 4: Race-Specific Context",
+     "fact": "Setting the goal affects pacing targets, taper management, and race strategy framing."
+    },
+    {
+     "section": "4. Race-Specific Onboarding Questionnaire > 4.2 Athlete Profile Output",
+     "fact": "The Athlete Profile object is populated by the questionnaire completion."
+    },
+    {
+     "section": "4. Race-Specific Onboarding Questionnaire > 4.2 Athlete Profile Output",
+     "fact": "The Athlete Profile is the seed of the Athlete Data Layer."
+    },
+    {
+     "section": "5. Coaching Plan Template Library",
+     "fact": "The template library is the coaching foundation of Breakaway."
+    },
+    {
+     "section": "5. Coaching Plan Template Library",
+     "fact": "The AI selects and adjusts templates; it does not generate them."
+    },
+    {
+     "section": "5. Coaching Plan Template Library > 5.1 Template Selection Logic",
+     "fact": "Step 1 selects a template by mapping the target race to a race profile category."
+    },
+    {
+     "section": "5. Coaching Plan Template Library > 5.1 Template Selection Logic",
+     "fact": "Step 2 selects the template by matching it to the athlete’s available weekly hours tier."
+    },
+    {
+     "section": "5. Coaching Plan Template Library > 5.2 Template Structure",
+     "fact": "Every template follows the same periodization architecture."
+    },
+    {
+     "section": "5. Coaching Plan Template Library > 5.2 Template Structure",
+     "fact": "The Base phase focuses on aerobic foundation and fatigue resistance."
+    },
+    {
+     "section": "5. Coaching Plan Template Library > 5.3 Phase 1 Template: Berkeley Hills Road Race",
+     "fact": "The Berkeley Hills Road Race template is the first fully specified template."
+    },
+    {
+     "section": "5. Coaching Plan Template Library > 5.3 Phase 1 Template: Berkeley Hills Road Race",
+     "fact": "The Berkeley Hills Road Race template is the primary product validation vehicle."
+    },
+    {
+     "section": "5. Coaching Plan Template Library > 5.3 Phase 1 Template: Berkeley Hills Road Race > Race Profile: Berkeley Hills Road Race",
+     "fact": "The Berkeley Hills Road Race has a distance of ~60 miles."
+    },
+    {
+     "section": "5. Coaching Plan Template Library > 5.3 Phase 1 Template: Berkeley Hills Road Race > Race Profile: Berkeley Hills Road Race",
+     "fact": "The Berkeley Hills Road Race has an elevation of ~5,800ft total climbing."
+    },
+    {
+     "section": "5. Coaching Plan Template Library > 5.3 Phase 1 Template: Berkeley Hills Road Race > Template Workout Emphasis (Mid-Volume Tier, 10 hrs/week)",
+     "fact": "The Base phase targets 380–420 TSS with 2x Zone 2 endurance, 1x sweet spot, and 1x long ride."
+    },
+    {
+     "section": "5. Coaching Plan Template Library > 5.3 Phase 1 Template: Berkeley Hills Road Race > Template Workout Emphasis (Mid-Volume Tier, 10 hrs/week)",
+     "fact": "The Build phase targets 440–500 TSS with 2x threshold, 1x climbing simulation, and 1x endurance."
+    },
+    {
+     "section": "5. Coaching Plan Template Library > 5.4 Phase 2 Template Additions",
+     "fact": "Flat criterium is planned for Phase 2 and emphasizes anaerobic capacity, repeated sprint recovery, and neuromuscular power."
+    },
+    {
+     "section": "5. Coaching Plan Template Library > 5.4 Phase 2 Template Additions",
+     "fact": "Rolling gran fondo is planned for Phase 2 and emphasizes aerobic endurance, pacing discipline, and fuelling."
+    },
+    {
+     "section": "6. Daily Coaching Experience",
+     "fact": "The daily experience is the product."
+    },
+    {
+     "section": "6. Daily Coaching Experience",
+     "fact": "Every other feature exists to make this moment better."
+    },
+    {
+     "section": "6. Daily Coaching Experience > 6.1 Training Readiness Score",
+     "fact": "A single 0–100 score synthesises all available signals into one daily verdict."
+    },
+    {
+     "section": "6. Daily Coaching Experience > 6.1 Training Readiness Score",
+     "fact": "The score is displayed as the hero element of the dashboard with a GO HARD / MODIFIED / RECOVER verdict."
+    },
+    {
+     "section": "6. Daily Coaching Experience > 6.2 Max Coaching Note",
+     "fact": "Max delivers two sentences every morning directly below the readiness score."
+    },
+    {
+     "section": "6. Daily Coaching Experience > 6.2 Max Coaching Note",
+     "fact": "The first sentence states what was planned and what is being recommended instead if different."
+    },
+    {
+     "section": "6. Daily Coaching Experience > 6.3 Contextual Reply Chips",
+     "fact": "Max surfaces 3 dynamically generated follow-up prompts below the coaching note."
+    },
+    {
+     "section": "6. Daily Coaching Experience > 6.3 Contextual Reply Chips",
+     "fact": "Tier 1 chips are daily contextual chips generated from today’s data."
+    },
+    {
+     "section": "6. Daily Coaching Experience > 6.4 Full Chat with Max",
+     "fact": "Tapping the coaching note opens a full conversational interface with Max."
+    },
+    {
+     "section": "6. Daily Coaching Experience > 6.4 Full Chat with Max",
+     "fact": "Max has access to the athlete’s structured data context for the session."
+    },
+    {
+     "section": "6. Daily Coaching Experience > 6.5 Manual Sleep Input",
+     "fact": "Manual sleep input is available on-demand for users without a sleep tracker."
+    },
+    {
+     "section": "6. Daily Coaching Experience > 6.5 Manual Sleep Input",
+     "fact": "Manual sleep input asks only two questions: hours slept and a 1–10 quality rating."
+    },
+    {
+     "section": "7. Athlete Data Layer — The Technical Moat",
+     "fact": "The Athlete Data Layer is Breakaway’s most defensible asset."
+    },
+    {
+     "section": "7. Athlete Data Layer — The Technical Moat",
+     "fact": "The Athlete Data Layer is a structured, queryable store of every input and training ride."
+    },
+    {
+     "section": "7. Athlete Data Layer — The Technical Moat > 7.1 Why This Architecture Matters",
+     "fact": "Most AI fitness products fail at the data layer."
+    },
+    {
+     "section": "7. Athlete Data Layer — The Technical Moat > 7.1 Why This Architecture Matters",
+     "fact": "Breakaway solves this by treating the athlete’s data as a structured database, not a conversation history."
+    },
+    {
+     "section": "7. Athlete Data Layer — The Technical Moat > 7.2 Data Layer Structure",
+     "fact": "The Athlete Data Layer is a PostgreSQL database with primary tables."
+    },
+    {
+     "section": "7. Athlete Data Layer — The Technical Moat > 7.2 Data Layer Structure",
+     "fact": "The athlete_profile table stores static and semi-static athlete attributes."
+    },
+    {
+     "section": "7. Athlete Data Layer — The Technical Moat > 7.2 Data Layer Structure > athlete_profile",
+     "fact": "The athlete_profile table stores all Athlete Profile outputs from Section 4.2."
+    },
+    {
+     "section": "7. Athlete Data Layer — The Technical Moat > 7.2 Data Layer Structure > athlete_profile",
+     "fact": "The athlete_profile table includes FTP history, injury log, goal history, and preferred workout times."
+    },
+    {
+     "section": "7. Athlete Data Layer — The Technical Moat > 7.2 Data Layer Structure > daily_inputs",
+     "fact": "The daily_inputs table has one row per calendar day."
+    },
+    {
+     "section": "7. Athlete Data Layer — The Technical Moat > 7.2 Data Layer Structure > daily_inputs",
+     "fact": "The daily_inputs table is populated automatically from connected wearable APIs and manually from the nutrition logger."
+    },
+    {
+     "section": "7. Athlete Data Layer — The Technical Moat > 7.2 Data Layer Structure > training_rides",
+     "fact": "One row per completed activity is populated from Strava webhook."
+    },
+    {
+     "section": "7. Athlete Data Layer — The Technical Moat > 7.2 Data Layer Structure > training_rides",
+     "fact": "The date field in training_rides is sourced from Strava as the activity date."
+    },
+    {
+     "section": "7. Athlete Data Layer — The Technical Moat > 7.2 Data Layer Structure > plan_workouts",
+     "fact": "One row per scheduled workout is created in the training block."
+    },
+    {
+     "section": "7. Athlete Data Layer — The Technical Moat > 7.2 Data Layer Structure > plan_workouts",
+     "fact": "The status field in plan_workouts is updated from training_rides."
+    },
+    {
+     "section": "7. Athlete Data Layer — The Technical Moat > 7.2 Data Layer Structure > context_summaries",
+     "fact": "The daily_context summary object is passed to Claude every morning for coaching note generation."
+    },
+    {
+     "section": "7. Athlete Data Layer — The Technical Moat > 7.2 Data Layer Structure > context_summaries",
+     "fact": "The weekly_context summary object is passed to Claude for weekly plan review or adaptive replanning queries."
+    },
+    {
+     "section": "7. Athlete Data Layer — The Technical Moat > 7.3 Claude Prompting Architecture",
+     "fact": "Claude never receives a raw data dump."
+    },
+    {
+     "section": "7. Athlete Data Layer — The Technical Moat > 7.3 Claude Prompting Architecture",
+     "fact": "The daily context prompt is approximately 350–450 tokens regardless of underlying data."
+    },
+    {
+     "section": "7. Athlete Data Layer — The Technical Moat > 7.3 Claude Prompting Architecture",
+     "fact": "Claude never touches the database directly; it only receives pre-assembled context objects."
+    },
+    {
+     "section": "7. Athlete Data Layer — The Technical Moat > 7.4 Longitudinal Memory — The Compounding Moat",
+     "fact": "The memory_digest object is updated weekly by a background process."
+    },
+    {
+     "section": "7. Athlete Data Layer — The Technical Moat > 7.4 Longitudinal Memory — The Compounding Moat",
+     "fact": "The memory_digest object is compressed to under 200 tokens."
+    },
+    {
+     "section": "8. Race & Fuelling Strategy",
+     "fact": "Race strategy and fuelling guidance are delivered in the lead-up to the target race."
+    },
+    {
+     "section": "8. Race & Fuelling Strategy",
+     "fact": "Breakaway synthesizes current fitness, course demands, and individual data into a concrete, personalised race plan."
+    },
+    {
+     "section": "8. Race & Fuelling Strategy > 8.1 Pre-Race Plan (Generated 5–7 Days Before Race)",
+     "fact": "Max generates a race plan document the athlete can print or screenshot and take to the start line."
+    },
+    {
+     "section": "8. Race & Fuelling Strategy > 8.1 Pre-Race Plan (Generated 5–7 Days Before Race)",
+     "fact": "The race plan document is populated from the race_context summary object and the athlete’s current fitness data."
+    },
+    {
+     "section": "8. Race & Fuelling Strategy > 8.2 Fuelling Plan",
+     "fact": "Max generates a personalised fuelling schedule based on race duration estimate, individual carb metabolism patterns from the nutrition log history, and standard endurance fuelling guidelines."
+    },
+    {
+     "section": "8. Race & Fuelling Strategy > 8.2 Fuelling Plan",
+     "fact": "The fuelling plan is expressed in concrete, practical terms."
+    },
+    {
+     "section": "8. Race & Fuelling Strategy > 8.3 Race Week Protocol (Activates 7 Days Before Race)",
+     "fact": "Race -7 (Mon) focus is a final quality session with a short threshold effort to maintain sharpness."
+    },
+    {
+     "section": "8. Race & Fuelling Strategy > 8.3 Race Week Protocol (Activates 7 Days Before Race)",
+     "fact": "Race -6 (Tue) focus is active recovery, which is a Zone 1 spin for 30–45 minutes with no efforts."
+    },
+    {
+     "section": "8. Race & Fuelling Strategy > 8.4 Post-Race Analysis",
+     "fact": "Max detects the Strava activity after the race and generates a brief analysis."
+    },
+    {
+     "section": "8. Race & Fuelling Strategy > 8.4 Post-Race Analysis",
+     "fact": "The analysis includes power file vs. pre-race plan comparison and identified limiters from the data."
+    },
+    {
+     "section": "9. Data Integrations > 9.1 Signal Hierarchy",
+     "fact": "Whoop is the primary source for HRV / Recovery data."
+    },
+    {
+     "section": "9. Data Integrations > 9.1 Signal Hierarchy",
+     "fact": "Garmin measures HRV opportunistically and is a secondary source for HRV / Recovery data."
+    },
+    {
+     "section": "9. Data Integrations > 9.2 Integration Stack",
+     "fact": "Whoop uses the Whoop Developer API v2 (OAuth 2.0) for integration in Phase 1."
+    },
+    {
+     "section": "9. Data Integrations > 9.2 Integration Stack",
+     "fact": "Strava uses the Strava API (OAuth 2.0) to aggregate all activities and TSS in Phase 1."
+    },
+    {
+     "section": "9. Data Integrations > 9.3 Why Strava Is the Right Primary Pipe (Phase 1)",
+     "fact": "Strava acts as a universal aggregator for training data."
+    },
+    {
+     "section": "9. Data Integrations > 9.3 Why Strava Is the Right Primary Pipe (Phase 1)",
+     "fact": "Garmin auto-syncs every activity to Strava, capturing all Garmin data without Garmin approval."
+    },
+    {
+     "section": "10. Technical Architecture > 10.1 Stack",
+     "fact": "Frontend uses React and Tailwind CSS for fast prototyping, mobile-friendly, and component-based development."
+    },
+    {
+     "section": "10. Technical Architecture > 10.1 Stack",
+     "fact": "The backend uses Node.js and Express for JavaScript consistency and a strong API ecosystem."
+    },
+    {
+     "section": "10. Technical Architecture > 10.2 Data Flow",
+     "fact": "Wearable APIs like Whoop and Strava push or poll data nightly, writing it to daily_inputs and training_rides tables."
+    },
+    {
+     "section": "10. Technical Architecture > 10.2 Data Flow",
+     "fact": "Background jobs recompute context_summaries nightly, including daily_context, weekly_context, race_context, memory_digest, and nutrition_context."
+    },
+    {
+     "section": "10. Technical Architecture > 10.3 Token Budget",
+     "fact": "The athlete profile context object is estimated to use about 80 tokens and is cached."
+    },
+    {
+     "section": "10. Technical Architecture > 10.3 Token Budget",
+     "fact": "The daily context object is estimated to use about 120 tokens and is recomputed nightly and is cached."
+    },
+    {
+     "section": "11. Build Roadmap",
+     "fact": "Phase 1 must be validated before Phase 2 begins."
+    },
+    {
+     "section": "11. Build Roadmap",
+     "fact": "The north star is for 20 users to open Breakaway every morning for 30 consecutive days."
+    },
+    {
+     "section": "11. Build Roadmap > Phase 1 — Core Loop  (Weeks 1–8)",
+     "fact": "The onboarding process requires a structured questionnaire with 4 blocks and 14 questions."
+    },
+    {
+     "section": "11. Build Roadmap > Phase 1 — Core Loop  (Weeks 1–8)",
+     "fact": "Athlete Profile population and storage is a must-have deliverable."
+    },
+    {
+     "section": "11. Build Roadmap > Phase 1 — Core Loop  (Weeks 1–8)",
+     "fact": "Data integrations must include the Whoop API using OAuth 2.0."
+    },
+    {
+     "section": "11. Build Roadmap > Phase 1 — Core Loop  (Weeks 1–8)",
+     "fact": "Data integrations must include the Strava API for activity sync, TSS, and training load using OAuth 2.0."
+    },
+    {
+     "section": "11. Build Roadmap > Phase 2 — Breadth & Intelligence  (Months 2–4)",
+     "fact": "Garmin Connect direct integration is planned to provide VO₂ Max trend, independent HRV, and high-resolution power data."
+    },
+    {
+     "section": "11. Build Roadmap > Phase 2 — Breadth & Intelligence  (Months 2–4)",
+     "fact": "Additional race templates planned include flat criterium, rolling gran fondo, and punchy circuit race."
+    },
+    {
+     "section": "11. Build Roadmap > Phase 3 — Moat Widening  (Months 4–12)",
+     "fact": "Google Calendar integration supports life-aware replanning, travel detection, and stress event classification."
+    },
+    {
+     "section": "11. Build Roadmap > Phase 3 — Moat Widening  (Months 4–12)",
+     "fact": "Lingo CGM offers real-time glucose monitoring and personalized fuelling timing, pending API access approval."
+    },
+    {
+     "section": "12. Risks & Open Questions > 12.1 API Risks",
+     "fact": "Whoop API status is Open, free, and has an active changelog."
+    },
+    {
+     "section": "12. Risks & Open Questions > 12.1 API Risks",
+     "fact": "Strava API status is Open and well-documented, but policy has tightened for some data types in late 2024."
+    },
+    {
+     "section": "12. Risks & Open Questions > 12.2 Product Risks",
+     "fact": "Coaching templates must be reviewed by a domain expert before beta launch."
+    },
+    {
+     "section": "12. Risks & Open Questions > 12.2 Product Risks",
+     "fact": "The initial mitigation for template staleness is an FTP re-test prompt at weeks 4 and 8."
+    },
+    {
+     "section": "12. Risks & Open Questions > 12.3 Key Decisions Still Open",
+     "fact": "Pricing options include free personal tool, freemium, or a $12–15/month subscription."
+    },
+    {
+     "section": "12. Risks & Open Questions > 12.3 Key Decisions Still Open",
+     "fact": "The mobile-first versus web-first decision is open for the dashboard design."
+    },
+    {
+     "section": "Appendix A: Glossary",
+     "fact": "TSS is a measure of workout load combining intensity and duration."
+    },
+    {
+     "section": "Appendix A: Glossary",
+     "fact": "FTP is the Functional Threshold Power, which is the max power a cyclist can sustain for approximately 60 minutes."
+    },
+    {
+     "section": "Appendix B: Workout Database (Starter Set)",
+     "fact": "The Taku workout is in Zone 1 and lasts 30 min for active recovery."
+    },
+    {
+     "section": "Appendix B: Workout Database (Starter Set)",
+     "fact": "The Pettit workout is in Zone 2 and lasts 60 min for aerobic endurance."
+    },
+    {
+     "section": "Appendix C: Sample Prompt — Daily Coaching Query",
+     "fact": "The operational format is a complete daily coaching prompt sent to Claude."
+    },
+    {
+     "section": "Appendix C: Sample Prompt — Daily Coaching Query",
+     "fact": "The athlete profile has an FTP of 250W and a race of Berkeley Hills Road Race on 2026-04-26."
+    }
+   ],
+   "concepts": [
+    "Athlete Data Layer",
+    "Daily Context Summary",
+    "Structured Onboarding Questionnaire"
+   ],
+   "model": "gemma4:e2b-it-qat",
+   "ingested": "2026-09-29T17:53:25",
+   "proposed_title": "Intelligent Data Aggregator Plan Adjuster"
+  }
+ },
+ "concepts": {
+  "Expert Consensus Rankings": {
+   "sources": {
+    "draft-copilot": {
+     "how": "Recommendations are derived from expert consensus rankings rather than Sleeper's standard ADP.",
+     "refs": [
+      {
+       "section": "Objective",
+       "fact": "Recommendations should come from expert consensus rankings, not Sleeper's ADP."
+      },
+      {
+       "section": "Approach > Rankings dataset",
+       "fact": "The default rankings blend FantasyPros consensus and ESPN Field Yates PPR rankings."
+      },
+      {
+       "section": "Approach > Rankings dataset",
+       "fact": "A player on both lists gets FantasyPros_rank × 0.6 + ESPN_rank × 0.4, and the list is re-sorted by that blended score."
+      }
+     ]
+    }
+   }
+  },
+  "Convex Sync": {
+   "sources": {
+    "plan": {
+     "how": "The backend and synchronization are handled by Convex, ensuring that every query updates live on both phones.",
+     "refs": [
+      {
+       "section": "Decisions (confirmed)",
+       "fact": "Backend and sync is Convex."
+      },
+      {
+       "section": "Decisions (confirmed)",
+       "fact": "Every query updates live on both phones with Convex."
+      }
+     ]
+    }
+   }
+  },
+  "Recipe Generation Integration": {
+   "sources": {
+    "plan": {
+     "how": "The system uses the Claude integration with structured output to generate valid, typed recipes, incorporating rules about gluten risk and household taste profiles.",
+     "refs": [
+      {
+       "section": "Claude integration (`convex/ai.ts`, a Node server function)",
+       "fact": "The Claude integration uses the `@anthropic-ai/sdk` with structured output for valid, typed recipes."
+      },
+      {
+       "section": "Claude integration (`convex/ai.ts`, a Node server function)",
+       "fact": "The system prompt always includes the gluten rule requiring Claude to set `glutenRisk` for every ingredient."
+      },
+      {
+       "section": "Claude integration (`convex/ai.ts`, a Node server function)",
+       "fact": "The system prompt also includes the household taste profile summary and dislikes."
+      }
+     ]
+    }
+   }
+  },
+  "Dynamic Viewport Layout": {
+   "sources": {
+    "plan": {
+     "how": "The layout utilizes dynamic viewport height to ensure the Safari toolbar never cuts off content, and the app avoids the notch and home bar using viewport-fit=cover.",
+     "refs": [
+      {
+       "section": "iPhone-first UI rules (built in from day one, never added later)",
+       "fact": "Content avoids the notch and home bar using viewport-fit=cover."
+      },
+      {
+       "section": "iPhone-first UI rules (built in from day one, never added later)",
+       "fact": "Layout uses the dynamic viewport height so the Safari toolbar never cuts off content."
+      }
+     ]
+    }
+   }
+  },
+  "Shopping List Scaling": {
+   "sources": {
+    "plan": {
+     "how": "The shopping list is built by multiplying the week's plan entries by a scale factor, which is calculated by dividing planned servings by recipe servings to combine ingredients by canonical units.",
+     "refs": [
+      {
+       "section": "Shopping list build (`convex/shopping.ts`)",
+       "fact": "The shopping list build uses the week's plan entries multiplied by a scale factor."
+      },
+      {
+       "section": "Shopping list build (`convex/shopping.ts`)",
+       "fact": "The scale factor is planned servings divided by recipe servings to combine ingredients by `canonical`."
+      }
+     ]
+    }
+   }
+  },
+  "Athlete Data Layer": {
+   "sources": {
+    "breakaway-prd-v3-0": {
+     "how": "This layer is Breakaway’s most defensible asset, serving as a PostgreSQL database with primary tables to store all Athlete Profile outputs.",
+     "refs": [
+      {
+       "section": "7. Athlete Data Layer — The Technical Moat > 7.2 Data Layer Structure",
+       "fact": "The Athlete Data Layer is a PostgreSQL database with primary tables."
+      },
+      {
+       "section": "7. Athlete Data Layer — The Technical Moat > 7.2 Data Layer Structure > athlete_profile",
+       "fact": "The athlete_profile table stores all Athlete Profile outputs from Section 4.2."
+      },
+      {
+       "section": "4. Race-Specific Onboarding Questionnaire > 4.2 Athlete Profile Output",
+       "fact": "The Athlete Profile is the seed of the Athlete Data Layer."
+      }
+     ]
+    }
+   }
+  },
+  "Daily Context Summary": {
+   "sources": {
+    "breakaway-prd-v3-0": {
+     "how": "The daily context summary object is passed to Claude every morning to generate the coaching note.",
+     "refs": [
+      {
+       "section": "7. Athlete Data Layer — The Technical Moat > 7.2 Data Layer Structure > context_summaries",
+       "fact": "The daily_context summary object is passed to Claude every morning for coaching note generation."
+      },
+      {
+       "section": "7. Athlete Data Layer — The Technical Moat > 7.3 Claude Prompting Architecture",
+       "fact": "Claude never receives a raw data dump."
+      },
+      {
+       "section": "Appendix C: Sample Prompt — Daily Coaching Query",
+       "fact": "The operational format is a complete daily coaching prompt sent to Claude."
+      }
+     ]
+    }
+   }
+  },
+  "Structured Onboarding Questionnaire": {
+   "sources": {
+    "breakaway-prd-v3-0": {
+     "how": "The onboarding questionnaire is the foundation of everything Breakaway does, populating the Athlete Profile and selecting the correct coaching template.",
+     "refs": [
+      {
+       "section": "4. Race-Specific Onboarding Questionnaire",
+       "fact": "The onboarding questionnaire is the foundation of everything Breakaway does."
+      },
+      {
+       "section": "4. Race-Specific Onboarding Questionnaire",
+       "fact": "The onboarding questionnaire is a structured intake that populates the Athlete Profile, selects the correct coaching template, and gives Max the context needed to make every subsequent recommendation meaningful."
+      },
+      {
+       "section": "11. Build Roadmap > Phase 1 — Core Loop  (Weeks 1–8)",
+       "fact": "The onboarding process requires a structured questionnaire with 4 blocks and 14 questions."
+      }
+     ]
+    }
+   }
+  },
+  "API Pre-Check": {
+   "sources": {
+    "draft-copilot": {
+     "how": "The process involves checking for an API before attempting to build scraping or screenshot reading solutions.",
+     "refs": [
+      {
+       "section": "Lessons",
+       "fact": "Check for an API before building scraping or screenshot reading."
+      }
+     ]
+    }
+   }
+  },
+  "Caching": {
+   "sources": {
+    "draft-copilot": {
+     "how": "Sleeper's CDN caches the picks endpoint for up to 30 seconds, which the application leverages.",
+     "refs": [
+      {
+       "section": "Features",
+       "fact": "Sleeper's CDN caches the picks endpoint for up to 30 seconds."
+      }
+     ]
+    }
+   }
+  },
+  "Value Model": {
+   "sources": {
+    "draft-copilot": {
+     "how": "The value model incorporates position scarcity as a secondary nudge to the raw consensus rank.",
+     "refs": [
+      {
+       "section": "The Value Model",
+       "fact": "The value model adds position scarcity as a secondary nudge to the raw consensus rank."
+      },
+      {
+       "section": "The Value Model > How the model evolved",
+       "fact": "The first version used `replacement_rank − position_rank` alone."
+      },
+      {
+       "section": "The Value Model > How the model evolved",
+       "fact": "This first version answered the 2.10 question by favoring the RB11 over the TE1, but it let scarcity override real differences in talent."
+      }
+     ]
+    }
+   }
+  }
+ }
+}

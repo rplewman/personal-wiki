@@ -1,0 +1,124 @@
+{
+ "started": "2026-09-29T17:59:29",
+ "model": "gemma4:e2b-it-qat",
+ "calls": [
+  {
+   "step": "themes",
+   "output": "{\n  \"themes\": [\n    {\n      \"name\": \"Data Aggregation Layer\",\n      \"query\": \"Data aggregation layer athlete wearable data\"\n    },\n    {\n      \"name\": \"Real-Time State Tracking\",\n      \"query\": \"Real-time pick tracking draft state persistence\"\n    },\n    {\n      \"name\": \"Consensus Model Integration\",\n      \"query\": \"Expert consensus rankings value model integration\"\n    },\n    {\n      \"name\": \"Dynamic Viewport Layout\",\n      \"query\": \"Dynamic viewport layout recipe generation\"\n    }\n  ]\n}",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 23.29,
+    "load_s": 11.52,
+    "prompt_tokens": 361,
+    "output_tokens": 135,
+    "tok_per_s": 27.2,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.0
+   }
+  },
+  {
+   "step": "verify",
+   "theme": "Data Aggregation Layer",
+   "query": "Data aggregation layer athlete wearable data",
+   "output": "{\"Draft Copilot\": {\"facts\": [\"F3\", \"F5\"], \"how\": \"Draft Copilot tracks every pick in real time and recommends players based on expert consensus rankings that deliberately avoid Sleeper ADP.\"}, \"The GRKN\": {\"facts\": [\"F6\", \"F8\", \"F10\"], \"how\": \"The GRKN uses data models to track which member is cooking which meal, specifically for dinners.\"}, \"Breakaway Project\": {\"facts\": [\"F11\", \"F12\", \"F13\", \"F14\", \"F15\"], \"how\": \"Breakaway Project is a data aggregator across wearable platforms, serving as the intelligent layer between athlete wearable data and coaching plans, with the Athlete Data Layer being a structured, queryable store of every input and training ride.\"}}",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 18.22,
+    "load_s": 0.03,
+    "prompt_tokens": 450,
+    "output_tokens": 170,
+    "tok_per_s": 19.9,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.0
+   }
+  },
+  {
+   "step": "verify",
+   "theme": "Real-Time State Tracking",
+   "query": "Real-time pick tracking draft state persistence",
+   "output": "{\"Draft Copilot\": {\"facts\": [\"F1\", \"F4\"], \"how\": \"The app tracks every pick in real time and fetches picks every 3 seconds, which relates to real-time state tracking.\"}, \"The GRKN\": {\"facts\": [\"F10\"], \"how\": \"Every query updates live on both phones with Convex, indicating real-time state updates.\"}, \"Breakaway Project\": {\"facts\": [\"F14\"], \"how\": \"Breakaway is an intelligent data aggregator and plan adjuster, which implies tracking and adjusting state based on data.\"}}",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 12.21,
+    "load_s": 0.01,
+    "prompt_tokens": 462,
+    "output_tokens": 119,
+    "tok_per_s": 26.6,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 1.9
+   }
+  },
+  {
+   "step": "verify",
+   "theme": "Consensus Model Integration",
+   "query": "Expert consensus rankings value model integration",
+   "output": "{\"Draft Copilot\": {\"facts\": [\"F1\", \"F2\", \"F4\", \"F5\"], \"how\": \"Draft Copilot uses expert consensus rankings to inform recommendations and best available options.\"}, \"The GRKN\": {\"facts\": [], \"how\": \"The GRKN does not explicitly deal with Consensus Model Integration based on the provided facts.\"}, \"Breakaway Project\": {\"facts\": [], \"how\": \"Breakaway Project is an intelligent data aggregator and plan adjuster, but the provided facts do not explicitly mention Consensus Model Integration.\"}}",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 14.55,
+    "load_s": 0.01,
+    "prompt_tokens": 481,
+    "output_tokens": 112,
+    "tok_per_s": 25.8,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 2.0
+   }
+  },
+  {
+   "step": "verify",
+   "theme": "Dynamic Viewport Layout",
+   "query": "Dynamic viewport layout recipe generation",
+   "output": "{\"Draft Copilot\": {\"facts\": [\"F1\"], \"how\": \"The screenshot app's unreliability when Sleeper changes its layout suggests a dependency on dynamic viewport changes.\"}, \"The GRKN\": {\"facts\": [\"F6\", \"F7\"], \"how\": \"The layout uses the dynamic viewport height and viewport-fit=cover to ensure content is not cut off by the Safari toolbar and avoids the notch and home bar.\"}, \"Breakaway Project\": {\"facts\": [], \"how\": \"This project does not have any facts indicating it uses or deals with Dynamic Viewport Layout.\"}}",
+   "stats": {
+    "model": "gemma4:e2b-it-qat",
+    "wall_s": 15.87,
+    "load_s": 0.02,
+    "prompt_tokens": 519,
+    "output_tokens": 122,
+    "tok_per_s": 20.8,
+    "model_loaded_gb": 3.9,
+    "ram_total_gb": 16.7,
+    "ram_available_gb": 1.9
+   }
+  }
+ ],
+ "themes": [
+  {
+   "name": "Data Aggregation Layer",
+   "query": "Data aggregation layer athlete wearable data",
+   "supported_by": [
+    "Draft Copilot",
+    "The GRKN",
+    "Breakaway Project"
+   ]
+  },
+  {
+   "name": "Real-Time State Tracking",
+   "query": "Real-time pick tracking draft state persistence",
+   "supported_by": [
+    "Draft Copilot",
+    "The GRKN",
+    "Breakaway Project"
+   ]
+  },
+  {
+   "name": "Consensus Model Integration",
+   "query": "Expert consensus rankings value model integration",
+   "supported_by": [
+    "Draft Copilot"
+   ]
+  },
+  {
+   "name": "Dynamic Viewport Layout",
+   "query": "Dynamic viewport layout recipe generation",
+   "supported_by": [
+    "Draft Copilot",
+    "The GRKN"
+   ]
+  }
+ ]
+}
