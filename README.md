@@ -82,7 +82,10 @@ The first online run failed more (citation formats not parsed, T4 listing the op
 
 ## Obsidian
 
-Screenshots in `evidence/screenshots/`: an open project note with its source links, the index, and the graph view filtered with `path:wiki/`, with attachments hidden and orphans shown.
+Only `vault/` is opened as the Obsidian vault. Screenshots:
+- [obsidian-note.png](evidence/screenshots/obsidian-note.png): the Draft Copilot page, with a `§` link to its raw section on every point. [obsidian-note-source-preview.png](evidence/screenshots/obsidian-note-source-preview.png) shows hovering `§ Rankings dataset`, which previews the raw passage behind the point.
+- [obsidian-index.png](evidence/screenshots/obsidian-index.png): `index.md` grouped by topic, next to the vault's file tree.
+- [obsidian-graph.png](evidence/screenshots/obsidian-graph.png): the graph view with **filter `path:wiki`**, Tags off, Attachments off, Existing files only off, Orphans on. Raw sources and `index.md` are excluded, so it shows only the wiki pages: the three projects linked through `Shared Themes`, the review notes and their concept pages.
 
 ## Limitation and proposed improvement
 
