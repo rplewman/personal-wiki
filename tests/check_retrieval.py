@@ -7,14 +7,14 @@ from pathlib import Path
 import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from wiki.config import MAX_PER_SOURCE  # noqa: E402
+from wiki.config import MAX_PER_SOURCE, TOP_K  # noqa: E402
 from wiki.retrieval import Retriever  # noqa: E402
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--mode", default="hybrid")
-    ap.add_argument("-k", type=int, default=6)
+    ap.add_argument("-k", type=int, default=TOP_K)
     ap.add_argument("--max-per-source", type=int, default=MAX_PER_SOURCE, help="0 = no cap")
     a = ap.parse_args()
     tests = yaml.safe_load((Path(__file__).parent / "questions.yaml").read_text(encoding="utf-8"))
