@@ -32,6 +32,7 @@ def cmd_search(args):
 def cmd_ask(args):
     from .answer import ask
     from .evidence import save_ask
+    print("Searching your notes and asking Gemma (usually 20-40 s on this CPU)...", flush=True)
     res = ask(" ".join(args.question))
     print(res["answer"])
     if res["sources"]:
@@ -73,6 +74,7 @@ def cmd_chat(args):
             if chat.history and not args.no_save:
                 print(f"Transcript saved to {save_chat(chat.history, label=args.label)}")
             return
+        print("  (thinking...)", flush=True)
         t = chat.send(msg)
         print(f"\nwiki> {t['reply']}")
         if t["sources"]:
