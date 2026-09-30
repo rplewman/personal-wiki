@@ -16,3 +16,6 @@ Sleeper's CDN caches the picks endpoint for up to 30 seconds, which the applicat
 - Sleeper's CDN caches the picks endpoint for up to 30 seconds. ([[raw/Draft Copilot#Features|§ Features]])
 
 <!-- Human notes: anything below this line is kept when the page is re-ingested. -->
+
+## Review (2026-09-29)
+- Correction: the app does not "leverage" the cache. The 30-second CDN cache is a delay the app lives with, since it polls every 3 seconds.

@@ -40,14 +40,14 @@ Evaluation: `.venv\Scripts\python.exe tests\run_eval.py --label online`. The off
 
 The default `gemma4:e2b` tag is 7.2 GB, too heavy for this machine. The QAT Q4_0 build is the course's suggested E2B at Q4_0. Details: [evidence/device-and-model.md](evidence/device-and-model.md).
 
-**Memory and timing (measured):** about 24 tok/s generation. Only **1.6–2.2 GB of RAM was free** while the model was loaded. Ask answers took 16–25 s online and 19–24 s offline. Chat turns took 7–16 s. The first call after a cold start adds about 12–15 s of model load. Ingest took 68–125 s for Draft Copilot, 361 s for The GRKN and 462 s for Breakaway (a 128-fact PRD).
+**Memory and timing (measured):** about 24 tok/s generation. Only **1.6–2.2 GB of RAM was free** while the model was loaded. Ask answers took 16–25 s online and 19–24 s offline. Chat turns took 6–16 s. The first call after a cold start adds about 12–15 s of model load. Ingest took 68–125 s for Draft Copilot, 361 s for The GRKN and 462 s for Breakaway (a 128-fact PRD).
 
 ## Architecture trace (`wiki ask`)
 
 1. `wiki/cli.py` → `answer.ask(question)`.
 2. `retrieval.Retriever.search`: `data/index.json` holds passages of about 800 characters, split by Markdown heading (`chunker.py`), from `vault/raw` and `vault/wiki`. BM25 (light stemming) and embeddinggemma cosine scores are fused with reciprocal rank fusion. A cap of 3 passages per file keeps one long source from crowding out the rest. Top 8.
 3. The passages are labelled `[S1]…[S8]` with path and section (Obsidian link syntax stripped, 700 characters each) and sent with `prompts/wiki-instructions.md` to Gemma (`llm.py`: timing and memory stats, clear errors if Ollama or the model is missing).
-4. `check_citations` normalises `[S1, S2]` and `[[S1]]`, removes citations to passages that weren't retrieved, and reports them.
+4. `check_citations` normalises `[S1, S2]` and `[[S1]]`, removes citations to passages that weren't retrieved, and reports them (demonstrated without the model in [evidence/mode-checks/citation-check-unit.txt](evidence/mode-checks/citation-check-unit.txt)).
 5. `evidence.py` writes the answer, sources, check result, time and memory to `evidence/`.
 
 **Ingest** (`wiki/ingest.py`): Gemma extracts facts per section, with a JSON schema that has one required key per section label. The harness drops any fact whose numbers aren't in the cited section, plus near-duplicates. Gemma plans the title, summary, key facts and concepts from the numbered facts only. The harness picks file names (it uses the source's own name), renders every page with a link back to its `raw/` section, and keeps anything written below the human-notes marker. Human corrections live in `data/review.json`, so re-ingest can't erase them.
@@ -58,6 +58,7 @@ The default `gemma4:e2b` tag is 7.2 GB, too heavy for this machine. The QAT Q4_0
 - **k raised from 6 to 8** once wiki pages were indexed, because they pushed out the Breakaway hosting passage ([retrieval-checks-k8.txt](evidence/retrieval-checks-k8.txt)).
 - **The harness checks facts, not only the model.** Number checks, constrained IDs and citation filtering catch errors a 2B model makes. In review, 5 faulty facts on the GRKN page were corrected via `data/review.json`.
 - **Sources are never edited.** Corrections and review notes go in `vault/wiki/`, for example `Breakaway PRD Review Notes` and the review section on `Draft Copilot`.
+- **Sources are checked by hash.** Opening the vault in Obsidian rewrote the line endings of two raw files (CRLF to LF, same text). The hash check caught it, and the original bytes were restored so the sources match their ingest hashes.
 - **Chat history is never evidence.** Ask has no history. Transcripts are saved outside the vault, so they're never indexed.
 
 ## Test results
@@ -77,7 +78,7 @@ Test questions and expected passages: [tests/questions.yaml](tests/questions.yam
 
 The first online run failed more (citation formats not parsed, T4 listing the options only). One fix pass followed (citation parsing, link stripping, a prompt rule for "what was chosen" questions), and both runs are kept in `evidence/`. An earlier "offline" run turned out to have the network up, so it's kept separately in `evidence/offline-invalid-network-was-up/` and not counted.
 
-**Offline:** `offline_run.cmd` confirmed google.com was unreachable, then ran help, search, ingest of `Draft Copilot.md` and the full evaluation. Log: [evidence/offline/offline-run-log.txt](evidence/offline/offline-run-log.txt). Screenshot: [evidence/screenshots/offline-run-airplane-mode.png](evidence/screenshots/offline-run-airplane-mode.png).
+**Offline:** `offline_run.cmd` confirmed google.com was unreachable, then ran help, search, ingest of `Draft Copilot.md` and the full evaluation. Log: [evidence/offline/offline-run-log.txt](evidence/offline/offline-run-log.txt). Screenshot: [evidence/offline/offline-run-airplane-mode.png](evidence/offline/offline-run-airplane-mode.png).
 
 ## Obsidian
 

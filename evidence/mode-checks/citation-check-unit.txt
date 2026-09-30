@@ -1,0 +1,20 @@
+retrieved S1..S6
+  in : Readiness uses HRV 45% [S1] and load 35% [S9].
+  out: Readiness uses HRV 45% [S1] and load 35%.
+  check: REJECTED citations to unretrieved sources S9 (removed); cites S1
+
+retrieved S1..S4
+  in : Grouped forms [S1, S2] and doubled [[S3]] are normalised.
+  out: Grouped forms [S1][S2] and doubled [S3] are normalised.
+  check: cites S1, S2, S3
+
+retrieved S1..S6
+  in : Insufficient evidence. The PRD lists pricing as open.
+  out: Insufficient evidence. The PRD lists pricing as open.
+  check: insufficient evidence (no citations needed)
+
+retrieved S1..S6
+  in : A claim with no citation at all.
+  out: A claim with no citation at all.
+  check: WARNING: answer has no citations
+

@@ -7,3 +7,5 @@ data/embed_cache.npz
 NEXT_STEPS_PROMPT.md
 # Obsidian workspace state
 vault/.obsidian/workspace*.json
+# Claude Code personal settings
+.claude/settings.local.json
