@@ -35,6 +35,7 @@ def main():
         out += [f"### {t['id']} ({t['kind']}): {t['question']}", "", f"**Answer:** {res['answer']}", "",
                 f"- Expected: {t['expected_behaviour'].strip()}", f"- Expected sources: {', '.join(t['expected_sources'])}",
                 f"- Cited sources: {', '.join(cited) or 'none'}", f"- Citation check: {res['check']}",
+                f"- Route: {res.get('route', 'single call')}",
                 f"- Time: {res['stats']['wall_s'] if res['stats'] else '-'} s | evidence: `{p.relative_to(EVIDENCE_DIR.parent).as_posix()}`", ""]
 
     out += ["## Mode checks", ""]

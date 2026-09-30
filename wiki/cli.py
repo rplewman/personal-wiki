@@ -40,7 +40,8 @@ def cmd_ask(args):
         for i, c in enumerate(res["sources"], 1):
             print(f"  [S{i}] {c.path} :: {c.section}")
     s = res["stats"]
-    print(f"\n[{res['check']}]" + (f" [{s['wall_s']} s, {s['tok_per_s']} tok/s, RAM free {s['ram_available_gb']} GB]" if s else ""))
+    print(f"\n[{res['check']}]" + (f" [{s['wall_s']} s, {s['tok_per_s']} tok/s, RAM free {s['ram_available_gb']} GB]" if s else "")
+          + f" [route: {res.get('route', 'single call')}]")
     if res["retrieval_note"]:
         print(f"[note] {res['retrieval_note']}")
     if not args.no_save:
